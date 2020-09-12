@@ -5,6 +5,7 @@ const main = () => {
         <div>
             Main Page
             for web
+            SAMS
         </div>
     )
 }
