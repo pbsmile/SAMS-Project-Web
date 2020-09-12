@@ -4,6 +4,7 @@ const main = () => {
     return (
         <div>
             Main Page
+            for web
         </div>
     )
 }
