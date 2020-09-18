@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
+import MainPageCard from '../components/Card/MainPageCard'
 
 const main = () => {
     return (
@@ -8,6 +9,7 @@ const main = () => {
             Main Page
             for web
             SAMS
+            <MainPageCard/>
         </div>
     )
 }
