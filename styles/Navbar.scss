@@ -23,7 +23,7 @@
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 30px 15px;
   text-decoration: none;
   font-size: 17px;
 }
@@ -33,6 +33,7 @@
   color: black;
   border-radius: 20px;
   transition: all 0.2s ease-out;
+  height: 80px;
 }
 
 .Nav-Items a.active {
@@ -43,9 +44,22 @@
 .Nav-Elements {
     display: grid;
     grid-template-columns: repeat(2,auto);
-    grid-gap: 10px;
+    grid-column-gap: 10px;
     list-style: none;
     text-align: center;
     width: 70vh;
     justify-content: end;
+}
+
+.Nav-Logo-Flex {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 10px;
+}
+
+.Nav-Elements-Flex {
+  width: 50%;
+  display: flex;
+  align-items: center;
 }
