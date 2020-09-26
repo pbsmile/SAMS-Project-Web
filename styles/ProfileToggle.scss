@@ -1,0 +1,44 @@
+.Profile-Toggle-Button-List {
+  background-color: rgb(255, 185, 34);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Profile-Toggle-Button-List label {
+  float: left;
+  color: #000000;
+  text-align: center;
+  padding: 30px 15px;
+  font-size: 17px;
+}
+
+.Profile-Toggle-Button-List label:hover {
+  background-color: #ddd;
+  color: black;
+  border-radius: 20px;
+  transition: all 0.2s ease-out;
+  height: 80px;
+}
+
+.Profile-Toggle-Button-MyPost {
+    background-color: #ddd;
+    color: black;
+    border-radius: 20px;
+    height: 80px;
+}
+
+.Profile-Toggle-Button-Favorite {
+    background-color: #ddd;
+    color: black;
+    border-radius: 20px;
+    height: 80px;
+}
+
+.Profile-Toggle-Button-History {
+    background-color: #ddd;
+    color: black;
+    border-radius: 20px;
+    height: 80px;
+}
