@@ -20,3 +20,4 @@ const MenuItems = [
         cName:'Nav-Links-Mobile'
     }
 ]
+export default MenuItems
