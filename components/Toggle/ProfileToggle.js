@@ -33,7 +33,7 @@ const ProfileToggle = () => {
   };
 
   return (
-    <div>
+    <div className="Profile-Toggle-Div">
       <div className="Profile-Toggle-Button-List">
         <label
           className={

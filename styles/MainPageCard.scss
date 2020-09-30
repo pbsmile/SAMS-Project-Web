@@ -1,20 +1,23 @@
 .Main-Page-Card-Div {
+  //overflow: scroll;
   margin-left: 35%;
-  max-width: 375px;
+  max-width: 550px;
+  margin-top: 100px;
   //background-color: rgb(184, 184, 184);
 }
 
 .Main-Page-Card-Nav {
-    height: 30px;
-    background-color: rgb(255, 185, 34);
+  //position: fixed;
+  height: 30px;
+  background-color: rgb(255, 185, 34);
 }
 
 .Main-Page-Card-Nav-Popular {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .Main-Page-Card {
-  max-width: 375px;
+  max-width: 550px;
   margin-top: 10px;
 }
 
