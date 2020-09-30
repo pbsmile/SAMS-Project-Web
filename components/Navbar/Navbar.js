@@ -25,7 +25,7 @@ const navbar = () => {
   };
 
   return (
-    <div>
+    <div className="Nav-Items-Div">
       <nav 
       className="Nav-Items Nav-Items-Flex">
         <div className="Nav-Logo-Flex">
@@ -58,7 +58,7 @@ const navbar = () => {
                 กิจกรรมทั้งหมด
               </a>
             </li>
-            <div className="Nav-MenuIcon"></div>
+            <div className="Nav-Profile-List"></div>
           </ul>
         </div>
       </nav>
