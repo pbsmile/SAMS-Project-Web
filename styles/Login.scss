@@ -1,31 +1,19 @@
-// body,html {
-//     margin: 0;
-//     padding: 0;
-//     height: 100%;
-//     background: #60a3bc !important;
-// }
-.login_container{
-    border-radius: 20px;
-}
-
 .login_user_card {
-    height: 370px;
+    height: 380px;
     width: 500px;
     margin-left: 35%;
     margin-top: 10%;
     margin-bottom: auto;
     background:white;
     position: relative;
-    // display: flex;
     justify-content: center;
     flex-direction: column;
-    // padding-left: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
-
 }
+
 .login_form-group{
     margin-top: 20px;
     margin-left: 20%;

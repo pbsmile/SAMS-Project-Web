@@ -2,7 +2,6 @@ import React from "react";
 
 const login = () => {
     return (
-        <div className="d-flex justify-content-center login_container h-100">
             <div className="login_user_card">
                 <div className="d-flex justify-content-center login_form_container">
                     <div className="d-flex justify-content-center login_header">
@@ -23,8 +22,8 @@ const login = () => {
                                 <label className="login_custom-control-label">Remember me</label>
                             </div>
 
-                            <div className="d-flex justify-content-center mt-3 login_container">
-                                <button type="button" name="button" className="btn login_btn">Login</button>
+                            <div className="d-flex justify-content-center mt-3">
+                                <button type="button" name="button" className="login_btn">Login</button>
                             </div>
 
                             <div className="d-flex justify-content-center login_links">
@@ -39,7 +38,7 @@ const login = () => {
                     </form>
                 </div>
             </div>
-        </div>
+    
 
     );
 };
