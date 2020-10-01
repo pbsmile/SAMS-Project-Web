@@ -1,11 +1,12 @@
 .Nav-Items-Div {
-  //position: fixed;
+  position: fixed;
   width: 100%;
   margin-bottom: 10px;
+  background-color: rgb(255, 185, 34);
+  height: 80px;
 }
 
 .Nav-Items {
-  background-color: rgb(255, 185, 34);
   height: 80px;
   display: flex;
   justify-content: center;
@@ -67,7 +68,7 @@
   grid-column-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 70vh;
+  width: 60vh;
   justify-content: end;
 }
 
@@ -82,4 +83,29 @@
   width: 50%;
   display: flex;
   align-items: center;
+}
+
+.Nav-Profile-Flex {
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+}
+
+.Nav-Profile-Img {
+  width: 40px;
+  height: 40px;
+}
+
+.Nav-Profile-Flex-Text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.Nav-Profile-Username {
+  font-size: 16px;
+}
+
+.Nav-Profile-Logout {
+  font-size: 12px;
 }
