@@ -1,0 +1,85 @@
+.register_user_card {
+    height: 700px;
+    width: 500px;
+    margin-left: 35%;
+    margin-top: 10%;
+    margin-bottom: auto;
+    background:white;
+    position: relative;
+    // display: flex;
+    justify-content: center;
+    flex-direction: column;
+    // padding-left: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+}
+.register_form-group{
+    margin-top: 20px;
+    margin-left: 20%;
+}
+
+.register_form_container {
+    margin-top: 10px;
+}
+.register_header {
+    height: 50px;
+    background: #f77f00;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.register_header h3{
+    padding-top: 5px;
+    font-size: 30px;
+}
+
+.register_btn {
+    width: 20%;
+    height: 50px;
+    background: #f77f00!important;
+    color: white !important;
+    border-radius: 25px ;
+    font-size: 15px;
+    margin-left: 100px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.register_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.register_input {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.register_links{
+    margin-left: 50px;
+}
+.register_input-user-pass{
+    font-size: 18px;
+    height: 40px;
+    width: 350px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+.register_input-user-pass:focus {
+    border-radius: 5px;
+    border: 2px solid black;
+    // font-size: 20px;
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.register_custom-checkbox{
+    margin-left: 70px;   
+}
+.register_custom-checkbox .register_custom-control-input:checked~.register_custom-control-label::before {
+    margin-left: 100px;
+    background-color: #c0392b !important;
+}
