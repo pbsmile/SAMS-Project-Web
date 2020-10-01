@@ -4,15 +4,15 @@
 //     height: 100%;
 //     background: #60a3bc !important;
 // }
-.container{
+.login_container{
     border-radius: 20px;
 }
 
-.user_card {
-    height: 350px;
+.login_user_card {
+    height: 370px;
     width: 500px;
     margin-left: 35%;
-    margin-top: 15%;
+    margin-top: 10%;
     margin-bottom: auto;
     background:white;
     position: relative;
@@ -26,12 +26,12 @@
     border-radius: 5px;
 
 }
-.form-group{
+.login_form-group{
     margin-top: 20px;
     margin-left: 20%;
 }
 
-.form_container {
+.login_form_container {
     margin-top: 10px;
 }
 .login_header {
@@ -48,30 +48,28 @@
 .login_btn {
     width: 20%;
     height: 50px;
-    background: #f77f00 !important;
+    background: #f77f00!important;
     color: white !important;
-    border-radius: 25px;
+    border-radius: 25px ;
     font-size: 15px;
+    margin-left: 100px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
+
 .login_btn:focus {
     box-shadow: none !important;
     outline: 0px !important;
 }
-// .login_container {
-//     padding: 50px 2rem;
-// }
-// .input-group-text {
-//     background: #c0392b !important;
-//     color: white !important;
-//     border: 0 !important;
-//     border-radius: 0.25rem 0 0 0.25rem !important;
-// }
-.input-group {
-    margin-top: 20px;
-    margin-left: 10px;
-}
 
-.input-user-pass{
+.login_input {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.login_links{
+    margin-left: 50px;
+}
+.login_input-user-pass{
     font-size: 18px;
     height: 40px;
     width: 350px;
@@ -80,13 +78,18 @@
     border-radius: 5px;
     padding: 10px 10px;
 }
-.input-user-pass:focus {
+.login_input-user-pass:focus {
     border-radius: 5px;
     border: 2px solid black;
     // font-size: 20px;
     box-shadow: none !important;
     outline: 0px !important;
 }
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+
+.login_custom-checkbox{
+    margin-left: 70px;   
+}
+.login_custom-checkbox .login_custom-control-input:checked~.login_custom-control-label::before {
+    margin-left: 100px;
     background-color: #c0392b !important;
 }
