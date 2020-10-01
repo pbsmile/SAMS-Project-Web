@@ -35,11 +35,7 @@
 }
 
 .Main-Page-Card-Top-Div {
-  display: flex;
-  flex-direction: row;
-  
   margin-left: 65%;
-  align-items: center;
 }
 
 .Main-Page-Card-Join {
@@ -48,15 +44,8 @@
   border-radius: 10px;
   height: 20px;
   width: 20px;
-  background-color: rgb(27, 230, 61);
-  margin-left: 10px;
 }
 
-.Main-Page-Card-Join-Text {
-  font-family: "Prompt", sans-serif;
-  font-size: 15px;
-  margin-left: 5px;
-}
 
 .Main-Page-Card-Favorite {
   font-family: "Prompt", sans-serif;
@@ -65,14 +54,6 @@
   height: 20px;
   width: 20px;
   justify-items: center;
-  background-color: rgb(216, 19, 58);
-  margin-left: 10px;
-}
-
-.Main-Page-Card-Favorite-Text {
-  font-family: "Prompt", sans-serif;
-  font-size: 15px;
-  margin-left: 5px;
 }
 
 
