@@ -3,9 +3,8 @@
     width: 500px;
     margin-left: 35%;
     margin-top: 10%;
-    margin-bottom: auto;
+    margin-bottom: 50px;
     background:white;
-    position: relative;
     justify-content: center;
     flex-direction: column;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -22,6 +21,7 @@
 .login_form_container {
     margin-top: 10px;
 }
+
 .login_header {
     height: 50px;
     background: #f77f00;
