@@ -6,6 +6,7 @@ const register = () => {
     return (
         <div>
             <Navbar/>
+            TT
             <Register/>
         </div>
     )
