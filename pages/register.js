@@ -1,15 +1,15 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
-import Login from '../components/Login/Login'
+import Register from '../components/Register/Register'
 
-const login = () => {
+const register = () => {
     return (
         <div>
             <Navbar/>
-            jj
-            <Login/>
+            TT
+            <Register/>
         </div>
     )
 }
 
-export default login;
+export default register;
