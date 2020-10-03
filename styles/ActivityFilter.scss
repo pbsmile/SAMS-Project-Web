@@ -1,0 +1,40 @@
+.Filter-Items-Div {
+    position: fixed;
+    width: 530px;
+    margin-bottom: 10px;
+    background-color: rgb(248, 250, 120);
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 100px;
+  }
+  
+  .Filter-Items {
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .Filter-Years {
+    font-family: "Prompt", sans-serif;
+    font-size: 15px;
+    width: 150px;
+    background-color: rgb(248, 250, 120);
+    border-color: rgb(248, 250, 120);
+  }
+
+  .Filter-Departments {
+    font-family: "Prompt", sans-serif;
+    font-size: 15px;
+    width: 150px;
+    background-color: rgb(248, 250, 120);
+    border-color: rgb(248, 250, 120);
+  }
+
+  .Filter-Statuses {
+    font-family: "Prompt", sans-serif;
+    font-size: 15px;
+    width: 150px;
+    background-color: rgb(248, 250, 120);
+    border-color: rgb(248, 250, 120);
+  }

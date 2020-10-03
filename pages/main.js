@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import Navbar from '../components/Navbar/Navbar'
 import MainPageCard from '../components/Card/MainPageCard'
 import MainPageSlidebar from '../components/Slidebar/MainPageSlidebar'

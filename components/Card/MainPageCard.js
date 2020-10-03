@@ -24,8 +24,8 @@ const MainPageCard = () => {
               <label className="Main-Page-Card-Favorite-Text">ชื่นชอบ</label>
             </div>
           </CardActions>
-          <CardActionArea className="Main-Page-Card-Area">
-            <CardContent>
+          <div className="Main-Page-Card-Area">
+            
               <div className="Main-Page-Card-Flex">
                 <div className="Main-Page-Card-Left">
                   <img className="Main-Page-Card-Img" src={Circle} />
@@ -48,8 +48,8 @@ const MainPageCard = () => {
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </CardActionArea>
+            
+          </div>
           <CardActions>
             <div className="Main-Page-Card-More-Div">
               <button className="Main-Page-Card-More">

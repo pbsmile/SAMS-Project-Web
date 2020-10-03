@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom'
 import Router from "next/router";
 import MenuItems from "./MenuItem";
 import User from "../../Image/circle.svg";
 
+import {usePath} from 'hookrouter';
+
+
 const navbar = () => {
-  console.log("Menu", MenuItems);
+  //console.log("Menu", MenuItems);
   const [toggle, setToggle] = useState("");
   const [refresh, setRefresh] = useState(false);
+
+  const path = usePath();
+  
+
   useEffect(() => {
     if (toggle == "main") {
       console.log("main");
@@ -14,16 +22,26 @@ const navbar = () => {
     if (toggle == "activity") {
       console.log("activity");
     }
-  }, [toggle, refresh]);
+    
+    if (path == '/main') {
+      setToggle("main");
+    }
+    if (path == '/activity') {
+      setToggle("activity");
+    }
+
+  }, [toggle, refresh, path]);
 
   const handleClick = (toggleType) => {
     if (toggleType == "main") {
-      setToggle("main");
+      Router.push("/main")
     }
     if (toggleType == "activity") {
-      setToggle("activity");
+      Router.push("/activity")
     }
   };
+
+  console.log("toggle nav" , toggle)
 
   return (
     <div className="Nav-Items-Div">
@@ -39,7 +57,7 @@ const navbar = () => {
               <a
                 className={toggle == "main" ? "Nav-Home" : "Nav-Home-Trans"}
                 onClick={() => handleClick("main")}
-                onClick={() => Router.push("/main")}
+                //onClick={() => Router.push("/main")}
               >
                 หน้าแรก
               </a>
@@ -52,7 +70,7 @@ const navbar = () => {
                     : "Nav-Activities-Trans"
                 }
                 onClick={() => handleClick("activity")}
-                onClick={() => Router.push("/activity")}
+                //onClick={() => Router.push("/activity")}
               >
                 กิจกรรมทั้งหมด
               </a>
@@ -60,7 +78,9 @@ const navbar = () => {
           </ul>
         </div>
         <div className="Nav-Profile-Flex">
-          <img className="Nav-Profile-Img" src={User} />
+          <img className="Nav-Profile-Img" src={User} 
+          //onClick={() => handleClick("")}
+          onClick={() => Router.push("/profile")} />
           <div className="Nav-Profile-Flex-Text">
             <label className="Nav-Profile-Username">60010549</label>
             <label className="Nav-Profile-Logout">LOGOUT</label>
