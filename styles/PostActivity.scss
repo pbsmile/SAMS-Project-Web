@@ -1,0 +1,41 @@
+.post_user_card {
+    height: auto;
+    width:800px;
+    margin-left: 25%;
+    margin-top: 15%;
+    margin-bottom: 50px;
+    background:white;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.post_header {
+    height: 70px;
+    background: #f77f00;
+    margin-bottom: 20px;
+}
+.post_header h3{
+    padding-top: 10px;
+    margin-left: 30px;
+    font-size: 30px;
+}
+.post_input h2{
+    font-size: 20px;
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+.flex1{
+    display: flex;
+    flex-direction: row;
+}
