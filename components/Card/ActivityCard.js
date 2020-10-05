@@ -11,51 +11,209 @@ import Filter from '../Filter/ActivityFilter'
 
 const ActivityCard = () => {
   return (
-    <div className="Main-Page-Card-Div">
+    <div className="Activity-Page-Card-Div">
       <Filter/>
-      <nav className="Main-Page-Card-Nav">
-        <h1 className="Main-Page-Card-Nav-Popular">กิจกรรมทั้งหมด</h1>
+      <nav className="Activity-Page-Card-Nav">
+        <h1 className="Activity-Page-Card-Nav-Popular">กิจกรรมทั้งหมด</h1>
       </nav>
       
-      <Card className="Main-Page-Card">
+      <div>
+      <Card className="Activity-Page-Card">
         <CardActions>
-          <div className="Main-Page-Card-Top-Div">
-            <button className="Main-Page-Card-Join"></button>
-            <label className="Main-Page-Card-Join-Text">เข้าร่วม</label>
-            <button className="Main-Page-Card-Favorite"></button>
-            <label className="Main-Page-Card-Favorite-Text">ชื่นชอบ</label>
+          <div className="Activity-Page-Card-Top-Div">
+            <button className="Activity-Page-Card-Join"></button>
+            <label className="Activity-Page-Card-Join-Text">เข้าร่วม</label>
+            <button className="Activity-Page-Card-Favorite"></button>
+            <label className="Activity-Page-Card-Favorite-Text">ชื่นชอบ</label>
           </div>
         </CardActions>
-        <div className="Main-Page-Card-Area">
-          <div className="Main-Page-Card-Flex">
-            <div className="Main-Page-Card-Left">
-              <img className="Main-Page-Card-Img" src={Circle} />
-              <label className="Main-Page-Card-Status">สถานะกิจกรรม :</label>
-              <label className="Main-Page-Card-Status">ปิด</label>
+        <div className="Activity-Page-Card-Area">
+          <div className="Activity-Page-Card-Flex">
+            <div className="Activity-Page-Card-Left">
+              <img className="Activity-Page-Card-Img" src={Circle} />
+              <label className="Activity-Page-Card-Status">สถานะกิจกรรม :</label>
+              <label className="Activity-Page-Card-Status">ปิด</label>
             </div>
-            <div className="Main-Page-Card-Right">
-              <label className="Main-Page-Card-Name">ชื่อกิจกรรมเต็ม</label>
-              <div className="Main-Page-Card-Date-Time">
-                <label className="Main-Page-Card-Date">วัน</label>
-                <label className="Main-Page-Card-Time">เวลา</label>
+            <div className="Activity-Page-Card-Right">
+              <label className="Activity-Page-Card-Name">ชื่อกิจกรรมเต็ม</label>
+              <div className="Activity-Page-Card-Date-Time">
+                <label className="Activity-Page-Card-Date">วัน</label>
+                <label className="Activity-Page-Card-Time">เวลา</label>
               </div>
 
-              <label className="Main-Page-Card-Location">สถานที่</label>
-              <div className="Main-Page-Card-Members-Close">
-                <label className="Main-Page-Card-Members">จำนวนรับ</label>
-                <label className="Main-Page-Card-Close">ปิดรับ</label>
+              <label className="Activity-Page-Card-Location">สถานที่</label>
+              <div className="Activity-Page-Card-Members-Close">
+                <label className="Activity-Page-Card-Members">จำนวนรับ</label>
+                <label className="Activity-Page-Card-Close">ปิดรับ</label>
               </div>
             </div>
           </div>
         </div>
         <CardActions>
-          <div className="Main-Page-Card-More-Div">
-            <button className="Main-Page-Card-More">
+          <div className="Activity-Page-Card-More-Div">
+            <button className="Activity-Page-Card-More">
               รายละเอียดเพิ่มเติม >>
             </button>
           </div>
         </CardActions>
       </Card>
+      <Card className="Activity-Page-Card">
+        <CardActions>
+          <div className="Activity-Page-Card-Top-Div">
+            <button className="Activity-Page-Card-Join"></button>
+            <label className="Activity-Page-Card-Join-Text">เข้าร่วม</label>
+            <button className="Activity-Page-Card-Favorite"></button>
+            <label className="Activity-Page-Card-Favorite-Text">ชื่นชอบ</label>
+          </div>
+        </CardActions>
+        <div className="Activity-Page-Card-Area">
+          <div className="Activity-Page-Card-Flex">
+            <div className="Activity-Page-Card-Left">
+              <img className="Activity-Page-Card-Img" src={Circle} />
+              <label className="Activity-Page-Card-Status">สถานะกิจกรรม :</label>
+              <label className="Activity-Page-Card-Status">ปิด</label>
+            </div>
+            <div className="Activity-Page-Card-Right">
+              <label className="Activity-Page-Card-Name">ชื่อกิจกรรมเต็ม</label>
+              <div className="Activity-Page-Card-Date-Time">
+                <label className="Activity-Page-Card-Date">วัน</label>
+                <label className="Activity-Page-Card-Time">เวลา</label>
+              </div>
+
+              <label className="Activity-Page-Card-Location">สถานที่</label>
+              <div className="Activity-Page-Card-Members-Close">
+                <label className="Activity-Page-Card-Members">จำนวนรับ</label>
+                <label className="Activity-Page-Card-Close">ปิดรับ</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <CardActions>
+          <div className="Activity-Page-Card-More-Div">
+            <button className="Activity-Page-Card-More">
+              รายละเอียดเพิ่มเติม >>
+            </button>
+          </div>
+        </CardActions>
+      </Card>
+      <Card className="Activity-Page-Card">
+        <CardActions>
+          <div className="Activity-Page-Card-Top-Div">
+            <button className="Activity-Page-Card-Join"></button>
+            <label className="Activity-Page-Card-Join-Text">เข้าร่วม</label>
+            <button className="Activity-Page-Card-Favorite"></button>
+            <label className="Activity-Page-Card-Favorite-Text">ชื่นชอบ</label>
+          </div>
+        </CardActions>
+        <div className="Activity-Page-Card-Area">
+          <div className="Activity-Page-Card-Flex">
+            <div className="Activity-Page-Card-Left">
+              <img className="Activity-Page-Card-Img" src={Circle} />
+              <label className="Activity-Page-Card-Status">สถานะกิจกรรม :</label>
+              <label className="Activity-Page-Card-Status">ปิด</label>
+            </div>
+            <div className="Activity-Page-Card-Right">
+              <label className="Activity-Page-Card-Name">ชื่อกิจกรรมเต็ม</label>
+              <div className="Activity-Page-Card-Date-Time">
+                <label className="Activity-Page-Card-Date">วัน</label>
+                <label className="Activity-Page-Card-Time">เวลา</label>
+              </div>
+
+              <label className="Activity-Page-Card-Location">สถานที่</label>
+              <div className="Activity-Page-Card-Members-Close">
+                <label className="Activity-Page-Card-Members">จำนวนรับ</label>
+                <label className="Activity-Page-Card-Close">ปิดรับ</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <CardActions>
+          <div className="Activity-Page-Card-More-Div">
+            <button className="Activity-Page-Card-More">
+              รายละเอียดเพิ่มเติม >>
+            </button>
+          </div>
+        </CardActions>
+      </Card>
+      <Card className="Activity-Page-Card">
+        <CardActions>
+          <div className="Activity-Page-Card-Top-Div">
+            <button className="Activity-Page-Card-Join"></button>
+            <label className="Activity-Page-Card-Join-Text">เข้าร่วม</label>
+            <button className="Activity-Page-Card-Favorite"></button>
+            <label className="Activity-Page-Card-Favorite-Text">ชื่นชอบ</label>
+          </div>
+        </CardActions>
+        <div className="Activity-Page-Card-Area">
+          <div className="Activity-Page-Card-Flex">
+            <div className="Activity-Page-Card-Left">
+              <img className="Activity-Page-Card-Img" src={Circle} />
+              <label className="Activity-Page-Card-Status">สถานะกิจกรรม :</label>
+              <label className="Activity-Page-Card-Status">ปิด</label>
+            </div>
+            <div className="Activity-Page-Card-Right">
+              <label className="Activity-Page-Card-Name">ชื่อกิจกรรมเต็ม</label>
+              <div className="Activity-Page-Card-Date-Time">
+                <label className="Activity-Page-Card-Date">วัน</label>
+                <label className="Activity-Page-Card-Time">เวลา</label>
+              </div>
+
+              <label className="Activity-Page-Card-Location">สถานที่</label>
+              <div className="Activity-Page-Card-Members-Close">
+                <label className="Activity-Page-Card-Members">จำนวนรับ</label>
+                <label className="Activity-Page-Card-Close">ปิดรับ</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <CardActions>
+          <div className="Activity-Page-Card-More-Div">
+            <button className="Activity-Page-Card-More">
+              รายละเอียดเพิ่มเติม >>
+            </button>
+          </div>
+        </CardActions>
+      </Card>
+      <Card className="Activity-Page-Card">
+        <CardActions>
+          <div className="Activity-Page-Card-Top-Div">
+            <button className="Activity-Page-Card-Join"></button>
+            <label className="Activity-Page-Card-Join-Text">เข้าร่วม</label>
+            <button className="Activity-Page-Card-Favorite"></button>
+            <label className="Activity-Page-Card-Favorite-Text">ชื่นชอบ</label>
+          </div>
+        </CardActions>
+        <div className="Activity-Page-Card-Area">
+          <div className="Activity-Page-Card-Flex">
+            <div className="Activity-Page-Card-Left">
+              <img className="Activity-Page-Card-Img" src={Circle} />
+              <label className="Activity-Page-Card-Status">สถานะกิจกรรม :</label>
+              <label className="Activity-Page-Card-Status">ปิด</label>
+            </div>
+            <div className="Activity-Page-Card-Right">
+              <label className="Activity-Page-Card-Name">ชื่อกิจกรรมเต็ม</label>
+              <div className="Activity-Page-Card-Date-Time">
+                <label className="Activity-Page-Card-Date">วัน</label>
+                <label className="Activity-Page-Card-Time">เวลา</label>
+              </div>
+
+              <label className="Activity-Page-Card-Location">สถานที่</label>
+              <div className="Activity-Page-Card-Members-Close">
+                <label className="Activity-Page-Card-Members">จำนวนรับ</label>
+                <label className="Activity-Page-Card-Close">ปิดรับ</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <CardActions>
+          <div className="Activity-Page-Card-More-Div">
+            <button className="Activity-Page-Card-More">
+              รายละเอียดเพิ่มเติม >>
+            </button>
+          </div>
+        </CardActions>
+      </Card>
+      </div>
     </div>
   );
 };
