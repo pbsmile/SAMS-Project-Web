@@ -47,7 +47,7 @@ const navbar = () => {
     <div className="Nav-Items-Div">
       <nav className="Nav-Items Nav-Items-Flex">
         <div className="Nav-Logo-Flex">
-          <h1 className="Nav-Logo" href="#">
+          <h1 className="Nav-Logo" href="#" onClick={() => Router.push("/main")}>
             SAMS
           </h1>
         </div>
