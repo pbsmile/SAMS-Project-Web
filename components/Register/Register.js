@@ -17,7 +17,7 @@ const register = () => {
                         <input type="password" name="" className="register_input_data" defaultValue="" placeholder="" />
                     </div>
                     <div className="register_input mb-3">
-                        <label htmlFor="password">คณะ/วิทยาลัย</label>
+                        <label>คณะ/วิทยาลัย</label>
                         <select className="register_input_data">
                             <option value="0">เลือกคณะ/วิทยาลัย</option>
                             <option value="1">คณะวิศวกรรมศาสตร์</option>
