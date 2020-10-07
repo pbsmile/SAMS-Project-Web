@@ -23,23 +23,23 @@ const navbar = () => {
       console.log("activity");
     }
     
-    if (path == '/main') {
-      setToggle("main");
-    }
-    if (path == '/activity') {
-      setToggle("activity");
-    }
+    // if (path == '/main') {
+    //   setToggle("main");
+    // }
+    // if (path == '/activity') {
+    //   setToggle("activity");
+    // }
 
   }, [toggle, refresh, path]);
 
-  const handleClick = (toggleType) => {
-    if (toggleType == "main") {
-      Router.push("/main")
-    }
-    if (toggleType == "activity") {
-      Router.push("/activity")
-    }
-  };
+  // const handleClick = (toggleType) => {
+  //   if (toggleType == "main") {
+  //     Router.push("/main")
+  //   }
+  //   if (toggleType == "activity") {
+  //     Router.push("/activity")
+  //   }
+  // };
 
   console.log("toggle nav" , toggle)
 
@@ -48,7 +48,7 @@ const navbar = () => {
       <nav className="Nav-Items Nav-Items-Flex">
         <div className="Nav-Logo-Flex">
           <h1 className="Nav-Logo" href="#" onClick={() => Router.push("/main")}>
-            SAMS
+            กิจกรรมนักศึกษา
           </h1>
         </div>
         <div className="Nav-Elements-Flex">
@@ -56,8 +56,8 @@ const navbar = () => {
             <li>
               <a
                 className={toggle == "main" ? "Nav-Home" : "Nav-Home-Trans"}
-                onClick={() => handleClick("main")}
-                //onClick={() => Router.push("/main")}
+                //onClick={() => handleClick("main")}
+                onClick={() => Router.push("/main")}
               >
                 หน้าแรก
               </a>
@@ -69,8 +69,8 @@ const navbar = () => {
                     ? "Nav-Activities"
                     : "Nav-Activities-Trans"
                 }
-                onClick={() => handleClick("activity")}
-                //onClick={() => Router.push("/activity")}
+                //onClick={() => handleClick("activity")}
+                onClick={() => Router.push("/activity")}
               >
                 กิจกรรมทั้งหมด
               </a>
