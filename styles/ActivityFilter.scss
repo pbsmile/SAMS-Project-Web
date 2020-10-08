@@ -107,8 +107,15 @@
 .Activity-Page-Card-Top-Div {
   display: flex;
   flex-direction: row;
-
+  
   margin-left: 65%;
+  align-items: center;
+}
+
+.Activity-Page-Card-Box {
+  width: 90px;
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -119,7 +126,6 @@
   height: 20px;
   width: 20px;
   //background-color: rgb(27, 230, 61);
-  margin-left: 10px;
 }
 
 .Activity-Page-Card-Join-Text {
@@ -172,6 +178,11 @@
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+}
+
+.Activity-Page-Card-Icon-Size {
+  height: 20px;
+  width: 20px;
 }
 
 .Activity-Page-Card-Name {
@@ -229,4 +240,6 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   border-radius: 10px;
+  border-width: 0px;
+  background-color: $dark-orange;
 }
