@@ -3,9 +3,9 @@
 // }
 
 .Profile-Toggle-Button-Menu {
-  background-color: #dddddd;
+  //background-color: #dddddd;
   margin-top: 80px;
-  width: 250px;
+  width: 200px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,9 @@
   top: 0;
   left: 0;
   transition: 350ms;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dddddd;
 }
 
 .Profile-Toggle-Button-Items {
@@ -33,7 +36,7 @@
   float: left;
   color: #000000;
   text-align: center;
-  padding: 30px 15px;
+  padding: 10px 15px 15px 15px;
   font-size: 17px;
 }
 
@@ -42,28 +45,34 @@
   color: black;
   border-radius: 10px;
   transition: all 0.2s ease-out;
-  height: 80px;
+  height: 40px;
 }
 
 .Profile-Toggle-Button-MyPost {
-    background-color:#ffaa0b;
-    color: black;
-    border-radius: 10px;
-    height: 80px;
+  background-color: #ffaa0b;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
 }
 
 .Profile-Toggle-Button-Favorite {
-    background-color: #ffaa0b;
-    color: black;
-    border-radius: 10px;
-    height: 80px;
+  background-color: #ffaa0b;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
 }
 
 .Profile-Toggle-Button-History {
-    background-color: #ffaa0b;
-    color: black;
-    border-radius: 10px;
-    height: 80px;
+  background-color: #ffaa0b;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.Profile-Toggle-Button-Trans {
+  color: black;
+  border-radius: 10px;
+  height: 40px;
 }
 
 .Profile-Toggle-List {
