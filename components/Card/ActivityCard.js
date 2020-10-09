@@ -80,7 +80,7 @@ const ActivityCard = () => {
                   className="Activity-Page-Card-Favorite-Text"
                   onClick={() => handleClickFav()}
                 >
-                  {toggleFav == "unfav" ? "ชื่อชอบ" : "เลิกชอบ"}
+                  {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
                 </label>
               </div>
             </div>

@@ -35,57 +35,69 @@ const ProfileToggle = () => {
 
   return (
     <div className="Profile-Toggle-Div Profile-Toggle-Button-List">
-      
-        <nav className="Profile-Toggle-Button-Menu active">
-          <ProfileCard />
-          <ul className="Profile-Toggle-Button-Items">
-            <label
-              className={
-                toggle == "mypost"
-                  ? "Profile-Toggle-Button-MyPost"
-                  : "Profile-Toggle-Button-Trans"
-              }
-              onClick={() => handleClick("mypost")}
-            >
-              โพสต์ของฉัน
-            </label>
-            <label
-              className={
-                toggle == "favorite"
-                  ? "Profile-Toggle-Button-Favorite"
-                  : "Profile-Toggle-Button-Trans"
-              }
-              onClick={() => handleClick("favorite")}
-            >
-              ชื่นชอบ
-            </label>
-            <label
-              className={
-                toggle == "history"
-                  ? "Profile-Toggle-Button-History"
-                  : "Profile-Toggle-Button-Trans"
-              }
-              onClick={() => handleClick("history")}
-            >
-              ประวัติ
-            </label>
-          </ul>
-        </nav>
+      <nav className="Profile-Toggle-Button-Menu active">
+        <ProfileCard />
+        <ul className="Profile-Toggle-Button-Items">
+          <label
+            className={
+              toggle == "mypost"
+                ? "Profile-Toggle-Button-MyPost"
+                : "Profile-Toggle-Button-Trans"
+            }
+            onClick={() => handleClick("mypost")}
+          >
+            โพสต์ของฉัน
+          </label>
+          <label
+            className={
+              toggle == "favorite"
+                ? "Profile-Toggle-Button-Favorite"
+                : "Profile-Toggle-Button-Trans"
+            }
+            onClick={() => handleClick("favorite")}
+          >
+            ชื่นชอบ
+          </label>
+          <label
+            className={
+              toggle == "history"
+                ? "Profile-Toggle-Button-History"
+                : "Profile-Toggle-Button-Trans"
+            }
+            onClick={() => handleClick("history")}
+          >
+            ประวัติ
+          </label>
+        </ul>
+      </nav>
       <div className="Profile-Toggle-List">
         {
-          toggle == "mypost" && <h1>My Post</h1>
+          toggle == "mypost" && (
+            <nav className="Profile-Toggle-Nav">
+              <p className="Profile-Toggle-Nav-Mypost">โพสต์ของฉัน</p>
+            </nav>
+          )
+
           //   order.map((item, index) => (
           //     <CardOrder item={item} key={index} isComplete={_isComplete} />
           //   ))
         }
         {
-          toggle == "favorite" && <h1>Favorite</h1>
+          toggle == "favorite" && (
+            <nav className="Profile-Toggle-Nav">
+              <p className="Profile-Toggle-Nav-Favorite">ชื่นชอบ</p>
+            </nav>
+          )
           //   order.map((item, index) => (
           //     <CardOrder item={item} key={index} isComplete={_isComplete} />
           //   ))
         }
         {
-          toggle == "history" && <h1>History</h1>
+          toggle == "history" && (
+            <nav className="Profile-Toggle-Nav">
+              <p className="Profile-Toggle-Nav-History">ประวัติ</p>
+            </nav>
+          )
           //   orderHistory.map((item, index) => (
           //     <CardHistory item={item} key={index} />
           //   ))
