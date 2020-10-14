@@ -9,7 +9,7 @@ const post = () => {
                 </div>
 
                 <div className="row">
-                    <div className="column">
+                    <div className="column1">
                         img
                     </div>
                     <div className="column">
