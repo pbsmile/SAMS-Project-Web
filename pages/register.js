@@ -1,4 +1,5 @@
 import React from 'react'
+import apolloClient from "../apollo/apolloClient"
 import Navbar from '../components/Navbar/Navbar'
 import Register from '../components/Register/Register'
 
@@ -12,4 +13,4 @@ const register = () => {
     )
 }
 
-export default register;
+export default apolloClient(register);
