@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import { onError } from "@apollo/client/link/error";
 import gql from "graphql-tag";
 
 const LOG_IN = gql`
-  mutation LOG_IN($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+  mutation Login($email: String!, $password: String!) {
+    login(input:{email: $email, password: $password}) {
       accessToken
     }
   }
