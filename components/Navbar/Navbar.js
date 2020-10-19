@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Router from "next/router";
 import MenuItems from "./MenuItem";
@@ -6,6 +6,7 @@ import User from "../../Image/user.png";
 import Logo from "../../Image/logo.png";
 
 import { usePath } from "hookrouter";
+import { AuthContext } from "../../appState/AuthProvider";
 
 const navbar = () => {
   //console.log("Menu", MenuItems);
@@ -13,6 +14,9 @@ const navbar = () => {
   const [refresh, setRefresh] = useState(false);
 
   const path = usePath();
+
+  const { user } = useContext(AuthContext);
+  console.log(user);
 
   useEffect(() => {
     if (toggle == "main") {
@@ -84,18 +88,31 @@ const navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="Nav-Profile-Flex">
-          <img
-            className="Nav-Profile-Img"
-            src={User}
-            //onClick={() => handleClick("")}
-            onClick={() => Router.push("/profile")}
-          />
-          <div className="Nav-Profile-Flex-Text">
-            <label className="Nav-Profile-Username">60010549</label>
-            <label className="Nav-Profile-Logout">LOGOUT</label>
-          </div>
-        </div>
+        {user && (
+          <>
+            <div className="Nav-Profile-Flex">
+              <img
+                className="Nav-Profile-Img"
+                src={User}
+                //onClick={() => handleClick("")}
+                onClick={() => Router.push("/profile")}
+              />
+              <div className="Nav-Profile-Flex-Text">
+                <label className="Nav-Profile-Username">60010549</label>
+                <label className="Nav-Profile-Logout">LOGOUT</label>
+              </div>
+            </div>
+          </>
+        )}
+        {!user && (
+          <>
+            <div className="Nav-Profile-Flex">
+              <div className="Nav-Profile-Flex-Text">
+                <label className="Nav-Profile-Logout">LOGIN</label>
+              </div>
+            </div>
+          </>
+        )}
       </nav>
     </div>
   );
