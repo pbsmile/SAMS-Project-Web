@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { onError } from "@apollo/client/link/error";
 import gql from "graphql-tag";
+import Cookies from "js-cookie"
+import Router from "next/router"
 
 const LOG_IN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -22,11 +24,13 @@ const login = () => {
     //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
     onCompleted: (data) => {
       if (data) {
+        Cookies.set('jwt',data.login.accessToken) // เอา cookies ไปใส่ใน headers apolloclients
         console.log(data);
         setUserInfo({
           email: "",
           password: "",
-        });
+        })
+        Router.push('/main')
       }
     },
   });
