@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Children, createContext, useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
@@ -11,9 +11,46 @@ mutation REGISTER($type: String!,$name: String!, $studentId: String!, $major: St
 }
 `;
 
+function useRadioButtons(name) {
+    const [value, setState] = useState(null);
+
+    const handleChange = (event) => {
+        setState(event.target.value);
+    };
+
+    const inputProps = {
+        onChange: handleChange,
+        name,
+        type: "radio"
+    };
+
+    return [value, inputProps];
+}
+
+const RadioGroupContext = createContext();
+
+function RadioGroup({ children, name, onChange }) {
+    const [state, inputProps] = useRadioButtons(name);
+    return (
+        <RadioGroupContext.Provider value={inputProps}>
+            {children}
+        </RadioGroupContext.Provider>
+    );
+}
+
+function RadioButton(props) {
+    const context = useContext(RadioGroupContext);
+    return (
+        <label>
+            <input {...props} {...context} />
+            {props.label}
+        </label>
+    );
+}
+
 const register = () => {
     const [userInfo, setUserInfo] = useState({
-        type:"student",
+        type: "student",
         name: "",
         studentId: "",
         major: "Engineering",
@@ -26,20 +63,20 @@ const register = () => {
         variables: { ...userInfo },
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
         onCompleted: (data) => {
-          if (data) {
-            console.log(data);
-            setUserInfo({
-                type: "",
-                name: "",
-                studentId: "",
-                major: "",
-                phoneNumber: "",
-                email: "",
-                password: ""
-            });
-          }
+            if (data) {
+                console.log(data);
+                setUserInfo({
+                    type: "",
+                    name: "",
+                    studentId: "",
+                    major: "",
+                    phoneNumber: "",
+                    email: "",
+                    password: ""
+                });
+            }
         },
-      });
+    });
 
     const handleChange = e => {
         // console.log(e.target.value)
@@ -52,12 +89,12 @@ const register = () => {
 
     const handleSubmit = async e => {
         try {
-          e.preventDefault();
-          await register();
+            e.preventDefault();
+            await register();
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
+    };
 
     return (
         <div className="register_user_card">
@@ -66,6 +103,20 @@ const register = () => {
                     <h3>ลงทะเบียน</h3>
                 </div>
                 <form onSubmit={handleSubmit}>
+                    <div className="register_input mb-3">
+                        <label>สถานะ</label>
+                        <RadioGroup label="สถานะ" name="type">
+                            <RadioButton label="นักศึกษา" value="Student" />
+                            <RadioButton label="อาจารย์/นักวิจัย" value="Student" />
+                            <RadioButton label="อาจารย์/นักวิจัย" value="Student" />
+                            <RadioButton label="อื่นๆ" value="Student" />
+                        </RadioGroup>
+                        {/* <label>สถานะ</label>
+                        <input type="radio" id="register_point_input" value="นักศึกษา"/>นักศึกษา
+                        <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>อาจารย์/นักวิจัย
+                        <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>บุคลากร
+                        <input type="radio" id="register_point_input" value="อื่นๆ"/>อื่นๆ */}
+                    </div>
                     <div className="register_input mb-3">
                         <label htmlFor="username">ชื่อ-นามสกุล</label>
                         <input type="text" name="name" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} value={userInfo.name} />
