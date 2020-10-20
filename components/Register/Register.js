@@ -101,7 +101,6 @@ const register = () => {
 
     // Set Drop down
 const [dropdown,setDropdown] = useState("apple");
-// const [isChecked, setIsChecked] = useState(false);
 
 
     return (
