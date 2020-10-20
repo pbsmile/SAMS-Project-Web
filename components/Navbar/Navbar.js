@@ -15,7 +15,7 @@ const navbar = () => {
 
   const path = usePath();
 
-  const { user } = useContext(AuthContext);
+  const { user, signout } = useContext(AuthContext);
   console.log(user);
 
   useEffect(() => {
@@ -99,7 +99,9 @@ const navbar = () => {
               />
               <div className="Nav-Profile-Flex-Text">
                 <label className="Nav-Profile-Username">60010549</label>
-                <label className="Nav-Profile-Logout">LOGOUT</label>
+                <label className="Nav-Profile-Logout" onClick={signout}>
+                  LOGOUT
+                </label>
               </div>
             </div>
           </>

@@ -40,6 +40,22 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
   const token = cookies && cookies.jwt;
   console.log(token);
 
+  if (!token) {
+    if (router.pathname === "/post" || router.pathname === "/profile") {
+      ctx.res.writeHead(302, { Location: "/login" })
+      ctx.res.end()
+    }
+    return null
+  }
+
+  if (token) {
+    if (router.pathname === '/login' || router.pathname === '/register') {
+      ctx.res.writeHead(302, { Location: '/main' }) // 302 status = redirect
+      ctx.res.end()
+    }
+  }
+
+
   const response = await fetch("http://localhost:4000/", {
     method: "post",
     headers: {
@@ -53,6 +69,11 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
     const result = await response.json();
     return { user: result.data.getOneUser };
   } else {
+    if (router.pathname === "/post" || router.pathname === "/profile") {
+      ctx.res.writeHead(302, { Location: "/login" })
+      ctx.res.end()
+    }
+
     return null;
   }
 };
