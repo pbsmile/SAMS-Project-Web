@@ -48,6 +48,14 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
     return null
   }
 
+  if (token) {
+    if (router.pathname === '/login' || router.pathname === '/register') {
+      ctx.res.writeHead(302, { Location: '/main' }) // 302 status = redirect
+      ctx.res.end()
+    }
+  }
+
+
   const response = await fetch("http://localhost:4000/", {
     method: "post",
     headers: {
