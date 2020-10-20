@@ -10,7 +10,7 @@ mutation REGISTER($type: String!,$name: String!, $studentId: String!, $major: St
     }
 }
 `;
-
+// Set Radio
 function useRadioButtons(name) {
     const [value, setState] = useState(null);
 
@@ -48,12 +48,14 @@ function RadioButton(props) {
     );
 }
 
+
+// Register API
 const register = () => {
     const [userInfo, setUserInfo] = useState({
         type: "student",
         name: "",
         studentId: "",
-        major: "Engineering",
+        major: "",
         phoneNumber: "",
         email: "",
         password: ""
@@ -96,6 +98,12 @@ const register = () => {
         }
     };
 
+
+    // Set Drop down
+const [dropdown,setDropdown] = useState("apple");
+// const [isChecked, setIsChecked] = useState(false);
+
+
     return (
         <div className="register_user_card">
             <div className="d-flex justify-content-center register_form_container">
@@ -119,15 +127,15 @@ const register = () => {
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="username">ชื่อ-นามสกุล</label>
-                        <input type="text" name="name" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} value={userInfo.name} />
+                        <input type="text" name="name" className="register_input_data" onChange={handleChange} value={userInfo.name} />
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="password">รหัสนักศึกษา</label>
-                        <input type="text" name="studentId" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} value={userInfo.studentId} />
+                        <input type="text" name="studentId" className="register_input_data" onChange={handleChange} value={userInfo.studentId} />
                     </div>
-                    {/* <div className="register_input mb-3" onChange={handleChange}>
-                        <label>คณะ/วิทยาลัย</label>
-                        <select className="register_input_data" name="major">
+                    <div className="register_input mb-3">
+                    <label>คณะ/วิทยาลัย</label>
+                        <select className="register_input_data" name="major" value={userInfo.dropdown} onChange={(e)=>{setDropdown(e.target.value)}} >
                             <option value="0">เลือกคณะ/วิทยาลัย</option>
                             <option value="1">คณะวิศวกรรมศาสตร์</option>
                             <option value="2">คณะสถาปัตยกรรมศาสตร</option>
@@ -144,7 +152,7 @@ const register = () => {
                             <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
                             <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
                         </select>
-                    </div> */}
+                    </div>
                     <div className="register_input mb-3">
                         <label htmlFor="password">เบอร์โทรศัพท์</label>
                         <input type="text" name="phoneNumber" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} value={userInfo.phoneNumber} />
