@@ -60,9 +60,10 @@ const register = () => {
         email: "",
         password: ""
     });
+    
 
     const [register, { loading, error }] = useMutation(REGISTER, {
-        variables: { ...userInfo },
+        variables: { ...userInfo  },
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
         onCompleted: (data) => {
             if (data) {
@@ -81,9 +82,12 @@ const register = () => {
     });
 
     const handleChange = e => {
-        // console.log(e.target.value)
+        console.log("value",e.target.value)
+        console.log("dd",dropdown)
+
         setUserInfo({
             ...userInfo,
+            
             [e.target.name]: e.target.value
         })
     }
@@ -101,6 +105,7 @@ const register = () => {
 
     // Set Drop down
 const [dropdown,setDropdown] = useState("apple");
+// const [isChecked, setIsChecked] = useState(false);
 
 
     return (
@@ -133,8 +138,8 @@ const [dropdown,setDropdown] = useState("apple");
                         <input type="text" name="studentId" className="register_input_data" onChange={handleChange} value={userInfo.studentId} />
                     </div>
                     <div className="register_input mb-3">
-                    <label>คณะ/วิทยาลัย</label>
-                        <select className="register_input_data" name="major" value={userInfo.dropdown} onChange={(e)=>{setDropdown(e.target.value)}} >
+                    <label>คณะ/วิทยาลัย {dropdown}</label>
+                        <select className="register_input_data" name="major" onChange={(e)=>{setDropdown(e.target.value)}} onChange={handleChange}  value={dropdown} >
                             <option value="0">เลือกคณะ/วิทยาลัย</option>
                             <option value="1">คณะวิศวกรรมศาสตร์</option>
                             <option value="2">คณะสถาปัตยกรรมศาสตร</option>
