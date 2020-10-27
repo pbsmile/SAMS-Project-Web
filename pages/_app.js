@@ -12,6 +12,8 @@ const QUERY_USER = {
       getOneUser
       {
         name
+        studentId
+        major
       }
     }
   `,
@@ -42,19 +44,18 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
 
   if (!token) {
     if (router.pathname === "/post" || router.pathname === "/profile") {
-      ctx.res.writeHead(302, { Location: "/login" })
-      ctx.res.end()
+      ctx.res.writeHead(302, { Location: "/login" });
+      ctx.res.end();
     }
-    return null
+    return null;
   }
 
   if (token) {
-    if (router.pathname === '/login' || router.pathname === '/register') {
-      ctx.res.writeHead(302, { Location: '/main' }) // 302 status = redirect
-      ctx.res.end()
+    if (router.pathname === "/login" || router.pathname === "/register") {
+      ctx.res.writeHead(302, { Location: "/main" }); // 302 status = redirect
+      ctx.res.end();
     }
   }
-
 
   const response = await fetch("http://localhost:4000/", {
     method: "post",
@@ -70,8 +71,8 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
     return { user: result.data.getOneUser };
   } else {
     if (router.pathname === "/post" || router.pathname === "/profile") {
-      ctx.res.writeHead(302, { Location: "/login" })
-      ctx.res.end()
+      ctx.res.writeHead(302, { Location: "/login" });
+      ctx.res.end();
     }
 
     return null;
