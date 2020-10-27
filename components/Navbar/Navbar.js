@@ -98,7 +98,7 @@ const navbar = () => {
                 onClick={() => Router.push("/profile")}
               />
               <div className="Nav-Profile-Flex-Text">
-                <label className="Nav-Profile-Username">60010549</label>
+                <label className="Nav-Profile-Username">{user.studentId}</label>
                 <label className="Nav-Profile-Logout" onClick={signout}>
                   LOGOUT
                 </label>
