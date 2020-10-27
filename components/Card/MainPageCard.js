@@ -19,6 +19,7 @@ import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import apolloClient from "../../apollo/apolloclient";
 
 const QUERY_POSTAUTH = gql`
   query {
@@ -35,7 +36,7 @@ const QUERY_POSTAUTH = gql`
 
 const MainPageCard = () => {
   const { data } = useQuery(QUERY_POSTAUTH, {
-    fetchPolicy: "cache",
+    pollInterval: 3000
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
