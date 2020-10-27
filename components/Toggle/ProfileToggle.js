@@ -3,10 +3,11 @@ import ProfileCard from "../Card/ProfileCard";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
+
+
 const ProfileToggle = () => {
   const [toggle, setToggle] = useState("mypost");
   const [refresh, setRefresh] = useState(false);
-  
 
   // useEffect(() => {
   //   if (toggle == "mypost") {
