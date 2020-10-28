@@ -52,7 +52,7 @@ function RadioButton(props) {
 // Register API
 const register = () => {
     const [userInfo, setUserInfo] = useState({
-        type: "student",
+        type: "",
         name: "",
         studentId: "",
         major: "",
@@ -60,10 +60,10 @@ const register = () => {
         email: "",
         password: ""
     });
-    
+
 
     const [register, { loading, error }] = useMutation(REGISTER, {
-        variables: { ...userInfo  },
+        variables: { ...userInfo },
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
         onCompleted: (data) => {
             if (data) {
@@ -82,12 +82,12 @@ const register = () => {
     });
 
     const handleChange = e => {
-        console.log("value",e.target.value)
-        console.log("dd",dropdown)
+        console.log("value", e.target.value)
+
 
         setUserInfo({
             ...userInfo,
-            
+
             [e.target.name]: e.target.value
         })
     }
@@ -102,10 +102,10 @@ const register = () => {
         }
     };
 
-
     // Set Drop down
-const [dropdown,setDropdown] = useState("apple");
-// const [isChecked, setIsChecked] = useState(false);
+    const [dropdown, setDropdown] = useState("apple");
+    const [radio, setRadio] = useState("Student");
+    // const [isChecked, setIsChecked] = useState(false);
 
 
     return (
@@ -115,19 +115,23 @@ const [dropdown,setDropdown] = useState("apple");
                     <h3>ลงทะเบียน</h3>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <div className="register_input mb-3">
-                        <label>สถานะ</label>
-                        <RadioGroup label="สถานะ" name="type">
-                            <RadioButton label="นักศึกษา" value="Student" />
-                            <RadioButton label="อาจารย์/นักวิจัย" value="Student" />
-                            <RadioButton label="อาจารย์/นักวิจัย" value="Student" />
-                            <RadioButton label="อื่นๆ" value="Student" />
-                        </RadioGroup>
-                        {/* <label>สถานะ</label>
-                        <input type="radio" id="register_point_input" value="นักศึกษา"/>นักศึกษา
-                        <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>อาจารย์/นักวิจัย
-                        <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>บุคลากร
-                        <input type="radio" id="register_point_input" value="อื่นๆ"/>อื่นๆ */}
+                    <div className="register_row" >
+                        <div className="register_column register_left">
+                            <label>สถานะ</label>
+                        </div>
+
+                        <div className="register_column register_right">
+                            <div className="register_input mb-3" >
+                                <div name="type" onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
+                                    <RadioGroup name="type">
+                                        <RadioButton label="นักศึกษา" value="student" />
+                                        <RadioButton label="อาจารย์/นักวิจัย" value="teacher" />
+                                        <RadioButton label="บุคลากรภายใน" value="personnel" />
+                                        <RadioButton label="อื่นๆ" value="other" />
+                                    </RadioGroup>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="username">ชื่อ-นามสกุล</label>
@@ -138,8 +142,8 @@ const [dropdown,setDropdown] = useState("apple");
                         <input type="text" name="studentId" className="register_input_data" onChange={handleChange} value={userInfo.studentId} />
                     </div>
                     <div className="register_input mb-3">
-                    <label>คณะ/วิทยาลัย {dropdown}</label>
-                        <select className="register_input_data" name="major" onChange={(e)=>{setDropdown(e.target.value)}} onChange={handleChange}  value={dropdown} >
+                        <label>คณะ/วิทยาลัย {dropdown}</label>
+                        <select className="register_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} onChange={handleChange} value={dropdown} >
                             <option value="0">เลือกคณะ/วิทยาลัย</option>
                             <option value="1">คณะวิศวกรรมศาสตร์</option>
                             <option value="2">คณะสถาปัตยกรรมศาสตร</option>
@@ -159,26 +163,26 @@ const [dropdown,setDropdown] = useState("apple");
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="password">เบอร์โทรศัพท์</label>
-                        <input type="text" name="phoneNumber" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} value={userInfo.phoneNumber} />
+                        <input type="text" name="phoneNumber" className="register_input_data" placeholder="" onChange={handleChange} value={userInfo.phoneNumber} />
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="username">อีเมล</label>
-                        <input type="text" name="email" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} value={userInfo.email} />
+                        <input type="text" name="email" className="register_input_data" placeholder="" onChange={handleChange} value={userInfo.email} />
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="password">รหัสผ่าน</label>
-                        <input type="password" name="password" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} value={userInfo.password} />
+                        <input type="password" name="password" className="register_input_data" placeholder="" onChange={handleChange} value={userInfo.password} />
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="password">ยืนยันรหัสผ่าน</label>
-                        <input type="password" name="" className="register_input_data" defaultValue="" placeholder="" onChange={handleChange} />
+                        <input type="password" name="" className="register_input_data" placeholder="" onChange={handleChange} />
                     </div>
                     <div className="register_form-group">
                         <div className="d-flex justify-content-center mt-3">
-                            <button type="submit" name="button" className="register_btn">REGISTER</button>
+                            <button type="submit" name="button" className="register_btn">สมัคร</button>
                         </div>
                         <div className="d-flex justify-content-center register_links">
-                            Do you have an account? <a href="#" className="register_login">Sign In?</a>
+                            คุณมีบัญชีอยู่แล้ว? <a href="#" className="register_login">เข้าสู่ระบบ ?</a>
                         </div>
                     </div>
                 </form>

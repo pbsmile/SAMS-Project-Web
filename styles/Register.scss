@@ -75,3 +75,25 @@
     box-shadow: none !important;
     outline: 0px !important;
 }
+.register_login{
+    color: $dark-orange;
+}
+
+.register_row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+.register_column {
+    float: left;
+}
+  
+.register_left {
+    margin-left: 20px;
+    width: 25%;
+}
+  
+.register_right {
+    width: 75%;
+}
+
