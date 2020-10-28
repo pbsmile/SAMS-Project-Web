@@ -52,7 +52,7 @@ function RadioButton(props) {
 // Register API
 const register = () => {
     const [userInfo, setUserInfo] = useState({
-        type: "student",
+        type: "",
         name: "",
         studentId: "",
         major: "",
@@ -60,10 +60,10 @@ const register = () => {
         email: "",
         password: ""
     });
-    
+
 
     const [register, { loading, error }] = useMutation(REGISTER, {
-        variables: { ...userInfo  },
+        variables: { ...userInfo },
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
         onCompleted: (data) => {
             if (data) {
@@ -82,12 +82,12 @@ const register = () => {
     });
 
     const handleChange = e => {
-        console.log("value",e.target.value)
-        console.log("dd",dropdown)
+        console.log("value", e.target.value)
+
 
         setUserInfo({
             ...userInfo,
-            
+
             [e.target.name]: e.target.value
         })
     }
@@ -104,8 +104,9 @@ const register = () => {
 
 
     // Set Drop down
-const [dropdown,setDropdown] = useState("apple");
-// const [isChecked, setIsChecked] = useState(false);
+    const [dropdown, setDropdown] = useState("apple");
+    const [radio, setRadio] = useState("Student");
+    // const [isChecked, setIsChecked] = useState(false);
 
 
     return (
@@ -116,18 +117,23 @@ const [dropdown,setDropdown] = useState("apple");
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="register_input mb-3">
-                        <label>สถานะ</label>
-                        <RadioGroup label="สถานะ" name="type">
-                            <RadioButton label="นักศึกษา" value="Student" />
-                            <RadioButton label="อาจารย์/นักวิจัย" value="Student" />
-                            <RadioButton label="อาจารย์/นักวิจัย" value="Student" />
-                            <RadioButton label="อื่นๆ" value="Student" />
-                        </RadioGroup>
-                        {/* <label>สถานะ</label>
-                        <input type="radio" id="register_point_input" value="นักศึกษา"/>นักศึกษา
-                        <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>อาจารย์/นักวิจัย
-                        <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>บุคลากร
-                        <input type="radio" id="register_point_input" value="อื่นๆ"/>อื่นๆ */}
+                        <label>สถานะ {radio}</label>
+                        <div name="type" onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
+                            <RadioGroup label="สถานะ" name="type">
+                                <RadioButton label="นักศึกษา" value="student" />
+                                <RadioButton label="อาจารย์/นักวิจัย" value="teacher" />
+                                <RadioButton label="บุคลากรภายใน" value="personnel" />
+                                <RadioButton label="อื่นๆ" value="other" />
+                            </RadioGroup>
+                        </div>
+
+                        {/* <label>สถานะ {radio}</label>
+                        <div name="type" onChange={(e)=>{setRadio(e.target.value)}} onChange={handleChange}  value={radio}> 
+                            <input type="radio" id="register_point_input" value="นักศึกษา"/>นักศึกษา
+                            <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>อาจารย์/นักวิจัย
+                            <input type="radio" id="register_point_input" value="อาจารย์/นักวิจัย"/>บุคลากร
+                            <input type="radio" id="register_point_input" value="อื่นๆ"/>อื่นๆ
+                        </div> */}
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="username">ชื่อ-นามสกุล</label>
@@ -138,8 +144,8 @@ const [dropdown,setDropdown] = useState("apple");
                         <input type="text" name="studentId" className="register_input_data" onChange={handleChange} value={userInfo.studentId} />
                     </div>
                     <div className="register_input mb-3">
-                    <label>คณะ/วิทยาลัย {dropdown}</label>
-                        <select className="register_input_data" name="major" onChange={(e)=>{setDropdown(e.target.value)}} onChange={handleChange}  value={dropdown} >
+                        <label>คณะ/วิทยาลัย {dropdown}</label>
+                        <select className="register_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} onChange={handleChange} value={dropdown} >
                             <option value="0">เลือกคณะ/วิทยาลัย</option>
                             <option value="1">คณะวิศวกรรมศาสตร์</option>
                             <option value="2">คณะสถาปัตยกรรมศาสตร</option>
