@@ -15,6 +15,7 @@ function useRadioButtons(name) {
     const [value, setState] = useState(null);
 
     const handleChange = (event) => {
+        RadioGroup
         setState(event.target.value);
     };
 
@@ -109,30 +110,31 @@ const register = () => {
 
 
     return (
+
         <div className="register_user_card">
             <div className="d-flex justify-content-center register_form_container">
                 <div className="d-flex justify-content-center register_header">
                     <h3>ลงทะเบียน</h3>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <div className="register_row" >
-                        <div className="register_column register_left">
-                            <label>สถานะ</label>
-                        </div>
-
-                        <div className="register_column register_right">
-                            <div className="register_input mb-3" >
-                                <div name="type" onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
-                                    <RadioGroup name="type">
+                    <div className="register_input mb-3">
+                        <label htmlFor="username">สถานะ</label>
+                        <div name="type" className="register_input_size" onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
+                            <RadioGroup name="type">
+                                <div className="flex1">
+                                    <div className="flex2">
                                         <RadioButton label="นักศึกษา" value="student" />
                                         <RadioButton label="อาจารย์/นักวิจัย" value="teacher" />
+                                    </div>
+                                    <div className="flex2">
                                         <RadioButton label="บุคลากรภายใน" value="personnel" />
                                         <RadioButton label="อื่นๆ" value="other" />
-                                    </RadioGroup>
+                                    </div>
                                 </div>
-                            </div>
+                            </RadioGroup>
                         </div>
                     </div>
+
                     <div className="register_input mb-3">
                         <label htmlFor="username">ชื่อ-นามสกุล</label>
                         <input type="text" name="name" className="register_input_data" onChange={handleChange} value={userInfo.name} />
@@ -142,24 +144,27 @@ const register = () => {
                         <input type="text" name="studentId" className="register_input_data" onChange={handleChange} value={userInfo.studentId} />
                     </div>
                     <div className="register_input mb-3">
-                        <label>คณะ/วิทยาลัย {dropdown}</label>
-                        <select className="register_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} onChange={handleChange} value={dropdown} >
-                            <option value="0">เลือกคณะ/วิทยาลัย</option>
-                            <option value="1">คณะวิศวกรรมศาสตร์</option>
-                            <option value="2">คณะสถาปัตยกรรมศาสตร</option>
-                            <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
-                            <option value="4">คณะวิทยาศาสตร์</option>
-                            <option value="5">คณะเทคโนโลยีการเกษตร </option>
-                            <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
-                            <option value="7">คณะการบริหารและการจัดการ</option>
-                            <option value="8">คณะศิลปศาสตร์</option>
-                            <option value="9">คณะแพทยศาสตร์</option>
-                            <option value="10">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
-                            <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
-                            <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
-                            <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
-                            <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
-                        </select>
+                        <div onChange={handleChange} value={dropdown}>
+                            <label>คณะ/วิทยาลัย {dropdown}</label>
+
+                            <select className="register_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} value={dropdown} >
+                                <option value="0">เลือกคณะ/วิทยาลัย</option>
+                                <option value="1">คณะวิศวกรรมศาสตร์</option>
+                                <option value="2">คณะสถาปัตยกรรมศาสตร</option>
+                                <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
+                                <option value="4">คณะวิทยาศาสตร์</option>
+                                <option value="5">คณะเทคโนโลยีการเกษตร </option>
+                                <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
+                                <option value="7">คณะการบริหารและการจัดการ</option>
+                                <option value="8">คณะศิลปศาสตร์</option>
+                                <option value="9">คณะแพทยศาสตร์</option>
+                                <option value="10">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
+                                <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
+                                <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
+                                <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
+                                <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="register_input mb-3">
                         <label htmlFor="password">เบอร์โทรศัพท์</label>
@@ -188,8 +193,6 @@ const register = () => {
                 </form>
             </div>
         </div>
-
-
     );
 };
 

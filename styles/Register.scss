@@ -51,7 +51,7 @@
 }
 
 .register_input {
-    margin-top: 20px;
+    margin-bottom: 20px;
     margin-right: 40px;
     float: right;
 }
@@ -59,15 +59,23 @@
     margin-top: 5px;
     margin-left: 50px;
 }
+.register_input_size{
+    height: 40px;
+    width: 250px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    display: inline;
+}
+
 .register_input_data{
     font-family: 'Prompt', sans-serif;
     font-size: 16px;
     height: 40px;
-    width: 320px;
+    width: 250px;
     margin-left: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 10px 10px;
+    padding: 5px 10px;
 }
 .register_input_data:focus {
     border-radius: 5px;
@@ -78,22 +86,13 @@
 .register_login{
     color: $dark-orange;
 }
-
-.register_row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-.register_column {
-    float: left;
+.flex1 {
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+.flex2{
+  flex-direction: column;
+  display: flex;
 }
   
-.register_left {
-    margin-left: 20px;
-    width: 25%;
-}
-  
-.register_right {
-    width: 75%;
-}
-
