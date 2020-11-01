@@ -18,11 +18,39 @@ import Location from "../../Image/location.png";
 import Members from "../../Image/members.png";
 import Closed from "../../Image/closed.png";
 
-const ActivityCard = () => {
+import { useQuery } from "@apollo/react-hooks";
+import { useRouter } from "next/router";
+import gql from "graphql-tag";
+
+const QUERY_ACTIVITY = gql`
+  query QUERY_ACTIVITY( $postId : String! ) {
+    getOnePost(input: { postId: $postId }) {
+      name
+      dateStart
+      dateEnd
+      description
+    }
+  }
+`;
+
+const ActivityInfo = () => {
   const [toggleJoin, setToggleJoin] = useState("unjoin");
   console.log("Join>>", toggleJoin);
   const [toggleFav, setToggleFav] = useState("unfav");
   console.log("Fav>>", toggleFav);
+
+  const route = useRouter();
+  console.log(route);
+
+  const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
+    variables: { postId: route.query.activityId },
+  });
+
+  console.log(data);
+
+  if (error) return <p>Something went wrong, please try again.</p>;
+
+  if (loading) return <p>Loading ...</p>;
 
   const handleClickJoin = () => {
     if (toggleJoin == "unjoin") {
@@ -90,7 +118,7 @@ const ActivityCard = () => {
               </div>
               <div className="Activity-Page-Card-Right">
                 <label className="Activity-Page-Card-Name">
-                  ชื่อกิจกรรมเต็ม
+                  {data.getOnePost.name}
                 </label>
                 <div className="Activity-Page-Card-Date-Time">
                   <label className="Activity-Page-Card-Date">
@@ -130,4 +158,4 @@ const ActivityCard = () => {
   );
 };
 
-export default ActivityCard;
+export default ActivityInfo;

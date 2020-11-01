@@ -20,6 +20,7 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import apolloClient from "../../apollo/apolloclient";
+import Link from "next/link"
 
 const QUERY_POSTAUTH = gql`
   query {
