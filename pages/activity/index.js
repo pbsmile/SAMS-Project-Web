@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
-import ActivityCard from '../components/Card/ActivityCard'
+import Navbar from '../../components/Navbar/Navbar'
+import ActivityCard from '../../components/Card/ActivityCard'
 
 const main = () => {
     return (

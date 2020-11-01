@@ -19,6 +19,7 @@ import Members from "../../Image/members.png";
 import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import Link from "next/link"
 
 const QUERY_POSTAUTH = gql`
   query {
@@ -168,9 +169,19 @@ const ActivityCard = () => {
                     </div>
                     <CardActions>
                       <div className="Activity-Page-Card-More-Div">
-                        <button className="Activity-Page-Card-More">
-                          รายละเอียดเพิ่มเติม >>
-                        </button>
+                      <Link
+                          key={prod._id}
+                          href="/activity/[activityId]"
+                          as={`/activity/${prod._id}`}
+                        > 
+                            <button className="Main-Page-Card-More">
+                              <a>
+                            รายละเอียดเพิ่มเติม >>
+                            </a>
+                          </button>
+                        
+                          
+                        </Link>
                       </div>
                     </CardActions>
                   </Card>
