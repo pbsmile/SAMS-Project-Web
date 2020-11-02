@@ -4,6 +4,7 @@
     margin-left: 25%;
     margin-top: 15%;
     margin-bottom: 50px;
+    padding-bottom: 2%;
     background:white;
     justify-content: center;
     flex-direction: column;
@@ -12,16 +13,40 @@
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
 }
+
+.post_input_size{
+    height: 40px;
+    width: 300px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    display: inline;
+    // float: right;
+}
+
 .post_input_data{
     font-family: 'Prompt', sans-serif;
     font-size: 16px;
-    height: 40px;
-    width: 320px;
+    margin-top: 0;
     margin-left: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 10px 10px;
+    padding: 5px 5px;
 }
+.post_input_default{
+    height: 40px;
+    width: 500px;
+}
+
+.post_input_small{
+    height: 40px;
+    width: 10%;
+}
+
+.post_input_large{
+    height: 100px;
+    width: 500px;
+}
+
 .post_header {
     height: 70px;
     background: #f77f00;
@@ -36,7 +61,7 @@
     font-size: 20px;
 }
 .column {
-    float: left;
+    float: right;
     width: 70%;
     padding: 10px;
   }
@@ -50,9 +75,10 @@
     display: table;
     clear: both;
   }
-.flex1{
+.post_flex1{
     display: flex;
     flex-direction: row;
+    float: left;
 }
 
 #profile-pic {
@@ -66,4 +92,10 @@
 
 .one {
     width: 350px;
+}
+h4{
+    margin: 0 10px;
+}
+h3{
+    margin: auto 30px;
 }
