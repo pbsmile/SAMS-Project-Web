@@ -17,7 +17,6 @@
 .post_input_size{
     height: 40px;
     width: 300px;
-    margin-left: 10px;
     padding: 10px 20px;
     display: inline;
     // float: right;
@@ -76,6 +75,7 @@
     clear: both;
   }
 .post_flex1{
+    margin-left: 10px;
     display: flex;
     flex-direction: row;
     float: left;
