@@ -7,9 +7,9 @@ import gql from "graphql-tag";
 
 
 const CREATEPOST = gql`
-mutation CREATEPOST($photo: String!, $name: String!, $dateStart: String!, $dateEnd: Date!, $timeStart: Date!, $timeEnd: String!, $place: String!, $participantsNumber: Number!, $dateCloseApply: Date!, $major: String!, $description: String!)
+mutation CREATEPOST($name: String!, $dateStart: Date!, $dateEnd: Date!, $timeStart: String!, $timeEnd: String!, $place: String!, $participantsNumber: Number!, $dateCloseApply: Date!, $major: String!, $description: String)
 {
-    post(input: {photo: $photo, name: $name, dateStart: $dateStart , dateEnd: $dateEnd , timeStart: $timeStart ,timeEnd: $timeEnd, place: $place, participantsNumber: $participantsNumber, dateCloseApply: $dateCloseApply, major: $major, description: $description })
+    createPost(input:{name: $name, dateStart: $dateStart , dateEnd: $dateEnd , timeStart: $timeStart ,timeEnd: $timeEnd, place: $place, participantsNumber: $participantsNumber, dateCloseApply: $dateCloseApply, major: $major, description: $description })
     {
         name
     }
@@ -56,15 +56,15 @@ function RadioButton(props) {
 
 const post = () => {
     const [userInfo, setUserInfo] = useState({
-        photo: "ยังไม่เสร็จจ้า",
+        // photo: "ยังไม่เสร็จจ้า",
         name: "",
-        dateStart: "2020-05-24",
-        dateEnd: "2020-05-24",
-        timeStart: "00:00",
-        timeEnd: "00:00",
+        dateStart: "2020-12-10",
+        dateEnd: "2020-12-11",
+        timeStart: "12:00",
+        timeEnd: "18:00",
         place: "",
         participantsNumber: "",
-        dateCloseApply: "2017-05-24T10:30",
+        dateCloseApply: "2020-12-01T23:59",
         major: "",
         description: ""
     });
@@ -76,7 +76,7 @@ const post = () => {
             if (data) {
                 console.log(data);
                 setUserInfo({
-                    photo: "",
+                    // photo: "",
                     name: "",
                     dateStart: "",
                     dateEnd: "",
@@ -102,7 +102,7 @@ const post = () => {
             [e.target.name]: e.target.value
         })
     }
-    console.log(userInfo)
+    console.log("value2", userInfo)
 
     const handleSubmit = async e => {
         try {
@@ -120,11 +120,12 @@ const post = () => {
 
     return (
         <div className="post_user_card">
+            <form onSubmit={handleSubmit}>
             {/* <div className="d-flex justify-content-center post_form_container"> */}
             <div className="d-flex justify-content-center post_header">
                 <h3>สร้างกิจกรรมใหม่</h3>
             </div>
-            <div onSubmit={handleSubmit}>
+            
                 <div className="row">
                     <div className="column1" >
                         img
@@ -272,7 +273,7 @@ const post = () => {
                 <div className="register_form-group d-flex justify-content-center mt-3">
                     <button type="submit" name="button" className="register_btn">โพสต์</button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
