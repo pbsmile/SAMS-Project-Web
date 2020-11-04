@@ -32,7 +32,7 @@
   align-items: center;
 }
 
-.Profile-Toggle-Button-List label {
+.Profile-Toggle-Button-Items label {
   float: left;
   color: #000000;
   text-align: center;
@@ -40,7 +40,7 @@
   font-size: 17px;
 }
 
-.Profile-Toggle-Button-List label:hover {
+.Profile-Toggle-Button-Items label:hover {
   background-color: #ffaa0b;
   color: black;
   border-radius: 10px;
@@ -77,11 +77,11 @@
 
 .Profile-Toggle-List {
   margin-left: 250px;
-  margin-top: 100px;
+  margin-top: 48px;
 }
 
 .Profile-Toggle-Nav {
-  position: fixed;
+  //position: fixed;
   margin-top: 20px;
   height: 30px;
   width: 530px;

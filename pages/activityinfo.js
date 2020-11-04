@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
 import ActivityInfo from '../components/Info/ActivityInfo'
 
-const main = () => {
+const ActivityInfo = () => {
     return (
         <div>
             <Navbar/>
@@ -14,4 +14,4 @@ const main = () => {
     )
 }
 
-export default main
+export default ActivityInfo

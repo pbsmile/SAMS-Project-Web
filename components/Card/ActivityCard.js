@@ -19,7 +19,7 @@ import Members from "../../Image/members.png";
 import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import Link from "next/link"
+import Link from "next/link";
 
 const QUERY_POSTAUTH = gql`
   query {
@@ -27,6 +27,14 @@ const QUERY_POSTAUTH = gql`
       posts {
         _id
         name
+        status
+        dateStart
+        dateEnd
+        timeStart
+        timeEnd
+        place
+        participantsNumber
+        dateCloseApply
         canJoin
         canFav
       }
@@ -36,7 +44,7 @@ const QUERY_POSTAUTH = gql`
 
 const ActivityCard = () => {
   const { data } = useQuery(QUERY_POSTAUTH, {
-    pollInterval: 3000
+    pollInterval: 3000,
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
@@ -73,124 +81,123 @@ const ActivityCard = () => {
       </div>
 
       <div className="Activity-Page-Card-List">
-          {data && (
-            <>
-              {/* {data.getAllPostsByAuthen.posts.map((prod) => (
+        {data && (
+          <>
+            {/* {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
                 <h4>{prod.name}</h4>
               </div>
             ))} */}
-              {data.getAllPostsByAuthen.posts.map((prod) => (
-                <div key={prod._id}>
-                  <Card className="Activity-Page-Card">
-                    <CardActions>
-                      <div className="Activity-Page-Card-Top-Div">
-                        {/* <button className="Activity-Page-Card-Join"></button> */}
-                        <div className="Activity-Page-Card-Box">
-                          <img
-                            className="Activity-Page-Card-Join"
-                            src={toggleJoin == "unjoin" ? Unjoin : Join}
-                            onClick={() => handleClickJoin()}
-                          ></img>
-                          <label
-                            className="Activity-Page-Card-Join-Text"
-                            onClick={() => handleClickJoin()}
-                          >
-                            {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                          </label>
-                        </div>
-
-                        {/* <button className="Activity-Page-Card-Favorite"></button> */}
-                        <div className="Activity-Page-Card-Box">
-                          <img
-                            className="Activity-Page-Card-Join"
-                            src={toggleFav == "unfav" ? Unfav : Fav}
-                            onClick={() => handleClickFav()}
-                          ></img>
-                          <label
-                            className="Activity-Page-Card-Favorite-Text"
-                            onClick={() => handleClickFav()}
-                          >
-                            {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                          </label>
-                        </div>
+            {data.getAllPostsByAuthen.posts.map((prod) => (
+              <div key={prod._id}>
+                <Card className="Activity-Page-Card">
+                  <CardActions>
+                    <div className="Activity-Page-Card-Top-Div">
+                      {/* <button className="Activity-Page-Card-Join"></button> */}
+                      <div className="Activity-Page-Card-Box">
+                        <img
+                          className="Activity-Page-Card-Join"
+                          src={toggleJoin == "unjoin" ? Unjoin : Join}
+                          onClick={() => handleClickJoin()}
+                        ></img>
+                        <label
+                          className="Activity-Page-Card-Join-Text"
+                          onClick={() => handleClickJoin()}
+                        >
+                          {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
+                        </label>
                       </div>
-                    </CardActions>
-                    <div className="Activity-Page-Card-Area">
-                      <div className="Activity-Page-Card-Flex">
-                        <div className="Activity-Page-Card-Left">
-                          <img className="Activity-Page-Card-Img" src={Circle} />
-                          <label className="Activity-Page-Card-Status">
-                            สถานะกิจกรรม :
-                          </label>
-                          <label className="Activity-Page-Card-Status">ปิด</label>
-                        </div>
-                        <div className="Activity-Page-Card-Right">
-                          <label className="Activity-Page-Card-Name">
-                            {prod.name}
-                          </label>
-                          <div className="Activity-Page-Card-Date-Time">
-                            <label className="Activity-Page-Card-Date">
-                              <img
-                                className="Activity-Page-Card-Icon-Size"
-                                src={Day}
-                              />
-                            </label>
-                            <label className="Activity-Page-Card-Time">
-                              <img
-                                className="Activity-Page-Card-Icon-Size"
-                                src={Time}
-                              />
-                            </label>
-                          </div>
 
-                          <label className="Activity-Page-Card-Location">
+                      {/* <button className="Activity-Page-Card-Favorite"></button> */}
+                      <div className="Activity-Page-Card-Box">
+                        <img
+                          className="Activity-Page-Card-Join"
+                          src={toggleFav == "unfav" ? Unfav : Fav}
+                          onClick={() => handleClickFav()}
+                        ></img>
+                        <label
+                          className="Activity-Page-Card-Favorite-Text"
+                          onClick={() => handleClickFav()}
+                        >
+                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
+                        </label>
+                      </div>
+                    </div>
+                  </CardActions>
+                  <div className="Activity-Page-Card-Area">
+                    <div className="Activity-Page-Card-Flex">
+                      <div className="Activity-Page-Card-Left">
+                        <img className="Activity-Page-Card-Img" src={Circle} />
+                        <label className="Activity-Page-Card-Status">
+                          สถานะกิจกรรม :
+                        </label>
+                        <label className="Activity-Page-Card-Status"> {prod.status} </label>
+                      </div>
+                      <div className="Activity-Page-Card-Right">
+                        <label className="Activity-Page-Card-Name">
+                          {prod.name}
+                        </label>
+                        <div className="Activity-Page-Card-Date-Time">
+                          <label className="Activity-Page-Card-Date">
                             <img
                               className="Activity-Page-Card-Icon-Size"
-                              src={Location}
+                              src={Day}
+                            />
+                             {prod.dateStart}
+                          </label>
+                          <label className="Activity-Page-Card-Time">
+                            <img
+                              className="Activity-Page-Card-Icon-Size"
+                              src={Time}
                             />
                           </label>
-                          <div className="Activity-Page-Card-Members-Close">
-                            <label className="Activity-Page-Card-Members">
-                              <img
-                                className="Activity-Page-Card-Icon-Size"
-                                src={Members}
-                              />
-                            </label>
-                            <label className="Activity-Page-Card-Close">
-                              <img
-                                className="Activity-Page-Card-Icon-Size"
-                                src={Closed}
-                              />
-                            </label>
-                          </div>
+                        </div>
+
+                        <label className="Activity-Page-Card-Location">
+                          <img
+                            className="Activity-Page-Card-Icon-Size"
+                            src={Location}
+                          />
+                           {prod.place}
+                        </label>
+                        <div className="Activity-Page-Card-Members-Close">
+                          <label className="Activity-Page-Card-Members">
+                            <img
+                              className="Activity-Page-Card-Icon-Size"
+                              src={Members}
+                            />
+                             {prod.participantsNumber}
+                          </label>
+                          <label className="Activity-Page-Card-Close">
+                            <img
+                              className="Activity-Page-Card-Icon-Size"
+                              src={Closed}
+                            />
+                            {prod.dateCloseApply}
+                          </label>
                         </div>
                       </div>
                     </div>
-                    <CardActions>
-                      <div className="Activity-Page-Card-More-Div">
+                  </div>
+                  <CardActions>
+                    <div className="Activity-Page-Card-More-Div">
                       <Link
-                          key={prod._id}
-                          href="/activity/[activityId]"
-                          as={`/activity/${prod._id}`}
-                        > 
-                            <button className="Main-Page-Card-More">
-                              <a>
-                            รายละเอียดเพิ่มเติม >>
-                            </a>
-                          </button>
-                        
-                          
-                        </Link>
-                      </div>
-                    </CardActions>
-                  </Card>
-                </div>
-              ))}
-            </>
-          )}
-        </div>
-
+                        key={prod._id}
+                        href="/activity/[activityId]"
+                        as={`/activity/${prod._id}`}
+                      >
+                        <button className="Main-Page-Card-More">
+                          <a>รายละเอียดเพิ่มเติม >></a>
+                        </button>
+                      </Link>
+                    </div>
+                  </CardActions>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };

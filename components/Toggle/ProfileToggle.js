@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import ProfileCard from "../Card/ProfileCard";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import MyPostCard from '../Card/MyPostCard'
+import FavoriteCard from '../Card/FavoriteCard'
+import HistoryCard from '../Card/HistoryCard'
 
 
 
@@ -79,10 +82,12 @@ const ProfileToggle = () => {
         {
           toggle == "mypost" && (
             <nav className="Profile-Toggle-Nav">
-              <p className="Profile-Toggle-Nav-Mypost">โพสต์ของฉัน</p>
+              {/* <p className="Profile-Toggle-Nav-Mypost">โพสต์ของฉัน</p> */}
+              <MyPostCard/>
             </nav>
+            
           )
-
+          
           //   order.map((item, index) => (
           //     <CardOrder item={item} key={index} isComplete={_isComplete} />
           //   ))
@@ -90,7 +95,9 @@ const ProfileToggle = () => {
         {
           toggle == "favorite" && (
             <nav className="Profile-Toggle-Nav">
-              <p className="Profile-Toggle-Nav-Favorite">ชื่นชอบ</p>
+              {/* <p className="Profile-Toggle-Nav-Favorite">ชื่นชอบ</p> */}
+              <FavoriteCard/>
+
             </nav>
           )
           //   order.map((item, index) => (
@@ -100,7 +107,8 @@ const ProfileToggle = () => {
         {
           toggle == "history" && (
             <nav className="Profile-Toggle-Nav">
-              <p className="Profile-Toggle-Nav-History">ประวัติ</p>
+              {/* <p className="Profile-Toggle-Nav-History">ประวัติ</p> */}
+              <HistoryCard/>
             </nav>
           )
           //   orderHistory.map((item, index) => (

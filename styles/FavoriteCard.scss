@@ -1,0 +1,245 @@
+.My-Fav-Page-Fixed-Bg {
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  height: 120px;
+  width: 510px;
+  margin-top: 2px;
+  border-color: rgb(255, 255, 255);
+}
+
+.Filter-Items-Div {
+  position: fixed;
+  width: 530px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 65px;
+}
+
+.Filter-Items {
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Filter-Years {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  width: 150px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.Filter-Departments {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  width: 150px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.Filter-Statuses {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  width: 150px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.My-Fav-Page-Card-Div {
+  //overflow: hidden;
+  //margin-left: 35%;
+  max-width: 550px;
+  padding: 10px;
+  //margin-top: 80px;
+  //position: fixed;
+  background-color: rgb(255, 255, 255);
+  // border-style: solid;
+  // border-color: rgb(0, 0, 0);
+  // border-width: 1px;
+}
+
+.My-Fav-Page-Card-Slider {
+  overflow: hidden;
+}
+
+.My-Fav-Page-Card-Nav {
+  position: fixed;
+  margin-top: 20px;
+  height: 30px;
+  width: 530px;
+  border-radius: 10px;
+  color: $dark-orange;
+
+  //background: #d6d5d5;
+}
+
+.My-Fav-Page-Card-Nav-Popular {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 3px 10px;
+  height: 30px;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.My-Fav-Page-Card-List {
+  margin-top: 150px;
+}
+
+.My-Fav-Page-Card {
+  max-width: 550px;
+  margin-top: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #111111;
+}
+
+.My-Fav-Page-Card-Media {
+  height: 10px;
+}
+
+.My-Fav-Page-Card-Top-Div {
+  display: flex;
+  flex-direction: row;
+
+  margin-left: 65%;
+  align-items: center;
+}
+
+.My-Fav-Page-Card-Box {
+  width: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.My-Fav-Page-Card-Join {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  //background-color: rgb(27, 230, 61);
+}
+
+.My-Fav-Page-Card-Join-Text {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.My-Fav-Page-Card-Favorite {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  justify-items: center;
+  //background-color: rgb(216, 19, 58);
+  margin-left: 10px;
+}
+
+.My-Fav-Page-Card-Favorite-Text {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.My-Fav-Page-Card-Flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.My-Fav-Page-Card-Left {
+  display: flex;
+  flex-direction: column;
+  max-width: 120px;
+  padding: 10px;
+}
+
+.My-Fav-Page-Card-Img {
+  width: 100px;
+  height: 100px;
+}
+
+.My-Fav-Page-Card-Status {
+  width: 259px;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
+
+.My-Fav-Page-Card-Right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.My-Fav-Page-Card-Icon-Size {
+  height: 20px;
+  width: 20px;
+}
+
+.My-Fav-Page-Card-Name {
+  margin-top: 20px;
+  font-family: "Prompt", sans-serif;
+  font-size: 20px;
+}
+
+.My-Fav-Page-Card-Date-Time {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.My-Fav-Page-Card-Date {
+  width: 259px;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
+
+.My-Fav-Page-Card-Time {
+  width: 259px;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
+
+.My-Fav-Page-Card-Location {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
+
+.My-Fav-Page-Card-Members-Close {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.My-Fav-Page-Card-Members {
+  width: 259px;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
+
+.My-Fav-Page-Card-Close {
+  width: 259px;
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+}
+
+.My-Fav-Page-Card-More-Div {
+  margin-left: 65%;
+}
+
+.My-Fav-Page-Card-More {
+  font-family: "Prompt", sans-serif;
+  font-size: 15px;
+  border-radius: 10px;
+  border-width: 0px;
+  background-color: $dark-orange;
+}
