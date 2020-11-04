@@ -66,7 +66,7 @@ const post = () => {
         participantsNumber: "",
         dateCloseApply: "2020-12-01T23:59",
         major: "",
-        description: ""
+        description: "",
     });
 
     const [register, { loading, error }] = useMutation(CREATEPOST, {
@@ -86,7 +86,7 @@ const post = () => {
                     participantsNumber: "",
                     dateCloseApply: "",
                     major: "",
-                    description: ""
+                    description: "",
                 });
             }
         },
@@ -114,21 +114,29 @@ const post = () => {
     };
 
     // Set Drop down and radio
-    const [dropdown, setDropdown] = useState("apple");
+    const [major, setMajor] = useState("apple");
+    const [status, setStatus] = useState("status")
     const [radio, setRadio] = useState("Student");
     const [NumofPerson, setNumofPerson] = useState("100000000");
 
     return (
         <div className="post_user_card">
             <form onSubmit={handleSubmit}>
-            {/* <div className="d-flex justify-content-center post_form_container"> */}
-            <div className="d-flex justify-content-center post_header">
-                <h3>สร้างกิจกรรมใหม่</h3>
-            </div>
-            
+                {/* <div className="d-flex justify-content-center post_form_container"> */}
+                <div className="d-flex justify-content-center post_header">
+                    <h3>สร้างกิจกรรมใหม่</h3>
+                </div>
+
                 <div className="row">
                     <div className="column1" >
-                        img
+                        <div className="row" onChange={handleChange} value={status}>
+                            <select  className=" status_input" name="status" onChange={(e) => { setStatus(e.target.value) }} value={status}>
+                                <option value="status">เลือกสถานะกิจกรรม</option>
+                                <option value="close">ปิดรับสมัคร</option>
+                                <option value="open">เปิดรับสมัคร</option>
+                                <option value="full">เต็มจำนวนรับสมัคร</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="column">
                         <div className="row post_input">
@@ -241,9 +249,9 @@ const post = () => {
                             </div>
                         </div>
                         <div className="row post_input">
-                            <div onChange={handleChange} value={dropdown}>
+                            <div onChange={handleChange} value={major}>
                                 <h2>คณะ/วิทยาลัย</h2>
-                                <select className="post_input_default post_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} value={dropdown}>
+                                <select className="post_input_default post_input_data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={major}>
                                     <option value="0">เลือกคณะ/วิทยาลัย</option>
                                     <option value="1">คณะวิศวกรรมศาสตร์</option>
                                     <option value="2">คณะสถาปัตยกรรมศาสตร</option>
