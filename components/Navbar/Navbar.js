@@ -4,9 +4,21 @@ import Router from "next/router";
 import MenuItems from "./MenuItem";
 import User from "../../Image/user.png";
 import Logo from "../../Image/logo.png";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
 
 import { usePath } from "hookrouter";
 import { AuthContext } from "../../appState/AuthProvider";
+
+export const QUERY_USERPROFILE = gql`
+  query {
+    getOneUser {
+      name
+      studentId
+      major
+    }
+  }
+`;
 
 const navbar = () => {
   //console.log("Menu", MenuItems);
@@ -18,21 +30,26 @@ const navbar = () => {
   const { user, signout } = useContext(AuthContext);
   console.log(user);
 
-  useEffect(() => {
-    if (toggle == "main") {
-      console.log("main");
-    }
-    if (toggle == "activity") {
-      console.log("activity");
-    }
+  const { data, loading, error } = useQuery(QUERY_USERPROFILE)
+  if (error) return <p>Ooobs...something went wrong, please try again later.</p>
+  if (loading) return <p>Loading...</p>
+  console.log(data.getOneUser)
 
-    // if (path == '/main') {
-    //   setToggle("main");
-    // }
-    // if (path == '/activity') {
-    //   setToggle("activity");
-    // }
-  }, [toggle, refresh, path]);
+  // useEffect(() => {
+  //   if (toggle == "main") {
+  //     console.log("main");
+  //   }
+  //   if (toggle == "activity") {
+  //     console.log("activity");
+  //   }
+
+  //   // if (path == '/main') {
+  //   //   setToggle("main");
+  //   // }
+  //   // if (path == '/activity') {
+  //   //   setToggle("activity");
+  //   // }
+  // }, [toggle, refresh, path]);
 
   // const handleClick = (toggleType) => {
   //   if (toggleType == "main") {
@@ -98,7 +115,7 @@ const navbar = () => {
                 onClick={() => Router.push("/profile")}
               />
               <div className="Nav-Profile-Flex-Text">
-                <label className="Nav-Profile-Username">{user.studentId}</label>
+                <label className="Nav-Profile-Username">{data.getOneUser.studentId}</label>
                 <label className="Nav-Profile-Logout" onClick={signout}>
                   LOGOUT
                 </label>

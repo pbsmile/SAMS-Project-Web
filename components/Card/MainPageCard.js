@@ -28,6 +28,14 @@ const QUERY_POSTAUTH = gql`
       posts {
         _id
         name
+        status
+        dateStart
+        dateEnd
+        timeStart
+        timeEnd
+        place
+        participantsNumber
+        dateCloseApply
         canJoin
         canFav
       }
@@ -144,6 +152,7 @@ const MainPageCard = () => {
                               className="Main-Page-Card-Icon-Size"
                               src={Time}
                             />
+                            {prod.timeStart}
                           </label>
                         </div>
 

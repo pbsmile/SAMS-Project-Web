@@ -23,11 +23,18 @@ import { useRouter } from "next/router";
 import gql from "graphql-tag";
 
 const QUERY_ACTIVITY = gql`
-  query QUERY_ACTIVITY( $postId : String! ) {
+  query QUERY_ACTIVITY($postId: String!) {
     getOnePost(input: { postId: $postId }) {
       name
+      _id
+      status
       dateStart
       dateEnd
+      timeStart
+      timeEnd
+      place
+      participantsNumber
+      dateCloseApply
       description
     }
   }
@@ -71,7 +78,6 @@ const ActivityInfo = () => {
   };
   return (
     <div className="Activity-Page-Card-Div">
-
       <div className="Activity-Page-Card-List">
         <Card className="Activity-Page-Card">
           <CardActions>
@@ -123,9 +129,11 @@ const ActivityInfo = () => {
                 <div className="Activity-Page-Card-Date-Time">
                   <label className="Activity-Page-Card-Date">
                     <img className="Activity-Page-Card-Icon-Size" src={Day} />
+                    {data.getOnePost.dateStart}
                   </label>
                   <label className="Activity-Page-Card-Time">
                     <img className="Activity-Page-Card-Icon-Size" src={Time} />
+                    {data.getOnePost.timeStart}
                   </label>
                 </div>
 
@@ -134,6 +142,7 @@ const ActivityInfo = () => {
                     className="Activity-Page-Card-Icon-Size"
                     src={Location}
                   />
+                  {data.getOnePost.place}
                 </label>
                 <div className="Activity-Page-Card-Members-Close">
                   <label className="Activity-Page-Card-Members">
@@ -141,15 +150,20 @@ const ActivityInfo = () => {
                       className="Activity-Page-Card-Icon-Size"
                       src={Members}
                     />
+                    {data.getOnePost.participantsNumber}
                   </label>
                   <label className="Activity-Page-Card-Close">
                     <img
                       className="Activity-Page-Card-Icon-Size"
                       src={Closed}
                     />
+                    {data.getOnePost.dateCloseApply}
                   </label>
                 </div>
               </div>
+            </div>
+            <div className="Activity-Page-Card-Flex Activity-Page-Card-Description">
+                {data.getOnePost.description}
             </div>
           </div>
         </Card>
