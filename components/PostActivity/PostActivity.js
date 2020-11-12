@@ -1,5 +1,6 @@
 import React, { useState, Children, createContext, useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import Router from "next/router";
 // import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 // import { Height } from "@material-ui/icons";
@@ -69,7 +70,7 @@ const post = () => {
         description: "",
     });
 
-    const [register, { loading, error }] = useMutation(CREATEPOST, {
+    const [post, { loading, error }] = useMutation(CREATEPOST, {
         variables: { ...userInfo },
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
         onCompleted: (data) => {
@@ -88,6 +89,7 @@ const post = () => {
                     major: "",
                     description: "",
                 });
+                Router.push("/activity")
             }
         },
     });
@@ -107,7 +109,7 @@ const post = () => {
     const handleSubmit = async e => {
         try {
             e.preventDefault();
-            await register();
+            await post();
         } catch (error) {
             console.log(error);
         }
