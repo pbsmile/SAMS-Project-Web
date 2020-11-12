@@ -25,7 +25,7 @@ const QUERY_MYFAV = gql`
   query {
     getOneUser {
       name
-      posts{
+      favs{
         _id
         name
         status
@@ -85,7 +85,7 @@ const FavoriteCard = () => {
                 <h4>{prod.name}</h4>
               </div>
             ))} */}
-            {data.getOneUser.posts.map((prod) => (
+            {data.getOneUser.favs.map((prod) => (
               <div key={prod._id}>
                 <Card className="My-Fav-Page-Card">
                   <CardActions>
@@ -147,6 +147,7 @@ const FavoriteCard = () => {
                               className="My-Fav-Page-Card-Icon-Size"
                               src={Time}
                             />
+                            {prod.timeStart}
                           </label>
                         </div>
 

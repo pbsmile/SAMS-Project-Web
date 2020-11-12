@@ -150,6 +150,7 @@ const ActivityCard = () => {
                               className="Activity-Page-Card-Icon-Size"
                               src={Time}
                             />
+                            {prod.timeStart}
                           </label>
                         </div>
 

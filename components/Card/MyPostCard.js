@@ -147,6 +147,7 @@ const MyPostCard = () => {
                               className="My-Post-Page-Card-Icon-Size"
                               src={Time}
                             />
+                            {prod.timeStart}
                           </label>
                         </div>
 

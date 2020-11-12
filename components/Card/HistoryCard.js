@@ -147,6 +147,7 @@ const HistoryCard = () => {
                               className="My-Hist-Page-Card-Icon-Size"
                               src={Time}
                             />
+                            {prod.timeStart}
                           </label>
                         </div>
 
