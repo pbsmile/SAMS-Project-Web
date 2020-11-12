@@ -56,7 +56,7 @@ function RadioButton(props) {
 
 const post = () => {
     const [userInfo, setUserInfo] = useState({
-        // photo: "ยังไม่เสร็จจ้า",
+        photo: "",
         name: "",
         dateStart: "2020-12-10",
         dateEnd: "2020-12-11",
@@ -76,7 +76,7 @@ const post = () => {
             if (data) {
                 console.log(data);
                 setUserInfo({
-                    // photo: "",
+                    photo: "",
                     name: "",
                     dateStart: "",
                     dateEnd: "",
@@ -113,11 +113,28 @@ const post = () => {
         }
     };
 
+    //image
+    const [picture, setPicture] = useState(null);
+    const [imgData, setImgData] = useState(null);
+    const onChangePicture = e => {
+        if (e.target.files[0]) {
+            console.log("picture: ", e.target.files);
+            setPicture(e.target.files[0]);
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                setImgData(reader.result);
+            });
+            userInfo.photo = e.target.files[0].name
+            reader.readAsDataURL(e.target.files[0]);
+        }
+
+    };
+
     // Set Drop down and radio
-    const [major, setMajor] = useState("apple");
-    const [status, setStatus] = useState("status")
-    const [radio, setRadio] = useState("Student");
-    const [NumofPerson, setNumofPerson] = useState("100000000");
+    const [major, setMajor] = useState(null);
+    const [status, setStatus] = useState(null)
+    const [radio, setRadio] = useState(null);
+    const [NumofPerson, setNumofPerson] = useState(null);
 
     return (
         <div className="post_user_card">
@@ -129,9 +146,17 @@ const post = () => {
 
                 <div className="row">
                     <div className="column1" >
+                        <div className="row">
+                            <div className="previewProfilePic center">
+                                <img className="post_image" src={imgData} />
+                            </div>
+                            <div className="post_choseimage">
+                                <input id="profilePic" type="file" onChange={onChangePicture} />
+                            </div>
+                        </div>
                         <div className="row" onChange={handleChange} value={status}>
-                            <select  className=" status_input" name="status" onChange={(e) => { setStatus(e.target.value) }} value={status}>
-                                <option value="status">เลือกสถานะกิจกรรม</option>
+                            <select className="post_status_input" name="status" onChange={(e) => { setStatus(e.target.value) }} value={status}>
+                                <option value="status">สถานะกิจกรรม</option>
                                 <option value="close">ปิดรับสมัคร</option>
                                 <option value="open">เปิดรับสมัคร</option>
                                 <option value="full">เต็มจำนวนรับสมัคร</option>
@@ -273,7 +298,7 @@ const post = () => {
                         </div>
                         <div className="row post_input">
                             <h2>รายละเอียดเพิ่มเติม</h2>
-                            <input type="text" name="description" className="post_input_large post_input_data" placeholder="" onChange={handleChange} value={userInfo.description} />
+                            <textarea type="text" name="description" className="post_input_large post_input_data" placeholder="" onChange={handleChange} value={userInfo.description} />
                         </div>
 
                     </div>
