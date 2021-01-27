@@ -1,20 +1,19 @@
 import React from 'react'
 import apolloClient from "../apollo/apolloClient"
 import Navbar from '../components/Navbar/Navbar'
-import Login from '../components/Login/Login'
+import NewLogin from '../components/NewLogin/NewLogin'
+import Login from '../components/NewLogin/NewLogin'
 // import Login from '../components/NewLogin/NewLogin'
 
 
 
 
-const login = () => {
+const newLogin = () => {
     return (
         <div>
-            <Navbar/>
-            jj
-            <Login/>
+            <NewLogin/>
         </div>
     )
 }
 
-export default apolloClient(login);
+export default apolloClient(NewLogin);
