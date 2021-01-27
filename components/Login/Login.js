@@ -62,54 +62,50 @@ const login = () => {
     <div className="login_user_card">
       <div className="d-flex justify-content-center login_form_container">
         <div className="d-flex justify-content-center login_header">
-          <h3>LOGIN</h3>
+          <h3>เข้าสู่ระบบ</h3>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="login_input mb-3">
-            <label htmlFor="username">USERNAME</label>
+            <label htmlFor="username">อีเมล</label>
             <input
               type="email"
               name="email"
               className="login_input-user-pass"
-              placeholder="username"
+              placeholder="อีเมล"
               value={userInfo.email}
               onChange={handleChange}
               required
             />
           </div>
           <div className="login_input mb-3">
-            <label htmlFor="password">PASSWORD</label>
+            <label htmlFor="password">รหัสผ่าน</label>
             <input
               type="password"
               name="password"
               className="login_input-user-pass"
-              placeholder="password"
+              placeholder="รหัสผ่าน"
               value={userInfo.password}
               onChange={handleChange}
               required
             />
           </div>
           <div className="login_form-group">
-            <div className="login_custom-control login_custom-checkbox">
-              <input type="checkbox" className="login_custom-control-input" />
-              <label className="login_custom-control-label">Remember me</label>
-            </div>
-
+        
             <div className="d-flex justify-content-center mt-3">
               <button type="submit" name="button" className="btn login_btn">
-                Login
+                เข้าสู่ระบบ
               </button>
             </div>
 
             <div className="d-flex justify-content-center login_links">
-              Don't have an account?{" "}
+              คุณยังไม่มีบัญชี ?{" "}
               <a href="#" className="login_register">
-                Register
+                สมัครบัญชี
               </a>
             </div>
 
             <div className="d-flex justify-content-center login_links">
-              <a href="#">Forgot your password?</a>
+              <a href="#">ลืมรหัสผ่าน?</a>
             </div>
           </div>
         </form>
