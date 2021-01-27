@@ -30,10 +30,10 @@ const navbar = () => {
   const { user, signout } = useContext(AuthContext);
   console.log(user);
 
-  const { data, loading, error } = useQuery(QUERY_USERPROFILE)
-  if (error) return <p>Ooobs...something went wrong, please try again later.</p>
-  if (loading) return <p>Loading...</p>
-  console.log(data.getOneUser)
+  // const { data, loading, error } = useQuery(QUERY_USERPROFILE)
+  // if (error) return <p>Ooobs...something went wrong, please try again later.</p>
+  // if (loading) return <p>Loading...</p>
+  // console.log(data.getOneUser)
 
   // useEffect(() => {
   //   if (toggle == "main") {
@@ -115,7 +115,7 @@ const navbar = () => {
                 onClick={() => Router.push("/profile")}
               />
               <div className="Nav-Profile-Flex-Text">
-                <label className="Nav-Profile-Username">{data.getOneUser.studentId}</label>
+                <label className="Nav-Profile-Username">{user.studentId}</label>
                 <label className="Nav-Profile-Logout" onClick={signout}>
                   LOGOUT
                 </label>

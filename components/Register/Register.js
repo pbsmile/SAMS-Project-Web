@@ -104,8 +104,8 @@ const register = () => {
     };
 
     // Set Drop down
-    const [dropdown, setDropdown] = useState("apple");
-    const [radio, setRadio] = useState("Student");
+    const [dropdown, setDropdown] = useState(null);
+    const [radio, setRadio] = useState(null);
     // const [isChecked, setIsChecked] = useState(false);
 
 
@@ -145,7 +145,7 @@ const register = () => {
                     </div>
                     <div className="register_input mb-3">
                         <div onChange={handleChange} value={dropdown}>
-                            <label>คณะ/วิทยาลัย {dropdown}</label>
+                            <label>คณะ/วิทยาลัย</label>
 
                             <select className="register_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} value={dropdown} >
                                 <option value="0">เลือกคณะ/วิทยาลัย</option>
