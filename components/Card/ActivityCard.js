@@ -63,6 +63,7 @@ const ActivityCard = () => {
     }
   };
 
+
   const handleClickFav = () => {
     if (toggleFav == "unfav") {
       setToggleFav("fav");
