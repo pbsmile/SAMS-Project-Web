@@ -127,7 +127,7 @@ const navbar = () => {
           <>
             <div className="Nav-Profile-Flex">
               <div className="Nav-Profile-Flex-Text">
-                <label className="Nav-Profile-Logout">LOGIN</label>
+                <label className="Nav-Profile-Logout" onClick={() => Router.push("/login")}>LOGIN</label>
               </div>
             </div>
           </>
