@@ -5,9 +5,13 @@ import gql from "graphql-tag";
 import MyPostCard from "../Card/MyPostCard";
 import FavoriteCard from "../Card/FavoriteCard";
 import HistoryCard from "../Card/HistoryCard";
+import MainPageCard from '../Card/MainPageCard'
+import PopularCard from '../Card/PopularCard'
+import ClosingCard from '../Card/ClosingCard'
+import NearingCard from '../Card/NearingCard'
 
-const ProfileToggle = () => {
-  const [toggle, setToggle] = useState("myprofile");
+const MainToggle = () => {
+  const [toggle, setToggle] = useState("popularpost");
   const [refresh, setRefresh] = useState(false);
 
   // useEffect(() => {
@@ -28,17 +32,14 @@ const ProfileToggle = () => {
   // }, [toggle, refresh]);
 
   const handleClick = (toggleType) => {
-    if (toggleType == "myprofile") {
-      setToggle("myprofile");
+    if (toggleType == "popularpost") {
+      setToggle("popularpost");
     }
-    if (toggleType == "mypost") {
-      setToggle("mypost");
+    if (toggleType == "closingpost") {
+      setToggle("closingpost");
     }
-    if (toggleType == "favorite") {
-      setToggle("favorite");
-    }
-    if (toggleType == "history") {
-      setToggle("history");
+    if (toggleType == "nearingpost") {
+      setToggle("nearingpost");
     }
   };
 
@@ -49,52 +50,42 @@ const ProfileToggle = () => {
         <ul className="Profile-Toggle-Button-Items">
           <label
             className={
-              toggle == "myprofile"
-                ? "Profile-Toggle-Button-MyProfile"
-                : "Profile-Toggle-Button-Trans"
-            }
-            onClick={() => handleClick("myprofile")}
-          >
-            ข้อมูลส่วนตัว
-          </label>
-          <label
-            className={
-              toggle == "mypost"
+              toggle == "popularpost"
                 ? "Profile-Toggle-Button-MyPost"
                 : "Profile-Toggle-Button-Trans"
             }
-            onClick={() => handleClick("mypost")}
+            onClick={() => handleClick("popularpost")}
           >
-            โพสต์ของฉัน
+            กิจกรรมยอดนิยม
           </label>
           <label
             className={
-              toggle == "favorite"
+              toggle == "closingpost"
+                ? "Profile-Toggle-Button-MyPost"
+                : "Profile-Toggle-Button-Trans"
+            }
+            onClick={() => handleClick("closingpost")}
+          >
+            ใกล้ปิดรับสมัคร
+          </label>
+          <label
+            className={
+              toggle == "nearingpost"
                 ? "Profile-Toggle-Button-Favorite"
                 : "Profile-Toggle-Button-Trans"
             }
-            onClick={() => handleClick("favorite")}
+            onClick={() => handleClick("nearingpost")}
           >
-            ชื่นชอบ
-          </label>
-          <label
-            className={
-              toggle == "history"
-                ? "Profile-Toggle-Button-History"
-                : "Profile-Toggle-Button-Trans"
-            }
-            onClick={() => handleClick("history")}
-          >
-            ประวัติ
+            จัดขึ้นเร็วๆ นี้
           </label>
         </ul>
       </nav>
       <div className="Profile-Toggle-List">
         {
-          toggle == "myprofile" && (
+          toggle == "popularpost" && (
             <nav className="Profile-Toggle-Nav">
               {/* <p className="Profile-Toggle-Nav-Mypost">โพสต์ของฉัน</p> */}
-              <ProfileCard />
+              <MainPageCard />
             </nav>
           )
 
@@ -103,10 +94,10 @@ const ProfileToggle = () => {
           //   ))
         }
         {
-          toggle == "mypost" && (
+          toggle == "closingpost" && (
             <nav className="Profile-Toggle-Nav">
               {/* <p className="Profile-Toggle-Nav-Mypost">โพสต์ของฉัน</p> */}
-              <MyPostCard />
+              <MainPageCard />
             </nav>
           )
 
@@ -115,10 +106,10 @@ const ProfileToggle = () => {
           //   ))
         }
         {
-          toggle == "favorite" && (
+          toggle == "nearingpost" && (
             <nav className="Profile-Toggle-Nav">
               {/* <p className="Profile-Toggle-Nav-Favorite">ชื่นชอบ</p> */}
-              <FavoriteCard />
+              <MainPageCard />
             </nav>
           )
           //   order.map((item, index) => (
@@ -141,4 +132,4 @@ const ProfileToggle = () => {
   );
 };
 
-export default ProfileToggle;
+export default MainToggle;
