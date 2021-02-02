@@ -103,6 +103,19 @@ const navbar = () => {
                 กิจกรรมทั้งหมด
               </a>
             </li>
+            <li>
+              <a
+                className={
+                  toggle == "create"
+                    ? "Nav-Activities"
+                    : "Nav-Activities-Trans"
+                }
+                //onClick={() => handleClick("activity")}
+                onClick={() => Router.push("/post")}
+              >
+                สร้างกิจกรรม
+              </a>
+            </li>
           </ul>
         </div>
         {user && (
