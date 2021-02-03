@@ -1,11 +1,20 @@
 .post_user_card {
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    height: 100vh;
+    margin: -20px 0 50px;
+
     height: auto;
-    width:800px;
+    width: 800px;
     margin-left: 25%;
     margin-top: 15%;
     margin-bottom: 50px;
     padding-bottom: 2%;
-    background:white;
+    background: white;
     justify-content: center;
     flex-direction: column;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -14,18 +23,18 @@
     border-radius: 5px;
 }
 
-.post_status_input{
+.post_status_input {
     height: 40px;
     width: 80%;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px 5px;
-    background-color: #D0D0D0;
-    font-family: 'Prompt', sans-serif;
+    background-color: #d0d0d0;
+    font-family: "Prompt", sans-serif;
     font-size: 16px;
     margin-top: 10px;
 }
-.post_input_size{
+.post_input_size {
     height: 40px;
     width: 300px;
     padding: 10px 20px;
@@ -33,8 +42,8 @@
     // float: right;
 }
 
-.post_input_data{
-    font-family: 'Prompt', sans-serif;
+.post_input_data {
+    font-family: "Prompt", sans-serif;
     font-size: 16px;
     margin-top: 0;
     margin-left: 10px;
@@ -42,17 +51,17 @@
     border-radius: 5px;
     padding: 5px 5px;
 }
-.post_input_default{
+.post_input_default {
     height: 40px;
     width: 500px;
 }
 
-.post_input_small{
+.post_input_small {
     height: 40px;
     width: 10%;
 }
 
-.post_input_large{
+.post_input_large {
     height: 100px;
     width: 500px;
 }
@@ -62,30 +71,30 @@
     background: #f77f00;
     margin-bottom: 20px;
 }
-.post_header h3{
+.post_header h3 {
     padding-top: 10px;
     margin-left: 30px;
     font-size: 30px;
 }
-.post_input h2{
+.post_input h2 {
     font-size: 20px;
 }
 .column {
     float: right;
     width: 70%;
     padding: 10px;
-  }
+}
 .column1 {
     float: left;
     width: 30%;
     padding: 20px;
-  }
+}
 .row:after {
     content: "";
     display: table;
     clear: both;
-  }
-.post_flex1{
+}
+.post_flex1 {
     margin-left: 10px;
     display: flex;
     flex-direction: row;
@@ -99,22 +108,21 @@
     object-fit: cover;
     width: 100px;
     height: 100px;
-  }
+}
 
 .one {
     width: 350px;
 }
-h4{
+h4 {
     margin: 0 10px;
 }
-h3{
+h3 {
     margin: auto 30px;
 }
-.post_image{
+.post_image {
     width: 200px;
     height: 200px;
     object-fit: cover;
     margin: auto;
-    background-color: #D0D0D0;
+    background-color: #d0d0d0;
 }
-
