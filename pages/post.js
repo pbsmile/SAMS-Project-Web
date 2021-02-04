@@ -6,7 +6,7 @@ const postActivity = () => {
     return (
         <div>
             <Navbar/>
-            k
+            
             <PostActivity/>
         </div>
     )
