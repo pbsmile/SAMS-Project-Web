@@ -357,12 +357,12 @@ const post = () => {
 
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="Post-Column"> </div>
-                <div className="Post-Column2">
-                    <div className="Post-Left-Button">
-                        <button type="submit" name="button" className="Post-Submit-Button">สร้างกิจกรรม</button>
+                <div className="row">
+                    <div className="Post-Column"> </div>
+                    <div className="Post-Column2">
+                        <div className="Post-Left-Button">
+                            <button type="submit" name="button" className="Post-Submit-Button">สร้างกิจกรรม</button>
+                        </div>
                     </div>
                 </div>
             </div>
