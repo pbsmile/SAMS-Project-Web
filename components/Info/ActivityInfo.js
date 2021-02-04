@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -17,10 +17,22 @@ import Time from "../../Image/clock.png";
 import Location from "../../Image/location.png";
 import Members from "../../Image/members.png";
 import Closed from "../../Image/closed.png";
+import { AuthContext } from "../../appState/AuthProvider";
 
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import gql from "graphql-tag";
+
+import { useMutation } from "@apollo/react-hooks";
+
+
+const JOINPOST = gql`
+  mutation JOINPOST($postId: String!) {
+    joinPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
 
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
@@ -36,32 +48,58 @@ const QUERY_ACTIVITY = gql`
       participantsNumber
       dateCloseApply
       description
+      canJoin
+      canFav
     }
   }
 `;
 
+
 const ActivityInfo = () => {
+  const route = useRouter();
+  console.log(route);
+  const postId = route.query.activityId
+
+  const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
+    variables: { postId },
+  });
+
+  console.log(data);
+
+  // console.log("canJoin",data.getOnePost.canJoin)
+
+  // const JoinTog = data.getOnePost.canJoin
+
+  // if (JoinTog == "true") {
+  //   joinState = "unjoin"
+  // }
+  // if (JoinTog == "false") {
+  //   joinState = "join"
+  // }
+
   const [toggleJoin, setToggleJoin] = useState("unjoin");
   console.log("Join>>", toggleJoin);
   const [toggleFav, setToggleFav] = useState("unfav");
   console.log("Fav>>", toggleFav);
 
-  const route = useRouter();
-  console.log(route);
-
-  const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
-    variables: { postId: route.query.activityId },
+  
+  const [joinpost] = useMutation(JOINPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        //Router.push("/activity");
+      }
+    },
   });
 
-  console.log(data);
+  console.log("postId",postId)
 
-  if (error) return <p>Something went wrong, please try again.</p>;
-
-  if (loading) return <p>Loading ...</p>;
-
-  const handleClickJoin = () => {
+  const handleClickJoin = async () => {
     if (toggleJoin == "unjoin") {
       setToggleJoin("join");
+      await joinpost()
     }
     if (toggleJoin == "join") {
       setToggleJoin("unjoin");
@@ -76,6 +114,12 @@ const ActivityInfo = () => {
       setToggleFav("unfav");
     }
   };
+  
+  if (error) return <p>Something went wrong, please try again.</p>;
+
+  if (loading) return <p>Loading ...</p>;
+
+
   return (
     <div className="Activity-Page-Card-Div">
       <div className="Activity-Page-Card-List">
@@ -163,7 +207,7 @@ const ActivityInfo = () => {
               </div>
             </div>
             <div className="Activity-Page-Card-Flex Activity-Page-Card-Description">
-                {data.getOnePost.description}
+              {data.getOnePost.description}
             </div>
           </div>
         </Card>

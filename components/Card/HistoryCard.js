@@ -25,7 +25,7 @@ const QUERY_MYFAV = gql`
   query {
     getOneUser {
       name
-      posts{
+      joins{
         _id
         name
         status
@@ -85,7 +85,7 @@ const HistoryCard = () => {
                 <h4>{prod.name}</h4>
               </div>
             ))} */}
-            {data.getOneUser.posts.map((prod) => (
+            {data.getOneUser.joins.map((prod) => (
               <div key={prod._id}>
                 <Card className="My-Hist-Page-Card">
                   <CardActions>
