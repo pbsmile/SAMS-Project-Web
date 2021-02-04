@@ -6,7 +6,9 @@
     flex-direction: column;
     height: 100vh;
     width: 70%;
+    margin-bottom: 200px;
     margin: auto;
+   
 }
 
 .Post-Toggle-Button-Menu {
@@ -18,11 +20,10 @@
     justify-content: flex-start;
     // position: fixed;
     float: left;
-    
 }
-hr{
+hr {
     color: gray;
-    background-color:gray;
+    background-color: gray;
     size: 2px;
     width: 100%;
     position: flex;
@@ -49,17 +50,18 @@ hr{
     font-weight: bold;
 }
 
-.Post-poster-container{
+.Post-poster-container {
     background-color: black;
     opacity: 0.8;
     filter: alpha(opacity=80);
     width: 100%;
     height: 600px;
+    position: relative;
 }
-
-.previewProfilePic{
+.previewProfilePic {
     justify-content: center;
     margin: auto;
+    height: 80%;
 }
 
 .post_image {
@@ -69,7 +71,6 @@ hr{
     // margin-left: 50%;
     background-color: #d0d0d0;
 }
-
 
 // .Post-Toggle-Button-Items label:hover {
 //     border-radius: 10px;
@@ -119,30 +120,38 @@ hr{
 //     display: inline;
 //     // float: right;
 // }
+.Post-Input-Container {
+    width: 100%;
+    margin-top: 5%;
+}
 
-// .post_input_data {
-//     font-family: "Prompt", sans-serif;
-//     font-size: 16px;
-//     margin-top: 0;
-//     margin-left: 10px;
-//     border: 1px solid #ccc;
-//     border-radius: 5px;
-//     padding: 5px 5px;
-// }
-// .post_input_default {
-//     height: 40px;
-//     width: 500px;
-// }
+.Post-Input h2 {
+    font-size: 25px;
+    margin-left: 10%;
+}
 
-// .post_input_small {
-//     height: 40px;
-//     width: 10%;
-// }
+.Post-Input-Fill-Data {
+    font-family: "Prompt", sans-serif;
+    font-size: 16px;
+    margin-top: 2%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 5px;
+    height: 50px;
+    width: 100%;
+}
 
-// .post_input_large {
-//     height: 100px;
-//     width: 500px;
-// }
+.Post-Input-Small-Fill-Data {
+    height: 40px;
+    width: 10%;
+}
+
+.Post-margin-top {
+    margin-top: 3%;
+}
+.Post-Input-Large-Fill-Data {
+    height: 300px;
+}
 
 // .post_header {
 //     height: 70px;
@@ -154,30 +163,64 @@ hr{
 //     margin-left: 30px;
 //     font-size: 30px;
 // }
-// .post_input h2 {
-//     font-size: 20px;
-// }
-// .column {
-//     float: right;
-//     width: 70%;
-//     padding: 10px;
-// }
+.post_input h2 {
+    font-size: 20px;
+}
+.Post-Column {
+    float: left;
+    width: 30%;
+    padding: 10px;
+}
+.Post-Column2 {
+    float: left;
+    width: 70%;
+    padding: 10px;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 // .column1 {
 //     float: left;
 //     width: 30%;
 //     padding: 20px;
 // }
-// .row:after {
-//     content: "";
-//     display: table;
-//     clear: both;
-// }
-// .post_flex1 {
-//     margin-left: 10px;
-//     display: flex;
-//     flex-direction: row;
-//     float: left;
-// }
+
+.Post-Flex-Row {
+    display: flex;
+    flex-direction: row;
+    float: left;
+}
+
+.Post-Calendar-Time {
+    margin-right: 20%;
+}
+
+.Post-Time {
+    width: 200px;
+}
+
+.Post-Submit-Button {
+    width: 150px;
+    height: 120%;
+    background: #F38621 !important;
+    color: white !important;
+    border-radius: 25px;
+    border: 1px solid #F38621;;
+    font-size: 20px;
+    float: right;
+    margin-bottom: 200px;
+}
+
+.Post-Left-Button {
+    position: relative;
+    height: 50px;
+}
+.Post-Submit-Button:focus {
+    box-shadow: 0 4px 2px -2px gray !important;
+    outline: 2px !important;
+}
 
 // #profile-pic {
 //     float: left;
@@ -197,4 +240,3 @@ hr{
 // h3 {
 //     margin: auto 30px;
 // }
-
