@@ -34,6 +34,30 @@ const JOINPOST = gql`
   }
 `;
 
+const UNJOINPOST = gql`
+  mutation UNJOINPOST($postId: String!) {
+    unjoinPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
+
+const FAVPOST = gql`
+  mutation FAVPOST($postId: String!) {
+    favPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
+
+const UNFAVPOST = gql`
+  mutation UNFAVPOST($postId: String!) {
+    unfavPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
+
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
     getOnePost(input: { postId: $postId }) {
@@ -60,11 +84,38 @@ const ActivityInfo = () => {
   console.log(route);
   const postId = route.query.activityId
 
+  const [toggleJoin, setToggleJoin] = useState("");
+  console.log("Join>>", toggleJoin);
+  const [toggleFav, setToggleFav] = useState("");
+  console.log("Fav>>", toggleFav);
+
   const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
     variables: { postId },
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data.getOnePost.canJoin)
+        console.log(data.getOnePost.canFav);
+        if (data.getOnePost.canJoin == false)
+        {
+          setToggleJoin("join");
+        }
+        if (data.getOnePost.canJoin == true)
+        {
+          setToggleJoin("unjoin");
+        }
+        if (data.getOnePost.canFav == false)
+        {
+          setToggleFav("fav");
+        }
+        if (data.getOnePost.canFav == true)
+        {
+          setToggleFav("unfav");
+        }
+        //Router.push("/activity");
+      }
+    }
   });
 
-  console.log(data);
 
   // console.log("canJoin",data.getOnePost.canJoin)
 
@@ -77,10 +128,7 @@ const ActivityInfo = () => {
   //   joinState = "join"
   // }
 
-  const [toggleJoin, setToggleJoin] = useState("unjoin");
-  console.log("Join>>", toggleJoin);
-  const [toggleFav, setToggleFav] = useState("unfav");
-  console.log("Fav>>", toggleFav);
+  
 
   
   const [joinpost] = useMutation(JOINPOST, {
@@ -91,7 +139,40 @@ const ActivityInfo = () => {
         console.log(data);
         //Router.push("/activity");
       }
-    },
+    }
+  });
+
+  const [unjoinpost] = useMutation(UNJOINPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        //Router.push("/activity");
+      }
+    }
+  });
+
+  const [favpost] = useMutation(FAVPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        //Router.push("/activity");
+      }
+    }
+  });
+
+  const [unfavpost] = useMutation(UNFAVPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        //Router.push("/activity");
+      }
+    }
   });
 
   console.log("postId",postId)
@@ -103,15 +184,19 @@ const ActivityInfo = () => {
     }
     if (toggleJoin == "join") {
       setToggleJoin("unjoin");
+      await unjoinpost()
     }
   };
 
-  const handleClickFav = () => {
+  const handleClickFav = async () => {
+    
     if (toggleFav == "unfav") {
       setToggleFav("fav");
+      await favpost()
     }
     if (toggleFav == "fav") {
       setToggleFav("unfav");
+      await unfavpost()
     }
   };
   
