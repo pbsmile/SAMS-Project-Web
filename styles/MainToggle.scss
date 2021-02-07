@@ -1,8 +1,8 @@
-// .Profile-Toggle-Div {
+// .Main-Toggle-Div {
 //   margin-left: 40%;
 // }
 
-.Profile-Toggle-Button-Menu {
+.Main-Toggle-Button-Menu {
   background-color: #ffffff;
   margin-top: 80px;
   width: 100%;
@@ -19,21 +19,21 @@
   border-color: #dddddd;
 }
 
-.Profile-Toggle-Button-Items {
+.Main-Toggle-Button-Items {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 0px;
 }
 
-.Profile-Toggle-Button-List {
+.Main-Toggle-Button-List {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.Profile-Toggle-Button-Items label {
+.Main-Toggle-Button-Items label {
   float: left;
   //color: black;
   text-align: center;
@@ -42,7 +42,7 @@
   font-weight: bold;
 }
 
-.Profile-Toggle-Button-Items label:hover {
+.Main-Toggle-Button-Items label:hover {
   //background-color: #ffaa0b;
   //color: black;
   border-radius: 10px;
@@ -50,57 +50,72 @@
   height: 40px;
 }
 
-.Profile-Toggle-Button-MyProfile {
+.Main-Toggle-Button-MyProfile {
   //background-color: #ffaa0b;
-  color: black;
-  border-radius: 10px;
-  height: 40px;
-}
-
-.Profile-Toggle-Button-MyPost {
-  //background-color: #ffaa0b;
-  color:  black;
-  border-radius: 10px;
-  height: 40px;
-}
-
-.Profile-Toggle-Button-Favorite {
-  //background-color: #ffaa0b;
-  color: black;
-  border-radius: 10px;
-  height: 40px;
-}
-
-.Profile-Toggle-Button-History {
-  //background-color: #ffaa0b;
-  color:  black;
-  border-radius: 10px;
-  height: 40px;
-}
-
-.Profile-Toggle-Button-Trans {
   color: rgb(51, 51, 51);
   border-radius: 10px;
   height: 40px;
 }
 
-.Profile-Toggle-List {
+.Main-Toggle-Button-MyPost {
+  //background-color: #ffaa0b;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.Main-Toggle-Button-Favorite {
+  //background-color: #ffaa0b;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.Main-Toggle-Button-History {
+  //background-color: #ffaa0b;
+  color: black;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.Main-Toggle-Button-Trans {
+  color: rgb(117, 117, 117);
+  border-radius: 10px;
+  height: 40px;
+}
+
+.Main-Toggle-Button-Popular-Img {
+  margin-left: 15px;
+  width: 30px;
+}
+.Main-Toggle-Button-Closing-Img {
+  width: 30px;
+}
+.Main-Toggle-Button-Nearing-Img {
+  width: 30px;
+}
+.Main-Toggle-Button-Img-Trans {
+    width: 30px;
+    filter: grayscale(100%);
+}
+
+.Main-Toggle-List {
   margin-left: 250px;
   margin-top: 48px;
 }
 
-.Profile-Toggle-Nav {
+.Main-Toggle-Nav {
   //position: fixed;
   margin-top: 20px;
   height: 30px;
   width: 530px;
   border-radius: 10px;
   color: $dark-orange;
-  
+
   //background: #d6d5d5;
 }
 
-.Profile-Toggle-Nav-Mypost {
+.Main-Toggle-Nav-Mypost {
   font-size: 25px;
   font-weight: bold;
   padding: 3px 10px;
@@ -109,7 +124,7 @@
   margin-top: 2px;
 }
 
-.Profile-Toggle-Nav-Favorite {
+.Main-Toggle-Nav-Favorite {
   font-size: 25px;
   font-weight: bold;
   padding: 3px 10px;
@@ -118,7 +133,7 @@
   margin-top: 2px;
 }
 
-.Profile-Toggle-Nav-History {
+.Main-Toggle-Nav-History {
   font-size: 25px;
   font-weight: bold;
   padding: 3px 10px;
