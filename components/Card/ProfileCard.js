@@ -31,7 +31,7 @@ const ProfileCard = () => {
 
   return (
     <div className="Profile-Card-Div">
-      <div className="Profile-Card-Div">
+      <div className="Profile-Card-Div-Topic">
         <p className="Profile-Card-Topic">ชื่อ นามสกุล</p>
         <p className="Profile-Card-Topic">อีเมล</p>
         <p className="Profile-Card-Topic">รหัสศึกษา</p>
@@ -39,7 +39,15 @@ const ProfileCard = () => {
         <p className="Profile-Card-Topic">เบอร์โทรศัพท์</p>
       </div>
 
-      <div className="Profile-Card-Div">
+      <div className="Profile-Card-Div-Space">
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+      </div>
+
+      <div className="Profile-Card-Div-Details">
         <p className="Profile-Card-Name">{data.getOneUser.name}</p>
         <p className="Profile-Card-Email">{data.getOneUser.email}</p>
         <p className="Profile-Card-Code">{data.getOneUser.studentId}</p>
