@@ -75,12 +75,12 @@ const MainPageCard = () => {
 
   return (
     <div className="Main-Page-Card-Div">
-      <div className="Main-Page-Fixed-Bg">
+      {/* <div className="Main-Page-Fixed-Bg">
         <nav className="Main-Page-Card-Nav">
           <p className="Main-Page-Card-Nav-Popular">กิจกรรมยอดนิยม</p>
         </nav>
        
-      </div>
+      </div> */}
 
       <div className="Main-Page-Card-List">
         {data && (
@@ -93,39 +93,7 @@ const MainPageCard = () => {
             {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
                 <Card className="Main-Page-Card">
-                  <CardActions>
-                    <div className="Main-Page-Card-Top-Div">
-                      {/* <button className="Main-Page-Card-Join"></button> */}
-                      <div className="Main-Page-Card-Box">
-                        <img
-                          className="Main-Page-Card-Join"
-                          src={toggleJoin == "unjoin" ? Unjoin : Join}
-                          onClick={() => handleClickJoin()}
-                        ></img>
-                        <label
-                          className="Main-Page-Card-Join-Text"
-                          onClick={() => handleClickJoin()}
-                        >
-                          {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                        </label>
-                      </div>
-
-                      {/* <button className="Main-Page-Card-Favorite"></button> */}
-                      <div className="Main-Page-Card-Box">
-                        <img
-                          className="Main-Page-Card-Join"
-                          src={toggleFav == "unfav" ? Unfav : Fav}
-                          onClick={() => handleClickFav()}
-                        ></img>
-                        <label
-                          className="Main-Page-Card-Favorite-Text"
-                          onClick={() => handleClickFav()}
-                        >
-                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                        </label>
-                      </div>
-                    </div>
-                  </CardActions>
+                 
                   <div className="Main-Page-Card-Area">
                     <div className="Main-Page-Card-Flex">
                       <div className="Main-Page-Card-Left">

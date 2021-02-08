@@ -79,9 +79,27 @@
 }
 
 .Profile-Toggle-Button-Trans {
-  color: rgb(51, 51, 51);
+  color: rgb(117, 117, 117);
   border-radius: 10px;
   height: 40px;
+}
+
+.Profile-Toggle-Button-Profile-Img {
+  //margin-left: 15px;
+  width: 30px;
+}
+.Profile-Toggle-Button-History-Img {
+  width: 30px;
+}
+.Profile-Toggle-Button-Favorite-Img {
+  width: 30px;
+}
+.Profile-Toggle-Button-Mypost-Img {
+  width: 30px;
+}
+.Profile-Toggle-Button-Img-Trans {
+    width: 30px;
+    filter: grayscale(100%);
 }
 
 .Profile-Toggle-List {

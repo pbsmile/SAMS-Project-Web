@@ -6,6 +6,11 @@ import MyPostCard from "../Card/MyPostCard";
 import FavoriteCard from "../Card/FavoriteCard";
 import HistoryCard from "../Card/HistoryCard";
 
+import ProfilePNG from "../../Image/profile_profile.png";
+import HistoryPNG from "../../Image/profile_history.png";
+import FavoritePNG from "../../Image/profile_favorite.png";
+import MypostPNG from "../../Image/profile_mypost.png";
+
 const ProfileToggle = () => {
   const [toggle, setToggle] = useState("myprofile");
   const [refresh, setRefresh] = useState(false);
@@ -55,27 +60,15 @@ const ProfileToggle = () => {
             }
             onClick={() => handleClick("myprofile")}
           >
+            <img
+              className={
+                toggle == "myprofile"
+                  ? "Profile-Toggle-Button-Profile-Img"
+                  : "Profile-Toggle-Button-Img-Trans"
+              }
+              src={ProfilePNG}
+            ></img>
             ข้อมูลส่วนตัว
-          </label>
-          <label
-            className={
-              toggle == "mypost"
-                ? "Profile-Toggle-Button-MyPost"
-                : "Profile-Toggle-Button-Trans"
-            }
-            onClick={() => handleClick("mypost")}
-          >
-            โพสต์ของฉัน
-          </label>
-          <label
-            className={
-              toggle == "favorite"
-                ? "Profile-Toggle-Button-Favorite"
-                : "Profile-Toggle-Button-Trans"
-            }
-            onClick={() => handleClick("favorite")}
-          >
-            ชื่นชอบ
           </label>
           <label
             className={
@@ -85,7 +78,51 @@ const ProfileToggle = () => {
             }
             onClick={() => handleClick("history")}
           >
+            <img
+              className={
+                toggle == "history"
+                  ? "Profile-Toggle-Button-History-Img"
+                  : "Profile-Toggle-Button-Img-Trans"
+              }
+              src={HistoryPNG}
+            ></img>
             ประวัติ
+          </label>
+          <label
+            className={
+              toggle == "favorite"
+                ? "Profile-Toggle-Button-Favorite"
+                : "Profile-Toggle-Button-Trans"
+            }
+            onClick={() => handleClick("favorite")}
+          >
+            <img
+              className={
+                toggle == "favorite"
+                  ? "Profile-Toggle-Button-Favorite-Img"
+                  : "Profile-Toggle-Button-Img-Trans"
+              }
+              src={FavoritePNG}
+            ></img>
+            ชื่นชอบ
+          </label>
+          <label
+            className={
+              toggle == "mypost"
+                ? "Profile-Toggle-Button-MyPost"
+                : "Profile-Toggle-Button-Trans"
+            }
+            onClick={() => handleClick("mypost")}
+          >
+            <img
+              className={
+                toggle == "mypost"
+                  ? "Profile-Toggle-Button-Mypost-Img"
+                  : "Profile-Toggle-Button-Img-Trans"
+              }
+              src={MypostPNG}
+            ></img>
+            โพสต์ของฉัน
           </label>
         </ul>
       </nav>
