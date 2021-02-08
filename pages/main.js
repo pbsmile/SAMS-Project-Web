@@ -11,7 +11,7 @@ const main = () => {
             Main Page
             for web
             SAMS
-            <MainPageSlidebar/>
+            {/* <MainPageSlidebar/> */}
             <MainToggle/>
         </div>
     )

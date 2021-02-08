@@ -51,12 +51,21 @@
   border-color: #ffffff;
 }
 
+.Main-Page-Banner-Slider {
+  width: 500px;
+  position: fixed;
+}
+
+.thumb {
+  visibility: hidden;
+}
+
 .Main-Page-Card-Div {
   overflow: hidden;
-  margin-left: 35%;
+  //margin-left: 35%;
   max-width: 550px;
   padding: 10px;
-  margin-top: 200px;
+  //margin-top: 200px;
   //position: fixed;
   background-color: rgb(255, 255, 255);
   // border-style: solid;

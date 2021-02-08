@@ -2,32 +2,48 @@
   margin-top: 200px;
   padding-left: 35px;
   color: black;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-color: #f77f00;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 20px;
+  justify-content: center;
   //background-color: rgb(184, 184, 184);
+}
+
+.Profile-Card-Div-Topic {
+  font-weight: bold;
+}
+
+.Profile-Card-Div-Space {
+  font-weight: bold;
 }
 
 .Profile-Card-Code {
   font-size: 16px;
-  font-weight: bold;
+  //font-weight: bold;
 }
 
 .Profile-Card-Name {
   font-size: 16px;
-  font-weight: bold;
+  //font-weight: bold;
 }
 
 .Profile-Card-Email {
   font-size: 16px;
-  font-weight: bold;
+  //font-weight: bold;
 }
 
 .Profile-Card-Department {
   font-size: 16px;
-  font-weight: bold;
+  //font-weight: bold;
 }
 
 .Profile-Card-Phonenumber {
   font-size: 16px;
-  font-weight: bold;
+  //font-weight: bold;
 }
 
 .Profile-Page-Card {
