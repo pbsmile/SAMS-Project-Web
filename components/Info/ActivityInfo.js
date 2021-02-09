@@ -85,9 +85,9 @@ const ActivityInfo = () => {
   const postId = route.query.activityId
 
   const [toggleJoin, setToggleJoin] = useState("");
-  console.log("Join>>", toggleJoin);
+  console.log("Join State>>", toggleJoin);
   const [toggleFav, setToggleFav] = useState("");
-  console.log("Fav>>", toggleFav);
+  console.log("Fav State>>", toggleFav);
 
   const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
     variables: { postId },
@@ -137,6 +137,7 @@ const ActivityInfo = () => {
     onCompleted: (data) => {
       if (data) {
         console.log(data);
+        setToggleJoin("join");
         //Router.push("/activity");
       }
     }
@@ -148,6 +149,7 @@ const ActivityInfo = () => {
     onCompleted: (data) => {
       if (data) {
         console.log(data);
+        setToggleJoin("unjoin");
         //Router.push("/activity");
       }
     }
@@ -159,6 +161,7 @@ const ActivityInfo = () => {
     onCompleted: (data) => {
       if (data) {
         console.log(data);
+        setToggleFav("fav");
         //Router.push("/activity");
       }
     }
@@ -170,6 +173,7 @@ const ActivityInfo = () => {
     onCompleted: (data) => {
       if (data) {
         console.log(data);
+        setToggleFav("unfav");
         //Router.push("/activity");
       }
     }
@@ -179,11 +183,11 @@ const ActivityInfo = () => {
 
   const handleClickJoin = async () => {
     if (toggleJoin == "unjoin") {
-      setToggleJoin("join");
+      //setToggleJoin("join");
       await joinpost()
     }
     if (toggleJoin == "join") {
-      setToggleJoin("unjoin");
+      //setToggleJoin("unjoin");
       await unjoinpost()
     }
   };
@@ -191,11 +195,11 @@ const ActivityInfo = () => {
   const handleClickFav = async () => {
     
     if (toggleFav == "unfav") {
-      setToggleFav("fav");
+      //setToggleFav("fav");
       await favpost()
     }
     if (toggleFav == "fav") {
-      setToggleFav("unfav");
+      //setToggleFav("unfav");
       await unfavpost()
     }
   };
