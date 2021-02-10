@@ -25,7 +25,6 @@ import gql from "graphql-tag";
 
 import { useMutation } from "@apollo/react-hooks";
 
-
 const JOINPOST = gql`
   mutation JOINPOST($postId: String!) {
     joinPost(input: { postId: $postId }) {
@@ -78,44 +77,50 @@ const QUERY_ACTIVITY = gql`
   }
 `;
 
-
 const ActivityInfo = () => {
   const route = useRouter();
   console.log(route);
-  const postId = route.query.activityId
+  const postId = route.query.activityId;
 
   const [toggleJoin, setToggleJoin] = useState("");
   console.log("Join State>>", toggleJoin);
   const [toggleFav, setToggleFav] = useState("");
   console.log("Fav State>>", toggleFav);
 
+  const { user, signout } = useContext(AuthContext);
+
   const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
     variables: { postId },
     onCompleted: (data) => {
       if (data) {
-        console.log(data.getOnePost.canJoin)
+        console.log("JOIN", data.getOnePost.canJoin);
         console.log(data.getOnePost.canFav);
-        if (data.getOnePost.canJoin == false)
-        {
+        if (data.getOnePost.canJoin == "joined") {
           setToggleJoin("join");
         }
-        if (data.getOnePost.canJoin == true)
-        {
+        if (data.getOnePost.canJoin == "canJoin") {
           setToggleJoin("unjoin");
         }
-        if (data.getOnePost.canFav == false)
-        {
+        if (data.getOnePost.canJoin == "createUser") {
+          setToggleJoin("unjoin");
+        }
+        if (data.getOnePost.canJoin == "full") {
+          setToggleJoin("unjoin");
+        }
+        if (data.getOnePost.canJoin == "closed") {
+          setToggleJoin("unjoin");
+        }
+
+        if (data.getOnePost.canFav == false) {
           setToggleFav("fav");
         }
-        if (data.getOnePost.canFav == true)
-        {
+        if (data.getOnePost.canFav == true) {
           setToggleFav("unfav");
         }
         //Router.push("/activity");
       }
-    }
+    },
   });
-
 
   // console.log("canJoin",data.getOnePost.canJoin)
 
@@ -128,9 +133,6 @@ const ActivityInfo = () => {
   //   joinState = "join"
   // }
 
-  
-
-  
   const [joinpost] = useMutation(JOINPOST, {
     variables: { postId },
     //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
@@ -140,7 +142,7 @@ const ActivityInfo = () => {
         setToggleJoin("join");
         //Router.push("/activity");
       }
-    }
+    },
   });
 
   const [unjoinpost] = useMutation(UNJOINPOST, {
@@ -152,7 +154,7 @@ const ActivityInfo = () => {
         setToggleJoin("unjoin");
         //Router.push("/activity");
       }
-    }
+    },
   });
 
   const [favpost] = useMutation(FAVPOST, {
@@ -164,7 +166,7 @@ const ActivityInfo = () => {
         setToggleFav("fav");
         //Router.push("/activity");
       }
-    }
+    },
   });
 
   const [unfavpost] = useMutation(UNFAVPOST, {
@@ -176,38 +178,36 @@ const ActivityInfo = () => {
         setToggleFav("unfav");
         //Router.push("/activity");
       }
-    }
+    },
   });
 
-  console.log("postId",postId)
+  console.log("postId", postId);
 
   const handleClickJoin = async () => {
     if (toggleJoin == "unjoin") {
       //setToggleJoin("join");
-      await joinpost()
+      await joinpost();
     }
     if (toggleJoin == "join") {
       //setToggleJoin("unjoin");
-      await unjoinpost()
+      await unjoinpost();
     }
   };
 
   const handleClickFav = async () => {
-    
     if (toggleFav == "unfav") {
       //setToggleFav("fav");
-      await favpost()
+      await favpost();
     }
     if (toggleFav == "fav") {
       //setToggleFav("unfav");
-      await unfavpost()
+      await unfavpost();
     }
   };
-  
+
   if (error) return <p>Something went wrong, please try again.</p>;
 
   if (loading) return <p>Loading ...</p>;
-
 
   return (
     <div className="Activity-Page-Card-Div">
@@ -216,34 +216,42 @@ const ActivityInfo = () => {
           <CardActions>
             <div className="Activity-Page-Card-Top-Div">
               {/* <button className="Activity-Page-Card-Join"></button> */}
-              <div className="Activity-Page-Card-Box">
-                <img
-                  className="Activity-Page-Card-Join"
-                  src={toggleJoin == "unjoin" ? Unjoin : Join}
-                  onClick={() => handleClickJoin()}
-                ></img>
-                <label
-                  className="Activity-Page-Card-Join-Text"
-                  onClick={() => handleClickJoin()}
-                >
-                  {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                </label>
-              </div>
+              {user && (
+                <>
+                  <div className="Activity-Page-Card-Box">
+                    <img
+                      className="Activity-Page-Card-Join"
+                      src={toggleJoin == "unjoin" ? Unjoin : Join}
+                      onClick={() => handleClickJoin()}
+                    ></img>
+                    <label
+                      className="Activity-Page-Card-Join-Text"
+                      onClick={() => handleClickJoin()}
+                    >
+                      {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
+                    </label>
+                  </div>
+                </>
+              )}
 
               {/* <button className="Activity-Page-Card-Favorite"></button> */}
-              <div className="Activity-Page-Card-Box">
-                <img
-                  className="Activity-Page-Card-Join"
-                  src={toggleFav == "unfav" ? Unfav : Fav}
-                  onClick={() => handleClickFav()}
-                ></img>
-                <label
-                  className="Activity-Page-Card-Favorite-Text"
-                  onClick={() => handleClickFav()}
-                >
-                  {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                </label>
-              </div>
+              {user && (
+                <>
+                  <div className="Activity-Page-Card-Box">
+                    <img
+                      className="Activity-Page-Card-Join"
+                      src={toggleFav == "unfav" ? Unfav : Fav}
+                      onClick={() => handleClickFav()}
+                    ></img>
+                    <label
+                      className="Activity-Page-Card-Favorite-Text"
+                      onClick={() => handleClickFav()}
+                    >
+                      {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
+                    </label>
+                  </div>
+                </>
+              )}
             </div>
           </CardActions>
           <div className="Activity-Page-Card-Area">
