@@ -35,7 +35,7 @@ const navbar = () => {
   // if (loading) return <p>Loading...</p>
   // console.log(data.getOneUser)
 
-  // useEffect(() => {
+  //useEffect(() => {
   //   if (toggle == "main") {
   //     console.log("main");
   //   }
@@ -43,12 +43,12 @@ const navbar = () => {
   //     console.log("activity");
   //   }
 
-  //   // if (path == '/main') {
-  //   //   setToggle("main");
-  //   // }
-  //   // if (path == '/activity') {
-  //   //   setToggle("activity");
-  //   // }
+  //   if (path == '/main') {
+  //     setToggle("main");
+  //   }
+  //   if (path == '/activity') {
+  //     setToggle("activity");
+  //   }
   // }, [toggle, refresh, path]);
 
   // const handleClick = (toggleType) => {

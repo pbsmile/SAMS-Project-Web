@@ -1,7 +1,13 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
+import Router from "next/router";
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    Router.push("/main")
+  });
+ 
   return (
     <div className={styles.container}>
       <Head>

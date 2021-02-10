@@ -7,6 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Circle from "../../Image/circle.png";
+import Chest from "../../Image/chest.jpg";
 import Join from "../../Image/add1.png";
 import Unjoin from "../../Image/add2.png";
 import Fav from "../../Image/heart1.png";
@@ -20,7 +21,11 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import apolloClient from "../../apollo/apolloclient";
-import Link from "next/link"
+import Link from "next/link";
+
+import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const QUERY_POSTAUTH = gql`
   query {
@@ -45,7 +50,7 @@ const QUERY_POSTAUTH = gql`
 
 const MainPageCard = () => {
   const { data } = useQuery(QUERY_POSTAUTH, {
-    pollInterval: 3000
+    pollInterval: 3000,
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
@@ -76,10 +81,10 @@ const MainPageCard = () => {
   return (
     <div className="Main-Page-Card-Div">
       <div className="Main-Page-Fixed-Bg">
-        <nav className="Main-Page-Card-Nav">
+        {/* <nav className="Main-Page-Card-Nav">
           <p className="Main-Page-Card-Nav-Popular">กิจกรรมยอดนิยม</p>
-        </nav>
-       
+        </nav> */}
+        {/* <MainPageSlidebar/> */}
       </div>
 
       <div className="Main-Page-Card-List">
@@ -93,47 +98,20 @@ const MainPageCard = () => {
             {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
                 <Card className="Main-Page-Card">
-                  <CardActions>
-                    <div className="Main-Page-Card-Top-Div">
-                      {/* <button className="Main-Page-Card-Join"></button> */}
-                      <div className="Main-Page-Card-Box">
-                        <img
-                          className="Main-Page-Card-Join"
-                          src={toggleJoin == "unjoin" ? Unjoin : Join}
-                          onClick={() => handleClickJoin()}
-                        ></img>
-                        <label
-                          className="Main-Page-Card-Join-Text"
-                          onClick={() => handleClickJoin()}
-                        >
-                          {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                        </label>
-                      </div>
-
-                      {/* <button className="Main-Page-Card-Favorite"></button> */}
-                      <div className="Main-Page-Card-Box">
-                        <img
-                          className="Main-Page-Card-Join"
-                          src={toggleFav == "unfav" ? Unfav : Fav}
-                          onClick={() => handleClickFav()}
-                        ></img>
-                        <label
-                          className="Main-Page-Card-Favorite-Text"
-                          onClick={() => handleClickFav()}
-                        >
-                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                        </label>
-                      </div>
-                    </div>
-                  </CardActions>
                   <div className="Main-Page-Card-Area">
                     <div className="Main-Page-Card-Flex">
                       <div className="Main-Page-Card-Left">
-                        <img className="Main-Page-Card-Img" src={Circle} />
-                        <label className="Main-Page-Card-Status">
+                        <Link
+                          key={prod._id}
+                          href="/activity/[activityId]"
+                          as={`/activity/${prod._id}`}
+                        >
+                          <img className="Main-Page-Card-Img" src={Chest} />
+                        </Link>
+                        {/* <label className="Main-Page-Card-Status">
                           สถานะกิจกรรม :
                         </label>
-                        <label className="Main-Page-Card-Status"> {prod.status} </label>
+                        <label className="Main-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="Main-Page-Card-Right">
                         <label className="Main-Page-Card-Name">
@@ -145,14 +123,17 @@ const MainPageCard = () => {
                               className="Main-Page-Card-Icon-Size"
                               src={Day}
                             />
-                             {prod.dateStart}
+
+                            <Moment format="D MMM YYYY">
+                              {prod.dateStart}
+                            </Moment>
                           </label>
                           <label className="Main-Page-Card-Time">
                             <img
                               className="Main-Page-Card-Icon-Size"
                               src={Time}
                             />
-                            {prod.timeStart}
+                            {prod.timeStart} น.
                           </label>
                         </div>
 
@@ -161,9 +142,9 @@ const MainPageCard = () => {
                             className="Main-Page-Card-Icon-Size"
                             src={Location}
                           />
-                           {prod.place}
+                          {prod.place}
                         </label>
-                        <div className="Main-Page-Card-Members-Close">
+                        {/* <div className="Main-Page-Card-Members-Close">
                           <label className="Main-Page-Card-Members">
                             <img
                               className="Main-Page-Card-Icon-Size"
@@ -178,11 +159,11 @@ const MainPageCard = () => {
                             />
                             {prod.dateCloseApply}
                           </label>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
-                  <CardActions>
+                  {/* <CardActions>
                     <div className="Main-Page-Card-More-Div">
                       <Link
                         key={prod._id}
@@ -194,7 +175,7 @@ const MainPageCard = () => {
                         </button>
                       </Link>
                     </div>
-                  </CardActions>
+                  </CardActions> */}
                 </Card>
               </div>
             ))}

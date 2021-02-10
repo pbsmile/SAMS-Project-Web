@@ -8,10 +8,8 @@ const main = () => {
     return (
         <div>
             <Navbar/>
-            Main Page
-            for web
-            SAMS
-            <MainPageSlidebar/>
+           
+            {/* <MainPageSlidebar/> */}
             <MainToggle/>
         </div>
     )

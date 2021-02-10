@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -17,10 +17,46 @@ import Time from "../../Image/clock.png";
 import Location from "../../Image/location.png";
 import Members from "../../Image/members.png";
 import Closed from "../../Image/closed.png";
+import { AuthContext } from "../../appState/AuthProvider";
 
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import gql from "graphql-tag";
+
+import { useMutation } from "@apollo/react-hooks";
+
+
+const JOINPOST = gql`
+  mutation JOINPOST($postId: String!) {
+    joinPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
+
+const UNJOINPOST = gql`
+  mutation UNJOINPOST($postId: String!) {
+    unjoinPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
+
+const FAVPOST = gql`
+  mutation FAVPOST($postId: String!) {
+    favPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
+
+const UNFAVPOST = gql`
+  mutation UNFAVPOST($postId: String!) {
+    unfavPost(input: { postId: $postId }) {
+      name
+    }
+  }
+`;
 
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
@@ -36,46 +72,143 @@ const QUERY_ACTIVITY = gql`
       participantsNumber
       dateCloseApply
       description
+      canJoin
+      canFav
     }
   }
 `;
 
-const ActivityInfo = () => {
-  const [toggleJoin, setToggleJoin] = useState("unjoin");
-  console.log("Join>>", toggleJoin);
-  const [toggleFav, setToggleFav] = useState("unfav");
-  console.log("Fav>>", toggleFav);
 
+const ActivityInfo = () => {
   const route = useRouter();
   console.log(route);
+  const postId = route.query.activityId
+
+  const [toggleJoin, setToggleJoin] = useState("");
+  console.log("Join State>>", toggleJoin);
+  const [toggleFav, setToggleFav] = useState("");
+  console.log("Fav State>>", toggleFav);
 
   const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
-    variables: { postId: route.query.activityId },
+    variables: { postId },
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data.getOnePost.canJoin)
+        console.log(data.getOnePost.canFav);
+        if (data.getOnePost.canJoin == false)
+        {
+          setToggleJoin("join");
+        }
+        if (data.getOnePost.canJoin == true)
+        {
+          setToggleJoin("unjoin");
+        }
+        if (data.getOnePost.canFav == false)
+        {
+          setToggleFav("fav");
+        }
+        if (data.getOnePost.canFav == true)
+        {
+          setToggleFav("unfav");
+        }
+        //Router.push("/activity");
+      }
+    }
   });
 
-  console.log(data);
 
+  // console.log("canJoin",data.getOnePost.canJoin)
+
+  // const JoinTog = data.getOnePost.canJoin
+
+  // if (JoinTog == "true") {
+  //   joinState = "unjoin"
+  // }
+  // if (JoinTog == "false") {
+  //   joinState = "join"
+  // }
+
+  
+
+  
+  const [joinpost] = useMutation(JOINPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        setToggleJoin("join");
+        //Router.push("/activity");
+      }
+    }
+  });
+
+  const [unjoinpost] = useMutation(UNJOINPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        setToggleJoin("unjoin");
+        //Router.push("/activity");
+      }
+    }
+  });
+
+  const [favpost] = useMutation(FAVPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        setToggleFav("fav");
+        //Router.push("/activity");
+      }
+    }
+  });
+
+  const [unfavpost] = useMutation(UNFAVPOST, {
+    variables: { postId },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        setToggleFav("unfav");
+        //Router.push("/activity");
+      }
+    }
+  });
+
+  console.log("postId",postId)
+
+  const handleClickJoin = async () => {
+    if (toggleJoin == "unjoin") {
+      //setToggleJoin("join");
+      await joinpost()
+    }
+    if (toggleJoin == "join") {
+      //setToggleJoin("unjoin");
+      await unjoinpost()
+    }
+  };
+
+  const handleClickFav = async () => {
+    
+    if (toggleFav == "unfav") {
+      //setToggleFav("fav");
+      await favpost()
+    }
+    if (toggleFav == "fav") {
+      //setToggleFav("unfav");
+      await unfavpost()
+    }
+  };
+  
   if (error) return <p>Something went wrong, please try again.</p>;
 
   if (loading) return <p>Loading ...</p>;
 
-  const handleClickJoin = () => {
-    if (toggleJoin == "unjoin") {
-      setToggleJoin("join");
-    }
-    if (toggleJoin == "join") {
-      setToggleJoin("unjoin");
-    }
-  };
 
-  const handleClickFav = () => {
-    if (toggleFav == "unfav") {
-      setToggleFav("fav");
-    }
-    if (toggleFav == "fav") {
-      setToggleFav("unfav");
-    }
-  };
   return (
     <div className="Activity-Page-Card-Div">
       <div className="Activity-Page-Card-List">
@@ -163,7 +296,7 @@ const ActivityInfo = () => {
               </div>
             </div>
             <div className="Activity-Page-Card-Flex Activity-Page-Card-Description">
-                {data.getOnePost.description}
+              {data.getOnePost.description}
             </div>
           </div>
         </Card>

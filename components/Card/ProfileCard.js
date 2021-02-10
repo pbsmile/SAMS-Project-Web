@@ -14,24 +14,48 @@ export const QUERY_USERPROFILE = gql`
   query {
     getOneUser {
       name
+      email
       studentId
       major
+      phoneNumber
     }
   }
 `;
 
-
 const ProfileCard = () => {
-  const { data, loading, error } = useQuery(QUERY_USERPROFILE)
-  if (error) return <p>Ooobs...something went wrong, please try again later.</p>
-  if (loading) return <p>Loading...</p>
-  console.log(data.getOneUser)
+  const { data, loading, error } = useQuery(QUERY_USERPROFILE);
+  if (error)
+    return <p>Ooobs...something went wrong, please try again later.</p>;
+  if (loading) return <p>Loading...</p>;
+  console.log(data.getOneUser);
 
   return (
     <div className="Profile-Card-Div">
-      <p className="Profile-Card-Code">{data.getOneUser.studentId}</p>
-      <p className="Profile-Card-Name">{data.getOneUser.name}</p>
-      <p className="Profile-Card-Department">{data.getOneUser.major}</p>
+      <div className="Profile-Card-Div-Topic">
+        <p className="Profile-Card-Topic">ชื่อ นามสกุล</p>
+        <p className="Profile-Card-Topic">อีเมล</p>
+        <p className="Profile-Card-Topic">รหัสศึกษา</p>
+        <p className="Profile-Card-Topic">คณะ/วิทยาลัย</p>
+        <p className="Profile-Card-Topic">เบอร์โทรศัพท์</p>
+      </div>
+
+      <div className="Profile-Card-Div-Space">
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+        <p className="Profile-Card-Space">:</p>
+      </div>
+
+      <div className="Profile-Card-Div-Details">
+        <p className="Profile-Card-Name">{data.getOneUser.name}</p>
+        <p className="Profile-Card-Email">{data.getOneUser.email}</p>
+        <p className="Profile-Card-Code">{data.getOneUser.studentId}</p>
+        <p className="Profile-Card-Department">{data.getOneUser.major}</p>
+        <p className="Profile-Card-Phonenumber">
+          {data.getOneUser.phoneNumber}
+        </p>
+      </div>
     </div>
   );
 };
