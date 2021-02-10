@@ -177,7 +177,7 @@ const post = () => {
                             <img src={CreateAct} id="Post-Logo"></img>
                         </label>
                         <label >
-                            สร้างกิจกรรมใหม่
+                            แก้ไขข้อมูลกิจกรรม
                 </label>
                     </ul>
                 </nav>
