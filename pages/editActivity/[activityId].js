@@ -6,6 +6,10 @@ const editActivity = () => {
     return (
         <div>
             <Navbar/>
+            {/* Activities Page
+            for web
+            SAMS
+            <ActivityInfo/> */}
         </div>
     )
 }

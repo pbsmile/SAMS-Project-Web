@@ -7,16 +7,17 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Circle from "../../Image/circle.png";
+import Chest from "../../Image/chest.jpg";
 import Filter from "../Filter/ActivityFilter";
 import Join from "../../Image/add1.png";
 import Unjoin from "../../Image/add2.png";
 import Fav from "../../Image/heart1.png";
 import Unfav from "../../Image/heart2.png";
-import Day from "../../Image/date.png";
+import Day from "../../Image/info_date.png";
 import Time from "../../Image/clock.png";
-import Location from "../../Image/location.png";
-import Members from "../../Image/members.png";
-import Closed from "../../Image/closed.png";
+import Location from "../../Image/info_flag.png";
+import Members from "../../Image/info_user.png";
+import Closed from "../../Image/info_closed.png";
 import { AuthContext } from "../../appState/AuthProvider";
 
 import { useQuery } from "@apollo/react-hooks";
@@ -25,6 +26,9 @@ import gql from "graphql-tag";
 
 import { useMutation } from "@apollo/react-hooks";
 import Link from "next/link";
+
+import Moment from "react-moment";
+import "moment-timezone";
 
 const JOINPOST = gql`
   mutation JOINPOST($postId: String!) {
@@ -214,100 +218,118 @@ const ActivityInfo = () => {
   if (loading) return <p>Loading ...</p>;
 
   return (
-    <div className="Activity-Page-Card-Div">
-      <div className="Activity-Page-Card-List">
-        <Card className="Activity-Page-Card">
-          <CardActions>
-            <div className="Activity-Page-Card-Top-Div">
-              {/* <button className="Activity-Page-Card-Join"></button> */}
-              {user && (
-                <>
-                  <div className="Activity-Page-Card-Box">
-                    <img
-                      className="Activity-Page-Card-Join"
-                      src={toggleJoin == "unjoin" ? Unjoin : Join}
-                      onClick={() => handleClickJoin()}
-                    ></img>
-                    <label
-                      className="Activity-Page-Card-Join-Text"
-                      onClick={() => handleClickJoin()}
-                    >
-                      {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                    </label>
-                  </div>
-                </>
-              )}
-
-              {/* <button className="Activity-Page-Card-Favorite"></button> */}
-              {user && (
-                <>
-                  <div className="Activity-Page-Card-Box">
-                    <img
-                      className="Activity-Page-Card-Join"
-                      src={toggleFav == "unfav" ? Unfav : Fav}
-                      onClick={() => handleClickFav()}
-                    ></img>
-                    <label
-                      className="Activity-Page-Card-Favorite-Text"
-                      onClick={() => handleClickFav()}
-                    >
-                      {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                    </label>
-                  </div>
-                </>
-              )}
-            </div>
-          </CardActions>
-          <div className="Activity-Page-Card-Area">
-            <div className="Activity-Page-Card-Flex">
-              <div className="Activity-Page-Card-Left">
-                <img className="Activity-Page-Card-Img" src={Circle} />
-                <label className="Activity-Page-Card-Status">
+    <div className="Activity-Info-Page-Card-Div">
+      <div className="Activity-Info-Page-Card-List">
+        <div className="Activity-Info-Page-Card">
+          <div className="Activity-Info-Page-Card-Area">
+            <div className="Activity-Info-Page-Card-Flex">
+              <div className="Activity-Info-Page-Card-Left">
+                <img className="Activity-Info-Page-Card-Img" src={Chest} />
+                {/* <label className="Activity-Info-Page-Card-Status">
                   สถานะกิจกรรม :
-                </label>
-                <label className="Activity-Page-Card-Status">ปิด</label>
+                </label> 
+                <label className="Activity-Info-Page-Card-Status">ปิด</label>*/}
               </div>
-              <div className="Activity-Page-Card-Right">
-                <label className="Activity-Page-Card-Name">
+              <div className="Activity-Info-Page-Card-Right">
+                <label className="Activity-Info-Page-Card-Name">
                   {data.getOnePost.name}
                 </label>
-                <div className="Activity-Page-Card-Date-Time">
-                  <label className="Activity-Page-Card-Date">
-                    <img className="Activity-Page-Card-Icon-Size" src={Day} />
-                    {data.getOnePost.dateStart}
+                <div className="Activity-Info-Page-Card-Date-Time">
+                  <label className="Activity-Info-Page-Card-Date">
+                    <img
+                      className="Activity-Info-Page-Card-Icon-Size"
+                      src={Day}
+                    />
+                    <Moment format="D MMM YYYY">
+                      {data.getOnePost.dateStart}
+                    </Moment>
+                    <label className="Activity-Info-Page-Card-Time">
+                      {data.getOnePost.timeStart} น.
+                    </label>
                   </label>
-                  <label className="Activity-Page-Card-Time">
-                    <img className="Activity-Page-Card-Icon-Size" src={Time} />
-                    {data.getOnePost.timeStart}
-                  </label>
+                  {/* <label className="Activity-Info-Page-Card-Time">
+                    <img
+                      className="Activity-Info-Page-Card-Icon-Size"
+                      src={Time}
+                    />
+                    {data.getOnePost.timeStart} น.
+                  </label> */}
                 </div>
 
-                <label className="Activity-Page-Card-Location">
+                <label className="Activity-Info-Page-Card-Location">
                   <img
-                    className="Activity-Page-Card-Icon-Size"
+                    className="Activity-Info-Page-Card-Icon-Size"
                     src={Location}
                   />
                   {data.getOnePost.place}
                 </label>
-                <div className="Activity-Page-Card-Members-Close">
-                  <label className="Activity-Page-Card-Members">
+                <div className="Activity-Info-Page-Card-Members-Close">
+                  <label className="Activity-Info-Page-Card-Members">
                     <img
-                      className="Activity-Page-Card-Icon-Size"
+                      className="Activity-Info-Page-Card-Icon-Size"
                       src={Members}
                     />
-                    {data.getOnePost.participantsNumber}
+                    {data.getOnePost.participantsNumber} คน
                   </label>
-                  <label className="Activity-Page-Card-Close">
+                  {/* <label className="Activity-Info-Page-Card-Close">
                     <img
-                      className="Activity-Page-Card-Icon-Size"
+                      className="Activity-Info-Page-Card-Icon-Size"
                       src={Closed}
                     />
                     {data.getOnePost.dateCloseApply}
-                  </label>
+                  </label> */}
                 </div>
+                <label className="Activity-Info-Page-Card-Status">
+                  <img
+                    className="Activity-Info-Page-Card-Icon-Size"
+                    src={Closed}
+                  />
+                  {data.getOnePost.status}
+                </label>
               </div>
             </div>
-            <div className="Activity-Page-Card-Flex Activity-Page-Card-Action">
+            <div>
+              <div className="Activity-Info-Page-Card-Top-Div">
+                {/* <button className="Activity-Info-Page-Card-Join"></button> */}
+                {user && !createUser && (
+                  <>
+                    <div className="Activity-Info-Page-Card-Box">
+                      <img
+                        className="Activity-Info-Page-Card-Join"
+                        src={toggleJoin == "unjoin" ? Unjoin : Join}
+                        onClick={() => handleClickJoin()}
+                      ></img>
+                      <label
+                        className="Activity-Info-Page-Card-Join-Text"
+                        onClick={() => handleClickJoin()}
+                      >
+                        {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
+                      </label>
+                    </div>
+                  </>
+                )}
+
+                {/* <button className="Activity-Info-Page-Card-Favorite"></button> */}
+                {user && (
+                  <>
+                    <div className="Activity-Info-Page-Card-Box">
+                      <img
+                        className="Activity-Info-Page-Card-Join"
+                        src={toggleFav == "unfav" ? Unfav : Fav}
+                        onClick={() => handleClickFav()}
+                      ></img>
+                      <label
+                        className="Activity-Info-Page-Card-Favorite-Text"
+                        onClick={() => handleClickFav()}
+                      >
+                        {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
+                      </label>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Action">
               {createUser && (
                 <>
                   <div>
@@ -326,11 +348,19 @@ const ActivityInfo = () => {
                 </>
               )}
             </div>
-            <div className="Activity-Page-Card-Flex Activity-Page-Card-Description">
-              {data.getOnePost.description}
+
+            <div className="Activity-Info-Page-Card-Description">
+              <div className="Activity-Info-Page-Card-Flex">
+                <label className="Activity-Info-Page-Card-Description-Name">
+                  {data.getOnePost.name}
+                </label>
+              </div>
+              <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Description-More">
+                {data.getOnePost.description}
+              </div>
             </div>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );
