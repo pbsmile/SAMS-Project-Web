@@ -24,6 +24,7 @@ import { useRouter } from "next/router";
 import gql from "graphql-tag";
 
 import { useMutation } from "@apollo/react-hooks";
+import Link from "next/link";
 
 const JOINPOST = gql`
   mutation JOINPOST($postId: String!) {
@@ -86,6 +87,8 @@ const ActivityInfo = () => {
   console.log("Join State>>", toggleJoin);
   const [toggleFav, setToggleFav] = useState("");
   console.log("Fav State>>", toggleFav);
+  const [createUser, setCreateUser] = useState(false);
+  console.log("create User >>", createUser);
 
   const { user, signout } = useContext(AuthContext);
 
@@ -103,6 +106,7 @@ const ActivityInfo = () => {
         }
         if (data.getOnePost.canJoin == "createUser") {
           setToggleJoin("unjoin");
+          setCreateUser(true);
         }
         if (data.getOnePost.canJoin == "full") {
           setToggleJoin("unjoin");
@@ -302,6 +306,25 @@ const ActivityInfo = () => {
                   </label>
                 </div>
               </div>
+            </div>
+            <div className="Activity-Page-Card-Flex Activity-Page-Card-Action">
+              {createUser && (
+                <>
+                  <div>
+                    <Link
+                      key={data.getOnePost._id}
+                      href="/editActivity/[activityId]"
+                      as={`/editActivity/${data.getOnePost._id}`}
+                    >
+                      <button>แก้ไข</button>
+                    </Link>
+
+                    <button>ส่งข้อมูล</button>
+                    <button>เช็คชื่อ</button>
+                    <button>ลบ</button>
+                  </div>
+                </>
+              )}
             </div>
             <div className="Activity-Page-Card-Flex Activity-Page-Card-Description">
               {data.getOnePost.description}
