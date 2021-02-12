@@ -46,25 +46,25 @@ mutation EDITPOST(
 }
 `;
 
-const QUERY_ACTIVITY = gql`
-  query QUERY_ACTIVITY($postId: String!) {
-    getOnePost(input: { postId: $postId }) {
-      name
-      _id
-      status
-      dateStart
-      dateEnd
-      timeStart
-      timeEnd
-      place
-      participantsNumber
-      dateCloseApply
-      description
-      canJoin
-      canFav
-    }
-  }
-`;
+// const QUERY_ACTIVITY = gql`
+//   query QUERY_ACTIVITY($postId: String!) {
+//     getOnePost(input: { postId: $postId }) {
+//       name
+//       _id
+//       status
+//       dateStart
+//       dateEnd
+//       timeStart
+//       timeEnd
+//       place
+//       participantsNumber
+//       dateCloseApply
+//       description
+//       canJoin
+//       canFav
+//     }
+//   }
+// `;
 
 function useRadioButtons(name) {
     const [value, setState] = useState(null);
@@ -113,23 +113,23 @@ const EditPost = () => {
     const route = useRouter();
     console.log(route);
     const postId = route.query.activityId;
-    const { user, signout } = useContext(AuthContext);
-    const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
-        variables: { postId },
-        onCompleted: (data) => {
-            if (data) {
-                console.log("JOIN", data.getOnePost.canJoin);
-                console.log(data.getOnePost);
-                //Router.push("/activity");
-            }
-        },
-    });
+    // const { user, signout } = useContext(AuthContext);
+    // const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
+    //     variables: { postId },
+    //     onCompleted: (data) => {
+    //         if (data) {
+    //             console.log("JOIN", data.getOnePost.canJoin);
+    //             console.log(data.getOnePost);
+    //             //Router.push("/activity");
+    //         }
+    //     },
+    // });
 
-    console.log("postId", postId);
+    // console.log("postId", postId);
 
-    if (error) return <p>Something went wrong, please try again.</p>;
+    // if (error) return <p>Something went wrong, please try again.</p>;
 
-    if (loading) return <p>Loading ...</p>;
+    // if (loading) return <p>Loading ...</p>;
 
 
     const [userInfo, setUserInfo] = useState({
