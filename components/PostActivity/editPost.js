@@ -98,20 +98,18 @@ const EditPost = () => {
         photo: "",
         name: data.getOnePost.name,
         dateStart: "2020-12-10",
-        dateEnd: "2020-12-11",
+        dateEnd: "2020-12-20",
         timeStart: "12:00",
         timeEnd: "18:00",
         place: data.getOnePost.place,
         participantsNumber: data.getOnePost.participantsNumber,
-        dateCloseApply: "2020-12-01T23:59",
+        dateCloseApply: "2020-12-01",
         major: "",
         description: data.getOnePost.description,
     });
 
     const handleChange = e => {
         console.log("Value", e.target.value)
-
-
         setUserInfo({
             ...userInfo,
 
@@ -147,6 +145,7 @@ const EditPost = () => {
 
 
     const handleSubmit = async e => {
+        console.log(userInfo)
         console.log("handle submit")
         try {
             console.log("Doneeeeeeeeeee1")
@@ -175,12 +174,13 @@ const EditPost = () => {
                 <h3>{data.getOnePost.name}</h3> */}
                 <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={userInfo.name} />
                 <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={userInfo.name} onChange={handleChange} />
-                <input type="text" name="dateStart" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateStart} />
-                <input type="text" name="dateEnd" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateEnd} />
+                <input type="date" name="dateStart" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateStart} />
+                <input type="date" name="dateEnd" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateEnd} />
                 <input type="text" name="place" className="Post-Input-Fill-Data" placeholder="" value={userInfo.place} onChange={handleChange} />
                 <input type="text" name="participantsNumber" className="Post-Input-Fill-Data" placeholder="" value={userInfo.participantsNumber} onChange={handleChange} />
                 <input type="text" name="description" className="Post-Input-Fill-Data" placeholder="" value={userInfo.description} onChange={handleChange} />
-
+                <h2>{data.getOnePost.timeStart}</h2>
+                <h2>{data.getOnePost.timeEnd}</h2>
                 <div className="Post-Left-Button">
                     <button type="submit" name="button" className="Post-Submit-Button">บันทึก</button>
                 </div>
