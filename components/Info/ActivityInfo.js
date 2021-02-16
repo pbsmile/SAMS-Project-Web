@@ -30,6 +30,15 @@ import Link from "next/link";
 import Moment from "react-moment";
 import "moment-timezone";
 
+const REPORT = gql`
+  mutation REPORT($reportPostId: String!, $comment: String!) {
+    createReport(input: { reportPostId: $reportPostId, comment: $comment })
+    {
+      _id
+    }
+  }
+`;
+
 const JOINPOST = gql`
   mutation JOINPOST($postId: String!) {
     joinPost(input: { postId: $postId }) {
@@ -78,6 +87,8 @@ const QUERY_ACTIVITY = gql`
       description
       canJoin
       canFav
+      canReview
+      avgRate
     }
   }
 `;
@@ -86,6 +97,11 @@ const ActivityInfo = () => {
   const route = useRouter();
   console.log(route);
   const postId = route.query.activityId;
+  const reportPostId = route.query.activityId;
+  const comment = "ทดสอบ";
+
+  console.log("reportPostId", reportPostId);
+  console.log("comment", comment);
 
   const [toggleJoin, setToggleJoin] = useState("");
   console.log("Join State>>", toggleJoin);
@@ -93,6 +109,8 @@ const ActivityInfo = () => {
   console.log("Fav State>>", toggleFav);
   const [createUser, setCreateUser] = useState(false);
   console.log("create User >>", createUser);
+  const [review, setReview] = useState(false);
+  console.log("can review >>", review);
 
   const { user, signout } = useContext(AuthContext);
 
@@ -124,6 +142,13 @@ const ActivityInfo = () => {
         }
         if (data.getOnePost.canFav == true) {
           setToggleFav("unfav");
+        }
+
+        if (data.getOnePost.canReview == false) {
+          setReview(false);
+        }
+        if (data.getOnePost.canReview == true) {
+          setReview(true);
         }
         //Router.push("/activity");
       }
@@ -189,6 +214,17 @@ const ActivityInfo = () => {
     },
   });
 
+  const [report] = useMutation(REPORT, {
+    variables: { reportPostId, comment },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        //Router.push("/activity");
+      }
+    },
+  });
+
   console.log("postId", postId);
 
   const handleClickJoin = async () => {
@@ -211,6 +247,10 @@ const ActivityInfo = () => {
       //setToggleFav("unfav");
       await unfavpost();
     }
+  };
+
+  const handleClickReport = async () => {
+    await report();
   };
 
   if (error) return <p>Something went wrong, please try again.</p>;
@@ -291,6 +331,7 @@ const ActivityInfo = () => {
             <div>
               <div className="Activity-Info-Page-Card-Top-Div">
                 {/* <button className="Activity-Info-Page-Card-Join"></button> */}
+
                 {user && !createUser && (
                   <>
                     <div className="Activity-Info-Page-Card-Box">
@@ -344,6 +385,20 @@ const ActivityInfo = () => {
                     <button>ส่งข้อมูล</button>
                     <button>เช็คชื่อ</button>
                     <button>ลบ</button>
+                  </div>
+                </>
+              )}
+              {user && !createUser && review && (
+                <>
+                  <div>
+                    <button>รีวิว</button>
+                  </div>
+                </>
+              )}
+              {user && !createUser && (
+                <>
+                  <div>
+                    <button onClick={() => handleClickReport()}>รีพอร์ต</button>
                   </div>
                 </>
               )}
