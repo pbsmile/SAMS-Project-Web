@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 export default function Home() {
   useEffect(() => {
     Router.push("/main")
-  });
+  },[]);
  
   return (
     <div className={styles.container}>
