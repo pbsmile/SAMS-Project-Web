@@ -15,15 +15,15 @@ const EDITPOST = gql`
 mutation EDITPOST(
     $postId: String!,
     $photo: String, 
-    $name: String!, 
-    $dateStart: Date!, 
-    $dateEnd: Date!, 
-    $timeStart: String!, 
-    $timeEnd: String!, 
-    $place: String!, 
-    $participantsNumber: Number!, 
-    $dateCloseApply: Date!, 
-    $major: String!, 
+    $name: String, 
+    $dateStart: Date, 
+    $dateEnd: Date, 
+    $timeStart: String, 
+    $timeEnd: String, 
+    $place: String, 
+    $participantsNumber: Number, 
+    $dateCloseApply: Date, 
+    $major: String, 
     $description: String
     )
 {
