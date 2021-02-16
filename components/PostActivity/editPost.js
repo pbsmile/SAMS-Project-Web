@@ -1,17 +1,19 @@
-import React, { useState, Children, createContext, useContext } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import Router from "next/router";
-// import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-// import { Height } from "@material-ui/icons";
+import React, { useEffect, useState, useContext, createContext } from "react";
+import { AuthContext } from "../../appState/AuthProvider";
+import { useQuery } from "@apollo/react-hooks";
+import { useRouter } from "next/router";
 import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
+import Link from "next/link";
 
 import CreateAct from "../../Image/create.png"
 import ImageLogo from "../../Image/img.png"
+import TextField from '@material-ui/core/TextField';
+import Card from "@material-ui/core/Card";
 
-
-const CREATEPOST = gql`
-mutation CREATEPOST(
+const EDITPOST = gql`
+mutation EDITPOST(
+    $postId: String!,
     $photo: String, 
     $name: String!, 
     $dateStart: Date!, 
@@ -25,7 +27,8 @@ mutation CREATEPOST(
     $description: String
     )
 {
-    createPost(input:{
+    editPost(input:{
+        postId: $postId,
         photo: $photo, 
         name: $name, 
         dateStart: $dateStart, 
@@ -42,7 +45,27 @@ mutation CREATEPOST(
     }
 }
 `;
-// Set Radio
+
+// const QUERY_ACTIVITY = gql`
+//   query QUERY_ACTIVITY($postId: String!) {
+//     getOnePost(input: { postId: $postId }) {
+//       name
+//       _id
+//       status
+//       dateStart
+//       dateEnd
+//       timeStart
+//       timeEnd
+//       place
+//       participantsNumber
+//       dateCloseApply
+//       description
+//       canJoin
+//       canFav
+//     }
+//   }
+// `;
+
 function useRadioButtons(name) {
     const [value, setState] = useState(null);
 
@@ -81,7 +104,34 @@ function RadioButton(props) {
     );
 }
 
-const post = () => {
+const EditPost = () => {
+    const [major, setMajor] = useState(null);
+    const [status, setStatus] = useState(null)
+    const [radio, setRadio] = useState(null);
+    const [NumofPerson, setNumofPerson] = useState(null);
+
+    const route = useRouter();
+    console.log(route);
+    const postId = route.query.activityId;
+    // const { user, signout } = useContext(AuthContext);
+    // const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
+    //     variables: { postId },
+    //     onCompleted: (data) => {
+    //         if (data) {
+    //             console.log("JOIN", data.getOnePost.canJoin);
+    //             console.log(data.getOnePost);
+    //             //Router.push("/activity");
+    //         }
+    //     },
+    // });
+
+    // console.log("postId", postId);
+
+    // if (error) return <p>Something went wrong, please try again.</p>;
+
+    // if (loading) return <p>Loading ...</p>;
+
+
     const [userInfo, setUserInfo] = useState({
         photo: "",
         name: "",
@@ -96,12 +146,12 @@ const post = () => {
         description: "",
     });
 
-    const [post, { loading, error }] = useMutation(CREATEPOST, {
-        variables: { ...userInfo },
+    const [editpost] = useMutation(EDITPOST, {
+        variables: { postId },
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
-        onCompleted: (data) => {
-            if (data) {
-                console.log('dataaaaaaaaaaa');
+        onCompleted: (data2) => {
+            if (data2) {
+                console.log(data2);
                 setUserInfo({
                     photo: "",
                     name: "",
@@ -118,7 +168,12 @@ const post = () => {
                 Router.push("/activity")
             }
         },
-    });
+    })
+
+    const handleSubmit = async () => {
+        console.log("handle submit")
+        await editpost()
+    };
 
     const handleChange = e => {
         console.log("Value", e.target.value)
@@ -130,22 +185,9 @@ const post = () => {
             [e.target.name]: e.target.value
         })
     }
-    console.log("value2", userInfo)
 
-    const handleSubmit = async e => {
-        console.log("handle submit")
-        try {
-            console.log("Doneeeeeeeeeee1")
-            e.preventDefault();
-            console.log("Doneeeeeeeeeee2")
-            await post();
-            console.log("Doneeeeeeeeeee3")
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
-    //image
+
     const [picture, setPicture] = useState(null);
     const [imgData, setImgData] = useState(null);
     const onChangePicture = e => {
@@ -162,11 +204,7 @@ const post = () => {
 
     };
 
-    // Set Drop down and radio
-    const [major, setMajor] = useState(null);
-    const [status, setStatus] = useState(null)
-    const [radio, setRadio] = useState(null);
-    const [NumofPerson, setNumofPerson] = useState(null);
+
 
     return (
         <div className="Post-Page" >
@@ -399,4 +437,4 @@ const post = () => {
     );
 };
 
-export default post;
+export default EditPost;

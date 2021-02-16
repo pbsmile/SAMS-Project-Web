@@ -1,15 +1,15 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
-import PostActivity from '../components/PostActivity/PostActivity'
+import EditActivity from '../components/PostActivity/EditPost'
 
-const postActivity = () => {
+const editActivity = () => {
     return (
         <div>
             <Navbar/>
             
-            <PostActivity/>
+            <EditActivity/>
         </div>
     )
 }
 
-export default postActivity;
+export default editActivity;
