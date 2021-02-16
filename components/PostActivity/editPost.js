@@ -11,40 +11,40 @@ import ImageLogo from "../../Image/img.png"
 import TextField from '@material-ui/core/TextField';
 import Card from "@material-ui/core/Card";
 
-// const EDITPOST = gql`
-// mutation EDITPOST(
-//     $postId: String!,
-//     $photo: String, 
-//     $name: String!, 
-//     $dateStart: Date!, 
-//     $dateEnd: Date!, 
-//     $timeStart: String!, 
-//     $timeEnd: String!, 
-//     $place: String!, 
-//     $participantsNumber: Number!, 
-//     $dateCloseApply: Date!, 
-//     $major: String!, 
-//     $description: String
-//     )
-// {
-//     editPost(input:{
-//         postId: $postId,
-//         photo: $photo, 
-//         name: $name, 
-//         dateStart: $dateStart, 
-//         dateEnd: $dateEnd , 
-//         timeStart: $timeStart ,
-//         timeEnd: $timeEnd, 
-//         place: $place, 
-//         participantsNumber: $participantsNumber, 
-//         dateCloseApply: $dateCloseApply, 
-//         major: $major, 
-//         description: $description })
-//     {
-//         name
-//     }
-// }
-// `;
+const EDITPOST = gql`
+mutation EDITPOST(
+    $postId: String!,
+    $photo: String, 
+    $name: String!, 
+    $dateStart: Date!, 
+    $dateEnd: Date!, 
+    $timeStart: String!, 
+    $timeEnd: String!, 
+    $place: String!, 
+    $participantsNumber: Number!, 
+    $dateCloseApply: Date!, 
+    $major: String!, 
+    $description: String
+    )
+{
+    editPost(input:{
+        postId: $postId,
+        photo: $photo, 
+        name: $name, 
+        dateStart: $dateStart, 
+        dateEnd: $dateEnd , 
+        timeStart: $timeStart ,
+        timeEnd: $timeEnd, 
+        place: $place, 
+        participantsNumber: $participantsNumber, 
+        dateCloseApply: $dateCloseApply, 
+        major: $major, 
+        description: $description })
+    {
+        name
+    }
+}
+`;
 
 const QUERY_ACTIVITY = gql`
     query QUERY_ACTIVITY($postId: String!) {
@@ -60,7 +60,6 @@ const QUERY_ACTIVITY = gql`
             participantsNumber
             dateCloseApply
             description
-            major
     }
   }
 `;
@@ -76,12 +75,13 @@ const EditPost = () => {
     console.log(route);
     const postId = route.query.activityId;
     const { user, signout } = useContext(AuthContext);
-    const { data,loading,error } = useQuery(QUERY_ACTIVITY, {
+    const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
         variables: { postId },
         onCompleted: (data) => {
             if (data) {
-                console.log("JOIN", data.getOnePost.canJoin);
-                console.log(data.getOnePost);
+                // console.log("JOIN", data.getOnePost.canJoin);
+                console.log(data.getOnePost.name);
+                // userInfo()
                 //Router.push("/activity");
             }
         },
@@ -94,64 +94,98 @@ const EditPost = () => {
     if (loading) return <p>Loading ...</p>;
 
 
-    // const [userInfo, setUserInfo] = useState({
-    //     photo: "",
-    //     name: data.getOnePost.name,
-    //     dateStart: "2020-12-10",
-    //     dateEnd: "2020-12-11",
-    //     timeStart: "12:00",
-    //     timeEnd: "18:00",
-    //     place: data.getOnePost.place,
-    //     participantsNumber: data.getOnePost.participantsNumber,
-    //     dateCloseApply: "2020-12-01T23:59",
-    //     major: "",
-    //     description: data.getOnePost.description,
-    // });
+    const [userInfo, setUserInfo] = useState({
+        photo: "",
+        name: data.getOnePost.name,
+        dateStart: "2020-12-10",
+        dateEnd: "2020-12-11",
+        timeStart: "12:00",
+        timeEnd: "18:00",
+        place: data.getOnePost.place,
+        participantsNumber: data.getOnePost.participantsNumber,
+        dateCloseApply: "2020-12-01T23:59",
+        major: "",
+        description: data.getOnePost.description,
+    });
 
-    // const [editpost] = useMutation(EDITPOST, {
-    //     variables: { postId },
-    //     //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
-    //     onCompleted: (data2) => {
-    //         if (data2) {
-    //             console.log(data2);
-    //             setUserInfo({
-    //                 photo: "",
-    //                 name: "",
-    //                 dateStart: "",
-    //                 dateEnd: "",
-    //                 timeStart: "",
-    //                 timeEnd: "",
-    //                 place: "",
-    //                 participantsNumber: "",
-    //                 dateCloseApply: "",
-    //                 major: "",
-    //                 description: "",
-    //             });
-    //             Router.push("/activity")
-    //         }
-    //     },
-    // })
+    const handleChange = e => {
+        console.log("Value", e.target.value)
 
+
+        setUserInfo({
+            ...userInfo,
+
+            [e.target.name]: e.target.value
+        })
+    }
+
+
+
+    const [EditPost] = useMutation(EDITPOST, {
+        variables: { postId },
+        //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+        onCompleted: (data2) => {
+            if (data2) {
+                console.log(data2);
+                setUserInfo({
+                    photo: "",
+                    name: "",
+                    dateStart: "",
+                    dateEnd: "",
+                    timeStart: "",
+                    timeEnd: "",
+                    place: "",
+                    participantsNumber: "",
+                    dateCloseApply: "",
+                    major: "",
+                    description: "",
+                });
+                Router.push("/activity")
+            }
+        },
+    })
+
+
+    const handleSubmit = async e => {
+        console.log("handle submit")
+        try {
+            console.log("Doneeeeeeeeeee1")
+            e.preventDefault();
+            console.log("Doneeeeeeeeeee2")
+            await EditPost();
+            console.log("Doneeeeeeeeeee3")
+        } catch (error) {
+            console.log(error);
+        }
+    };
     // const handleSubmit = async () => {
     //     console.log("handle submit")
     //     await editpost()
     // };
 
-   
+
     return (
         <div className="Post-Page" >
-            {/* <form className="Post-Page" onSubmit={handleSubmit}> */}
+            <form className="Post-Page" onSubmit={handleSubmit}>
 
-                <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" />
-                <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" />
-                <input type="text" name="dateStart" className="Post-Input-Fill-Data" placeholder="" />
-                <input type="text" name="dateEnd" className="Post-Input-Fill-Data" placeholder="" />
-                <input type="text" name="place" className="Post-Input-Fill-Data" placeholder="" />
-                <input type="text" name="participantsNumber" className="Post-Input-Fill-Data" placeholder="" />
-                <input type="text" name="description:" className="Post-Input-Fill-Data" placeholder="" />
+                {/* <h3>{data.getOnePost.name}</h3>
+                <h3>{data.getOnePost.name}</h3>
+                <h3>{data.getOnePost.name}</h3>
+                <h3>{data.getOnePost.name}</h3>
+                <h3>{data.getOnePost.name}</h3> */}
+                <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={userInfo.name} />
+                <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={userInfo.name} onChange={handleChange} />
+                <input type="text" name="dateStart" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateStart} />
+                <input type="text" name="dateEnd" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateEnd} />
+                <input type="text" name="place" className="Post-Input-Fill-Data" placeholder="" value={userInfo.place} onChange={handleChange} />
+                <input type="text" name="participantsNumber" className="Post-Input-Fill-Data" placeholder="" value={userInfo.participantsNumber} onChange={handleChange} />
+                <input type="text" name="description" className="Post-Input-Fill-Data" placeholder="" value={userInfo.description} onChange={handleChange} />
 
-            {/* </form> */}
-            
+                <div className="Post-Left-Button">
+                    <button type="submit" name="button" className="Post-Submit-Button">บันทึก</button>
+                </div>
+            </form>
+
         </div>
     );
 };
