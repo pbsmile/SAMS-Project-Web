@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, createContext } from "react";
 import { AuthContext } from "../../appState/AuthProvider";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
+import { Router, Route, Switch } from "react-router";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import Link from "next/link";
@@ -74,7 +75,6 @@ const EditPost = () => {
     const route = useRouter();
     console.log(route);
     const postId = route.query.activityId;
-    const { user, signout } = useContext(AuthContext);
     const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
         variables: { postId },
         onCompleted: (data) => {
@@ -120,7 +120,7 @@ const EditPost = () => {
 
 
     const [EditPost] = useMutation(EDITPOST, {
-        variables: { postId },
+        variables: { postId, ...userInfo},
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
         onCompleted: (data2) => {
             if (data2) {
@@ -138,9 +138,12 @@ const EditPost = () => {
                     major: "",
                     description: "",
                 });
-                Router.push("/activity")
+                // Router.push("/main")
             }
+            console.log("on complete")
+            console.log(userInfo)
         },
+        
     })
 
 
@@ -153,6 +156,7 @@ const EditPost = () => {
             console.log("Doneeeeeeeeeee2")
             await EditPost();
             console.log("Doneeeeeeeeeee3")
+            console.log(userInfo)
         } catch (error) {
             console.log(error);
         }
