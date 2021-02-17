@@ -17,6 +17,7 @@ import NearingPNG from "../../Image/main_nearing.png";
 const MainToggle = () => {
   const [toggle, setToggle] = useState("popularpost");
   const [refresh, setRefresh] = useState(false);
+  console.log("maintoggle",toggle)
 
   // useEffect(() => {
   //   if (toggle == "mypost") {
@@ -55,7 +56,7 @@ const MainToggle = () => {
           <label
             className={
               toggle == "popularpost"
-                ? "Main-Toggle-Button-MyPost"
+                ? "Main-Toggle-Button-Popular"
                 : "Main-Toggle-Button-Trans"
             }
             onClick={() => handleClick("popularpost")}
@@ -73,7 +74,7 @@ const MainToggle = () => {
           <label
             className={
               toggle == "closingpost"
-                ? "Main-Toggle-Button-MyPost"
+                ? "Main-Toggle-Button-Closing"
                 : "Main-Toggle-Button-Trans"
             }
             onClick={() => handleClick("closingpost")}
@@ -91,7 +92,7 @@ const MainToggle = () => {
           <label
             className={
               toggle == "nearingpost"
-                ? "Main-Toggle-Button-Favorite"
+                ? "Main-Toggle-Button-Nearing"
                 : "Main-Toggle-Button-Trans"
             }
             onClick={() => handleClick("nearingpost")}
