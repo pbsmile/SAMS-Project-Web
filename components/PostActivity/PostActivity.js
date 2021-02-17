@@ -207,7 +207,9 @@ const post = () => {
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
                                 <form noValidate className="Post-Calendar-Time">
-                                    <TextField
+                                    <input type="date" name="dateStart" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateStart} />
+
+                                    {/* <TextField
                                         id="date"
                                         label="จาก"
                                         type="date"
@@ -218,11 +220,12 @@ const post = () => {
                                         }}
                                         onChange={handleChange}
                                         value={userInfo.dateStart}
-                                    />
+                                    /> */}
                                 </form>
                                 <h3 className="Post-Calendar-Time">ถึง</h3>
                                 <form noValidate className="Post-Calendar">
-                                    <TextField
+                                    <input type="date" name="dateEnd" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateEnd} />
+                                    {/* <TextField
                                         id="date"
                                         name="dateEnd"
                                         label="ถึง"
@@ -233,7 +236,7 @@ const post = () => {
                                         }}
                                         onChange={handleChange}
                                         value={userInfo.dateEnd}
-                                    />
+                                    /> */}
                                 </form>
                             </div>
                         </div>
@@ -245,7 +248,8 @@ const post = () => {
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
                                 <form className="Post-Calendar-Time Post-Time">
-                                    <TextField
+                                    <input type="time" name="timeStart" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.timeStart} />
+                                    {/* <TextField
                                         id="time"
                                         name="timeStart"
                                         label="Alarm clock"
@@ -259,12 +263,13 @@ const post = () => {
                                         }}
                                         onChange={handleChange}
                                         value={userInfo.timeStart}
-                                    />
+                                    /> */}
                                 </form>
 
                                 <h3 className="Post-Calendar-Time">ถึง</h3>
                                 <form className="Post-Calendar-Time">
-                                    <TextField
+                                    <input type="time" name="timeEnd" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.timeEnd} />
+                                    {/* <TextField
                                         id="time"
                                         name="timeEnd"
                                         label="Alarm clock"
@@ -278,7 +283,7 @@ const post = () => {
                                         }}
                                         onChange={handleChange}
                                         value={userInfo.timeEnd}
-                                    />
+                                    /> */}
                                 </form>
 
                             </div>
@@ -302,11 +307,12 @@ const post = () => {
                         </div>
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row Post-margin-top" onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
-                                <RadioGroup name="participantsNumber" >
+                                {/* <RadioGroup name="participantsNumber" >
                                     <RadioButton label="ไม่จำกัดจำนวน" value="10000000000" />
-                                    <RadioButton value={NumofPerson} />
-                                    <input type="text" className="Post-Input-Small-Fill-Data Post-Input-Fill-Data" onChange={(e) => { setNumofPerson(e.target.value) }} />
-                                </RadioGroup>
+                                    <RadioButton value={NumofPerson} /> */}
+                                <input type="number" name="participantsNumber" className="Post-Input-Small-Fill-Data Post-Input-Fill-Data" onChange={handleChange} value={userInfo.participantsNumber} />
+                                {/* onChange={(e) => { setNumofPerson(e.target.value) } */}
+                                {/* </RadioGroup> */}
                                 <h4>คน</h4>
                             </div>
                         </div>
@@ -318,7 +324,9 @@ const post = () => {
                         </div>
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
-                                <TextField
+                                <input type="datetime-local" name="dateCloseApply" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateCloseApply} />
+
+                                {/* <TextField
                                     id="datetime-local"
                                     label="close"
                                     name='dateCloseApply'
@@ -329,7 +337,7 @@ const post = () => {
                                     }}
                                     onChange={handleChange}
                                     value={userInfo.dateCloseApply}
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>
@@ -355,7 +363,7 @@ const post = () => {
                                 <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
                                 <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
                                 <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
-                                <option value="15">ไม่ระบุ</option>
+                                <option value="15">ทั้งหมด</option>
                             </select>
                         </div>
                     </div>
