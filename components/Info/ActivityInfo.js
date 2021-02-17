@@ -30,9 +30,18 @@ import Link from "next/link";
 import Moment from "react-moment";
 import "moment-timezone";
 
+const REVIEW = gql`
+  mutation REVIEW($reviewPostId: String!, $reviewComment: String ,$reviewRate: Number!) {
+    createReview(input: { reviewPostId: $reviewPostId, comment: $reviewComment , rate: $reviewRate })
+    {
+      _id
+    }
+  }
+`;
+
 const REPORT = gql`
-  mutation REPORT($reportPostId: String!, $comment: String!) {
-    createReport(input: { reportPostId: $reportPostId, comment: $comment })
+  mutation REPORT($reportPostId: String!, $reportComment: String!) {
+    createReport(input: { reportPostId: $reportPostId, comment: $reportComment })
     {
       _id
     }
@@ -98,10 +107,16 @@ const ActivityInfo = () => {
   console.log(route);
   const postId = route.query.activityId;
   const reportPostId = route.query.activityId;
+  const reviewPostId = route.query.activityId;
   const comment = "ทดสอบ";
+  const reportComment = "ทดสอบReport";
+  const reviewComment = "ทดสอบReview";
+  const reviewRate = 5;
 
   console.log("reportPostId", reportPostId);
-  console.log("comment", comment);
+  console.log("reportComment", reportComment);
+  console.log("reviewComment", reviewComment);
+  console.log("reviewRate", reviewRate);
 
   const [toggleJoin, setToggleJoin] = useState("");
   console.log("Join State>>", toggleJoin);
@@ -109,8 +124,8 @@ const ActivityInfo = () => {
   console.log("Fav State>>", toggleFav);
   const [createUser, setCreateUser] = useState(false);
   console.log("create User >>", createUser);
-  const [review, setReview] = useState(false);
-  console.log("can review >>", review);
+  const [canReview, setCanReview] = useState(false);
+  console.log("can review >>", canReview);
 
   const { user, signout } = useContext(AuthContext);
 
@@ -145,10 +160,10 @@ const ActivityInfo = () => {
         }
 
         if (data.getOnePost.canReview == false) {
-          setReview(false);
+          setCanReview(false);
         }
         if (data.getOnePost.canReview == true) {
-          setReview(true);
+          setCanReview(true);
         }
         //Router.push("/activity");
       }
@@ -215,7 +230,18 @@ const ActivityInfo = () => {
   });
 
   const [report] = useMutation(REPORT, {
-    variables: { reportPostId, comment },
+    variables: { reportPostId, reportComment },
+    //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        //Router.push("/activity");
+      }
+    },
+  });
+
+  const [review] = useMutation(REVIEW, {
+    variables: { reviewPostId, reviewComment , reviewRate },
     //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
     onCompleted: (data) => {
       if (data) {
@@ -251,6 +277,10 @@ const ActivityInfo = () => {
 
   const handleClickReport = async () => {
     await report();
+  };
+
+  const handleClickReview = async () => {
+    await review();
   };
 
   if (error) return <p>Something went wrong, please try again.</p>;
@@ -388,10 +418,10 @@ const ActivityInfo = () => {
                   </div>
                 </>
               )}
-              {user && !createUser && review && (
+              {user && !createUser && canReview && (
                 <>
                   <div>
-                    <button>รีวิว</button>
+                    <button onClick={() => handleClickReview()}>รีวิว</button>
                   </div>
                 </>
               )}
