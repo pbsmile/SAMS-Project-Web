@@ -80,12 +80,12 @@ const MainPageCard = () => {
 
   return (
     <div className="Main-Page-Card-Div">
-      <div className="Main-Page-Fixed-Bg">
-        {/* <nav className="Main-Page-Card-Nav">
+      {/* <div className="Main-Page-Fixed-Bg">
+        <nav className="Main-Page-Card-Nav">
           <p className="Main-Page-Card-Nav-Popular">กิจกรรมยอดนิยม</p>
-        </nav> */}
-        {/* <MainPageSlidebar/> */}
-      </div>
+        </nav>
+        <MainPageSlidebar/>
+      </div> */}
 
       <div className="Main-Page-Card-List">
         {data && (
