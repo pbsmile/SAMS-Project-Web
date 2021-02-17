@@ -85,13 +85,13 @@ const post = () => {
     const [userInfo, setUserInfo] = useState({
         photo: "",
         name: "",
-        dateStart: "2020-12-10",
-        dateEnd: "2020-12-11",
-        timeStart: "12:00",
-        timeEnd: "18:00",
+        dateStart: "",
+        dateEnd: "",
+        timeStart: "00:00",
+        timeEnd: "00:00",
         place: "",
         participantsNumber: "",
-        dateCloseApply: "2020-12-01T23:59",
+        dateCloseApply: "",
         major: "",
         description: "",
     });
@@ -207,7 +207,7 @@ const post = () => {
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
                                 <form noValidate className="Post-Calendar-Time">
-                                    <input type="date" name="dateStart" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateStart} />
+                                    <input type="date" name="dateStart" className="Post-Input-Fill-Data"  InputLabelProps={{shrink: true,}} data-date-format="MM-DD-YYY"onChange={handleChange} value={userInfo.dateStart} />
 
                                     {/* <TextField
                                         id="date"
@@ -224,7 +224,7 @@ const post = () => {
                                 </form>
                                 <h3 className="Post-Calendar-Time">ถึง</h3>
                                 <form noValidate className="Post-Calendar">
-                                    <input type="date" name="dateEnd" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateEnd} />
+                                    <input type="date" name="dateEnd" className="Post-Input-Fill-Data" InputLabelProps={{shrink: true,}} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateEnd} />
                                     {/* <TextField
                                         id="date"
                                         name="dateEnd"
@@ -324,7 +324,7 @@ const post = () => {
                         </div>
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
-                                <input type="datetime-local" name="dateCloseApply" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateCloseApply} />
+                                <input type="datetime-local" name="dateCloseApply" className="Post-Input-Fill-Data" InputLabelProps={{shrink: true,}} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateCloseApply} />
 
                                 {/* <TextField
                                     id="datetime-local"
