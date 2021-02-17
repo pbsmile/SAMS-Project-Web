@@ -385,7 +385,7 @@ const EditPost = () => {
                         <div className="Post-Column Post-Input">
                             <h2>คณะ/วิทยาลัย</h2>
                         </div>
-                        <div className="Post-Column2 Post-Input" onChange={handleChange} value={major}>
+                        <div className="Post-Column2 Post-Input" onChange={handleChange} value={userInfo.major}>
                             <select className="Post-Input-Fill-Data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={major}>
                                 <option value="0">เลือกคณะ/วิทยาลัย</option>
                                 <option value="1">คณะวิศวกรรมศาสตร์</option>
