@@ -25,10 +25,8 @@ const QUERY_ALLREPORTS = gql`
   query {
     getAllReports{
         reports{
-          reportPostId{
-            _id
-            name
-          }
+          _id
+          comment
         }
       }
   }
@@ -83,10 +81,10 @@ const ReportViewCard = () => {
                 <h4>{prod.name}</h4>
               </div>
             ))} */}
-            {/* {data.getAllReports.reports.reportPostId.map((prod) => (
+             {data.getAllReports.reports.map((prod) => (
               <div key={prod._id}>
-                
-              </div> */}
+                <h4>{prod._id}</h4>
+              </div>
             ))}
           </>
         )}
