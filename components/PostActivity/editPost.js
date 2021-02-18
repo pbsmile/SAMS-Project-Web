@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext, createContext } from "react";
 import { AuthContext } from "../../appState/AuthProvider";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import { Router, Route, Switch } from "react-router";
+import { Route, Switch } from "react-router";
+import Router from "next/router";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import Link from "next/link";
@@ -11,6 +12,7 @@ import CreateAct from "../../Image/create.png"
 import ImageLogo from "../../Image/img.png"
 import TextField from '@material-ui/core/TextField';
 import Card from "@material-ui/core/Card";
+
 
 import Datetime from 'react-datetime';
 
@@ -156,11 +158,13 @@ const EditPost = () => {
                     major: "",
                     description: "",
                 });
-                // Router.push("/main")
+                
             }
+            Router.push('/main');
             console.log("on complete")
             console.log(userInfo)
         },
+        
 
     })
 
