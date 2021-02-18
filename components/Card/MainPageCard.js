@@ -49,8 +49,13 @@ const QUERY_POSTAUTH = gql`
 `;
 
 const MainPageCard = () => {
-  const { data } = useQuery(QUERY_POSTAUTH, {
+  const {data} = useQuery(QUERY_POSTAUTH, {
     pollInterval: 3000,
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+      }
+    },
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
