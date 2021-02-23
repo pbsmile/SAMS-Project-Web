@@ -20,6 +20,10 @@ import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
+import Chest from "../../Image/chest.jpg";
+import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const QUERY_MYPOST = gql`
   query {
