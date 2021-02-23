@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { AuthContext } from "../../appState/AuthProvider";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
@@ -74,6 +74,20 @@ const EditPost = () => {
     // const [NumofPerson, setNumofPerson] = useState(null);
 
 
+    const [userInfo, setUserInfo] = useState({
+        photo: "",
+        name: "",
+        dateStart: "",
+        dateEnd: "",
+        timeStart: "",
+        timeEnd: "",
+        place: "",
+        participantsNumber: "",
+        dateCloseApply: "",
+        major: "",
+        description: "",
+    });
+
     const route = useRouter();
     console.log(route);
     const postId = route.query.activityId;
@@ -81,6 +95,19 @@ const EditPost = () => {
         variables: { postId },
         onCompleted: (data) => {
             if (data) {
+                setUserInfo({
+                    photo: "",
+                    name: data.getOnePost.name,
+                    dateStart: dateFormat(data.getOnePost.dateStart, "isoDate"),
+                    dateEnd: dateFormat(data.getOnePost.dateEnd, "isoDate"),
+                    timeStart: data.getOnePost.timeStart,
+                    timeEnd: data.getOnePost.timeEnd,
+                    place: data.getOnePost.place,
+                    participantsNumber: data.getOnePost.participantsNumber,
+                    dateCloseApply: dateFormat(data.getOnePost.dateCloseApply, "yyyy-mm-dd'T'HH:MM"),
+                    major: data.getOnePost.major,
+                    description: data.getOnePost.description,
+                });
                 // console.log("JOIN", data.getOnePost.canJoin);
                 console.log(data.getOnePost.name);
                 // userInfo()
@@ -110,21 +137,21 @@ const EditPost = () => {
 
     if (loading) return <p>Loading ...</p>;
 
-    const [userInfo, setUserInfo] = useState({
-        photo: "",
-        name: data.getOnePost.name,
-        dateStart: dateFormat(data.getOnePost.dateStart, "isoDate"),
-        dateEnd: dateFormat(data.getOnePost.dateEnd, "isoDate"),
-        timeStart: data.getOnePost.timeStart,
-        timeEnd: data.getOnePost.timeEnd,
-        place: data.getOnePost.place,
-        participantsNumber: data.getOnePost.participantsNumber,
-        dateCloseApply: dateFormat(data.getOnePost.dateCloseApply, "yyyy-mm-dd'T'HH:MM"),
-        major: data.getOnePost.major,
-        description: data.getOnePost.description,
-    });
+    // const [userInfo, setUserInfo] = useState({
+    //     photo: "",
+    //     name: data.getOnePost.name,
+    //     dateStart: dateFormat(data.getOnePost.dateStart, "isoDate"),
+    //     dateEnd: dateFormat(data.getOnePost.dateEnd, "isoDate"),
+    //     timeStart: data.getOnePost.timeStart,
+    //     timeEnd: data.getOnePost.timeEnd,
+    //     place: data.getOnePost.place,
+    //     participantsNumber: data.getOnePost.participantsNumber,
+    //     dateCloseApply: dateFormat(data.getOnePost.dateCloseApply, "yyyy-mm-dd'T'HH:MM"),
+    //     major: data.getOnePost.major,
+    //     description: data.getOnePost.description,
+    // });
 
-    console.log(userInfo)
+    // console.log(userInfo)
     const handleChange = e => {
         console.log("Value", e.target.value)
         setUserInfo({
@@ -136,34 +163,34 @@ const EditPost = () => {
 
 
 
-    const [EditPost] = useMutation(EDITPOST, {
-        variables: { postId, ...userInfo },
-        //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
-        onCompleted: (data2) => {
-            if (data2) {
-                console.log(data2);
-                setUserInfo({
-                    photo: "",
-                    name: "",
-                    dateStart: "",
-                    dateEnd: "",
-                    timeStart: "",
-                    timeEnd: "",
-                    place: "",
-                    participantsNumber: "",
-                    dateCloseApply: "",
-                    major: "",
-                    description: "",
-                });
-                
-            }
-            Router.push('/activity/'+ postId);
-            console.log("on complete")
-            console.log(userInfo)
-        },
-        
+    // const [EditPost] = useMutation(EDITPOST, {
+    //     variables: { postId, ...userInfo },
+    //     //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
+    //     onCompleted: (data2) => {
+    //         if (data2) {
+    //             console.log(data2);
+    //             setUserInfo({
+    //                 photo: "",
+    //                 name: "",
+    //                 dateStart: "",
+    //                 dateEnd: "",
+    //                 timeStart: "",
+    //                 timeEnd: "",
+    //                 place: "",
+    //                 participantsNumber: "",
+    //                 dateCloseApply: "",
+    //                 major: "",
+    //                 description: "",
+    //             });
 
-    })
+    //         }
+    //         Router.push('/activity/'+ postId);
+    //         console.log("on complete")
+    //         console.log(userInfo)
+    //     },
+
+
+    // })
 
 
     const handleSubmit = async e => {
@@ -180,37 +207,40 @@ const EditPost = () => {
             console.log(error);
         }
     };
+
+
+
     // const handleSubmit = async () => {
     //     console.log("handle submit")
     //     await editpost()
     // };
 
     //image
-    const [picture, setPicture] = useState(null);
-    const [imgData, setImgData] = useState(null);
-    const onChangePicture = e => {
-        if (e.target.files[0]) {
-            console.log("picture: ", e.target.files);
-            setPicture(e.target.files[0]);
-            const reader = new FileReader();
-            reader.addEventListener("load", () => {
-                setImgData(reader.result);
-            });
-            userInfo.photo = e.target.files[0].name
-            reader.readAsDataURL(e.target.files[0]);
-        }
+    // const [picture, setPicture] = useState(null);
+    // const [imgData, setImgData] = useState(null);
+    // const onChangePicture = e => {
+    //     if (e.target.files[0]) {
+    //         console.log("picture: ", e.target.files);
+    //         setPicture(e.target.files[0]);
+    //         const reader = new FileReader();
+    //         reader.addEventListener("load", () => {
+    //             setImgData(reader.result);
+    //         });
+    //         userInfo.photo = e.target.files[0].name
+    //         reader.readAsDataURL(e.target.files[0]);
+    //     }
 
-    };
+    // };
 
-    // Set Drop down and radio
-    const [major, setMajor] = useState(null);
-    const [status, setStatus] = useState(null)
-    const [radio, setRadio] = useState(null);
-    const [NumofPerson, setNumofPerson] = useState(null);
+    // // Set Drop down and radio
+    // const [major, setMajor] = useState(null);
+    // const [status, setStatus] = useState(null)
+    // const [radio, setRadio] = useState(null);
+    // const [NumofPerson, setNumofPerson] = useState(null);
 
     return (
-        <div className="Post-Page" >
-            <form className="Post-Page" onSubmit={handleSubmit}>
+        <div className="Post-Page" onClick={handleSubmit}>
+            <form className="Post-Page">
                 <nav className="Post-Toggle-Button-Menu active">
                     <ul className="Post-Toggle-Button-Items">
                         <label>
@@ -224,9 +254,9 @@ const EditPost = () => {
                 <hr></hr>
                 <div className="Post-poster-container" >
                     <div className="previewProfilePic center">
-                        <img className="post_image" src={imgData} />
+                        <img className="post_image"/>
                         <div className="post_choseimage">
-                            <input id="profilePic" type="file" onChange={onChangePicture} />
+                            <input id="profilePic" type="file" />
                         </div>
                     </div>
                 </div>
@@ -346,7 +376,7 @@ const EditPost = () => {
                             <h2>จำนวนที่เปิดรับ</h2>
                         </div>
                         <div className="Post-Column2 Post-Input">
-                            <div className="Post-Flex-Row Post-margin-top" onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
+                            <div className="Post-Flex-Row Post-margin-top">
                                 {/* <RadioGroup name="participantsNumber" >
                                     <RadioButton label="ไม่จำกัดจำนวน" value="10000000000" />
                                     <RadioButton value={NumofPerson} /> */}
@@ -451,20 +481,20 @@ const EditPost = () => {
             </form>
         </div>
         // <div className="Post-Page" >
-        //     <form className="Post-Page" onSubmit={handleSubmit}>
+        //     <form className="Post-Page" onClick={handleSubmit}>
 
         //         {/* <h3>{data.getOnePost.name}</h3>
         //         <h3>{data.getOnePost.name}</h3>
         //         <h3>{data.getOnePost.name}</h3>
         //         <h3>{data.getOnePost.name}</h3>
         //         <h3>{data.getOnePost.name}</h3> */}
-        //         <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={userInfo.name} />
-        //         <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={userInfo.name} onChange={handleChange} />
-        //         <input type="date" name="dateStart" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateStart} />
-        //         <input type="date" name="dateEnd" className="Post-Input-Fill-Data" placeholder="" value={userInfo.dateEnd} />
-        //         <input type="text" name="place" className="Post-Input-Fill-Data" placeholder="" value={userInfo.place} onChange={handleChange} />
+        //         <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={data.getOnePost.name} />
+        //         <input type="text" name="name" className="Post-Input-Fill-Data" placeholder="" value={data.getOnePost.name} onChange={handleChange} />
+        //         <input type="date" name="dateStart" className="Post-Input-Fill-Data" placeholder="" value={data.getOnePost.dateStart} />
+        //         <input type="date" name="dateEnd" className="Post-Input-Fill-Data" placeholder="" value={data.getOnePost.dateEnd} />
+        //         <input type="text" name="place" className="Post-Input-Fill-Data" placeholder="" value={data.getOnePost.place} onChange={handleChange} />
         //         <input type="text" name="participantsNumber" className="Post-Input-Fill-Data" placeholder="" value={userInfo.participantsNumber} onChange={handleChange} />
-        //         <input type="text" name="description" className="Post-Input-Fill-Data" placeholder="" value={userInfo.description} onChange={handleChange} />
+        //         <input type="text" name="description" className="Post-Input-Fill-Data" placeholder="" value={data.getOnePost.description} onChange={handleChange} />
         //         <h2>{data.getOnePost.timeStart}</h2>
         //         <h2>{data.getOnePost.timeEnd}</h2>
         //         <div className="Post-Left-Button">
