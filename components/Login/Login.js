@@ -35,6 +35,7 @@ const login = () => {
           password: "",
         })
         Router.push('/main')
+        window.location.reload();
       }
     },
   });

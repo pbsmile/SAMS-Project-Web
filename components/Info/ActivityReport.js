@@ -60,7 +60,7 @@ const ActivityReport = () => {
           <>
             {data.getAllReportsFromThisPost.reports.map((prod) => (
               <div key={prod._id}>
-                <h4>{prod._id}</h4>
+                {/* <h4>{prod._id}</h4> */}
                 <h4>{prod.comment}</h4>
               </div>
             ))}

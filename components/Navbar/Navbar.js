@@ -103,19 +103,23 @@ const navbar = () => {
                 กิจกรรมทั้งหมด
               </a>
             </li>
-            <li>
-              <a
-                className={
-                  toggle == "create"
-                    ? "Nav-Activities"
-                    : "Nav-Activities-Trans"
-                }
-                //onClick={() => handleClick("activity")}
-                onClick={() => Router.push("/post")}
-              >
-                สร้างกิจกรรม
-              </a>
-            </li>
+            {user && (
+              <>
+                <li>
+                  <a
+                    className={
+                      toggle == "create"
+                        ? "Nav-Activities"
+                        : "Nav-Activities-Trans"
+                    }
+                    //onClick={() => handleClick("activity")}
+                    onClick={() => Router.push("/post")}
+                  >
+                    สร้างกิจกรรม
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         {user && (
@@ -140,7 +144,12 @@ const navbar = () => {
           <>
             <div className="Nav-Profile-Flex">
               <div className="Nav-Profile-Flex-Text">
-                <label className="Nav-Profile-Logout" onClick={() => Router.push("/login")}>LOGIN</label>
+                <label
+                  className="Nav-Profile-Logout"
+                  onClick={() => Router.push("/login")}
+                >
+                  LOGIN
+                </label>
               </div>
             </div>
           </>
