@@ -98,6 +98,7 @@ const QUERY_ACTIVITY = gql`
       canFav
       canReview
       avgRate
+      major
     }
   }
 `;
@@ -133,6 +134,7 @@ const ActivityInfo = () => {
     variables: { postId },
     onCompleted: (data) => {
       if (data) {
+        console.log(data.getOnePost)
         console.log("JOIN", data.getOnePost.canJoin);
         console.log(data.getOnePost.canFav);
         if (data.getOnePost.canJoin == "joined") {

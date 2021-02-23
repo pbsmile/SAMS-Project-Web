@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext, createContext } from "react";
+import React, {useState} from "react";
 import { AuthContext } from "../../appState/AuthProvider";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import { Route, Switch } from "react-router";
+
 import Router from "next/router";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
@@ -10,11 +10,7 @@ import Link from "next/link";
 
 import CreateAct from "../../Image/create.png"
 import ImageLogo from "../../Image/img.png"
-import TextField from '@material-ui/core/TextField';
-import Card from "@material-ui/core/Card";
 
-
-import Datetime from 'react-datetime';
 
 const EDITPOST = gql`
 mutation EDITPOST(
@@ -65,6 +61,7 @@ const QUERY_ACTIVITY = gql`
             participantsNumber
             dateCloseApply
             description
+            major
     }
   }
 `;
@@ -160,7 +157,7 @@ const EditPost = () => {
                 });
                 
             }
-            Router.push('/main');
+            Router.push('/activity/'+ postId);
             console.log("on complete")
             console.log(userInfo)
         },
@@ -390,7 +387,7 @@ const EditPost = () => {
                             <h2>คณะ/วิทยาลัย</h2>
                         </div>
                         <div className="Post-Column2 Post-Input" onChange={handleChange} value={userInfo.major}>
-                            <select className="Post-Input-Fill-Data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={major}>
+                            <select className="Post-Input-Fill-Data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={userInfo.major}>
                                 <option value="0">เลือกคณะ/วิทยาลัย</option>
                                 <option value="1">คณะวิศวกรรมศาสตร์</option>
                                 <option value="2">คณะสถาปัตยกรรมศาสตร</option>
