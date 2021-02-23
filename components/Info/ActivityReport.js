@@ -23,21 +23,21 @@ import Link from "next/link";
 
 const QUERY_ALLREPORTS = gql`
   query {
-    getAllReports {
-      reports {
-        _id
-        comment
+    getAllReports{
+        reports{
+          _id
+          comment
+        }
       }
-    }
   }
 `;
 
-const ReportViewCard = () => {
+const ActivityReport = () => {
   const { data } = useQuery(QUERY_ALLREPORTS, {
     pollInterval: 3000,
     onCompleted: (data) => {
-      console.log(data.reports);
-    },
+        console.log(data.reports)
+        }
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
@@ -55,6 +55,7 @@ const ReportViewCard = () => {
       setToggleJoin("unjoin");
     }
   };
+
 
   const handleClickFav = () => {
     if (toggleFav == "unfav") {
@@ -80,15 +81,9 @@ const ReportViewCard = () => {
                 <h4>{prod.name}</h4>
               </div>
             ))} */}
-            {data.getAllReports.reports.map((prod) => (
+             {data.getAllReports.reports.map((prod) => (
               <div key={prod._id}>
-                <Link
-                  key={prod._id}
-                  href="/reportInfo/[activityId]"
-                  as={`/reportInfo/${prod._id}`}
-                >
-                  <h4>{prod._id}</h4>
-                </Link>
+                <h4>{prod._id}</h4>
               </div>
             ))}
           </>
@@ -98,4 +93,4 @@ const ReportViewCard = () => {
   );
 };
 
-export default ReportViewCard;
+export default ActivityReport;
