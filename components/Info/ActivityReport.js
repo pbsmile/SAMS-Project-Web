@@ -20,51 +20,33 @@ import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-const QUERY_ALLREPORTS = gql`
-  query {
-    getAllReports{
-        reports{
-          _id
-          comment
-        }
+const QUERY_REPORTINFO = gql`
+  query QUERY_REPORTINFO($postId: String!) {
+    getAllReportsFromThisPost(input: { postId: $postId }) {
+      reports {
+        _id
+        comment
       }
+    }
   }
 `;
 
 const ActivityReport = () => {
-  const { data } = useQuery(QUERY_ALLREPORTS, {
+  const route = useRouter();
+  console.log(route);
+  const postId = route.query.activityId;
+  const { data } = useQuery(QUERY_REPORTINFO, {
+    variables: { postId },
     pollInterval: 3000,
     onCompleted: (data) => {
-        console.log(data.reports)
-        }
+      console.log(data.getAllReportsFromThisPost);
+    },
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
 
-  const [toggleJoin, setToggleJoin] = useState("unjoin");
-  console.log("Join>>", toggleJoin);
-  const [toggleFav, setToggleFav] = useState("unfav");
-  console.log("Fav>>", toggleFav);
-
-  const handleClickJoin = () => {
-    if (toggleJoin == "unjoin") {
-      setToggleJoin("join");
-    }
-    if (toggleJoin == "join") {
-      setToggleJoin("unjoin");
-    }
-  };
-
-
-  const handleClickFav = () => {
-    if (toggleFav == "unfav") {
-      setToggleFav("fav");
-    }
-    if (toggleFav == "fav") {
-      setToggleFav("unfav");
-    }
-  };
   return (
     <div className="Activity-Page-Card-Div">
       <div className="Activity-Page-Fixed-Bg">
@@ -76,14 +58,10 @@ const ActivityReport = () => {
       <div className="Activity-Page-Card-List">
         {data && (
           <>
-            {/* {data.getAllPostsByAuthen.posts.map((prod) => (
-              <div key={prod._id}>
-                <h4>{prod.name}</h4>
-              </div>
-            ))} */}
-             {data.getAllReports.reports.map((prod) => (
+            {data.getAllReportsFromThisPost.reports.map((prod) => (
               <div key={prod._id}>
                 <h4>{prod._id}</h4>
+                <h4>{prod.comment}</h4>
               </div>
             ))}
           </>

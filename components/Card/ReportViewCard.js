@@ -23,12 +23,12 @@ import Link from "next/link";
 
 const QUERY_ALLREPORTS = gql`
   query {
-    getAllReports {
-      reports {
-        _id
-        comment
+      getAllPostsThatHaveReport{
+          postId
+          postName
+          numberOfReport
+          creatorName
       }
-    }
   }
 `;
 
@@ -80,14 +80,14 @@ const ReportViewCard = () => {
                 <h4>{prod.name}</h4>
               </div>
             ))} */}
-            {data.getAllReports.reports.map((prod) => (
-              <div key={prod._id}>
+            {data.getAllPostsThatHaveReport.map((prod) => (
+              <div key={prod.postId}>
                 <Link
-                  key={prod._id}
+                  key={prod.postId}
                   href="/reportInfo/[activityId]"
-                  as={`/reportInfo/${prod._id}`}
+                  as={`/reportInfo/${prod.postId}`}
                 >
-                  <h4>{prod._id}</h4>
+                  <h4>{prod.postId}</h4>
                 </Link>
               </div>
             ))}
