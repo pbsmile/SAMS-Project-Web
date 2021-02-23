@@ -65,6 +65,7 @@ const QUERY_ACTIVITY = gql`
             participantsNumber
             dateCloseApply
             description
+            major
     }
   }
 `;
@@ -76,21 +77,36 @@ const EditPost = () => {
     // const [radio, setRadio] = useState(null);
     // const [NumofPerson, setNumofPerson] = useState(null);
 
-
+    console.log("testrouter")
     const route = useRouter();
     console.log(route);
     const postId = route.query.activityId;
+    
+    // const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
+    //     variables: { postId },
+    //     onCompleted: (data) => {
+    //         if (data) {
+    //             // console.log("JOIN", data.getOnePost.canJoin);
+    //             console.log("data");
+    //             console.log(data.getOnePost.name);
+    //             // userInfo()
+    //             //Router.push("/activity");
+    //         }
+    //     },
+    // });
+
     const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
         variables: { postId },
-        onCompleted: (data) => {
-            if (data) {
-                // console.log("JOIN", data.getOnePost.canJoin);
-                console.log(data.getOnePost.name);
-                // userInfo()
-                //Router.push("/activity");
-            }
-        },
     });
+    if (data) {
+        console.log("have data")
+        console.log(data)
+    }
+
+    console.log("pass oncomplete");
+
+    
+    if (loading) return <p>Loading ...</p>;
 
     console.log("postId", postId);
 
@@ -111,10 +127,14 @@ const EditPost = () => {
     // console.log(dateFormat(data.getOnePost.dateCloseApply,"yyyy-mm-dd'T'HH:MM"))
     // if (error) return <p>Something went wrong, please try again.</p>;
 
-    if (loading) return <p>Loading ...</p>;
-
+    // else if (loading) return <p>Loading ...</p>;
+    console.log("before test" )
+    const [test, settest] = useState("null");
+    console.log("test" + test)
+    
     const [userInfo, setUserInfo] = useState({
-        photo: "",
+        // photo: "data.getOnePost.photo",
+        photo: data.getOnePost.photo,
         name: data.getOnePost.name,
         dateStart: dateFormat(data.getOnePost.dateStart, "isoDate"),
         dateEnd: dateFormat(data.getOnePost.dateEnd, "isoDate"),
@@ -127,24 +147,19 @@ const EditPost = () => {
         description: data.getOnePost.description,
     });
 
+    // const [userInfo, setUserInfo] = useState(data.getOnePost.major)
+
     console.log(userInfo)
-    const handleChange = e => {
-        console.log("Value", e.target.value)
-        setUserInfo({
-            ...userInfo,
 
-            [e.target.name]: e.target.value
-        })
-    }
-
+    
 
 
     const [EditPost] = useMutation(EDITPOST, {
         variables: { postId, ...userInfo },
         //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
-        onCompleted: (data2) => {
-            if (data2) {
-                console.log(data2);
+        onCompleted: (dataset) => {
+            if (dataset) {
+                console.log(dataset);
                 setUserInfo({
                     photo: "",
                     name: "",
@@ -158,20 +173,29 @@ const EditPost = () => {
                     major: "",
                     description: "",
                 });
-                
+
             }
             Router.push('/main');
             console.log("on complete")
             console.log(userInfo)
         },
-        
+
 
     })
 
+    
+    const handleChange = e => {
+        console.log("Value", e.target.value)
+        setUserInfo({
+            ...userInfo,
+            [e.target.name]: e.target.value
+        })
+    }
 
-    const handleSubmit = async e => {
+    const handleSubmit = async () => {
         console.log(userInfo)
         console.log("handle submit")
+        // await EditPost();
         try {
             console.log("Doneeeeeeeeeee1")
             e.preventDefault();
@@ -183,10 +207,9 @@ const EditPost = () => {
             console.log(error);
         }
     };
-    // const handleSubmit = async () => {
-    //     console.log("handle submit")
-    //     await editpost()
-    // };
+    const handleUnSubmit = async () => {
+        Router.push('/main');
+    };
 
     //image
     const [picture, setPicture] = useState(null);
@@ -207,10 +230,17 @@ const EditPost = () => {
 
     // Set Drop down and radio
     const [major, setMajor] = useState(null);
-    const [status, setStatus] = useState(null)
+    // const [status, setStatus] = useState(null)
     const [radio, setRadio] = useState(null);
-    const [NumofPerson, setNumofPerson] = useState(null);
+    // const [NumofPerson, setNumofPerson] = useState(null);
+    // const [shouldRender, setShouldRender] = useState(true);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setShouldRender(false);
+    //     }, 5000);
+    // }, []);
 
+    // if( !shouldRender ) return null;
     return (
         <div className="Post-Page" >
             <form className="Post-Page" onSubmit={handleSubmit}>
@@ -250,7 +280,7 @@ const EditPost = () => {
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
                                 <form noValidate className="Post-Calendar-Time">
-                                    <input type="date" name="dateStart" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateStart} />
+                                    <input type="date" name="dateStart" data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateStart} />
 
                                     {/* <TextField
                                         id="date"
@@ -267,7 +297,7 @@ const EditPost = () => {
                                 </form>
                                 <h3 className="Post-Calendar-Time">ถึง</h3>
                                 <form noValidate className="Post-Calendar">
-                                    <input type="date" name="dateEnd" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateEnd} />
+                                    <input type="date" name="dateEnd" data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateEnd} />
                                     {/* <TextField
                                         id="date"
                                         name="dateEnd"
@@ -390,7 +420,7 @@ const EditPost = () => {
                             <h2>คณะ/วิทยาลัย</h2>
                         </div>
                         <div className="Post-Column2 Post-Input" onChange={handleChange} value={userInfo.major}>
-                            <select className="Post-Input-Fill-Data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={major}>
+                            <select className="Post-Input-Fill-Data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={userInfo.major}>
                                 <option value="0">เลือกคณะ/วิทยาลัย</option>
                                 <option value="1">คณะวิศวกรรมศาสตร์</option>
                                 <option value="2">คณะสถาปัตยกรรมศาสตร</option>
