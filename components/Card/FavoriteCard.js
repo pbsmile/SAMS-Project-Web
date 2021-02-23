@@ -21,6 +21,11 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
 
+import Chest from "../../Image/chest.jpg";
+import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
+import Moment from "react-moment";
+import "moment-timezone";
+
 const QUERY_MYFAV = gql`
   query {
     getOneUser {
@@ -78,7 +83,7 @@ const FavoriteCard = () => {
         </nav>
       </div>
       <div className="My-Fav-Page-Card-List">
-        {data && (
+      {data && (
           <>
             {/* {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
@@ -88,47 +93,20 @@ const FavoriteCard = () => {
             {data.getOneUser.favs.map((prod) => (
               <div key={prod._id}>
                 <Card className="My-Fav-Page-Card">
-                  <CardActions>
-                    <div className="My-Fav-Page-Card-Top-Div">
-                      {/* <button className="My-Fav-Page-Card-Join"></button> */}
-                      <div className="My-Fav-Page-Card-Box">
-                        <img
-                          className="My-Fav-Page-Card-Join"
-                          src={toggleJoin == "unjoin" ? Unjoin : Join}
-                          onClick={() => handleClickJoin()}
-                        ></img>
-                        <label
-                          className="My-Fav-Page-Card-Join-Text"
-                          onClick={() => handleClickJoin()}
-                        >
-                          {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                        </label>
-                      </div>
-
-                      {/* <button className="My-Fav-Page-Card-Favorite"></button> */}
-                      <div className="My-Fav-Page-Card-Box">
-                        <img
-                          className="My-Fav-Page-Card-Join"
-                          src={toggleFav == "unfav" ? Unfav : Fav}
-                          onClick={() => handleClickFav()}
-                        ></img>
-                        <label
-                          className="My-Fav-Page-Card-Favorite-Text"
-                          onClick={() => handleClickFav()}
-                        >
-                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                        </label>
-                      </div>
-                    </div>
-                  </CardActions>
                   <div className="My-Fav-Page-Card-Area">
                     <div className="My-Fav-Page-Card-Flex">
                       <div className="My-Fav-Page-Card-Left">
-                        <img className="My-Fav-Page-Card-Img" src={Circle} />
-                        <label className="My-Fav-Page-Card-Status">
+                        <Link
+                          key={prod._id}
+                          href="/activity/[activityId]"
+                          as={`/activity/${prod._id}`}
+                        >
+                          <img className="My-Fav-Page-Card-Img" src={Chest} />
+                        </Link>
+                        {/* <label className="My-Fav-Page-Card-Status">
                           สถานะกิจกรรม :
                         </label>
-                        <label className="My-Fav-Page-Card-Status"> {prod.status} </label>
+                        <label className="My-Fav-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="My-Fav-Page-Card-Right">
                         <label className="My-Fav-Page-Card-Name">
@@ -140,14 +118,17 @@ const FavoriteCard = () => {
                               className="My-Fav-Page-Card-Icon-Size"
                               src={Day}
                             />
-                             {prod.dateStart}
+
+                            <Moment format="D MMM YYYY">
+                              {prod.dateStart}
+                            </Moment>
                           </label>
                           <label className="My-Fav-Page-Card-Time">
                             <img
                               className="My-Fav-Page-Card-Icon-Size"
                               src={Time}
                             />
-                            {prod.timeStart}
+                            {prod.timeStart} น.
                           </label>
                         </div>
 
@@ -156,9 +137,9 @@ const FavoriteCard = () => {
                             className="My-Fav-Page-Card-Icon-Size"
                             src={Location}
                           />
-                           {prod.place}
+                          {prod.place}
                         </label>
-                        <div className="My-Fav-Page-Card-Members-Close">
+                        {/* <div className="My-Fav-Page-Card-Members-Close">
                           <label className="My-Fav-Page-Card-Members">
                             <img
                               className="My-Fav-Page-Card-Icon-Size"
@@ -173,23 +154,23 @@ const FavoriteCard = () => {
                             />
                             {prod.dateCloseApply}
                           </label>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
-                  <CardActions>
+                  {/* <CardActions>
                     <div className="My-Fav-Page-Card-More-Div">
                       <Link
                         key={prod._id}
                         href="/activity/[activityId]"
                         as={`/activity/${prod._id}`}
                       >
-                        <button className="Main-Page-Card-More">
+                        <button className="My-Fav-Page-Card-More">
                           <a>รายละเอียดเพิ่มเติม >></a>
                         </button>
                       </Link>
                     </div>
-                  </CardActions>
+                  </CardActions> */}
                 </Card>
               </div>
             ))}

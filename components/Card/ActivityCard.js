@@ -20,6 +20,10 @@ import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
+import Chest from "../../Image/chest.jpg";
+import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const QUERY_POSTAUTH = gql`
   query {
@@ -82,7 +86,7 @@ const ActivityCard = () => {
       </div>
 
       <div className="Activity-Page-Card-List">
-        {data && (
+      {data && (
           <>
             {/* {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
@@ -92,47 +96,20 @@ const ActivityCard = () => {
             {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
                 <Card className="Activity-Page-Card">
-                  <CardActions>
-                    <div className="Activity-Page-Card-Top-Div">
-                      {/* <button className="Activity-Page-Card-Join"></button> */}
-                      <div className="Activity-Page-Card-Box">
-                        <img
-                          className="Activity-Page-Card-Join"
-                          src={toggleJoin == "unjoin" ? Unjoin : Join}
-                          onClick={() => handleClickJoin()}
-                        ></img>
-                        <label
-                          className="Activity-Page-Card-Join-Text"
-                          onClick={() => handleClickJoin()}
-                        >
-                          {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                        </label>
-                      </div>
-
-                      {/* <button className="Activity-Page-Card-Favorite"></button> */}
-                      <div className="Activity-Page-Card-Box">
-                        <img
-                          className="Activity-Page-Card-Join"
-                          src={toggleFav == "unfav" ? Unfav : Fav}
-                          onClick={() => handleClickFav()}
-                        ></img>
-                        <label
-                          className="Activity-Page-Card-Favorite-Text"
-                          onClick={() => handleClickFav()}
-                        >
-                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                        </label>
-                      </div>
-                    </div>
-                  </CardActions>
                   <div className="Activity-Page-Card-Area">
                     <div className="Activity-Page-Card-Flex">
                       <div className="Activity-Page-Card-Left">
-                        <img className="Activity-Page-Card-Img" src={Circle} />
-                        <label className="Activity-Page-Card-Status">
+                        <Link
+                          key={prod._id}
+                          href="/activity/[activityId]"
+                          as={`/activity/${prod._id}`}
+                        >
+                          <img className="Activity-Page-Card-Img" src={Chest} />
+                        </Link>
+                        {/* <label className="Activity-Page-Card-Status">
                           สถานะกิจกรรม :
                         </label>
-                        <label className="Activity-Page-Card-Status"> {prod.status} </label>
+                        <label className="Activity-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="Activity-Page-Card-Right">
                         <label className="Activity-Page-Card-Name">
@@ -144,14 +121,17 @@ const ActivityCard = () => {
                               className="Activity-Page-Card-Icon-Size"
                               src={Day}
                             />
-                             {prod.dateStart}
+
+                            <Moment format="D MMM YYYY">
+                              {prod.dateStart}
+                            </Moment>
                           </label>
                           <label className="Activity-Page-Card-Time">
                             <img
                               className="Activity-Page-Card-Icon-Size"
                               src={Time}
                             />
-                            {prod.timeStart}
+                            {prod.timeStart} น.
                           </label>
                         </div>
 
@@ -160,9 +140,9 @@ const ActivityCard = () => {
                             className="Activity-Page-Card-Icon-Size"
                             src={Location}
                           />
-                           {prod.place}
+                          {prod.place}
                         </label>
-                        <div className="Activity-Page-Card-Members-Close">
+                        {/* <div className="Activity-Page-Card-Members-Close">
                           <label className="Activity-Page-Card-Members">
                             <img
                               className="Activity-Page-Card-Icon-Size"
@@ -177,23 +157,23 @@ const ActivityCard = () => {
                             />
                             {prod.dateCloseApply}
                           </label>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
-                  <CardActions>
+                  {/* <CardActions>
                     <div className="Activity-Page-Card-More-Div">
                       <Link
                         key={prod._id}
                         href="/activity/[activityId]"
                         as={`/activity/${prod._id}`}
                       >
-                        <button className="Main-Page-Card-More">
+                        <button className="Activity-Page-Card-More">
                           <a>รายละเอียดเพิ่มเติม >></a>
                         </button>
                       </Link>
                     </div>
-                  </CardActions>
+                  </CardActions> */}
                 </Card>
               </div>
             ))}
