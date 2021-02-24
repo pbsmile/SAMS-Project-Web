@@ -28,6 +28,9 @@ const QUERY_REPORTINFO = gql`
       reports {
         _id
         comment
+        reportPostId {
+          name
+        }
       }
     }
   }
@@ -56,12 +59,15 @@ const ActivityReport = () => {
       </div>
 
       <div className="Activity-Page-Card-List">
+      
         {data && (
           <>
+            {/* <div><h4>{data.getAllReportsFromThisPost.reports.reportPostId.name}</h4></div> */}
             {data.getAllReportsFromThisPost.reports.map((prod) => (
               <div key={prod._id}>
                 {/* <h4>{prod._id}</h4> */}
                 <h4>{prod.comment}</h4>
+                <h4>{prod.reportPostId.name}</h4>
               </div>
             ))}
           </>
