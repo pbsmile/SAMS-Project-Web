@@ -31,9 +31,18 @@ import Moment from "react-moment";
 import "moment-timezone";
 
 const REVIEW = gql`
-  mutation REVIEW($reviewPostId: String!, $reviewComment: String ,$reviewRate: Number!) {
-    createReview(input: { reviewPostId: $reviewPostId, comment: $reviewComment , rate: $reviewRate })
-    {
+  mutation REVIEW(
+    $reviewPostId: String!
+    $reviewComment: String
+    $reviewRate: Number!
+  ) {
+    createReview(
+      input: {
+        reviewPostId: $reviewPostId
+        comment: $reviewComment
+        rate: $reviewRate
+      }
+    ) {
       _id
     }
   }
@@ -41,8 +50,9 @@ const REVIEW = gql`
 
 const REPORT = gql`
   mutation REPORT($reportPostId: String!, $reportComment: String!) {
-    createReport(input: { reportPostId: $reportPostId, comment: $reportComment })
-    {
+    createReport(
+      input: { reportPostId: $reportPostId, comment: $reportComment }
+    ) {
       _id
     }
   }
@@ -130,11 +140,13 @@ const ActivityInfo = () => {
 
   const { user, signout } = useContext(AuthContext);
 
+  // console.log("data:image/jpeg;base64," + base64encodedimg)
+
   const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
     variables: { postId },
     onCompleted: (data) => {
       if (data) {
-        console.log(data.getOnePost)
+        console.log(data.getOnePost);
         console.log("JOIN", data.getOnePost.canJoin);
         console.log(data.getOnePost.canFav);
         if (data.getOnePost.canJoin == "joined") {
@@ -243,7 +255,7 @@ const ActivityInfo = () => {
   });
 
   const [review] = useMutation(REVIEW, {
-    variables: { reviewPostId, reviewComment , reviewRate },
+    variables: { reviewPostId, reviewComment, reviewRate },
     //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
     onCompleted: (data) => {
       if (data) {
@@ -297,6 +309,7 @@ const ActivityInfo = () => {
             <div className="Activity-Info-Page-Card-Flex">
               <div className="Activity-Info-Page-Card-Left">
                 <img className="Activity-Info-Page-Card-Img" src={Chest} />
+                {/* <img className="Activity-Info-Page-Card-Img"  src={"data:image/jpeg;base64," + base64encodedimg} /> */}
                 {/* <label className="Activity-Info-Page-Card-Status">
                   สถานะกิจกรรม :
                 </label> 
@@ -443,6 +456,13 @@ const ActivityInfo = () => {
                 </label>
               </div>
               <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Description-More">
+                {data.getOnePost.description}
+                {data.getOnePost.description}
+                {data.getOnePost.description}
+                {data.getOnePost.description}
+                {data.getOnePost.description}
+                {data.getOnePost.description}
+                {data.getOnePost.description}
                 {data.getOnePost.description}
               </div>
             </div>

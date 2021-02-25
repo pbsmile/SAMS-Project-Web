@@ -28,6 +28,7 @@ const QUERY_REPORTINFO = gql`
       reports {
         _id
         comment
+        postName
         reportPostId {
           name
         }
@@ -44,7 +45,8 @@ const ActivityReport = () => {
     variables: { postId },
     pollInterval: 3000,
     onCompleted: (data) => {
-      console.log(data.getAllReportsFromThisPost);
+      console.log(data.getAllReportsFromThisPost)
+      console.log(data.getAllReportsFromThisPost.reports[(0)].postName)
     },
   });
   console.log(data);
@@ -59,10 +61,11 @@ const ActivityReport = () => {
       </div>
 
       <div className="Activity-Page-Card-List">
-      
+        
         {data && (
           <>
             {/* <div><h4>{data.getAllReportsFromThisPost.reports.reportPostId.name}</h4></div> */}
+            <p className="Activity-Page-Card-Nav-Popular">{data.getAllReportsFromThisPost.reports[(0)].postName}</p>
             {data.getAllReportsFromThisPost.reports.map((prod) => (
               <div key={prod._id}>
                 {/* <h4>{prod._id}</h4> */}
