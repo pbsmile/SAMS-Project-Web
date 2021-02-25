@@ -77,11 +77,11 @@ const FavoriteCard = () => {
   };
   return (
     <div className="My-Fav-Page-Card-Div">
-      <div className="My-Fav-Page-Fixed-Bg">
+      {/* <div className="My-Fav-Page-Fixed-Bg">
         <nav className="My-Fav-Page-Card-Nav">
           <p className="My-Fav-Page-Card-Nav-Popular">ชื่นชอบ</p>
         </nav>
-      </div>
+      </div> */}
       <div className="My-Fav-Page-Card-List">
       {data && (
           <>

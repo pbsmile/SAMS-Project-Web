@@ -396,7 +396,7 @@ const ActivityInfo = () => {
                 )}
 
                 {/* <button className="Activity-Info-Page-Card-Favorite"></button> */}
-                {user && (
+                {user && !createUser && (
                   <>
                     <div className="Activity-Info-Page-Card-Box">
                       <img
