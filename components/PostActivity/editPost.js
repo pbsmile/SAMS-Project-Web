@@ -117,7 +117,7 @@ const EditPost = () => {
         description: "",
     });
 
-
+    const [newmajor,setMajor] = useState("")
    
     const { user, signout } = useContext(AuthContext);
 
@@ -204,6 +204,11 @@ const EditPost = () => {
         })
     }
 
+    const majorChange = e => {
+        setUserInfo[{
+            major: e.target.value
+        }]
+    }
 
 
     
@@ -394,7 +399,7 @@ const EditPost = () => {
                             <h2>คณะ/วิทยาลัย</h2>
                         </div>
                         <div className="Post-Column2 Post-Input" onChange={handleChange} value={userInfo.major}>
-                            <select className="Post-Input-Fill-Data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={userInfo.major}>
+                            <select className="Post-Input-Fill-Data" name="major" onChange={majorChange} value={userInfo.major}>
                                 <option value="0">เลือกคณะ/วิทยาลัย</option>
                                 <option value="1">คณะวิศวกรรมศาสตร์</option>
                                 <option value="2">คณะสถาปัตยกรรมศาสตร</option>
