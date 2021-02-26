@@ -258,8 +258,8 @@ const EditPost = () => {
                         </div>
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
-                                <form noValidate className="Post-Calendar-Time">
-                                    <input type="date" name="dateStart" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateStart} />
+                                <div noValidate className="Post-Calendar-Time">
+                                    <input type="date" name="dateStart" data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateStart} />
 
                                     {/* <TextField
                                         id="date"
@@ -273,10 +273,10 @@ const EditPost = () => {
                                         onChange={handleChange}
                                         value={userInfo.dateStart}
                                     /> */}
-                                </form>
+                                </div>
                                 <h3 className="Post-Calendar-Time">ถึง</h3>
-                                <form noValidate className="Post-Calendar">
-                                    <input type="date" name="dateEnd" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateEnd} />
+                                <div noValidate className="Post-Calendar">
+                                    <input type="date" name="dateEnd" data-date-format="MM-DD-YYY" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.dateEnd} />
                                     {/* <TextField
                                         id="date"
                                         name="dateEnd"
@@ -289,7 +289,7 @@ const EditPost = () => {
                                         onChange={handleChange}
                                         value={userInfo.dateEnd}
                                     /> */}
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -299,7 +299,7 @@ const EditPost = () => {
                         </div>
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
-                                <form className="Post-Calendar-Time Post-Time">
+                                <div className="Post-Calendar-Time Post-Time">
                                     <input type="time" name="timeStart" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.timeStart} />
                                     {/* <TextField
                                         id="time"
@@ -316,10 +316,10 @@ const EditPost = () => {
                                         onChange={handleChange}
                                         value={userInfo.timeStart}
                                     /> */}
-                                </form>
+                                </div>
 
                                 <h3 className="Post-Calendar-Time">ถึง</h3>
-                                <form className="Post-Calendar-Time">
+                                <div className="Post-Calendar-Time">
                                     <input type="time" name="timeEnd" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.timeEnd} />
                                     {/* <TextField
                                         id="time"
@@ -336,7 +336,7 @@ const EditPost = () => {
                                         onChange={handleChange}
                                         value={userInfo.timeEnd}
                                     /> */}
-                                </form>
+                                </div>
 
                             </div>
                         </div>
