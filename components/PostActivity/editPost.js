@@ -133,10 +133,9 @@ const EditPost = () => {
     //     }
     // };
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [show, seteditShow] = useState(false);
+    const handleEditClose = () => setEditShow(false);
+    const handleEditShow = () => setEditShow(true);
 
     const [newmajor, setMajor] = useState("")
 
@@ -529,7 +528,7 @@ const EditPost = () => {
                     <div className="Post-Column2">
                         <div className="Post-Left-Button">
                             <button name="button" className="Post-Unsubmit-Button" onClick={cancleSubmit}>ยกเลิก</button>
-                            <button type="submit" name="button" className="Post-Submit-Button" onClick={handleShow}>บันทึก</button>
+                            <button type="submit" name="button" className="Post-Submit-Button" onClick={handleEditShow}>บันทึก</button>
                         </div>
                     </div>
                 </div>
@@ -557,7 +556,7 @@ const EditPost = () => {
                     วันที่ปิดรับสมัคร : {dateFormat(userInfo.dateCloseApply, "d/m/yyyy HH:MM")} น.<br></br>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="btn btn-outline-danger" onClick={handleClose}>ยกเลิก</Button>
+                        <Button variant="btn btn-outline-danger" onClick={handleEditClose}>ยกเลิก</Button>
                         <Button variant="btn btn-info" onClick={handleSubmit}>ยืนยัน</Button>
                     </Modal.Footer>
                 </Modal>
