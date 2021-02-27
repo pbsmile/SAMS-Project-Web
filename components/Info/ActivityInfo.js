@@ -81,6 +81,16 @@ const UNFAVPOST = gql`
   }
 `;
 
+const SENDEMAIL = gql`
+  mutation SENDEMAIL($postId: String!, $subject: String!, $message: String) {
+    sendEmail(input: {
+        postId: $postId,
+        subject: $subject,
+        message: $message
+    })
+  }
+`
+
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
     getOnePost(input: { postId: $postId }) {
@@ -257,6 +267,37 @@ const ActivityInfo = () => {
       }
     },
   });
+
+  const [sendEmailInfo, setsendEmailInfo] = useState({
+    subject: "",
+    message: "",
+  });
+
+  const [sendEmail] = useMutation(SENDEMAIL, {
+    variables: { postId, ...sendEmailInfo },
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        setsendEmailInfo({
+          subject: "",
+          message: "",
+        })
+      }
+      console.log("Send Email Complete")
+    },
+  })
+
+  const handleEmailSubmit = async () => {
+    await sendEmail();
+  }
+
+  const handleEmailChange = e => {
+    console.log("Value", e.target.value)
+    setsendEmailInfo({
+      ...sendEmailInfo,
+      [e.target.name]: e.target.value
+    })
+  }
 
   console.log("postId", postId);
 
@@ -464,9 +505,9 @@ const ActivityInfo = () => {
               <Modal.Body>
                 ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
                 หัวข้อเรื่อง :
-                <input type="text" name="name" className="Post-Input-Fill-Data" />
+                <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject}/>
                 รายละเอียด :
-                <textarea type="text" name="description" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" />
+                <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message}/>
 
                 {/* วันที่จัดกิจกรรม : {dateFormat(userInfo.dateStart, "d/m/yyyy")} ถึง {dateFormat(userInfo.dateEnd, "d/m/yyyy")}<br></br>
                         เวลาที่จัดกิจกรรม : {userInfo.timeStart} น. ถึง {userInfo.timeEnd} น.<br></br>
@@ -477,7 +518,7 @@ const ActivityInfo = () => {
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="btn btn-outline-danger" onClick={announceClose}>ยกเลิก</Button>
-                <Button variant="btn btn-info">ยืนยัน</Button>
+                <Button variant="btn btn-info" onClick={handleEmailSubmit}>ยืนยัน</Button>
               </Modal.Footer>
             </Modal>
           </div>
