@@ -133,7 +133,7 @@ const EditPost = () => {
     //     }
     // };
 
-    const [show, seteditShow] = useState(false);
+    const [show, setEditShow] = useState(false);
     const handleEditClose = () => setEditShow(false);
     const handleEditShow = () => setEditShow(true);
 
@@ -539,7 +539,7 @@ const EditPost = () => {
 
                 <Modal
                     show={show}
-                    onHide={handleClose}
+                    onHide={handleEditClose}
                     backdrop="static"
                     keyboard={false}
                 >
