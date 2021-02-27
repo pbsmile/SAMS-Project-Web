@@ -1,14 +1,11 @@
 import React, { useState, Children, createContext, useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import Router from "next/router";
-// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-// import { Height } from "@material-ui/icons";
 import gql from "graphql-tag";
 
 import CreateAct from "../../Image/create.png"
 import ImageLogo from "../../Image/img.png"
-
 
 const CREATEPOST = gql`
 mutation CREATEPOST(
