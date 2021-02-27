@@ -1,23 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Circle from "../../Image/circle.png";
-import Chest from "../../Image/chest.jpg";
-import Filter from "../Filter/ActivityFilter";
-import Join from "../../Image/add1.png";
-import Unjoin from "../../Image/add2.png";
-import Fav from "../../Image/heart1.png";
-import Unfav from "../../Image/heart2.png";
-import Day from "../../Image/info_date.png";
-import Time from "../../Image/clock.png";
-import Location from "../../Image/info_flag.png";
-import Members from "../../Image/info_user.png";
-import Closed from "../../Image/info_closed.png";
+// import Button from "@material-ui/core/Button";
+
 import { AuthContext } from "../../appState/AuthProvider";
 
 import { useQuery } from "@apollo/react-hooks";
@@ -34,6 +17,11 @@ import CreateAct from "../../Image/create.png"
 import ImageLogo from "../../Image/img.png"
 
 import Router from "next/router";
+
+// import Modal from 'react-modal';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button,Modal} from 'react-bootstrap';
 
 
 const EDITPOST = gql`
@@ -96,11 +84,13 @@ const QUERY_ACTIVITY = gql`
   }
 `;
 
+// Modal.setAppElement('#yourAppElement')
+
 const EditPost = () => {
     const route = useRouter();
     console.log(route);
     const postId = route.query.activityId;
-    
+
 
     const dateFormat = require("dateformat");
     const [userInfo, setUserInfo] = useState({
@@ -117,8 +107,39 @@ const EditPost = () => {
         description: "",
     });
 
-    const [newmajor,setMajor] = useState("")
-   
+    // var subtitle;
+    // const [modalIsOpen, setIsOpen] = React.useState(false);
+    // function openModal() {
+    //     setIsOpen(true);
+    // }
+
+    // function afterOpenModal() {
+    //     // references are now sync'd and can be accessed.
+    //     subtitle.style.color = '#f00';
+    // }
+
+    // function closeModal() {
+    //     setIsOpen(false);
+    // }
+
+    // const customStyles = {
+    //     content: {
+    //         top: '50%',
+    //         left: '50%',
+    //         right: 'auto',
+    //         bottom: 'auto',
+    //         marginRight: '-50%',
+    //         transform: 'translate(-50%, -50%)'
+    //     }
+    // };
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [newmajor, setMajor] = useState("")
+
     const { user, signout } = useContext(AuthContext);
 
     const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
@@ -126,7 +147,7 @@ const EditPost = () => {
         onCompleted: (data) => {
             if (data) {
                 console.log(data.getOnePost)
-                
+
                 setUserInfo({
                     photo: "",
                     name: data.getOnePost.name,
@@ -140,13 +161,11 @@ const EditPost = () => {
                     major: data.getOnePost.major,
                     description: data.getOnePost.description,
                 });
-               
+
             }
         },
     });
 
-    
-    
 
 
     const [EditPost] = useMutation(EDITPOST, {
@@ -172,7 +191,7 @@ const EditPost = () => {
             }
             // window.location.reload();
             Router.push('/activity/' + postId);
-            
+
             console.log("on complete")
             console.log(userInfo)
         },
@@ -195,6 +214,10 @@ const EditPost = () => {
         }
     };
 
+    const cancleSubmit = async e => {
+        Router.push('/activity/' + postId);
+    }
+
     const handleChange = e => {
         console.log("Value", e.target.value)
         setUserInfo({
@@ -211,8 +234,54 @@ const EditPost = () => {
     }
 
 
-    
+    // dateFormat.i18n = {
+    //     dayNames: [
+    //       "วันอาทิตย์",
+    //       "วันจันทร์",
+    //       "วังอังคาร",
+    //       "วันพุธ",
+    //       "วันพฤหัสบดี",
+    //       "วันศุกร์",
+    //       "วันเสาร์",
+    //       "Sunday",
+    //       "Monday",
+    //       "Tuesday",
+    //       "Wednesday",
+    //       "Thursday",
+    //       "Friday",
+    //       "Saturday",
+    //     ],
+    //     monthNames: [
+    //       "Jan",
+    //       "Feb",
+    //       "Mar",
+    //       "Apr",
+    //       "May",
+    //       "Jun",
+    //       "Jul",
+    //       "Aug",
+    //       "Sep",
+    //       "Oct",
+    //       "Nov",
+    //       "Dec",
+    //       "January",
+    //       "February",
+    //       "March",
+    //       "April",
+    //       "May",
+    //       "June",
+    //       "July",
+    //       "August",
+    //       "September",
+    //       "October",
+    //       "November",
+    //       "December",
+    //     ],
+    //     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"]
+
+    // }
     console.log("postId", postId);
+    
 
 
     if (error) return <p>Something went wrong, please try again.</p>;
@@ -220,8 +289,8 @@ const EditPost = () => {
     if (loading) return <p>Loading ...</p>;
 
     return (
-        
-            <div className="Post-Page" >
+
+        <div className="Post-Page" >
             <form className="Post-Page">
                 <nav className="Post-Toggle-Button-Menu active">
                     <ul className="Post-Toggle-Button-Items">
@@ -236,7 +305,7 @@ const EditPost = () => {
                 <hr></hr>
                 <div className="Post-poster-container" >
                     <div className="previewProfilePic center">
-                        <img className="post_image"/>
+                        <img className="post_image" />
                         <div className="post_choseimage">
                             <input id="profilePic" type="file" />
                         </div>
@@ -443,28 +512,80 @@ const EditPost = () => {
 
                         </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="Post-Column"> </div>
                         <div className="Post-Column2">
                             <div className="Post-Left-Button">
-                                <button type="submit" name="button" className="Post-Unsubmit-Button">ยกเลิก</button>
+                                <button name="button" className="Post-Unsubmit-Button" >ยกเลิก</button>
                                 <button type="submit" name="button" className="Post-Submit-Button" onClick={handleSubmit}>บันทึก</button>
                             </div>
-                            {/* <div className="Post-Right-Button">
-                                <button type="submit" name="button" className="Post-Submit-Button">บันทึก</button>
-                            </div> */}
-
-
+                      </div>
+                    </div> */}
+                </div>
+            </form>
+            <div className="Post-Page">
+                <div className="row">
+                    <div className="Post-Column"> </div>
+                    <div className="Post-Column2">
+                        <div className="Post-Left-Button">
+                            <button name="button" className="Post-Unsubmit-Button" onClick={cancleSubmit}>ยกเลิก</button>
+                            <button type="submit" name="button" className="Post-Submit-Button" onClick={handleShow}>บันทึก</button>
                         </div>
                     </div>
                 </div>
 
+                {/* <Button variant="primary" >
+                    Launch static backdrop modal
+                </Button> */}
 
-            </form>
+                <Modal
+                    show={show}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>ยืนยันข้อมูลกิจกรรม</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        ชื่อกิจกรรม : {userInfo.name}<br></br>
+                        วันที่จัดกิจกรรม : {dateFormat(userInfo.dateStart, "d/m/yyyy")} ถึง {dateFormat(userInfo.dateEnd, "d/m/yyyy")}<br></br>
+                        เวลาที่จัดกิจกรรม : {userInfo.timeStart} น. ถึง {userInfo.timeEnd} น.<br></br>
+                        สถานที่ : {userInfo.place}<br></br>
+                        คณะ/วิทยาลัย : {userInfo.major}<br></br>
+                        จำนวนที่เปิดรับสมัคร : {userInfo.participantsNumber} คน<br></br>
+                    วันที่ปิดรับสมัคร : {dateFormat(userInfo.dateCloseApply, "d/m/yyyy HH:MM")} น.<br></br>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="btn btn-outline-danger" onClick={handleClose}>ยกเลิก</Button>
+                        <Button variant="btn btn-info" onClick={handleSubmit}>ยืนยัน</Button>
+                    </Modal.Footer>
+                </Modal>
+                {/* <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    ariaHideApp={false}
+                    contentLabel="Example Modal"
+                >
+
+                    <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
+                    <button onClick={closeModal}>close</button>
+                    <div>I am a modal</div>
+                    <form>
+                        <input />
+                        <button>tab navigation</button>
+                        <button>stays</button>
+                        <button>inside</button>
+                        <button>the modal</button>
+                    </form>
+                </Modal> */}
+            </div>
         </div>
-        
 
-       
+
+
     );
 };
 
