@@ -29,6 +29,7 @@ import Link from "next/link";
 
 import Moment from "react-moment";
 import "moment-timezone";
+import { Modal } from 'react-bootstrap';
 
 const REVIEW = gql`
   mutation REVIEW($reviewPostId: String!, $reviewComment: String ,$reviewRate: Number!) {
@@ -127,6 +128,10 @@ const ActivityInfo = () => {
   console.log("create User >>", createUser);
   const [canReview, setCanReview] = useState(false);
   console.log("can review >>", canReview);
+
+  const [show, setAnnounceShow] = useState(false);
+  const announceClose = () => setAnnounceShow(false);
+  const announceShow = () => setAnnounceShow(true);
 
   const { user, signout } = useContext(AuthContext);
 
@@ -243,7 +248,7 @@ const ActivityInfo = () => {
   });
 
   const [review] = useMutation(REVIEW, {
-    variables: { reviewPostId, reviewComment , reviewRate },
+    variables: { reviewPostId, reviewComment, reviewRate },
     //เมื่อสำเร็จแล้วจะส่ง data เอามาใช้ได้
     onCompleted: (data) => {
       if (data) {
@@ -414,7 +419,7 @@ const ActivityInfo = () => {
                       <button>แก้ไข</button>
                     </Link>
 
-                    <button>ส่งข้อมูล</button>
+                    <button onClick={announceShow}>ส่งข้อมูล</button>
                     <button>เช็คชื่อ</button>
                     <button>ลบ</button>
                   </div>
@@ -446,6 +451,35 @@ const ActivityInfo = () => {
                 {data.getOnePost.description}
               </div>
             </div>
+
+            <Modal
+              show={show}
+              onHide={announceClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>กรอกรายละเอียดที่ต้องการแจ้ง</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+                หัวข้อเรื่อง :
+                <input type="text" name="name" className="Post-Input-Fill-Data" />
+                รายละเอียด :
+                <textarea type="text" name="description" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" />
+
+                {/* วันที่จัดกิจกรรม : {dateFormat(userInfo.dateStart, "d/m/yyyy")} ถึง {dateFormat(userInfo.dateEnd, "d/m/yyyy")}<br></br>
+                        เวลาที่จัดกิจกรรม : {userInfo.timeStart} น. ถึง {userInfo.timeEnd} น.<br></br>
+                        สถานที่ : {userInfo.place}<br></br>
+                        คณะ/วิทยาลัย : {userInfo.major}<br></br>
+                        จำนวนที่เปิดรับสมัคร : {userInfo.participantsNumber} คน<br></br>
+                    วันที่ปิดรับสมัคร : {dateFormat(userInfo.dateCloseApply, "d/m/yyyy HH:MM")} น.<br></br> */}
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="btn btn-outline-danger" onClick={announceClose}>ยกเลิก</Button>
+                <Button variant="btn btn-info">ยืนยัน</Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
       </div>
