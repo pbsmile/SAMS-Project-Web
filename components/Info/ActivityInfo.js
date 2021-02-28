@@ -30,8 +30,6 @@ import Link from "next/link";
 
 import Moment from "react-moment";
 import "moment-timezone";
-import { Button, Modal } from 'react-bootstrap';
-
 // import {ฺModal } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -207,6 +205,10 @@ const ActivityInfo = () => {
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
 
+  const [show, setAnnounceShow] = useState(false);
+  const announceClose = () => setAnnounceShow(false);
+  const announceShow = () => setAnnounceShow(true);
+
   const [showModalJoin, setShowModalJoin] = useState(false);
   const handleCloseModalJoin = () => setShowModalJoin(false);
   const handleShowModalJoin = () => setShowModalJoin(true);
@@ -356,7 +358,7 @@ const ActivityInfo = () => {
     subject: "",
     message: "",
   });
-  
+
   const [sendEmail] = useMutation(SENDEMAIL, {
     variables: { postId, ...sendEmailInfo },
     onCompleted: (data) => {
@@ -370,7 +372,7 @@ const ActivityInfo = () => {
       setAnnounceShow(false)
       console.log("Send Email Complete")
     },
-    
+
   })
 
 
