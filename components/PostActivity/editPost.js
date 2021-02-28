@@ -20,7 +20,7 @@ import Router from "next/router";
 
 // import Modal from 'react-modal';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button,Modal} from 'react-bootstrap';
 
 

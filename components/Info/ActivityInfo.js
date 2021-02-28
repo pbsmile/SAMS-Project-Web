@@ -4,7 +4,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Circle from "../../Image/circle.png";
 import Chest from "../../Image/chest.jpg";
@@ -29,7 +29,11 @@ import Link from "next/link";
 
 import Moment from "react-moment";
 import "moment-timezone";
-import { Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
+
+// import {ฺModal } from 'react-bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const REVIEW = gql`
   mutation REVIEW($reviewPostId: String!, $reviewComment: String ,$reviewRate: Number!) {
@@ -88,6 +92,9 @@ const SENDEMAIL = gql`
         subject: $subject,
         message: $message
     })
+    {
+      name
+    }
   }
 `
 
@@ -272,7 +279,7 @@ const ActivityInfo = () => {
     subject: "",
     message: "",
   });
-
+  
   const [sendEmail] = useMutation(SENDEMAIL, {
     variables: { postId, ...sendEmailInfo },
     onCompleted: (data) => {
@@ -283,11 +290,15 @@ const ActivityInfo = () => {
           message: "",
         })
       }
+      setAnnounceShow(false)
       console.log("Send Email Complete")
     },
+    
   })
 
+
   const handleEmailSubmit = async () => {
+    console.log("onclick submit")
     await sendEmail();
   }
 
@@ -297,6 +308,7 @@ const ActivityInfo = () => {
       ...sendEmailInfo,
       [e.target.name]: e.target.value
     })
+    console.log(sendEmailInfo)
   }
 
   console.log("postId", postId);
@@ -505,9 +517,9 @@ const ActivityInfo = () => {
               <Modal.Body>
                 ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
                 หัวข้อเรื่อง :
-                <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject}/>
+                <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
                 รายละเอียด :
-                <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message}/>
+                <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
 
                 {/* วันที่จัดกิจกรรม : {dateFormat(userInfo.dateStart, "d/m/yyyy")} ถึง {dateFormat(userInfo.dateEnd, "d/m/yyyy")}<br></br>
                         เวลาที่จัดกิจกรรม : {userInfo.timeStart} น. ถึง {userInfo.timeEnd} น.<br></br>
