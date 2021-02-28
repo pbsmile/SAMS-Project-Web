@@ -30,6 +30,11 @@ import Link from "next/link";
 
 import Moment from "react-moment";
 import "moment-timezone";
+import { Button, Modal } from 'react-bootstrap';
+
+// import {ฺModal } from 'react-bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal } from "react-bootstrap";
@@ -93,6 +98,19 @@ const UNFAVPOST = gql`
     }
   }
 `;
+
+const SENDEMAIL = gql`
+  mutation SENDEMAIL($postId: String!, $subject: String!, $message: String) {
+    sendEmail(input: {
+        postId: $postId,
+        subject: $subject,
+        message: $message
+    })
+    {
+      name
+    }
+  }
+`
 
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
@@ -334,6 +352,42 @@ const ActivityInfo = () => {
     },
   });
 
+  const [sendEmailInfo, setsendEmailInfo] = useState({
+    subject: "",
+    message: "",
+  });
+  
+  const [sendEmail] = useMutation(SENDEMAIL, {
+    variables: { postId, ...sendEmailInfo },
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+        setsendEmailInfo({
+          subject: "",
+          message: "",
+        })
+      }
+      setAnnounceShow(false)
+      console.log("Send Email Complete")
+    },
+    
+  })
+
+
+  const handleEmailSubmit = async () => {
+    console.log("onclick submit")
+    await sendEmail();
+  }
+
+  const handleEmailChange = e => {
+    console.log("Value", e.target.value)
+    setsendEmailInfo({
+      ...sendEmailInfo,
+      [e.target.name]: e.target.value
+    })
+    console.log(sendEmailInfo)
+  }
+
   console.log("postId", postId);
 
   const handleClickJoin = async () => {
@@ -497,7 +551,7 @@ const ActivityInfo = () => {
                       <button>แก้ไข</button>
                     </Link>
 
-                    <button>ส่งข้อมูล</button>
+                    <button onClick={announceShow}>ส่งข้อมูล</button>
                     <button>เช็คชื่อ</button>
                     <button>ลบ</button>
                   </div>
@@ -540,6 +594,35 @@ const ActivityInfo = () => {
                 {data.getOnePost.description}
               </div>
             </div>
+
+            <Modal
+              show={show}
+              onHide={announceClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>กรอกรายละเอียดที่ต้องการแจ้ง</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+                หัวข้อเรื่อง :
+                <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
+                รายละเอียด :
+                <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
+
+                {/* วันที่จัดกิจกรรม : {dateFormat(userInfo.dateStart, "d/m/yyyy")} ถึง {dateFormat(userInfo.dateEnd, "d/m/yyyy")}<br></br>
+                        เวลาที่จัดกิจกรรม : {userInfo.timeStart} น. ถึง {userInfo.timeEnd} น.<br></br>
+                        สถานที่ : {userInfo.place}<br></br>
+                        คณะ/วิทยาลัย : {userInfo.major}<br></br>
+                        จำนวนที่เปิดรับสมัคร : {userInfo.participantsNumber} คน<br></br>
+                    วันที่ปิดรับสมัคร : {dateFormat(userInfo.dateCloseApply, "d/m/yyyy HH:MM")} น.<br></br> */}
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="btn btn-outline-danger" onClick={announceClose}>ยกเลิก</Button>
+                <Button variant="btn btn-info" onClick={handleEmailSubmit}>ยืนยัน</Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
       </div>
