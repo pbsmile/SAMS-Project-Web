@@ -34,6 +34,8 @@ import "moment-timezone";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal } from "react-bootstrap";
 
+import ReactStars from "react-rating-stars-component";
+
 const REVIEW = gql`
   mutation REVIEW(
     $reviewPostId: String!
@@ -125,8 +127,8 @@ const ActivityInfo = () => {
   const reviewPostId = route.query.activityId;
   const comment = "ทดสอบ";
   const reportComment = "ทดสอบReport";
-  const reviewComment = "ทดสอบReview";
-  const reviewRate = 5;
+  const [reviewComment, setReviewComment] = useState("");
+  const [reviewRate, setReviewRate] = useState(0);
 
   console.log("reportPostId", reportPostId);
   console.log("reportComment", reportComment);
@@ -141,6 +143,15 @@ const ActivityInfo = () => {
   console.log("create User >>", createUser);
   const [canReview, setCanReview] = useState(false);
   console.log("can review >>", canReview);
+
+  const ratingChanged = (newRating) => {
+    setReviewRate(newRating);
+    console.log(newRating);
+  };
+  const handleChangeReviewText = (e) => {
+    console.log("Value", e.target.value);
+    setReviewComment(e.target.value);
+  };
 
   const dateFormat = require("dateformat");
   dateFormat.i18n = {
@@ -613,15 +624,25 @@ const ActivityInfo = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>ยืนยันการรีพอร์ต</Modal.Title>
+            <Modal.Title>รีวิวกิจกรรม</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             ชื่อกิจกรรม : {data.getOnePost.name}
             <br></br>
-            สถานที่ : {data.getOnePost.place}
-            <br></br>
-            คณะ/วิทยาลัย : {data.getOnePost.major}
-            <br></br>
+            <ReactStars
+              count={5}
+              onChange={ratingChanged}
+              size={24}
+              activeColor="#ffd700"
+            />
+            <div className="Review-Text-Area">
+              <textarea
+                type="text"
+                className="Review-Text"
+                placeholder=""
+                onChange={handleChangeReviewText}
+              />
+            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button

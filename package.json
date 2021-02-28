@@ -36,6 +36,7 @@
     "react-dom": "16.13.1",
     "react-modal": "^3.12.1",
     "react-moment": "^1.1.1",
+    "react-rating-stars-component": "^2.2.0",
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
     "react-simple-image-slider": "^1.0.4",
