@@ -20,6 +20,7 @@ import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
+
 import Chest from "../../Image/chest.jpg";
 import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
 import Moment from "react-moment";
@@ -57,6 +58,53 @@ const MyPostCard = () => {
   const [toggleFav, setToggleFav] = useState("unfav");
   console.log("Fav>>", toggleFav);
 
+  const dateFormat = require("dateformat");
+  dateFormat.i18n = {
+    dayNames: [
+      "วันอาทิตย์",
+      "วันจันทร์",
+      "วันอังคาร",
+      "วันพุธ",
+      "วันพฤหัสบดี",
+      "วันศุกร์",
+      "วันเสาร์",
+      "วันอาทิตย์",
+      "วันจันทร์",
+      "วันอังคาร",
+      "วันพุธ",
+      "วันพฤหัสบดี",
+      "วันศุกร์",
+      "วันเสาร์",
+    ],
+    monthNames: [
+      "มกราคม",
+      "กุมภาพันธ์",
+      "มีนาคม",
+      "เมษายน",
+      "พฤษภาคม",
+      "มิถุนายน",
+      "กรกฎาคม",
+      "สิงหาคม",
+      "กันยายน",
+      "ตุลาคม",
+      "พฤศจิกายน",
+      "ธันวาคม",
+      "มกราคม",
+      "กุมภาพันธ์",
+      "มีนาคม",
+      "เมษายน",
+      "พฤษภาคม",
+      "มิถุนายน",
+      "กรกฎาคม",
+      "สิงหาคม",
+      "กันยายน",
+      "ตุลาคม",
+      "พฤศจิกายน",
+      "ธันวาคม",
+    ],
+    timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
+  };
+
   const handleClickJoin = () => {
     if (toggleJoin == "unjoin") {
       setToggleJoin("join");
@@ -76,131 +124,108 @@ const MyPostCard = () => {
   };
   return (
     <div className="My-Post-Page-Card-Div">
-      <div className="My-Post-Page-Fixed-Bg">
-        <nav className="My-Post-Page-Card-Nav">
-          <p className="My-Post-Page-Card-Nav-Popular">โพสต์ของฉัน</p>
-        </nav>
-      </div>
-      <div className="My-Post-Page-Card-List">
-        {data && (
-          <>
-            {/* {data.getAllPostsByAuthen.posts.map((prod) => (
-              <div key={prod._id}>
-                <h4>{prod.name}</h4>
-              </div>
-            ))} */}
-            {data.getOneUser.posts.map((prod) => (
-              <div key={prod._id}>
-                <Card className="My-Post-Page-Card">
-                  <CardActions>
-                    <div className="My-Post-Page-Card-Top-Div">
-                      {/* <button className="My-Post-Page-Card-Join"></button> */}
-                      <div className="My-Post-Page-Card-Box">
-                        <img
-                          className="My-Post-Page-Card-Join"
-                          src={toggleJoin == "unjoin" ? Unjoin : Join}
-                          onClick={() => handleClickJoin()}
-                        ></img>
-                        <label
-                          className="My-Post-Page-Card-Join-Text"
-                          onClick={() => handleClickJoin()}
-                        >
-                          {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                        </label>
-                      </div>
-
-                      {/* <button className="My-Post-Page-Card-Favorite"></button> */}
-                      <div className="My-Post-Page-Card-Box">
-                        <img
-                          className="My-Post-Page-Card-Join"
-                          src={toggleFav == "unfav" ? Unfav : Fav}
-                          onClick={() => handleClickFav()}
-                        ></img>
-                        <label
-                          className="My-Post-Page-Card-Favorite-Text"
-                          onClick={() => handleClickFav()}
-                        >
-                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                        </label>
-                      </div>
-                    </div>
-                  </CardActions>
-                  <div className="My-Post-Page-Card-Area">
-                    <div className="My-Post-Page-Card-Flex">
-                      <div className="My-Post-Page-Card-Left">
-                        <img className="My-Post-Page-Card-Img" src={Circle} />
-                        <label className="My-Post-Page-Card-Status">
-                          สถานะกิจกรรม :
-                        </label>
-                        <label className="My-Post-Page-Card-Status"> {prod.status} </label>
-                      </div>
-                      <div className="My-Post-Page-Card-Right">
-                        <label className="My-Post-Page-Card-Name">
-                          {prod.name}
-                        </label>
-                        <div className="My-Post-Page-Card-Date-Time">
-                          <label className="My-Post-Page-Card-Date">
-                            <img
-                              className="My-Post-Page-Card-Icon-Size"
-                              src={Day}
-                            />
-                             {prod.dateStart}
-                          </label>
-                          <label className="My-Post-Page-Card-Time">
-                            <img
-                              className="My-Post-Page-Card-Icon-Size"
-                              src={Time}
-                            />
-                            {prod.timeStart}
-                          </label>
-                        </div>
-
-                        <label className="My-Post-Page-Card-Location">
-                          <img
-                            className="My-Post-Page-Card-Icon-Size"
-                            src={Location}
-                          />
-                           {prod.place}
-                        </label>
-                        <div className="My-Post-Page-Card-Members-Close">
-                          <label className="My-Post-Page-Card-Members">
-                            <img
-                              className="My-Post-Page-Card-Icon-Size"
-                              src={Members}
-                            />
-                             {prod.participantsNumber}
-                          </label>
-                          <label className="My-Post-Page-Card-Close">
-                            <img
-                              className="My-Post-Page-Card-Icon-Size"
-                              src={Closed}
-                            />
-                            {prod.dateCloseApply}
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <CardActions>
-                    <div className="My-Post-Page-Card-More-Div">
+    {/* <div className="My-Post-Page-Fixed-Bg">
+      <nav className="My-Post-Page-Card-Nav">
+        <p className="My-Post-Page-Card-Nav-Popular">ชื่นชอบ</p>
+      </nav>
+    </div> */}
+    <div className="My-Post-Page-Card-List">
+    {data && (
+        <>
+          {/* {data.getAllPostsByAuthen.posts.map((prod) => (
+            <div key={prod._id}>
+              <h4>{prod.name}</h4>
+            </div>
+          ))} */}
+          {data.getOneUser.posts.map((prod) => (
+            <div key={prod._id}>
+              <Card className="My-Post-Page-Card">
+                <div className="My-Post-Page-Card-Area">
+                  <div className="My-Post-Page-Card-Flex">
+                    <div className="My-Post-Page-Card-Left">
                       <Link
                         key={prod._id}
                         href="/activity/[activityId]"
                         as={`/activity/${prod._id}`}
                       >
-                        <button className="Main-Page-Card-More">
-                          <a>รายละเอียดเพิ่มเติม >></a>
-                        </button>
+                        <img className="My-Post-Page-Card-Img" src={Chest} />
                       </Link>
+                      {/* <label className="My-Post-Page-Card-Status">
+                        สถานะกิจกรรม :
+                      </label>
+                      <label className="My-Post-Page-Card-Status"> {prod.status} </label> */}
                     </div>
-                  </CardActions>
-                </Card>
-              </div>
-            ))}
-          </>
-        )}
-      </div>
+                    <div className="My-Post-Page-Card-Right">
+                      <label className="My-Post-Page-Card-Name">
+                        {prod.name}
+                      </label>
+                      <div className="My-Post-Page-Card-Date-Time">
+                        <label className="My-Post-Page-Card-Date">
+                          <img
+                            className="My-Post-Page-Card-Icon-Size"
+                            src={Day}
+                          />
+                          {dateFormat(prod.dateStart, "d mmmm yyyy")}
+
+                          {/* <Moment format="D MMM YYYY">
+                            {prod.dateStart}
+                          </Moment> */}
+                        </label>
+                        <label className="My-Post-Page-Card-Time">
+                          <img
+                            className="My-Post-Page-Card-Icon-Size"
+                            src={Time}
+                          />
+                          {prod.timeStart} น.
+                        </label>
+                      </div>
+
+                      <label className="My-Post-Page-Card-Location">
+                        <img
+                          className="My-Post-Page-Card-Icon-Size"
+                          src={Location}
+                        />
+                        {prod.place}
+                      </label>
+                      {/* <div className="My-Post-Page-Card-Members-Close">
+                        <label className="My-Post-Page-Card-Members">
+                          <img
+                            className="My-Post-Page-Card-Icon-Size"
+                            src={Members}
+                          />
+                           {prod.participantsNumber}
+                        </label>
+                        <label className="My-Post-Page-Card-Close">
+                          <img
+                            className="My-Post-Page-Card-Icon-Size"
+                            src={Closed}
+                          />
+                          {prod.dateCloseApply}
+                        </label>
+                      </div> */}
+                    </div>
+                  </div>
+                </div>
+                {/* <CardActions>
+                  <div className="My-Post-Page-Card-More-Div">
+                    <Link
+                      key={prod._id}
+                      href="/activity/[activityId]"
+                      as={`/activity/${prod._id}`}
+                    >
+                      <button className="My-Post-Page-Card-More">
+                        <a>รายละเอียดเพิ่มเติม >></a>
+                      </button>
+                    </Link>
+                  </div>
+                </CardActions> */}
+              </Card>
+            </div>
+          ))}
+        </>
+      )}
     </div>
+  </div>
   );
 };
 

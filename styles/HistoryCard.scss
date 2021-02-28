@@ -1,10 +1,10 @@
-.My-Hist-Page-Fixed-Bg {
+.Main-Page-Fixed-Bg {
   position: fixed;
-  background-color: rgb(255, 255, 255);
+  //background-color: rgb(255, 255, 255);
   height: 120px;
-  width: 510px;
-  margin-top: 2px;
-  border-color: rgb(255, 255, 255);
+  width: 530px;
+  margin-top: 46px;
+  //border-color: rgb(255, 255, 255);
 }
 
 .Filter-Items-Div {
@@ -39,7 +39,7 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color: #ffffff;
+  background-color:#ffffff;
   border-color: #ffffff;
 }
 
@@ -47,16 +47,25 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color: #ffffff;
+  background-color:#ffffff;
   border-color: #ffffff;
 }
 
+.Main-Page-Banner-Slider {
+  width: 500px;
+  position: fixed;
+}
+
+.thumb {
+  visibility: hidden;
+}
+
 .My-Hist-Page-Card-Div {
-  //overflow: hidden;
+  overflow: hidden;
   //margin-left: 35%;
-  max-width: 550px;
+  //max-width: 550px;
   padding: 10px;
-  margin-top: 200px;
+  //margin-top: 200px;
   //position: fixed;
   background-color: rgb(255, 255, 255);
   // border-style: solid;
@@ -75,7 +84,7 @@
   width: 530px;
   border-radius: 10px;
   color: $dark-orange;
-
+  
   //background: #d6d5d5;
 }
 
@@ -89,15 +98,20 @@
 }
 
 .My-Hist-Page-Card-List {
-  margin-top: 150px;
+  margin-top: 170px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 10px;
+  padding: 10px;
 }
 
 .My-Hist-Page-Card {
-  max-width: 550px;
+  max-width: 200px;
   margin-top: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #111111;
+  // border-style: solid;
+  // border-width: 1px;
+  // border-color: #111111;
 }
 
 .My-Hist-Page-Card-Media {
@@ -107,7 +121,7 @@
 .My-Hist-Page-Card-Top-Div {
   display: flex;
   flex-direction: row;
-
+  
   margin-left: 65%;
   align-items: center;
 }
@@ -153,7 +167,7 @@
 
 .My-Hist-Page-Card-Flex {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .My-Hist-Page-Card-Left {
@@ -165,7 +179,8 @@
 
 .My-Hist-Page-Card-Img {
   width: 100px;
-  height: 100px;
+  //height: 100px;
+  border-radius: 5px;
 }
 
 .My-Hist-Page-Card-Status {
@@ -193,7 +208,7 @@
 
 .My-Hist-Page-Card-Date-Time {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
 }
 
@@ -211,7 +226,7 @@
 
 .My-Hist-Page-Card-Location {
   font-family: "Prompt", sans-serif;
-  font-size: 15px;
+  font-size: 10px;
 }
 
 .My-Hist-Page-Card-Members-Close {
@@ -233,7 +248,7 @@
 }
 
 .My-Hist-Page-Card-More-Div {
-  margin-left: 65%;
+  margin-left: 5%;
 }
 
 .My-Hist-Page-Card-More {

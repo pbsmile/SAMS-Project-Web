@@ -20,16 +20,64 @@ import Closed from "../../Image/closed.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
+
 import Chest from "../../Image/chest.jpg";
 import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
 import Moment from "react-moment";
 import "moment-timezone";
 
+const dateFormat = require("dateformat");
+dateFormat.i18n = {
+  dayNames: [
+    "วันอาทิตย์",
+    "วันจันทร์",
+    "วันอังคาร",
+    "วันพุธ",
+    "วันพฤหัสบดี",
+    "วันศุกร์",
+    "วันเสาร์",
+    "วันอาทิตย์",
+    "วันจันทร์",
+    "วันอังคาร",
+    "วันพุธ",
+    "วันพฤหัสบดี",
+    "วันศุกร์",
+    "วันเสาร์",
+  ],
+  monthNames: [
+    "มกราคม",
+    "กุมภาพันธ์",
+    "มีนาคม",
+    "เมษายน",
+    "พฤษภาคม",
+    "มิถุนายน",
+    "กรกฎาคม",
+    "สิงหาคม",
+    "กันยายน",
+    "ตุลาคม",
+    "พฤศจิกายน",
+    "ธันวาคม",
+    "มกราคม",
+    "กุมภาพันธ์",
+    "มีนาคม",
+    "เมษายน",
+    "พฤษภาคม",
+    "มิถุนายน",
+    "กรกฎาคม",
+    "สิงหาคม",
+    "กันยายน",
+    "ตุลาคม",
+    "พฤศจิกายน",
+    "ธันวาคม",
+  ],
+  timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
+};
+
 const QUERY_MYFAV = gql`
   query {
     getOneUser {
       name
-      joins{
+      joins {
         _id
         name
         status
@@ -76,11 +124,11 @@ const HistoryCard = () => {
   };
   return (
     <div className="My-Hist-Page-Card-Div">
-      <div className="My-Hist-Page-Fixed-Bg">
+      {/* <div className="My-Hist-Page-Fixed-Bg">
         <nav className="My-Hist-Page-Card-Nav">
-          <p className="My-Hist-Page-Card-Nav-Popular">ประวัติ</p>
+          <p className="My-Hist-Page-Card-Nav-Popular">ชื่นชอบ</p>
         </nav>
-      </div>
+      </div> */}
       <div className="My-Hist-Page-Card-List">
         {data && (
           <>
@@ -92,47 +140,20 @@ const HistoryCard = () => {
             {data.getOneUser.joins.map((prod) => (
               <div key={prod._id}>
                 <Card className="My-Hist-Page-Card">
-                  <CardActions>
-                    <div className="My-Hist-Page-Card-Top-Div">
-                      {/* <button className="My-Hist-Page-Card-Join"></button> */}
-                      <div className="My-Hist-Page-Card-Box">
-                        <img
-                          className="My-Hist-Page-Card-Join"
-                          src={toggleJoin == "unjoin" ? Unjoin : Join}
-                          onClick={() => handleClickJoin()}
-                        ></img>
-                        <label
-                          className="My-Hist-Page-Card-Join-Text"
-                          onClick={() => handleClickJoin()}
-                        >
-                          {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
-                        </label>
-                      </div>
-
-                      {/* <button className="My-Hist-Page-Card-Favorite"></button> */}
-                      <div className="My-Hist-Page-Card-Box">
-                        <img
-                          className="My-Hist-Page-Card-Join"
-                          src={toggleFav == "unfav" ? Unfav : Fav}
-                          onClick={() => handleClickFav()}
-                        ></img>
-                        <label
-                          className="My-Hist-Page-Card-Favorite-Text"
-                          onClick={() => handleClickFav()}
-                        >
-                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                        </label>
-                      </div>
-                    </div>
-                  </CardActions>
                   <div className="My-Hist-Page-Card-Area">
                     <div className="My-Hist-Page-Card-Flex">
                       <div className="My-Hist-Page-Card-Left">
-                        <img className="My-Hist-Page-Card-Img" src={Circle} />
-                        <label className="My-Hist-Page-Card-Status">
+                        <Link
+                          key={prod._id}
+                          href="/activity/[activityId]"
+                          as={`/activity/${prod._id}`}
+                        >
+                          <img className="My-Hist-Page-Card-Img" src={Chest} />
+                        </Link>
+                        {/* <label className="My-Hist-Page-Card-Status">
                           สถานะกิจกรรม :
                         </label>
-                        <label className="My-Hist-Page-Card-Status"> {prod.status} </label>
+                        <label className="My-Hist-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="My-Hist-Page-Card-Right">
                         <label className="My-Hist-Page-Card-Name">
@@ -144,14 +165,18 @@ const HistoryCard = () => {
                               className="My-Hist-Page-Card-Icon-Size"
                               src={Day}
                             />
-                             {prod.dateStart}
+                            {dateFormat(prod.dateStart, "d mmmm yyyy")}
+
+                            {/* <Moment format="D MMM YYYY">
+                              {prod.dateStart}
+                            </Moment> */}
                           </label>
                           <label className="My-Hist-Page-Card-Time">
                             <img
                               className="My-Hist-Page-Card-Icon-Size"
                               src={Time}
                             />
-                            {prod.timeStart}
+                            {prod.timeStart} น.
                           </label>
                         </div>
 
@@ -160,9 +185,9 @@ const HistoryCard = () => {
                             className="My-Hist-Page-Card-Icon-Size"
                             src={Location}
                           />
-                           {prod.place}
+                          {prod.place}
                         </label>
-                        <div className="My-Hist-Page-Card-Members-Close">
+                        {/* <div className="My-Hist-Page-Card-Members-Close">
                           <label className="My-Hist-Page-Card-Members">
                             <img
                               className="My-Hist-Page-Card-Icon-Size"
@@ -177,23 +202,23 @@ const HistoryCard = () => {
                             />
                             {prod.dateCloseApply}
                           </label>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
-                  <CardActions>
+                  {/* <CardActions>
                     <div className="My-Hist-Page-Card-More-Div">
                       <Link
                         key={prod._id}
                         href="/activity/[activityId]"
                         as={`/activity/${prod._id}`}
                       >
-                        <button className="Main-Page-Card-More">
+                        <button className="My-Hist-Page-Card-More">
                           <a>รายละเอียดเพิ่มเติม >></a>
                         </button>
                       </Link>
                     </div>
-                  </CardActions>
+                  </CardActions> */}
                 </Card>
               </div>
             ))}

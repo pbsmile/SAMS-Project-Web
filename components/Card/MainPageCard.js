@@ -65,6 +65,53 @@ const MainPageCard = () => {
   const [toggleFav, setToggleFav] = useState("unfav");
   console.log("Fav>>", toggleFav);
 
+  const dateFormat = require("dateformat");
+  dateFormat.i18n = {
+    dayNames: [
+      "วันอาทิตย์",
+      "วันจันทร์",
+      "วันอังคาร",
+      "วันพุธ",
+      "วันพฤหัสบดี",
+      "วันศุกร์",
+      "วันเสาร์",
+      "วันอาทิตย์",
+      "วันจันทร์",
+      "วันอังคาร",
+      "วันพุธ",
+      "วันพฤหัสบดี",
+      "วันศุกร์",
+      "วันเสาร์",
+    ],
+    monthNames: [
+      "มกราคม",
+      "กุมภาพันธ์",
+      "มีนาคม",
+      "เมษายน",
+      "พฤษภาคม",
+      "มิถุนายน",
+      "กรกฎาคม",
+      "สิงหาคม",
+      "กันยายน",
+      "ตุลาคม",
+      "พฤศจิกายน",
+      "ธันวาคม",
+      "มกราคม",
+      "กุมภาพันธ์",
+      "มีนาคม",
+      "เมษายน",
+      "พฤษภาคม",
+      "มิถุนายน",
+      "กรกฎาคม",
+      "สิงหาคม",
+      "กันยายน",
+      "ตุลาคม",
+      "พฤศจิกายน",
+      "ธันวาคม",
+    ],
+    timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
+  };
+
   const handleClickJoin = () => {
     if (toggleJoin == "unjoin") {
       setToggleJoin("join");
@@ -128,10 +175,11 @@ const MainPageCard = () => {
                               className="Main-Page-Card-Icon-Size"
                               src={Day}
                             />
+                            {dateFormat(prod.dateStart, "d mmmm yyyy")}
 
-                            <Moment format="D MMM YYYY">
+                            {/* <Moment format="D MMM YYYY">
                               {prod.dateStart}
-                            </Moment>
+                            </Moment> */}
                           </label>
                           <label className="Main-Page-Card-Time">
                             <img
