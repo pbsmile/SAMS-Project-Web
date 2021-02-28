@@ -4,7 +4,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Circle from "../../Image/circle.png";
 import Chest from "../../Image/chest.jpg";
@@ -23,12 +23,16 @@ import { AuthContext } from "../../appState/AuthProvider";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import gql from "graphql-tag";
+import Router from "next/router";
 
 import { useMutation } from "@apollo/react-hooks";
 import Link from "next/link";
 
 import Moment from "react-moment";
 import "moment-timezone";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Modal } from "react-bootstrap";
 
 const REVIEW = gql`
   mutation REVIEW(
@@ -138,6 +142,20 @@ const ActivityInfo = () => {
   const [canReview, setCanReview] = useState(false);
   console.log("can review >>", canReview);
 
+  const dateFormat = require("dateformat");
+
+  const [showModalJoin, setShowModalJoin] = useState(false);
+  const handleCloseModalJoin = () => setShowModalJoin(false);
+  const handleShowModalJoin = () => setShowModalJoin(true);
+
+  const [showModalReport, setShowModalReport] = useState(false);
+  const handleCloseModalReport = () => setShowModalReport(false);
+  const handleShowModalReport = () => setShowModalReport(true);
+
+  const [showModalReview, setShowModalReview] = useState(false);
+  const handleCloseModalReview = () => setShowModalReview(false);
+  const handleShowModalReview = () => setShowModalReview(true);
+
   const { user, signout } = useContext(AuthContext);
 
   // console.log("data:image/jpeg;base64," + base64encodedimg)
@@ -202,6 +220,7 @@ const ActivityInfo = () => {
       if (data) {
         console.log(data);
         setToggleJoin("join");
+        setShowModalJoin(false)
         //Router.push("/activity");
       }
     },
@@ -214,6 +233,7 @@ const ActivityInfo = () => {
       if (data) {
         console.log(data);
         setToggleJoin("unjoin");
+        setShowModalJoin(false)
         //Router.push("/activity");
       }
     },
@@ -226,6 +246,7 @@ const ActivityInfo = () => {
       if (data) {
         console.log(data);
         setToggleFav("fav");
+        
         //Router.push("/activity");
       }
     },
@@ -238,6 +259,7 @@ const ActivityInfo = () => {
       if (data) {
         console.log(data);
         setToggleFav("unfav");
+       
         //Router.push("/activity");
       }
     },
@@ -249,6 +271,7 @@ const ActivityInfo = () => {
     onCompleted: (data) => {
       if (data) {
         console.log(data);
+        setShowModalReport(false)
         //Router.push("/activity");
       }
     },
@@ -260,6 +283,7 @@ const ActivityInfo = () => {
     onCompleted: (data) => {
       if (data) {
         console.log(data);
+        setShowModalReview(false)
         //Router.push("/activity");
       }
     },
@@ -383,11 +407,11 @@ const ActivityInfo = () => {
                       <img
                         className="Activity-Info-Page-Card-Join"
                         src={toggleJoin == "unjoin" ? Unjoin : Join}
-                        onClick={() => handleClickJoin()}
+                        onClick={() => handleShowModalJoin()}
                       ></img>
                       <label
                         className="Activity-Info-Page-Card-Join-Text"
-                        onClick={() => handleClickJoin()}
+                        onClick={() => handleShowModalJoin()}
                       >
                         {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
                       </label>
@@ -436,14 +460,14 @@ const ActivityInfo = () => {
               {user && !createUser && canReview && (
                 <>
                   <div>
-                    <button onClick={() => handleClickReview()}>รีวิว</button>
+                    <button onClick={() => handleShowModalReview()}>รีวิว</button>
                   </div>
                 </>
               )}
               {user && !createUser && (
                 <>
                   <div>
-                    <button onClick={() => handleClickReport()}>รีพอร์ต</button>
+                    <button onClick={() => handleShowModalReport()}>รีพอร์ต</button>
                   </div>
                 </>
               )}
@@ -468,6 +492,69 @@ const ActivityInfo = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <Modal
+          show={showModalJoin}
+          onHide={handleCloseModalJoin}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>ยืนยันสมัครเข้าร่วมกิจกรรม</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+                        ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+                        สถานที่ : {data.getOnePost.place}<br></br>
+                        คณะ/วิทยาลัย : {data.getOnePost.major}<br></br>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="btn btn-outline-danger" onClick={handleCloseModalJoin}>ยกเลิก</Button>
+                        <Button variant="btn btn-info" onClick={handleClickJoin}>ยืนยัน</Button>
+                    </Modal.Footer>
+        </Modal>
+      </div>
+      <div>
+        <Modal
+          show={showModalReport}
+          onHide={handleCloseModalReport}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>ยืนยันการรีพอร์ต</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+                        ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+                        สถานที่ : {data.getOnePost.place}<br></br>
+                        คณะ/วิทยาลัย : {data.getOnePost.major}<br></br>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="btn btn-outline-danger" onClick={handleCloseModalReport}>ยกเลิก</Button>
+                        <Button variant="btn btn-info" onClick={handleClickReport}>ยืนยัน</Button>
+                    </Modal.Footer>
+        </Modal>
+      </div>
+      <div>
+        <Modal
+          show={showModalReview}
+          onHide={handleCloseModalReview}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>ยืนยันการรีพอร์ต</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+                        ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+                        สถานที่ : {data.getOnePost.place}<br></br>
+                        คณะ/วิทยาลัย : {data.getOnePost.major}<br></br>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="btn btn-outline-danger" onClick={handleCloseModalReview}>ยกเลิก</Button>
+                        <Button variant="btn btn-info" onClick={handleClickReview}>ยืนยัน</Button>
+                    </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );
