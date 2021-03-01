@@ -226,3 +226,18 @@
   border-width: 2px;
   border-color: #efefef;
 }
+
+.Activity-Info-Page-Card-Star-Rating-Title{
+  text-align: center;
+}
+
+.Activity-Info-Page-Card-Star-Rating-Body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.Activity-Info-Page-Card-Star-Rating-Text{
+  width: 200px;
+  height: 35px;
+}

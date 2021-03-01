@@ -33,7 +33,6 @@ import "moment-timezone";
 // import {ฺModal } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal } from "react-bootstrap";
 
@@ -101,16 +100,13 @@ const UNFAVPOST = gql`
 
 const SENDEMAIL = gql`
   mutation SENDEMAIL($postId: String!, $subject: String!, $message: String) {
-    sendEmail(input: {
-        postId: $postId,
-        subject: $subject,
-        message: $message
-    })
-    {
+    sendEmail(
+      input: { postId: $postId, subject: $subject, message: $message }
+    ) {
       name
     }
   }
-`
+`;
 
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
@@ -141,8 +137,7 @@ const ActivityInfo = () => {
   const postId = route.query.activityId;
   const reportPostId = route.query.activityId;
   const reviewPostId = route.query.activityId;
-  const comment = "ทดสอบ";
-  const reportComment = "ทดสอบReport";
+  const [reportComment, setReportComment] = useState("");
   const [reviewComment, setReviewComment] = useState("");
   const [reviewRate, setReviewRate] = useState(0);
 
@@ -167,6 +162,11 @@ const ActivityInfo = () => {
   const handleChangeReviewText = (e) => {
     console.log("Value", e.target.value);
     setReviewComment(e.target.value);
+  };
+
+  const handleChangeReportText = (e) => {
+    console.log("Value", e.target.value);
+    setReportComment(e.target.value);
   };
 
   const dateFormat = require("dateformat");
@@ -378,28 +378,26 @@ const ActivityInfo = () => {
         setsendEmailInfo({
           subject: "",
           message: "",
-        })
+        });
       }
-      setAnnounceShow(false)
-      console.log("Send Email Complete")
+      setAnnounceShow(false);
+      console.log("Send Email Complete");
     },
-
-  })
-
+  });
 
   const handleEmailSubmit = async () => {
-    console.log("onclick submit")
+    console.log("onclick submit");
     await sendEmail();
-  }
+  };
 
-  const handleEmailChange = e => {
-    console.log("Value", e.target.value)
+  const handleEmailChange = (e) => {
+    console.log("Value", e.target.value);
     setsendEmailInfo({
       ...sendEmailInfo,
-      [e.target.name]: e.target.value
-    })
-    console.log(sendEmailInfo)
-  }
+      [e.target.name]: e.target.value,
+    });
+    console.log(sendEmailInfo);
+  };
 
   console.log("postId", postId);
 
@@ -618,12 +616,24 @@ const ActivityInfo = () => {
                 <Modal.Title>กรอกรายละเอียดที่ต้องการแจ้ง</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+                ชื่อกิจกรรม : {data.getOnePost.name}
+                <br></br>
                 หัวข้อเรื่อง :
-                <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
+                <input
+                  type="text"
+                  name="subject"
+                  className="Post-Input-Fill-Data"
+                  onChange={handleEmailChange}
+                  value={sendEmailInfo.subject}
+                />
                 รายละเอียด :
-                <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
-
+                <textarea
+                  type="text"
+                  name="message"
+                  className="Post-Input-Fill-Data Post-Input-Large-Fill-Data"
+                  onChange={handleEmailChange}
+                  value={sendEmailInfo.message}
+                />
                 {/* วันที่จัดกิจกรรม : {dateFormat(userInfo.dateStart, "d/m/yyyy")} ถึง {dateFormat(userInfo.dateEnd, "d/m/yyyy")}<br></br>
                         เวลาที่จัดกิจกรรม : {userInfo.timeStart} น. ถึง {userInfo.timeEnd} น.<br></br>
                         สถานที่ : {userInfo.place}<br></br>
@@ -632,8 +642,15 @@ const ActivityInfo = () => {
                     วันที่ปิดรับสมัคร : {dateFormat(userInfo.dateCloseApply, "d/m/yyyy HH:MM")} น.<br></br> */}
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="btn btn-outline-danger" onClick={announceClose}>ยกเลิก</Button>
-                <Button variant="btn btn-info" onClick={handleEmailSubmit}>ยืนยัน</Button>
+                <Button
+                  variant="btn btn-outline-danger"
+                  onClick={announceClose}
+                >
+                  ยกเลิก
+                </Button>
+                <Button variant="btn btn-info" onClick={handleEmailSubmit}>
+                  ยืนยัน
+                </Button>
               </Modal.Footer>
             </Modal>
           </div>
@@ -683,10 +700,13 @@ const ActivityInfo = () => {
           <Modal.Body>
             ชื่อกิจกรรม : {data.getOnePost.name}
             <br></br>
-            สถานที่ : {data.getOnePost.place}
-            <br></br>
-            คณะ/วิทยาลัย : {data.getOnePost.major}
-            <br></br>
+            ข้อความเพิ่มเติม :
+              <textarea
+                type="text"
+                placeholder=""
+                onChange={handleChangeReportText}
+                className="Activity-Info-Page-Card-Report-Text"
+              />
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -709,23 +729,27 @@ const ActivityInfo = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>รีวิวกิจกรรม</Modal.Title>
+            <Modal.Title className="Activity-Info-Page-Card-Star-Rating-Title">รีวิวกิจกรรม</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            ชื่อกิจกรรม : {data.getOnePost.name}
-            <br></br>
-            <ReactStars
-              count={5}
-              onChange={ratingChanged}
-              size={24}
-              activeColor="#ffd700"
-            />
-            <div className="Review-Text-Area">
+          <Modal.Body className="Activity-Info-Page-Card-Star-Rating-Body">
+            <div>ชื่อกิจกรรม : {data.getOnePost.name}</div>
+            <div className="Activity-Info-Page-Card-Star-Rating-Star-Div">
+              <ReactStars
+                count={5}
+                onChange={ratingChanged}
+                size={24}
+                activeColor="#ffd700"
+                className="Activity-Info-Page-Card-Star-Rating-Star"
+              />
+            </div>
+
+            <div className="Activity-Info-Page-Card-Star-Rating-Text-Area">
+              เพิ่มเติม :
               <textarea
                 type="text"
-                className="Review-Text"
                 placeholder=""
                 onChange={handleChangeReviewText}
+                className="Activity-Info-Page-Card-Star-Rating-Text"
               />
             </div>
           </Modal.Body>
