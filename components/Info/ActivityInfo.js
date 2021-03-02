@@ -215,6 +215,7 @@ const ActivityInfo = () => {
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
+  // const [isVisible, setIsVisible] = useState(true)
 
   const [show, setAnnounceShow] = useState(false);
   const announceClose = () => setAnnounceShow(false);
@@ -555,7 +556,8 @@ const ActivityInfo = () => {
             <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Action">
               {createUser && (
                 <>
-                  <div>
+                {/* style={{ display: isVisible ? "block" : "none" }} */}
+                  <div >
                     <Link
                       key={data.getOnePost._id}
                       href="/editActivity/[activityId]"
@@ -565,7 +567,14 @@ const ActivityInfo = () => {
                     </Link>
 
                     <button onClick={announceShow}>ส่งข้อมูล</button>
-                    <button>เช็คชื่อ</button>
+                    <Link
+                      key={data.getOnePost._id}
+                      href="/attendanceCheck/[activityId]"
+                      as={`/attendanceCheck/${data.getOnePost._id}`}
+                    >
+                      <button>เช็คชื่อ</button>
+                    </Link>
+                    
                     <button>ลบ</button>
                   </div>
                 </>

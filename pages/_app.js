@@ -5,7 +5,7 @@ import apolloClient from "../apollo/apolloclient";
 import fetch from "isomorphic-unfetch";
 import cookie from "cookie";
 import Cookies from "js-cookie";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const QUERY_USER = {
