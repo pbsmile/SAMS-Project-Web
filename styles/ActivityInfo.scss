@@ -227,6 +227,11 @@
   border-color: #efefef;
 }
 
+.Activity-Info-Page-Card-Report-Title {
+  text-align: center;
+  color: #0084AC;
+}
+
 .Activity-Info-Page-Card-Report-Body {
   display: flex;
   flex-direction: column;
@@ -242,8 +247,10 @@
   width: 200px;
   height: 35px;
 }
+
 .Activity-Info-Page-Card-Star-Rating-Title {
   text-align: center;
+  color: #0084AC;
 }
 
 .Activity-Info-Page-Card-Star-Rating-Body {

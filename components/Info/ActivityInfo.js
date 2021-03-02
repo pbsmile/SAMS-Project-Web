@@ -695,7 +695,7 @@ const ActivityInfo = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>ยืนยันการรีพอร์ต</Modal.Title>
+            <Modal.Title className="Activity-Info-Page-Card-Report-Title">ยืนยันการรีพอร์ต</Modal.Title>
           </Modal.Header>
           <Modal.Body className="Activity-Info-Page-Card-Report-Body">
             <div>ชื่อกิจกรรม : {data.getOnePost.name}</div>

@@ -32,7 +32,7 @@ const ProfileCard = () => {
   return (
     <div className="Profile-Card-Div">
       <div className="Profile-Card-Div-Topic">
-        <p className="Profile-Card-Topic">ชื่อ นามสกุล</p>
+        <p className="Profile-Card-Topic">ชื่อ-นามสกุล</p>
         <p className="Profile-Card-Topic">อีเมล</p>
         <p className="Profile-Card-Topic">รหัสศึกษา</p>
         <p className="Profile-Card-Topic">คณะ/วิทยาลัย</p>
