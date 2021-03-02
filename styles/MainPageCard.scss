@@ -175,6 +175,8 @@
   flex-direction: column;
   max-width: 120px;
   padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Main-Page-Card-Img {
@@ -201,7 +203,7 @@
 }
 
 .Main-Page-Card-Name {
-  margin-top: 20px;
+  //margin-top: 20px;
   font-family: "Prompt", sans-serif;
   font-size: 20px;
 }
@@ -215,7 +217,8 @@
 .Main-Page-Card-Date {
   width: 259px;
   font-family: "Prompt", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
+  color: #ED0000;
 }
 
 .Main-Page-Card-Time {

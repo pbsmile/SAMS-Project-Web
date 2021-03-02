@@ -226,3 +226,45 @@
   border-width: 2px;
   border-color: #efefef;
 }
+
+.Activity-Info-Page-Card-Report-Title {
+  text-align: center;
+  color: #0084AC;
+}
+
+.Activity-Info-Page-Card-Report-Body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  div {
+    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.Activity-Info-Page-Card-Report-Text {
+  width: 200px;
+  height: 35px;
+}
+
+.Activity-Info-Page-Card-Star-Rating-Title {
+  text-align: center;
+  color: #0084AC;
+}
+
+.Activity-Info-Page-Card-Star-Rating-Body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  div {
+    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.Activity-Info-Page-Card-Star-Rating-Text {
+  width: 200px;
+  height: 35px;
+}

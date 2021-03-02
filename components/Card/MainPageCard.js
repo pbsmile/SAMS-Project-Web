@@ -49,7 +49,7 @@ const QUERY_POSTAUTH = gql`
 `;
 
 const MainPageCard = () => {
-  const {data} = useQuery(QUERY_POSTAUTH, {
+  const { data } = useQuery(QUERY_POSTAUTH, {
     pollInterval: 3000,
     onCompleted: (data) => {
       if (data) {
@@ -68,46 +68,46 @@ const MainPageCard = () => {
   const dateFormat = require("dateformat");
   dateFormat.i18n = {
     dayNames: [
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
     ],
     monthNames: [
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
@@ -166,29 +166,29 @@ const MainPageCard = () => {
                         <label className="Main-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="Main-Page-Card-Right">
-                        <label className="Main-Page-Card-Name">
-                          {prod.name}
-                        </label>
                         <div className="Main-Page-Card-Date-Time">
                           <label className="Main-Page-Card-Date">
-                            <img
+                            {/* <img
                               className="Main-Page-Card-Icon-Size"
                               src={Day}
-                            />
-                            {dateFormat(prod.dateStart, "d mmmm yyyy")}
+                            /> */}
+                            {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} - {prod.timeStart} น.
 
                             {/* <Moment format="D MMM YYYY">
                               {prod.dateStart}
                             </Moment> */}
                           </label>
-                          <label className="Main-Page-Card-Time">
+                          {/* <label className="Main-Page-Card-Time">
                             <img
                               className="Main-Page-Card-Icon-Size"
                               src={Time}
                             />
                             {prod.timeStart} น.
-                          </label>
+                          </label> */}
                         </div>
+                        <label className="Main-Page-Card-Name">
+                          {prod.name}
+                        </label>
 
                         <label className="Main-Page-Card-Location">
                           <img

@@ -29,46 +29,46 @@ import "moment-timezone";
 const dateFormat = require("dateformat");
 dateFormat.i18n = {
   dayNames: [
-    "วันอาทิตย์",
-    "วันจันทร์",
-    "วันอังคาร",
-    "วันพุธ",
-    "วันพฤหัสบดี",
-    "วันศุกร์",
-    "วันเสาร์",
-    "วันอาทิตย์",
-    "วันจันทร์",
-    "วันอังคาร",
-    "วันพุธ",
-    "วันพฤหัสบดี",
-    "วันศุกร์",
-    "วันเสาร์",
+    "อา.",
+    "จ.",
+    "อ.",
+    "พ.",
+    "พฤ.",
+    "ศ.",
+    "ส.",
+    "อา.",
+    "จ.",
+    "อ.",
+    "พ.",
+    "พฤ.",
+    "ศ.",
+    "ส.",
   ],
   monthNames: [
-    "มกราคม",
-    "กุมภาพันธ์",
-    "มีนาคม",
-    "เมษายน",
-    "พฤษภาคม",
-    "มิถุนายน",
-    "กรกฎาคม",
-    "สิงหาคม",
-    "กันยายน",
-    "ตุลาคม",
-    "พฤศจิกายน",
-    "ธันวาคม",
-    "มกราคม",
-    "กุมภาพันธ์",
-    "มีนาคม",
-    "เมษายน",
-    "พฤษภาคม",
-    "มิถุนายน",
-    "กรกฎาคม",
-    "สิงหาคม",
-    "กันยายน",
-    "ตุลาคม",
-    "พฤศจิกายน",
-    "ธันวาคม",
+    "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
   ],
   timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
 };
@@ -156,29 +156,28 @@ const HistoryCard = () => {
                         <label className="My-Hist-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="My-Hist-Page-Card-Right">
-                        <label className="My-Hist-Page-Card-Name">
-                          {prod.name}
-                        </label>
                         <div className="My-Hist-Page-Card-Date-Time">
                           <label className="My-Hist-Page-Card-Date">
-                            <img
+                            {/* <img
                               className="My-Hist-Page-Card-Icon-Size"
                               src={Day}
-                            />
-                            {dateFormat(prod.dateStart, "d mmmm yyyy")}
-
+                            /> */}
+                            {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} - {prod.timeStart} น.
                             {/* <Moment format="D MMM YYYY">
                               {prod.dateStart}
                             </Moment> */}
                           </label>
-                          <label className="My-Hist-Page-Card-Time">
+                          {/* <label className="My-Hist-Page-Card-Time">
                             <img
                               className="My-Hist-Page-Card-Icon-Size"
                               src={Time}
                             />
                             {prod.timeStart} น.
-                          </label>
+                          </label> */}
                         </div>
+                        <label className="My-Hist-Page-Card-Name">
+                          {prod.name}
+                        </label>
 
                         <label className="My-Hist-Page-Card-Location">
                           <img

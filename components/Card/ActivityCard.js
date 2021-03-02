@@ -61,46 +61,46 @@ const ActivityCard = () => {
   const dateFormat = require("dateformat");
   dateFormat.i18n = {
     dayNames: [
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
     ],
     monthNames: [
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
@@ -113,7 +113,6 @@ const ActivityCard = () => {
       setToggleJoin("unjoin");
     }
   };
-
 
   const handleClickFav = () => {
     if (toggleFav == "unfav") {
@@ -133,7 +132,7 @@ const ActivityCard = () => {
       </div>
 
       <div className="Activity-Page-Card-List">
-      {data && (
+        {data && (
           <>
             {/* {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
@@ -159,28 +158,28 @@ const ActivityCard = () => {
                         <label className="Activity-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="Activity-Page-Card-Right">
-                        <label className="Activity-Page-Card-Name">
-                          {prod.name}
-                        </label>
                         <div className="Activity-Page-Card-Date-Time">
                           <label className="Activity-Page-Card-Date">
-                            <img
+                            {/* <img
                               className="Activity-Page-Card-Icon-Size"
                               src={Day}
-                            />
-                            {dateFormat(prod.dateStart, "d mmmm yyyy")}
+                            /> */}
+                            {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} - {prod.timeStart} น.
                             {/* <Moment format="D MMM YYYY">
                               {prod.dateStart}
                             </Moment> */}
                           </label>
-                          <label className="Activity-Page-Card-Time">
+                          {/* <label className="Activity-Page-Card-Time">
                             <img
                               className="Activity-Page-Card-Icon-Size"
                               src={Time}
                             />
                             {prod.timeStart} น.
-                          </label>
+                          </label> */}
                         </div>
+                        <label className="Activity-Page-Card-Name">
+                          {prod.name}
+                        </label>
 
                         <label className="Activity-Page-Card-Location">
                           <img

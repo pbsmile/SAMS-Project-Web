@@ -61,46 +61,46 @@ const MyPostCard = () => {
   const dateFormat = require("dateformat");
   dateFormat.i18n = {
     dayNames: [
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
     ],
     monthNames: [
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
@@ -124,70 +124,69 @@ const MyPostCard = () => {
   };
   return (
     <div className="My-Post-Page-Card-Div">
-    {/* <div className="My-Post-Page-Fixed-Bg">
+      {/* <div className="My-Post-Page-Fixed-Bg">
       <nav className="My-Post-Page-Card-Nav">
         <p className="My-Post-Page-Card-Nav-Popular">ชื่นชอบ</p>
       </nav>
     </div> */}
-    <div className="My-Post-Page-Card-List">
-    {data && (
-        <>
-          {/* {data.getAllPostsByAuthen.posts.map((prod) => (
+      <div className="My-Post-Page-Card-List">
+        {data && (
+          <>
+            {/* {data.getAllPostsByAuthen.posts.map((prod) => (
             <div key={prod._id}>
               <h4>{prod.name}</h4>
             </div>
           ))} */}
-          {data.getOneUser.posts.map((prod) => (
-            <div key={prod._id}>
-              <Card className="My-Post-Page-Card">
-                <div className="My-Post-Page-Card-Area">
-                  <div className="My-Post-Page-Card-Flex">
-                    <div className="My-Post-Page-Card-Left">
-                      <Link
-                        key={prod._id}
-                        href="/activity/[activityId]"
-                        as={`/activity/${prod._id}`}
-                      >
-                        <img className="My-Post-Page-Card-Img" src={Chest} />
-                      </Link>
-                      {/* <label className="My-Post-Page-Card-Status">
+            {data.getOneUser.posts.map((prod) => (
+              <div key={prod._id}>
+                <Card className="My-Post-Page-Card">
+                  <div className="My-Post-Page-Card-Area">
+                    <div className="My-Post-Page-Card-Flex">
+                      <div className="My-Post-Page-Card-Left">
+                        <Link
+                          key={prod._id}
+                          href="/activity/[activityId]"
+                          as={`/activity/${prod._id}`}
+                        >
+                          <img className="My-Post-Page-Card-Img" src={Chest} />
+                        </Link>
+                        {/* <label className="My-Post-Page-Card-Status">
                         สถานะกิจกรรม :
                       </label>
                       <label className="My-Post-Page-Card-Status"> {prod.status} </label> */}
-                    </div>
-                    <div className="My-Post-Page-Card-Right">
-                      <label className="My-Post-Page-Card-Name">
-                        {prod.name}
-                      </label>
-                      <div className="My-Post-Page-Card-Date-Time">
-                        <label className="My-Post-Page-Card-Date">
-                          <img
+                      </div>
+                      <div className="My-Post-Page-Card-Right">
+                        {" "}
+                        <div className="My-Post-Page-Card-Date-Time">
+                          <label className="My-Post-Page-Card-Date">
+                            {/* <img
                             className="My-Post-Page-Card-Icon-Size"
                             src={Day}
-                          />
-                          {dateFormat(prod.dateStart, "d mmmm yyyy")}
-
-                          {/* <Moment format="D MMM YYYY">
+                          /> */}
+                            {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} - {prod.timeStart} น.
+                            {/* <Moment format="D MMM YYYY">
                             {prod.dateStart}
                           </Moment> */}
-                        </label>
-                        <label className="My-Post-Page-Card-Time">
+                          </label>
+                          {/* <label className="My-Post-Page-Card-Time">
                           <img
                             className="My-Post-Page-Card-Icon-Size"
                             src={Time}
                           />
                           {prod.timeStart} น.
+                        </label> */}
+                        </div>
+                        <label className="My-Post-Page-Card-Name">
+                          {prod.name}
                         </label>
-                      </div>
-
-                      <label className="My-Post-Page-Card-Location">
-                        <img
-                          className="My-Post-Page-Card-Icon-Size"
-                          src={Location}
-                        />
-                        {prod.place}
-                      </label>
-                      {/* <div className="My-Post-Page-Card-Members-Close">
+                        <label className="My-Post-Page-Card-Location">
+                          <img
+                            className="My-Post-Page-Card-Icon-Size"
+                            src={Location}
+                          />
+                          {prod.place}
+                        </label>
+                        {/* <div className="My-Post-Page-Card-Members-Close">
                         <label className="My-Post-Page-Card-Members">
                           <img
                             className="My-Post-Page-Card-Icon-Size"
@@ -203,10 +202,10 @@ const MyPostCard = () => {
                           {prod.dateCloseApply}
                         </label>
                       </div> */}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* <CardActions>
+                  {/* <CardActions>
                   <div className="My-Post-Page-Card-More-Div">
                     <Link
                       key={prod._id}
@@ -219,13 +218,13 @@ const MyPostCard = () => {
                     </Link>
                   </div>
                 </CardActions> */}
-              </Card>
-            </div>
-          ))}
-        </>
-      )}
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </div>
-  </div>
   );
 };
 

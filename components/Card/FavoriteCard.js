@@ -27,57 +27,57 @@ import Moment from "react-moment";
 import "moment-timezone";
 
 const dateFormat = require("dateformat");
-  dateFormat.i18n = {
-    dayNames: [
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
-    ],
-    monthNames: [
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
-    ],
-    timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
-  };
+dateFormat.i18n = {
+  dayNames: [
+    "อา.",
+    "จ.",
+    "อ.",
+    "พ.",
+    "พฤ.",
+    "ศ.",
+    "ส.",
+    "อา.",
+    "จ.",
+    "อ.",
+    "พ.",
+    "พฤ.",
+    "ศ.",
+    "ส.",
+  ],
+  monthNames: [
+    "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+  ],
+  timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
+};
 
 const QUERY_MYFAV = gql`
   query {
     getOneUser {
       name
-      favs{
+      favs {
         _id
         name
         status
@@ -130,7 +130,7 @@ const FavoriteCard = () => {
         </nav>
       </div> */}
       <div className="My-Fav-Page-Card-List">
-      {data && (
+        {data && (
           <>
             {/* {data.getAllPostsByAuthen.posts.map((prod) => (
               <div key={prod._id}>
@@ -156,29 +156,29 @@ const FavoriteCard = () => {
                         <label className="My-Fav-Page-Card-Status"> {prod.status} </label> */}
                       </div>
                       <div className="My-Fav-Page-Card-Right">
-                        <label className="My-Fav-Page-Card-Name">
-                          {prod.name}
-                        </label>
                         <div className="My-Fav-Page-Card-Date-Time">
                           <label className="My-Fav-Page-Card-Date">
-                            <img
+                            {/* <img
                               className="My-Fav-Page-Card-Icon-Size"
                               src={Day}
-                            />
-                            {dateFormat(prod.dateStart, "d mmmm yyyy")}
-
+                            /> */}
+                            {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} - {prod.timeStart} น.
                             {/* <Moment format="D MMM YYYY">
                               {prod.dateStart}
                             </Moment> */}
                           </label>
-                          <label className="My-Fav-Page-Card-Time">
+                          {/* <label className="My-Fav-Page-Card-Time">
                             <img
                               className="My-Fav-Page-Card-Icon-Size"
                               src={Time}
                             />
                             {prod.timeStart} น.
-                          </label>
+                          </label> */}
                         </div>
+
+                        <label className="My-Fav-Page-Card-Name">
+                          {prod.name}
+                        </label>
 
                         <label className="My-Fav-Page-Card-Location">
                           <img
