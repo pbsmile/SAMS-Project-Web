@@ -239,9 +239,9 @@ const ActivityInfo = () => {
   };
   // const [isVisible, setIsVisible] = useState(true)
 
-  const [show, setAnnounceShow] = useState(false);
-  const announceClose = () => setAnnounceShow(false);
-  const announceShow = () => setAnnounceShow(true);
+  const [showModalSendEmail, setShowModalSendEmail] = useState(false);
+  const handleCloseModalSendEmail = () => setShowModalSendEmail(false);
+  const handleShowModalSendEmail = () => setShowModalSendEmail(true);
 
   const [showModalJoin, setShowModalJoin] = useState(false);
   const handleCloseModalJoin = () => setShowModalJoin(false);
@@ -408,7 +408,7 @@ const ActivityInfo = () => {
           message: "",
         })
       }
-      setAnnounceShow(false)
+      setShowModalSendEmail(false)
       console.log("Send Email Complete")
     },
 
@@ -608,7 +608,8 @@ const ActivityInfo = () => {
                       <button>แก้ไข</button>
                     </Link>
 
-                    <button onClick={announceShow}>ส่งข้อมูล</button>
+                    <button onClick={handleShowModalSendEmail}>ส่งข้อมูล</button>
+
                     <Link
                       key="attendanceCheck"
                       href="/attendanceCheck/[activityId]"
@@ -665,8 +666,8 @@ const ActivityInfo = () => {
       </div>
       <div>
         <Modal
-          show={show}
-          onHide={announceClose}
+          show={showModalSendEmail}
+          onHide={handleCloseModalSendEmail}
           backdrop="static"
           keyboard={false}
         >
@@ -674,14 +675,14 @@ const ActivityInfo = () => {
             <Modal.Title>กรอกรายละเอียดที่ต้องการแจ้ง</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
-                หัวข้อเรื่อง :
-                <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
-                รายละเอียด :
-                <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
+              ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+              หัวข้อเรื่อง :
+              <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
+              รายละเอียด :
+              <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="btn btn-outline-danger" onClick={announceClose}>ยกเลิก</Button>
+            <Button variant="btn btn-outline-danger" onClick={handleCloseModalSendEmail}>ยกเลิก</Button>
             <Button variant="btn btn-info" onClick={handleEmailSubmit}>ยืนยัน</Button>
           </Modal.Footer>
         </Modal>
