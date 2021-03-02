@@ -12,7 +12,7 @@ const attendanceCheck = () => {
             Activities Page
             for web
             SAMS
-            <ActivityInfo/>
+            {/* <ActivityInfo/> */}
             <AttendanceCheck/>
         </div>
     )
