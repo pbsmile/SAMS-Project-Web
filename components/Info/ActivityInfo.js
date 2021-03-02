@@ -112,6 +112,28 @@ const SENDEMAIL = gql`
   }
 `
 
+const ATTENDANCECHECK = gql`
+  mutation ATTENDANCECHECK($postId: String!,$checkedUsersId: [String!]){
+    attendanceCheck(input:{
+      postId:$postId,
+      checkedUsersId:$checkedUsersId
+    })
+    {
+      checkedUsers{
+        name
+      }
+    }
+  }
+`
+
+const DELETEPOST = gql`
+  mutation DELETEPOST($postId: String!) {
+    deletePost(input: { postId: $postId }) {
+      name
+    }
+  }
+`
+
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
     getOnePost(input: { postId: $postId }) {
@@ -215,10 +237,11 @@ const ActivityInfo = () => {
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
+  // const [isVisible, setIsVisible] = useState(true)
 
-  const [show, setAnnounceShow] = useState(false);
-  const announceClose = () => setAnnounceShow(false);
-  const announceShow = () => setAnnounceShow(true);
+  const [showModalSendEmail, setShowModalSendEmail] = useState(false);
+  const handleCloseModalSendEmail = () => setShowModalSendEmail(false);
+  const handleShowModalSendEmail = () => setShowModalSendEmail(true);
 
   const [showModalJoin, setShowModalJoin] = useState(false);
   const handleCloseModalJoin = () => setShowModalJoin(false);
@@ -231,6 +254,11 @@ const ActivityInfo = () => {
   const [showModalReview, setShowModalReview] = useState(false);
   const handleCloseModalReview = () => setShowModalReview(false);
   const handleShowModalReview = () => setShowModalReview(true);
+
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const handleCloseModalDelete = () => setShowModalDelete(false);
+  const handleShowModalDelete = () => setShowModalDelete(true);
+
 
   const { user, signout } = useContext(AuthContext);
 
@@ -380,12 +408,25 @@ const ActivityInfo = () => {
           message: "",
         })
       }
-      setAnnounceShow(false)
+      setShowModalSendEmail(false)
       console.log("Send Email Complete")
     },
 
   })
 
+  const [deletePost] = useMutation(DELETEPOST, {
+    variables: { postId },
+    onCompleted: (data) => {
+      if (data) {
+        console.log(data);
+      }
+      Router.push("/profile");
+      console.log("Detete Complete")
+    },
+
+  })
+
+  console.log("postId", postId);
 
   const handleEmailSubmit = async () => {
     console.log("onclick submit")
@@ -401,7 +442,9 @@ const ActivityInfo = () => {
     console.log(sendEmailInfo)
   }
 
-  console.log("postId", postId);
+  const handleClickDelete = async () => {
+    await deletePost();
+  }
 
   const handleClickJoin = async () => {
     if (toggleJoin == "unjoin") {
@@ -555,18 +598,27 @@ const ActivityInfo = () => {
             <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Action">
               {createUser && (
                 <>
-                  <div>
+                  {/* style={{ display: isVisible ? "block" : "none" }} */}
+                  <div >
                     <Link
-                      key={data.getOnePost._id}
+                      key="editActivity"
                       href="/editActivity/[activityId]"
                       as={`/editActivity/${data.getOnePost._id}`}
                     >
                       <button>แก้ไข</button>
                     </Link>
 
-                    <button onClick={announceShow}>ส่งข้อมูล</button>
-                    <button>เช็คชื่อ</button>
-                    <button>ลบ</button>
+                    <button onClick={handleShowModalSendEmail}>ส่งข้อมูล</button>
+
+                    <Link
+                      key="attendanceCheck"
+                      href="/attendanceCheck/[activityId]"
+                      as={`/attendanceCheck/${postId}`}
+                    >
+                      <button>เช็คชื่อ</button>
+                    </Link>
+
+                    <button onClick={handleShowModalDelete}>ลบ</button>
                   </div>
                 </>
               )}
@@ -608,36 +660,51 @@ const ActivityInfo = () => {
               </div>
             </div>
 
-            <Modal
-              show={show}
-              onHide={announceClose}
-              backdrop="static"
-              keyboard={false}
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>กรอกรายละเอียดที่ต้องการแจ้ง</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
-                หัวข้อเรื่อง :
-                <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
-                รายละเอียด :
-                <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
 
-                {/* วันที่จัดกิจกรรม : {dateFormat(userInfo.dateStart, "d/m/yyyy")} ถึง {dateFormat(userInfo.dateEnd, "d/m/yyyy")}<br></br>
-                        เวลาที่จัดกิจกรรม : {userInfo.timeStart} น. ถึง {userInfo.timeEnd} น.<br></br>
-                        สถานที่ : {userInfo.place}<br></br>
-                        คณะ/วิทยาลัย : {userInfo.major}<br></br>
-                        จำนวนที่เปิดรับสมัคร : {userInfo.participantsNumber} คน<br></br>
-                    วันที่ปิดรับสมัคร : {dateFormat(userInfo.dateCloseApply, "d/m/yyyy HH:MM")} น.<br></br> */}
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="btn btn-outline-danger" onClick={announceClose}>ยกเลิก</Button>
-                <Button variant="btn btn-info" onClick={handleEmailSubmit}>ยืนยัน</Button>
-              </Modal.Footer>
-            </Modal>
           </div>
         </div>
+      </div>
+      <div>
+        <Modal
+          show={showModalSendEmail}
+          onHide={handleCloseModalSendEmail}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>กรอกรายละเอียดที่ต้องการแจ้ง</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
+              หัวข้อเรื่อง :
+              <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
+              รายละเอียด :
+              <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="btn btn-outline-danger" onClick={handleCloseModalSendEmail}>ยกเลิก</Button>
+            <Button variant="btn btn-info" onClick={handleEmailSubmit}>ยืนยัน</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+      <div>
+        <Modal
+          show={showModalDelete}
+          onHide={handleCloseModalDelete}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>คุณต้องการลบโพสต์กิจกรรม</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {data.getOnePost.name}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="btn btn-outline-danger" onClick={handleCloseModalDelete}>ยกเลิก</Button>
+            <Button variant="btn btn-info" onClick={handleClickDelete}>ยืนยัน</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
       <div>
         <Modal
