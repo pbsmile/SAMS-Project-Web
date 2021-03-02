@@ -697,16 +697,17 @@ const ActivityInfo = () => {
           <Modal.Header closeButton>
             <Modal.Title>ยืนยันการรีพอร์ต</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            ชื่อกิจกรรม : {data.getOnePost.name}
-            <br></br>
-            ข้อความเพิ่มเติม :
+          <Modal.Body className="Activity-Info-Page-Card-Report-Body">
+            <div>ชื่อกิจกรรม : {data.getOnePost.name}</div>
+            <div>
+              ข้อความเพิ่มเติม :
               <textarea
                 type="text"
                 placeholder=""
                 onChange={handleChangeReportText}
                 className="Activity-Info-Page-Card-Report-Text"
               />
+            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -729,7 +730,9 @@ const ActivityInfo = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title className="Activity-Info-Page-Card-Star-Rating-Title">รีวิวกิจกรรม</Modal.Title>
+            <Modal.Title className="Activity-Info-Page-Card-Star-Rating-Title">
+              รีวิวกิจกรรม
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body className="Activity-Info-Page-Card-Star-Rating-Body">
             <div>ชื่อกิจกรรม : {data.getOnePost.name}</div>
@@ -738,7 +741,7 @@ const ActivityInfo = () => {
                 count={5}
                 onChange={ratingChanged}
                 size={24}
-                activeColor="#ffd700"
+                activeColor="#E9A605y"
                 className="Activity-Info-Page-Card-Star-Rating-Star"
               />
             </div>
