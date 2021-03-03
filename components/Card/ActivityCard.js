@@ -39,6 +39,7 @@ const QUERY_POSTAUTH = gql`
         place
         participantsNumber
         dateCloseApply
+        major
         canJoin
         canFav
       }
@@ -58,10 +59,14 @@ const ActivityCard = () => {
   const [toggleFav, setToggleFav] = useState("unfav");
   console.log("Fav>>", toggleFav);
 
-  const [value, setValue] = useState();
-  const [valueYear, setValueYear] = useState();
-  const [valueMajor, setValueMajor] = useState();
-  const [valueStatus, setValueStatus] = useState();
+  const [value, setValue] = useState("");
+  const [valueYear, setValueYear] = useState("");
+  const [valueMajor, setValueMajor] = useState("");
+  const [valueStatus, setValueStatus] = useState("");
+
+  console.log(valueYear);
+  console.log(valueMajor);
+  console.log(valueStatus);
 
   const dateFormat = require("dateformat");
   dateFormat.i18n = {
@@ -130,53 +135,63 @@ const ActivityCard = () => {
   return (
     <div className="Activity-Page-Card-Div">
       <div className="Activity-Page-Fixed-Bg">
-        <nav className="Activity-Page-Card-Nav">
+        {/* <nav className="Activity-Page-Card-Nav">
           <p className="Activity-Page-Card-Nav-Popular">กิจกรรมทั้งหมด</p>
-        </nav>
-        <div>
-          <div className="Filter-Items-Div">
-            <nav className="Filter-Items Filter-Items-Flex">
-              <select className="Filter-Years" id="Filter-Years">
-                <option value="0000">ปีการศึกษา</option>
-                <option value="2561">2561</option>
-                <option value="2562">2562</option>
-                <option value="2563">2563</option>
-              </select>
-              <select className="Filter-Departments" id="Filter-Departments">
-                <option value="0">เลือกคณะ/วิทยาลัย</option>
-                <option value="1">คณะวิศวกรรมศาสตร์</option>
-                <option value="2">คณะสถาปัตยกรรมศาสตร</option>
-                <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
-                <option value="4">คณะวิทยาศาสตร์</option>
-                <option value="5">คณะเทคโนโลยีการเกษตร </option>
-                <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
-                <option value="7">คณะการบริหารและการจัดการ</option>
-                <option value="8">คณะศิลปศาสตร์</option>
-                <option value="9">คณะแพทยศาสตร์</option>
-                <option value="10">
-                  วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง
-                </option>
-                <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
-                <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
-                <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
-                <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
-              </select>
-              <select className="Filter-Statuses" id="Filter-Filter-Statuses">
-                <option value="Status">สถานะโครงการ</option>
-                <option value="Open">เปิดรับสมัคร</option>
-                <option value="Close">ปิดรับสมัคร</option>
-                <option value="Limites">เต็มจำนวนรับ</option>
-              </select>
-            </nav>
-            <input
-              className="Filter-Search-Bar"
-              placeholder="ค้นหากิจกรรม"
-              type="text"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-            ></input>
-          </div>
+        </nav> */}
+
+        <div className="Main-Page-Filter-Items-Div">
+          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+            <select className="Main-Page-Filter-Years" id="Main-Page-Filter-Years">
+              <option value="0000">ปีการศึกษา</option>
+              <option value="2561">2561</option>
+              <option value="2562">2562</option>
+              <option value="2563">2563</option>
+            </select>
+            <select
+              className="Main-Page-Filter-Departments"
+              id="Main-Page-Filter-Departments"
+              onChange={(e) => setValueMajor(e.target.value)}
+              value={valueMajor}
+            >
+              <option value="">เลือกคณะ/วิทยาลัย</option>
+              <option value="1">คณะวิศวกรรมศาสตร์</option>
+              <option value="2">คณะสถาปัตยกรรมศาสตร</option>
+              <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
+              <option value="4">คณะวิทยาศาสตร์</option>
+              <option value="5">คณะเทคโนโลยีการเกษตร </option>
+              <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
+              <option value="7">คณะการบริหารและการจัดการ</option>
+              <option value="8">คณะศิลปศาสตร์</option>
+              <option value="9">คณะแพทยศาสตร์</option>
+              <option value="10">
+                วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง
+              </option>
+              <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
+              <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
+              <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
+              <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
+            </select>
+            <select
+              className="Main-Page-Filter-Statuses"
+              id="Main-Page-Filter-Main-Page-Filter-Statuses"
+              onChange={(e) => setValueStatus(e.target.value)}
+              value={valueStatus}
+            >
+              <option value="">สถานะโครงการ</option>
+              <option value="open">เปิดรับสมัคร</option>
+              <option value="closed">ปิดรับสมัคร</option>
+              <option value="limit">เต็มจำนวนรับ</option>
+            </select>
+          </nav>
+          <input
+            className="Main-Page-Filter-Search-Bar"
+            placeholder="ค้นหากิจกรรม"
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          ></input>
         </div>
+
         {/* <Filter /> */}
       </div>
 
@@ -190,13 +205,13 @@ const ActivityCard = () => {
             ))} */}
             {data.getAllPostsByAuthen.posts
               .filter((item) => {
-                if (!value) return true;
+                if (!value && !valueMajor && !valueStatus) return true;
                 if (
-                  item._id.includes(value) ||
-                  (item.name.includes(value))
-                ) {
+                  item.name.includes(value) &&
+                  item.status.includes(valueStatus) &&
+                  item.major.includes(valueMajor)
+                )
                   return true;
-                }
               })
               .map((prod) => (
                 <div key={prod._id}>

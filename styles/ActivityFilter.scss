@@ -7,9 +7,8 @@
   //border-color: rgb(255, 255, 255);
 }
 
-.Filter-Items-Div {
+.Main-Page-Filter-Items-Div {
   position: fixed;
-  width: 530px;
   margin-bottom: 10px;
   background-color: #ffffff;
   border-style: solid;
@@ -18,16 +17,19 @@
   height: 40px;
   border-radius: 10px;
   margin-top: 65px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.Filter-Items {
+.Main-Page-Filter-Items {
   height: 40px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
 }
 
-.Filter-Years {
+.Main-Page-Filter-Years {
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
@@ -35,7 +37,7 @@
   border-color: #ffffff;
 }
 
-.Filter-Departments {
+.Main-Page-Filter-Departments {
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
@@ -43,7 +45,7 @@
   border-color: #ffffff;
 }
 
-.Filter-Statuses {
+.Main-Page-Filter-Statuses {
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
