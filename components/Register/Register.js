@@ -148,21 +148,21 @@ const register = () => {
                             <label>คณะ/วิทยาลัย</label>
 
                             <select className="register_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} value={dropdown} >
-                                <option value="0">เลือกคณะ/วิทยาลัย</option>
-                                <option value="1">คณะวิศวกรรมศาสตร์</option>
-                                <option value="2">คณะสถาปัตยกรรมศาสตร</option>
-                                <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
-                                <option value="4">คณะวิทยาศาสตร์</option>
-                                <option value="5">คณะเทคโนโลยีการเกษตร </option>
-                                <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
-                                <option value="7">คณะการบริหารและการจัดการ</option>
-                                <option value="8">คณะศิลปศาสตร์</option>
-                                <option value="9">คณะแพทยศาสตร์</option>
-                                <option value="10">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
-                                <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
-                                <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
-                                <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
-                                <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
+                            <option value="ไม่ระบุ">เลือกคณะ/วิทยาลัย</option>
+                                <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
+                                <option value="คณะสถาปัตยกรรมศาสตร์">คณะสถาปัตยกรรมศาสตร์</option>
+                                <option value="คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
+                                <option value="คณะวิทยาศาสตร์">คณะวิทยาศาสตร์</option>
+                                <option value="คณะเทคโนโลยีการเกษตร">คณะเทคโนโลยีการเกษตร </option>
+                                <option value="คณะเทคโนโลยีสารสนเทศ">คณะเทคโนโลยีสารสนเทศ</option>
+                                <option value="คณะการบริหารและการจัดการ">คณะการบริหารและการจัดการ</option>
+                                <option value="คณะศิลปศาสตร์">คณะศิลปศาสตร์</option>
+                                <option value="คณะแพทยศาสตร์">คณะแพทยศาสตร์</option>
+                                <option value="วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
+                                <option value="วิทยาลัยนวัตกรรมการผลิตขั้นสูง">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
+                                <option value="วิทยาลัยอุตสาหกรรมการบินนานาชาติ">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
+                                <option value="วิทยาลัยวิจัยนวัตกรรมทางการศึกษา">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
+                                <option value="วิทยาลัยวิศวกรรมสังคีต">วิทยาลัยวิศวกรรมสังคีต</option>
                             </select>
                         </div>
                     </div>
