@@ -11,12 +11,7 @@
   position: fixed;
   margin-bottom: 10px;
   background-color: #ffffff;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  height: 40px;
-  border-radius: 10px;
-  margin-top: 65px;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -26,7 +21,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 10px;
+  margin-top: 5px;
 }
 
 .Main-Page-Filter-Years {
@@ -66,7 +65,7 @@
   overflow: hidden;
   //margin-left: 35%;
   //max-width: 550px;
-  padding: 10px;
+  //padding: 10px;
   //margin-top: 200px;
   //position: fixed;
   background-color: rgb(255, 255, 255);

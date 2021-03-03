@@ -141,7 +141,10 @@ const ActivityCard = () => {
 
         <div className="Main-Page-Filter-Items-Div">
           <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
-            <select className="Main-Page-Filter-Years" id="Main-Page-Filter-Years">
+            <select
+              className="Main-Page-Filter-Years"
+              id="Main-Page-Filter-Years"
+            >
               <option value="0000">ปีการศึกษา</option>
               <option value="2561">2561</option>
               <option value="2562">2562</option>
@@ -182,14 +185,18 @@ const ActivityCard = () => {
               <option value="closed">ปิดรับสมัคร</option>
               <option value="limit">เต็มจำนวนรับ</option>
             </select>
+            
           </nav>
-          <input
-            className="Main-Page-Filter-Search-Bar"
-            placeholder="ค้นหากิจกรรม"
-            type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          ></input>
+          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+            <input
+              className="Main-Page-Filter-Search-Bar"
+              placeholder="ค้นหากิจกรรม"
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            ></input>
+          </nav>
+          
         </div>
 
         {/* <Filter /> */}
