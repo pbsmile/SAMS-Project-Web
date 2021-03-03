@@ -146,7 +146,6 @@ const register = () => {
                     <div className="register_input mb-3">
                         <div onChange={handleChange} value={dropdown}>
                             <label>คณะ/วิทยาลัย</label>
-
                             <select className="register_input_data" name="major" onChange={(e) => { setDropdown(e.target.value) }} value={dropdown} >
                             <option value="ไม่ระบุ">เลือกคณะ/วิทยาลัย</option>
                                 <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
