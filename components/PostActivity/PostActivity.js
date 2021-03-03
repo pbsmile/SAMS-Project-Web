@@ -204,7 +204,7 @@ const post = () => {
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
                                 <form noValidate className="Post-Calendar-Time">
-                                    <input type="date" name="dateStart" className="Post-Input-Fill-Data"  InputLabelProps={{shrink: true,}} data-date-format="MM-DD-YYY"onChange={handleChange} value={userInfo.dateStart} />
+                                    <input type="date" name="dateStart" className="Post-Input-Fill-Data" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateStart} />
 
                                     {/* <TextField
                                         id="date"
@@ -221,7 +221,7 @@ const post = () => {
                                 </form>
                                 <h3 className="Post-Calendar-Time">ถึง</h3>
                                 <form noValidate className="Post-Calendar">
-                                    <input type="date" name="dateEnd" className="Post-Input-Fill-Data" InputLabelProps={{shrink: true,}} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateEnd} />
+                                    <input type="date" name="dateEnd" className="Post-Input-Fill-Data" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateEnd} />
                                     {/* <TextField
                                         id="date"
                                         name="dateEnd"
@@ -321,7 +321,7 @@ const post = () => {
                         </div>
                         <div className="Post-Column2 Post-Input">
                             <div className="Post-Flex-Row">
-                                <input type="datetime-local" name="dateCloseApply" className="Post-Input-Fill-Data" InputLabelProps={{shrink: true,}} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateCloseApply} />
+                                <input type="datetime-local" name="dateCloseApply" className="Post-Input-Fill-Data" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateCloseApply} />
 
                                 {/* <TextField
                                     id="datetime-local"
@@ -345,22 +345,22 @@ const post = () => {
                         </div>
                         <div className="Post-Column2 Post-Input" onChange={handleChange} value={major}>
                             <select className="Post-Input-Fill-Data" name="major" onChange={(e) => { setMajor(e.target.value) }} value={major}>
-                                <option value="0">เลือกคณะ/วิทยาลัย</option>
-                                <option value="1">คณะวิศวกรรมศาสตร์</option>
-                                <option value="2">คณะสถาปัตยกรรมศาสตร</option>
-                                <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
-                                <option value="4">คณะวิทยาศาสตร์</option>
-                                <option value="5">คณะเทคโนโลยีการเกษตร </option>
-                                <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
-                                <option value="7">คณะการบริหารและการจัดการ</option>
-                                <option value="8">คณะศิลปศาสตร์</option>
-                                <option value="9">คณะแพทยศาสตร์</option>
-                                <option value="10">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
-                                <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
-                                <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
-                                <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
-                                <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
-                                <option value="15">ทั้งหมด</option>
+                                <option value="ไม่ระบุ">เลือกคณะ/วิทยาลัย</option>
+                                <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
+                                <option value="คณะสถาปัตยกรรมศาสตร์">คณะสถาปัตยกรรมศาสตร์</option>
+                                <option value="คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
+                                <option value="คณะวิทยาศาสตร์">คณะวิทยาศาสตร์</option>
+                                <option value="คณะเทคโนโลยีการเกษตร">คณะเทคโนโลยีการเกษตร </option>
+                                <option value="คณะเทคโนโลยีสารสนเทศ">คณะเทคโนโลยีสารสนเทศ</option>
+                                <option value="คณะการบริหารและการจัดการ">คณะการบริหารและการจัดการ</option>
+                                <option value="คณะศิลปศาสตร์">คณะศิลปศาสตร์</option>
+                                <option value="คณะแพทยศาสตร์">คณะแพทยศาสตร์</option>
+                                <option value="วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
+                                <option value="วิทยาลัยนวัตกรรมการผลิตขั้นสูง">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
+                                <option value="วิทยาลัยอุตสาหกรรมการบินนานาชาติ">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
+                                <option value="วิทยาลัยวิจัยนวัตกรรมทางการศึกษา">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
+                                <option value="วิทยาลัยวิศวกรรมสังคีต">วิทยาลัยวิศวกรรมสังคีต</option>
+                                <option value="ทั้งหมด">ทั้งหมด</option>
                             </select>
                         </div>
                     </div>
