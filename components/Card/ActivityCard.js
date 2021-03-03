@@ -39,6 +39,7 @@ const QUERY_POSTAUTH = gql`
         place
         participantsNumber
         dateCloseApply
+        major
         canJoin
         canFav
       }
@@ -57,6 +58,15 @@ const ActivityCard = () => {
   console.log("Join>>", toggleJoin);
   const [toggleFav, setToggleFav] = useState("unfav");
   console.log("Fav>>", toggleFav);
+
+  const [value, setValue] = useState("");
+  const [valueYear, setValueYear] = useState("");
+  const [valueMajor, setValueMajor] = useState("");
+  const [valueStatus, setValueStatus] = useState("");
+
+  console.log(valueYear);
+  console.log(valueMajor);
+  console.log(valueStatus);
 
   const dateFormat = require("dateformat");
   dateFormat.i18n = {
@@ -125,10 +135,71 @@ const ActivityCard = () => {
   return (
     <div className="Activity-Page-Card-Div">
       <div className="Activity-Page-Fixed-Bg">
-        <nav className="Activity-Page-Card-Nav">
+        {/* <nav className="Activity-Page-Card-Nav">
           <p className="Activity-Page-Card-Nav-Popular">กิจกรรมทั้งหมด</p>
-        </nav>
-        <Filter />
+        </nav> */}
+
+        <div className="Main-Page-Filter-Items-Div">
+          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+            <select
+              className="Main-Page-Filter-Years"
+              id="Main-Page-Filter-Years"
+            >
+              <option value="0000">ปีการศึกษา</option>
+              <option value="2561">2561</option>
+              <option value="2562">2562</option>
+              <option value="2563">2563</option>
+            </select>
+            <select
+              className="Main-Page-Filter-Departments"
+              id="Main-Page-Filter-Departments"
+              onChange={(e) => setValueMajor(e.target.value)}
+              value={valueMajor}
+            >
+              <option value="">เลือกคณะ/วิทยาลัย</option>
+              <option value="1">คณะวิศวกรรมศาสตร์</option>
+              <option value="2">คณะสถาปัตยกรรมศาสตร</option>
+              <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
+              <option value="4">คณะวิทยาศาสตร์</option>
+              <option value="5">คณะเทคโนโลยีการเกษตร </option>
+              <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
+              <option value="7">คณะการบริหารและการจัดการ</option>
+              <option value="8">คณะศิลปศาสตร์</option>
+              <option value="9">คณะแพทยศาสตร์</option>
+              <option value="10">
+                วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง
+              </option>
+              <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
+              <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
+              <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
+              <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
+            </select>
+            <select
+              className="Main-Page-Filter-Statuses"
+              id="Main-Page-Filter-Main-Page-Filter-Statuses"
+              onChange={(e) => setValueStatus(e.target.value)}
+              value={valueStatus}
+            >
+              <option value="">สถานะโครงการ</option>
+              <option value="open">เปิดรับสมัคร</option>
+              <option value="closed">ปิดรับสมัคร</option>
+              <option value="limit">เต็มจำนวนรับ</option>
+            </select>
+            
+          </nav>
+          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+            <input
+              className="Main-Page-Filter-Search-Bar"
+              placeholder="ค้นหากิจกรรม"
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            ></input>
+          </nav>
+          
+        </div>
+
+        {/* <Filter /> */}
       </div>
 
       <div className="Activity-Page-Card-List">
@@ -139,56 +210,70 @@ const ActivityCard = () => {
                 <h4>{prod.name}</h4>
               </div>
             ))} */}
-            {data.getAllPostsByAuthen.posts.map((prod) => (
-              <div key={prod._id}>
-                <Card className="Activity-Page-Card">
-                  <div className="Activity-Page-Card-Area">
-                    <div className="Activity-Page-Card-Flex">
-                      <div className="Activity-Page-Card-Left">
-                        <Link
-                          key={prod._id}
-                          href="/activity/[activityId]"
-                          as={`/activity/${prod._id}`}
-                        >
-                          <img className="Activity-Page-Card-Img" src={Chest} />
-                        </Link>
-                        {/* <label className="Activity-Page-Card-Status">
+            {data.getAllPostsByAuthen.posts
+              .filter((item) => {
+                if (!value && !valueMajor && !valueStatus) return true;
+                if (
+                  item.name.includes(value) &&
+                  item.status.includes(valueStatus) &&
+                  item.major.includes(valueMajor)
+                )
+                  return true;
+              })
+              .map((prod) => (
+                <div key={prod._id}>
+                  <Card className="Activity-Page-Card">
+                    <div className="Activity-Page-Card-Area">
+                      <div className="Activity-Page-Card-Flex">
+                        <div className="Activity-Page-Card-Left">
+                          <Link
+                            key={prod._id}
+                            href="/activity/[activityId]"
+                            as={`/activity/${prod._id}`}
+                          >
+                            <img
+                              className="Activity-Page-Card-Img"
+                              src={Chest}
+                            />
+                          </Link>
+                          {/* <label className="Activity-Page-Card-Status">
                           สถานะกิจกรรม :
                         </label>
                         <label className="Activity-Page-Card-Status"> {prod.status} </label> */}
-                      </div>
-                      <div className="Activity-Page-Card-Right">
-                        <div className="Activity-Page-Card-Date-Time">
-                          <label className="Activity-Page-Card-Date">
-                            {/* <img
+                        </div>
+                        <div className="Activity-Page-Card-Right">
+                          <div className="Activity-Page-Card-Date-Time">
+                            <label className="Activity-Page-Card-Date">
+                              {/* <img
                               className="Activity-Page-Card-Icon-Size"
                               src={Day}
                             /> */}
-                            {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} - {prod.timeStart} น.
-                            {/* <Moment format="D MMM YYYY">
+                              {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} -{" "}
+                              {prod.timeStart} น.
+                              {/* <Moment format="D MMM YYYY">
                               {prod.dateStart}
                             </Moment> */}
-                          </label>
-                          {/* <label className="Activity-Page-Card-Time">
+                            </label>
+                            {/* <label className="Activity-Page-Card-Time">
                             <img
                               className="Activity-Page-Card-Icon-Size"
                               src={Time}
                             />
                             {prod.timeStart} น.
                           </label> */}
-                        </div>
-                        <label className="Activity-Page-Card-Name">
-                          {prod.name}
-                        </label>
+                          </div>
+                          <label className="Activity-Page-Card-Name">
+                            {prod.name}
+                          </label>
 
-                        <label className="Activity-Page-Card-Location">
-                          <img
-                            className="Activity-Page-Card-Icon-Size"
-                            src={Location}
-                          />
-                          {prod.place}
-                        </label>
-                        {/* <div className="Activity-Page-Card-Members-Close">
+                          <label className="Activity-Page-Card-Location">
+                            <img
+                              className="Activity-Page-Card-Icon-Size"
+                              src={Location}
+                            />
+                            {prod.place}
+                          </label>
+                          {/* <div className="Activity-Page-Card-Members-Close">
                           <label className="Activity-Page-Card-Members">
                             <img
                               className="Activity-Page-Card-Icon-Size"
@@ -204,10 +289,10 @@ const ActivityCard = () => {
                             {prod.dateCloseApply}
                           </label>
                         </div> */}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {/* <CardActions>
+                    {/* <CardActions>
                     <div className="Activity-Page-Card-More-Div">
                       <Link
                         key={prod._id}
@@ -220,9 +305,9 @@ const ActivityCard = () => {
                       </Link>
                     </div>
                   </CardActions> */}
-                </Card>
-              </div>
-            ))}
+                  </Card>
+                </div>
+              ))}
           </>
         )}
       </div>
