@@ -24,6 +24,7 @@ import Chest from "../../Image/chest.jpg";
 import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
 import Moment from "react-moment";
 import "moment-timezone";
+import { isTypeNode } from "graphql";
 
 const QUERY_POSTAUTH = gql`
   query {
@@ -48,8 +49,12 @@ const QUERY_POSTAUTH = gql`
 `;
 
 const ActivityCard = () => {
+  const [year, setYear] = useState("");
+
   const { data } = useQuery(QUERY_POSTAUTH, {
     pollInterval: 3000,
+    // dateYear = data.getAllPostsByAuthen.posts.dateStart,
+    // setYear(dateFormat(dateYear, "yyyy"))
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
@@ -145,10 +150,12 @@ const ActivityCard = () => {
               className="Main-Page-Filter-Years"
               id="Main-Page-Filter-Years"
             >
-              <option value="0000">ปีการศึกษา</option>
-              <option value="2561">2561</option>
-              <option value="2562">2562</option>
-              <option value="2563">2563</option>
+              <option value="">ปีการศึกษา</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
             </select>
             <select
               className="Main-Page-Filter-Departments"
@@ -156,23 +163,37 @@ const ActivityCard = () => {
               onChange={(e) => setValueMajor(e.target.value)}
               value={valueMajor}
             >
-              <option value="">เลือกคณะ/วิทยาลัย</option>
-              <option value="1">คณะวิศวกรรมศาสตร์</option>
-              <option value="2">คณะสถาปัตยกรรมศาสตร</option>
-              <option value="3">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
-              <option value="4">คณะวิทยาศาสตร์</option>
-              <option value="5">คณะเทคโนโลยีการเกษตร </option>
-              <option value="6">คณะเทคโนโลยีสารสนเทศ</option>
-              <option value="7">คณะการบริหารและการจัดการ</option>
-              <option value="8">คณะศิลปศาสตร์</option>
-              <option value="9">คณะแพทยศาสตร์</option>
-              <option value="10">
+              <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
+              <option value="คณะสถาปัตยกรรมศาสตร์">คณะสถาปัตยกรรมศาสตร์</option>
+              <option value="คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี">
+                คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี
+              </option>
+              <option value="คณะวิทยาศาสตร์">คณะวิทยาศาสตร์</option>
+              <option value="คณะเทคโนโลยีการเกษตร">
+                คณะเทคโนโลยีการเกษตร{" "}
+              </option>
+              <option value="คณะเทคโนโลยีสารสนเทศ">คณะเทคโนโลยีสารสนเทศ</option>
+              <option value="คณะการบริหารและการจัดการ">
+                คณะการบริหารและการจัดการ
+              </option>
+              <option value="คณะศิลปศาสตร์">คณะศิลปศาสตร์</option>
+              <option value="คณะแพทยศาสตร์">คณะแพทยศาสตร์</option>
+              <option value="วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง">
                 วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง
               </option>
-              <option value="11">วิทยาลัยนวัตกรรมการผลิตขั้นสูง</option>
-              <option value="12">วิทยาลัยอุตสาหกรรมการบินนานาชาติ</option>
-              <option value="13">วิทยาลัยวิจัยนวัตกรรมทางการศึกษา</option>
-              <option value="14">วิทยาลัยวิศวกรรมสังคีต</option>
+              <option value="วิทยาลัยนวัตกรรมการผลิตขั้นสูง">
+                วิทยาลัยนวัตกรรมการผลิตขั้นสูง
+              </option>
+              <option value="วิทยาลัยอุตสาหกรรมการบินนานาชาติ">
+                วิทยาลัยอุตสาหกรรมการบินนานาชาติ
+              </option>
+              <option value="วิทยาลัยวิจัยนวัตกรรมทางการศึกษา">
+                วิทยาลัยวิจัยนวัตกรรมทางการศึกษา
+              </option>
+              <option value="วิทยาลัยวิศวกรรมสังคีต">
+                วิทยาลัยวิศวกรรมสังคีต
+              </option>
+              <option value="ทั้งหมด">ทั้งหมด</option>
             </select>
             <select
               className="Main-Page-Filter-Statuses"
@@ -185,7 +206,6 @@ const ActivityCard = () => {
               <option value="closed">ปิดรับสมัคร</option>
               <option value="limit">เต็มจำนวนรับ</option>
             </select>
-            
           </nav>
           <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
             <input
@@ -196,7 +216,6 @@ const ActivityCard = () => {
               onChange={(e) => setValue(e.target.value)}
             ></input>
           </nav>
-          
         </div>
 
         {/* <Filter /> */}
