@@ -108,20 +108,6 @@ const SENDEMAIL = gql`
   }
 `;
 
-const ATTENDANCECHECK = gql`
-  mutation ATTENDANCECHECK($postId: String!,$checkedUsersId: [String!]){
-    attendanceCheck(input:{
-      postId:$postId,
-      checkedUsersId:$checkedUsersId
-    })
-    {
-      checkedUsers{
-        name
-      }
-    }
-  }
-`
-
 const DELETEPOST = gql`
   mutation DELETEPOST($postId: String!) {
     deletePost(input: { postId: $postId }) {

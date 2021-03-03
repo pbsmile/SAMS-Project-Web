@@ -8,10 +8,7 @@ import AttendanceCheck from '../../components/AttendanceCheck/AttendanceCheck'
 const attendanceCheck = () => {
     return (
         <div>
-            <Navbar/>
-            Activities Page
-            for web
-            SAMS
+            {/* <Navbar/> */}
             {/* <ActivityInfo/> */}
             <AttendanceCheck/>
         </div>
