@@ -24,6 +24,7 @@ import Chest from "../../Image/chest.jpg";
 import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
 import Moment from "react-moment";
 import "moment-timezone";
+import { isTypeNode } from "graphql";
 
 const QUERY_POSTAUTH = gql`
   query {
@@ -48,8 +49,13 @@ const QUERY_POSTAUTH = gql`
 `;
 
 const ActivityCard = () => {
+
+  const [year, setYear] = useState("");
+
   const { data } = useQuery(QUERY_POSTAUTH, {
     pollInterval: 3000,
+    // dateYear = data.getAllPostsByAuthen.posts.dateStart, 
+    // setYear(dateFormat(dateYear, "yyyy"))
   });
   console.log(data);
   //console.log(result.data.getAllPostsByAuthen.posts)
@@ -145,10 +151,12 @@ const ActivityCard = () => {
               className="Main-Page-Filter-Years"
               id="Main-Page-Filter-Years"
             >
-              <option value="0000">ปีการศึกษา</option>
-              <option value="2561">2561</option>
-              <option value="2562">2562</option>
-              <option value="2563">2563</option>
+              <option value="">ปีการศึกษา</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
             </select>
             <select
               className="Main-Page-Filter-Departments"
@@ -185,7 +193,6 @@ const ActivityCard = () => {
               <option value="closed">ปิดรับสมัคร</option>
               <option value="limit">เต็มจำนวนรับ</option>
             </select>
-            
           </nav>
           <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
             <input
@@ -196,7 +203,6 @@ const ActivityCard = () => {
               onChange={(e) => setValue(e.target.value)}
             ></input>
           </nav>
-          
         </div>
 
         {/* <Filter /> */}
