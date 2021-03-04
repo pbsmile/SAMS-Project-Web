@@ -21,6 +21,7 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
 import Chest from "../../Image/chest.jpg";
+import Magnify from "../../Image/filter_magnify.png";
 import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
 import Moment from "react-moment";
 import "moment-timezone";
@@ -144,11 +145,11 @@ const ActivityCard = () => {
           <p className="Activity-Page-Card-Nav-Popular">กิจกรรมทั้งหมด</p>
         </nav> */}
 
-        <div className="Main-Page-Filter-Items-Div">
-          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+        <div className="Activity-Page-Filter-Items-Div">
+          <nav className="Activity-Page-Filter-Items Activity-Page-Filter-Items-Flex">
             <select
-              className="Main-Page-Filter-Years"
-              id="Main-Page-Filter-Years"
+              className="Activity-Page-Filter-Years"
+              id="Activity-Page-Filter-Years"
               onChange={(e) => setValueYear(e.target.value)}
               value={valueYear}
             >
@@ -160,8 +161,8 @@ const ActivityCard = () => {
               <option value="2022">2022</option>
             </select>
             <select
-              className="Main-Page-Filter-Departments"
-              id="Main-Page-Filter-Departments"
+              className="Activity-Page-Filter-Departments"
+              id="Activity-Page-Filter-Departments"
               onChange={(e) => setValueMajor(e.target.value)}
               value={valueMajor}
             >
@@ -198,8 +199,8 @@ const ActivityCard = () => {
               </option>
             </select>
             <select
-              className="Main-Page-Filter-Statuses"
-              id="Main-Page-Filter-Main-Page-Filter-Statuses"
+              className="Activity-Page-Filter-Statuses"
+              id="Activity-Page-Filter-Activity-Page-Filter-Statuses"
               onChange={(e) => setValueStatus(e.target.value)}
               value={valueStatus}
             >
@@ -209,14 +210,15 @@ const ActivityCard = () => {
               <option value="limit">เต็มจำนวนรับ</option>
             </select>
           </nav>
-          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+          <nav className="Activity-Page-Filter-Items-Search Activity-Page-Filter-Items-Flex">
             <input
-              className="Main-Page-Filter-Search-Bar"
+              className="Activity-Page-Filter-Search-Bar"
               placeholder="ค้นหากิจกรรม"
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
             ></input>
+            <img className="Activity-Page-Card-Search-Img" src={Magnify} />
           </nav>
         </div>
 
