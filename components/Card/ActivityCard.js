@@ -149,6 +149,8 @@ const ActivityCard = () => {
             <select
               className="Main-Page-Filter-Years"
               id="Main-Page-Filter-Years"
+              onChange={(e) => setValueYear(e.target.value)}
+              value={valueYear}
             >
               <option value="">ปีการศึกษา</option>
               <option value="2018">2018</option>
@@ -163,6 +165,7 @@ const ActivityCard = () => {
               onChange={(e) => setValueMajor(e.target.value)}
               value={valueMajor}
             >
+              <option value="ทั้งหมด">ทั้งหมด</option>
               <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
               <option value="คณะสถาปัตยกรรมศาสตร์">คณะสถาปัตยกรรมศาสตร์</option>
               <option value="คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี">
@@ -193,7 +196,6 @@ const ActivityCard = () => {
               <option value="วิทยาลัยวิศวกรรมสังคีต">
                 วิทยาลัยวิศวกรรมสังคีต
               </option>
-              <option value="ทั้งหมด">ทั้งหมด</option>
             </select>
             <select
               className="Main-Page-Filter-Statuses"
@@ -231,11 +233,13 @@ const ActivityCard = () => {
             ))} */}
             {data.getAllPostsByAuthen.posts
               .filter((item) => {
-                if (!value && !valueMajor && !valueStatus) return true;
+                if (!value && !valueMajor && !valueYear && !valueStatus)
+                  return true;
                 if (
                   item.name.includes(value) &&
                   item.status.includes(valueStatus) &&
-                  item.major.includes(valueMajor)
+                  item.major.includes(valueMajor) &&
+                  item.dateStart.includes(valueYear)
                 )
                   return true;
               })
