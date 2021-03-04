@@ -12,8 +12,23 @@
   width: 100%;
   margin-bottom: 10px;
   background-color: #ffffff;
-  margin-top: 10px;
-  padding: 10px;
+  //margin-top: 10px;
+  //padding: 10px;
+}
+
+.Activity-Page-Card-Nav-Activity {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  //padding: 3px 10px;
+  height: 30px;
+  align-items: center;
+  margin: 2px;
+}
+
+.Activity-Page-Card-Title-Img {
+  width: 30px;
+  margin: 5px;
 }
 
 .Activity-Page-Filter-Items {
@@ -77,7 +92,7 @@
     color: #2c90af;
     font-size: 15px;
     font-family: "Prompt", sans-serif;
-   //padding-left: 20px;
+    //padding-left: 20px;
   }
   input[type="text"] {
     color: #2c90af;
@@ -97,10 +112,11 @@
   border: none;
 }
 
-.Activity-Page-Card-Search-Img{
+.Activity-Page-Card-Search-Img {
   width: 20px;
   margin: 5px;
-  filter: invert(48%) sepia(92%) saturate(372%) hue-rotate(148deg) brightness(85%) contrast(87%);
+  filter: invert(48%) sepia(92%) saturate(372%) hue-rotate(148deg)
+    brightness(85%) contrast(87%);
 }
 
 .Activity-Page-Banner-Slider {
@@ -130,13 +146,15 @@
 }
 
 .Activity-Page-Card-Nav {
-  position: fixed;
-  margin-top: 20px;
-  height: 30px;
-  width: 530px;
-  border-radius: 10px;
-  color: $dark-orange;
-
+  height: 40px;
+  display: flex;
+  //justify-content: space-around;
+  align-items: center;
+  max-width: 545px;
+  color: #2c90af;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
   //background: #d6d5d5;
 }
 
@@ -150,7 +168,7 @@
 }
 
 .Activity-Page-Card-List {
-  margin-top: 170px;
+  margin-top: 180px;
   display: grid;
   justify-content: center;
   grid-template-columns: auto auto auto auto auto;

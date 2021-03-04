@@ -22,6 +22,7 @@ import gql from "graphql-tag";
 import Link from "next/link";
 import Chest from "../../Image/chest.jpg";
 import Magnify from "../../Image/filter_magnify.png";
+import Title from "../../Image/filter_title.png";
 import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
 import Moment from "react-moment";
 import "moment-timezone";
@@ -141,11 +142,11 @@ const ActivityCard = () => {
   return (
     <div className="Activity-Page-Card-Div">
       <div className="Activity-Page-Fixed-Bg">
-        {/* <nav className="Activity-Page-Card-Nav">
-          <p className="Activity-Page-Card-Nav-Popular">กิจกรรมทั้งหมด</p>
-        </nav> */}
-
         <div className="Activity-Page-Filter-Items-Div">
+          <nav className="Activity-Page-Card-Nav">
+            <img className="Activity-Page-Card-Title-Img" src={Title} />
+            <p className="Activity-Page-Card-Nav-Activity">กิจกรรมทั้งหมด</p>
+          </nav>
           <nav className="Activity-Page-Filter-Items Activity-Page-Filter-Items-Flex">
             <select
               className="Activity-Page-Filter-Years"
@@ -166,7 +167,7 @@ const ActivityCard = () => {
               onChange={(e) => setValueMajor(e.target.value)}
               value={valueMajor}
             >
-              <option value="ทั้งหมด">ทั้งหมด</option>
+              <option value="">หน่วยงาน</option>
               <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
               <option value="คณะสถาปัตยกรรมศาสตร์">คณะสถาปัตยกรรมศาสตร์</option>
               <option value="คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี">
