@@ -223,7 +223,7 @@ const NearingCard = () => {
                 </CardActions> */}
               </Card>
             </div>
-            ))}
+            )).reverse()}
           </>
         )}
       </div>

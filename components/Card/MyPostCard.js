@@ -220,7 +220,7 @@ const MyPostCard = () => {
                 </CardActions> */}
                 </Card>
               </div>
-            ))}
+            )).reverse()}
           </>
         )}
       </div>
