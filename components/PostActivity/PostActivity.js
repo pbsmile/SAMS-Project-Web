@@ -119,7 +119,7 @@ const post = () => {
 
     const handleChange = e => {
         console.log("Value", e.target.value)
-
+        console.log(userInfo)
 
         setUserInfo({
             ...userInfo,
