@@ -43,28 +43,59 @@ const AttendanceCheck = () => {
     const [attendCheck, setattendCheck] = useState("");
 
     console.log("attendCheck : ", attendCheck);
+    const [btnGreen, setbtnGreen] = useState({
+        color: 'success',
+        data: ''
+    })
+    const [btnRed, setbtnRed] = useState({
+        edit: false,
+        color: 'danger',
+        data: ''
+    })
+
 
     const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
         variables: { postId },
         onCompleted: (data) => {
             if (data) {
                 console.log("data1 : " + data.getOnePost.joinUsers[0].name)
-                console.log("data2 : " + data.getOnePost.joinUsers[0].studentId)
+                console.log("data2 : " + data.getOnePost.joinUsers[0])
 
             }
         },
     });
+
+    const handleGreenClick = e => {
+        if (btnGreen.color == 'success') {
+            setbtnGreen({
+                color: 'outline-success',
+                // data: prod
+            })
+        }
+        else if (btnGreen.color == 'outline-success') {
+            setbtnGreen({
+                color: 'success',
+                // data: prod
+            })
+        }
+    }
+
     if (error) return <p>Something went wrong, please try again.</p>;
     if (loading) return <p>Loading ...</p>;
+
+
 
     return (
         <div>
             Activities Page
             for web
             SAMS
-            {data.getOnePost.joinUsers.map((prod) => (
+            {data.getOnePost.joinUsers.map((prod, id) => (
                 <div key={prod._id}>
-                   {prod.name} 
+                    {prod.name} {prod._id}
+                    {id}
+                    {/* <Button variant={btnGreen.color} onClick={handleRedClick(prod._id)}>เข้าร่วม</Button>{' '} */}
+                    <Button variant={btnGreen.color} name={prod._id} onClick={handleGreenClick}>Success</Button>{' '}
                 </div>
             ))}
             {/* {data.getOnePost.joinUsers[0].name} */}
