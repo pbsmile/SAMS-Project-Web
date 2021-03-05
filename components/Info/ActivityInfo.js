@@ -140,6 +140,9 @@ const QUERY_ACTIVITY = gql`
 `;
 
 const ActivityInfo = () => {
+  const { user } = useContext(AuthContext);
+  console.log("User Act Info", user);
+
   const route = useRouter();
   console.log(route);
   const postId = route.query.activityId;
@@ -162,6 +165,8 @@ const ActivityInfo = () => {
   console.log("create User >>", createUser);
   const [canReview, setCanReview] = useState(false);
   console.log("can review >>", canReview);
+  const [isAdmin, setIsAdmin] = useState(false);
+  console.log("Admin? >>", isAdmin);
 
   const ratingChanged = (newRating) => {
     setReviewRate(newRating);
@@ -245,9 +250,6 @@ const ActivityInfo = () => {
   const handleCloseModalDelete = () => setShowModalDelete(false);
   const handleShowModalDelete = () => setShowModalDelete(true);
 
-
-  const { user, signout } = useContext(AuthContext);
-
   // console.log("data:image/jpeg;base64," + base64encodedimg)
 
   const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
@@ -286,6 +288,9 @@ const ActivityInfo = () => {
         }
         if (data.getOnePost.canReview == true) {
           setCanReview(true);
+        }
+        if (user.type == "admin") {
+          setIsAdmin(true);
         }
         //Router.push("/activity");
       }
@@ -608,6 +613,14 @@ const ActivityInfo = () => {
                   </div>
                 </>
               )}
+               {isAdmin && (
+                <>
+                  {/* style={{ display: isVisible ? "block" : "none" }} */}
+                  <div >
+                    <button onClick={handleShowModalDelete}>ลบ</button>
+                  </div>
+                </>
+              )}
               {user && !createUser && canReview && (
                 <>
                   <div>
@@ -617,7 +630,7 @@ const ActivityInfo = () => {
                   </div>
                 </>
               )}
-              {user && !createUser && (
+              {user && !createUser && !isAdmin && (
                 <>
                   <div>
                     <button onClick={() => handleShowModalReport()}>

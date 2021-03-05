@@ -20,7 +20,7 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import apolloClient from "../../apollo/apolloclient";
-import Link from "next/link"
+import Link from "next/link";
 
 import Chest from "../../Image/chest.jpg";
 
@@ -47,7 +47,7 @@ const QUERY_POSTAUTH = gql`
 
 const PopularCard = () => {
   const { data } = useQuery(QUERY_POSTAUTH, {
-    pollInterval: 3000
+    pollInterval: 3000,
   });
   console.log(data);
   //console.log(result.data.getPopularPosts.posts)
@@ -141,55 +141,56 @@ const PopularCard = () => {
             ))} */}
             {data.getPopularPosts.posts.map((prod) => (
               <div key={prod._id}>
-              <Card className="Main-Page-Card">
-                <div className="Main-Page-Card-Area">
-                  <div className="Main-Page-Card-Flex">
-                    <div className="Main-Page-Card-Left">
-                      <Link
-                        key={prod._id}
-                        href="/activity/[activityId]"
-                        as={`/activity/${prod._id}`}
-                      >
-                        <img className="Main-Page-Card-Img" src={Chest} />
-                      </Link>
-                      {/* <label className="Main-Page-Card-Status">
+                <Card className="Main-Page-Card">
+                  <div className="Main-Page-Card-Area">
+                    <div className="Main-Page-Card-Flex">
+                      <div className="Main-Page-Card-Left">
+                        <Link
+                          key={prod._id}
+                          href="/activity/[activityId]"
+                          as={`/activity/${prod._id}`}
+                        >
+                          <img className="Main-Page-Card-Img" src={Chest} />
+                        </Link>
+                        {/* <label className="Main-Page-Card-Status">
                         สถานะกิจกรรม :
                       </label>
                       <label className="Main-Page-Card-Status"> {prod.status} </label> */}
-                    </div>
-                    <div className="Main-Page-Card-Right">
-                      <div className="Main-Page-Card-Date-Time">
-                        <label className="Main-Page-Card-Date">
-                          {/* <img
+                      </div>
+                      <div className="Main-Page-Card-Right">
+                        <div className="Main-Page-Card-Date-Time">
+                          <label className="Main-Page-Card-Date">
+                            {/* <img
                             className="Main-Page-Card-Icon-Size"
                             src={Day}
                           /> */}
-                          {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} - {prod.timeStart} น.
-
-                          {/* <Moment format="D MMM YYYY">
+                            {dateFormat(prod.dateStart, "dddd d mmmm yyyy")} -{" "}
+                            {prod.timeStart} น.
+                            {/* <Moment format="D MMM YYYY">
                             {prod.dateStart}
                           </Moment> */}
-                        </label>
-                        {/* <label className="Main-Page-Card-Time">
+                          </label>
+                          {/* <label className="Main-Page-Card-Time">
                           <img
                             className="Main-Page-Card-Icon-Size"
                             src={Time}
                           />
                           {prod.timeStart} น.
                         </label> */}
-                      </div>
-                      <label className="Main-Page-Card-Name">
-                        {prod.name}
-                      </label>
+                        </div>
+                        <label className="Main-Page-Card-Name">
+                          {prod.name}
+                        </label>
 
-                      <label className="Main-Page-Card-Location">
-                        <img
-                          className="Main-Page-Card-Icon-Size"
-                          src={Location}
-                        />
-                        {prod.place}
-                      </label>
-                      {/* <div className="Main-Page-Card-Members-Close">
+                        <label className="Main-Page-Card-Location">
+                          <img
+                            className="Main-Page-Card-Icon-Size"
+                            src={Location}
+                          />
+
+                          {prod.place}
+                        </label>
+                        {/* <div className="Main-Page-Card-Members-Close">
                         <label className="Main-Page-Card-Members">
                           <img
                             className="Main-Page-Card-Icon-Size"
@@ -205,10 +206,10 @@ const PopularCard = () => {
                           {prod.dateCloseApply}
                         </label>
                       </div> */}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* <CardActions>
+                  {/* <CardActions>
                   <div className="Main-Page-Card-More-Div">
                     <Link
                       key={prod._id}
@@ -221,8 +222,8 @@ const PopularCard = () => {
                     </Link>
                   </div>
                 </CardActions> */}
-              </Card>
-            </div>
+                </Card>
+              </div>
             ))}
           </>
         )}
