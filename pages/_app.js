@@ -45,7 +45,7 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
   console.log(token);
 
   if (!token) {
-    if (router.pathname === "/post" || router.pathname === "/profile") {
+    if (router.pathname === "/post" || router.pathname === "/profile" || router.pathname === "/attendancceCheck" || router.pathname === "/editActivity" || router.pathname === "/reportView" || router.pathname === "/reportInfo" ) {
       ctx.res.writeHead(302, { Location: "/login" });
       ctx.res.end();
     }

@@ -11,7 +11,7 @@ const AuthProvider = ({ children, userData }) => {
     const syncLogout = e => {
       if (e.key === "logout") {
         setUser(null)
-        Router.push("/main")
+        Router.push("/")
       }
     }
 
@@ -31,7 +31,7 @@ const AuthProvider = ({ children, userData }) => {
     Cookies.remove("jwt")
     setUser(null)
     localStorage.setItem("logout", Date.now()) //มีการlogoutหรือเปล่า
-    Router.push("/main")
+    Router.push("/")
   }
 
   return (
