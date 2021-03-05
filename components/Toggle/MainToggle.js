@@ -114,7 +114,7 @@ const MainToggle = () => {
           toggle == "popularpost" && (
             <nav className="Main-Toggle-Nav">
               {/* <p className="Main-Toggle-Nav-Mypost">โพสต์ของฉัน</p> */}
-              <MainPageCard />
+              <PopularCard />
             </nav>
           )
 
@@ -126,7 +126,7 @@ const MainToggle = () => {
           toggle == "closingpost" && (
             <nav className="Main-Toggle-Nav">
               {/* <p className="Main-Toggle-Nav-Mypost">โพสต์ของฉัน</p> */}
-              <MainPageCard />
+              <ClosingCard />
             </nav>
           )
 
@@ -138,22 +138,11 @@ const MainToggle = () => {
           toggle == "nearingpost" && (
             <nav className="Main-Toggle-Nav">
               {/* <p className="Main-Toggle-Nav-Favorite">ชื่นชอบ</p> */}
-              <MainPageCard />
+              <NearingCard />
             </nav>
           )
           //   order.map((item, index) => (
           //     <CardOrder item={item} key={index} isComplete={_isComplete} />
-          //   ))
-        }
-        {
-          toggle == "history" && (
-            <nav className="Main-Toggle-Nav">
-              {/* <p className="Main-Toggle-Nav-History">ประวัติ</p> */}
-              <HistoryCard />
-            </nav>
-          )
-          //   orderHistory.map((item, index) => (
-          //     <CardHistory item={item} key={index} />
           //   ))
         }
       </div>

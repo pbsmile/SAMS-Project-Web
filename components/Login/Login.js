@@ -34,7 +34,7 @@ const login = () => {
           email: "",
           password: "",
         })
-        Router.push('/main')
+        Router.push('/')
         window.location.reload();
       }
     },

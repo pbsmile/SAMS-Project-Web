@@ -21,6 +21,8 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
 import Chest from "../../Image/chest.jpg";
+import Magnify from "../../Image/filter_magnify.png";
+import Title from "../../Image/filter_title.png";
 import MainPageSlidebar from "../Slidebar/MainPageSlidebar";
 import Moment from "react-moment";
 import "moment-timezone";
@@ -140,15 +142,17 @@ const ActivityCard = () => {
   return (
     <div className="Activity-Page-Card-Div">
       <div className="Activity-Page-Fixed-Bg">
-        {/* <nav className="Activity-Page-Card-Nav">
-          <p className="Activity-Page-Card-Nav-Popular">กิจกรรมทั้งหมด</p>
-        </nav> */}
-
-        <div className="Main-Page-Filter-Items-Div">
-          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+        <div className="Activity-Page-Filter-Items-Div">
+          <nav className="Activity-Page-Card-Nav">
+            <img className="Activity-Page-Card-Title-Img" src={Title} />
+            <p className="Activity-Page-Card-Nav-Activity">กิจกรรมทั้งหมด</p>
+          </nav>
+          <nav className="Activity-Page-Filter-Items Activity-Page-Filter-Items-Flex">
             <select
-              className="Main-Page-Filter-Years"
-              id="Main-Page-Filter-Years"
+              className="Activity-Page-Filter-Years"
+              id="Activity-Page-Filter-Years"
+              onChange={(e) => setValueYear(e.target.value)}
+              value={valueYear}
             >
               <option value="">ปีการศึกษา</option>
               <option value="2018">2018</option>
@@ -158,11 +162,12 @@ const ActivityCard = () => {
               <option value="2022">2022</option>
             </select>
             <select
-              className="Main-Page-Filter-Departments"
-              id="Main-Page-Filter-Departments"
+              className="Activity-Page-Filter-Departments"
+              id="Activity-Page-Filter-Departments"
               onChange={(e) => setValueMajor(e.target.value)}
               value={valueMajor}
             >
+              <option value="">หน่วยงาน</option>
               <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
               <option value="คณะสถาปัตยกรรมศาสตร์">คณะสถาปัตยกรรมศาสตร์</option>
               <option value="คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี">
@@ -193,11 +198,10 @@ const ActivityCard = () => {
               <option value="วิทยาลัยวิศวกรรมสังคีต">
                 วิทยาลัยวิศวกรรมสังคีต
               </option>
-              <option value="ทั้งหมด">ทั้งหมด</option>
             </select>
             <select
-              className="Main-Page-Filter-Statuses"
-              id="Main-Page-Filter-Main-Page-Filter-Statuses"
+              className="Activity-Page-Filter-Statuses"
+              id="Activity-Page-Filter-Activity-Page-Filter-Statuses"
               onChange={(e) => setValueStatus(e.target.value)}
               value={valueStatus}
             >
@@ -207,14 +211,15 @@ const ActivityCard = () => {
               <option value="limit">เต็มจำนวนรับ</option>
             </select>
           </nav>
-          <nav className="Main-Page-Filter-Items Main-Page-Filter-Items-Flex">
+          <nav className="Activity-Page-Filter-Items-Search Activity-Page-Filter-Items-Flex">
             <input
-              className="Main-Page-Filter-Search-Bar"
+              className="Activity-Page-Filter-Search-Bar"
               placeholder="ค้นหากิจกรรม"
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
             ></input>
+            <img className="Activity-Page-Card-Search-Img" src={Magnify} />
           </nav>
         </div>
 
@@ -231,11 +236,13 @@ const ActivityCard = () => {
             ))} */}
             {data.getAllPostsByAuthen.posts
               .filter((item) => {
-                if (!value && !valueMajor && !valueStatus) return true;
+                if (!value && !valueMajor && !valueYear && !valueStatus)
+                  return true;
                 if (
                   item.name.includes(value) &&
                   item.status.includes(valueStatus) &&
-                  item.major.includes(valueMajor)
+                  item.major.includes(valueMajor) &&
+                  item.dateStart.includes(valueYear)
                 )
                   return true;
               })

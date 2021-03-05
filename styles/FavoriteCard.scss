@@ -200,12 +200,18 @@
 .My-Fav-Page-Card-Icon-Size {
   height: 20px;
   width: 20px;
+  // filter: invert(51%) sepia(2%) saturate(221%) hue-rotate(81deg) brightness(99%) contrast(95%);
 }
 
 .My-Fav-Page-Card-Name {
   //margin-top: 20px;
   font-family: "Prompt", sans-serif;
   font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .My-Fav-Page-Card-Date-Time {
@@ -229,7 +235,13 @@
 
 .My-Fav-Page-Card-Location {
   font-family: "Prompt", sans-serif;
-  font-size: 10px;
+  font-size: 15px;
+  color: #808080;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .My-Fav-Page-Card-Members-Close {

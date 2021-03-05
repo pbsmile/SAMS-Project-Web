@@ -1,4 +1,4 @@
-.Main-Page-Fixed-Bg {
+.Activity-Page-Fixed-Bg {
   position: fixed;
   //background-color: rgb(255, 255, 255);
   height: 120px;
@@ -7,52 +7,119 @@
   //border-color: rgb(255, 255, 255);
 }
 
-.Main-Page-Filter-Items-Div {
+.Activity-Page-Filter-Items-Div {
   position: fixed;
+  width: 100%;
   margin-bottom: 10px;
   background-color: #ffffff;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  //margin-top: 10px;
+  //padding: 10px;
 }
 
-.Main-Page-Filter-Items {
+.Activity-Page-Card-Nav-Activity {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  //padding: 3px 10px;
+  height: 30px;
+  align-items: center;
+  margin: 2px;
+}
+
+.Activity-Page-Card-Title-Img {
+  width: 30px;
+  margin: 5px;
+}
+
+.Activity-Page-Filter-Items {
   height: 40px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  max-width: 545px;
+  color: #2c90af;
   border-style: solid;
-  border-color: black;
+  border-color: #2c90af;
   border-width: 1px;
   border-radius: 10px;
   margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.Main-Page-Filter-Years {
+.Activity-Page-Filter-Years {
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
+  color: #2c90af;
   background-color: #ffffff;
   border-color: #ffffff;
 }
 
-.Main-Page-Filter-Departments {
+.Activity-Page-Filter-Departments {
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color:#ffffff;
+  color: #2c90af;
+  background-color: #ffffff;
   border-color: #ffffff;
 }
 
-.Main-Page-Filter-Statuses {
+.Activity-Page-Filter-Statuses {
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color:#ffffff;
+  color: #2c90af;
+  background-color: #ffffff;
   border-color: #ffffff;
 }
 
-.Main-Page-Banner-Slider {
+.Activity-Page-Filter-Items-Search {
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 545px;
+  color: #2c90af;
+  margin-top: 5px;
+  border-style: solid;
+  border-color: #2c90af;
+  border-width: 1px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  ::placeholder {
+    color: #2c90af;
+    font-size: 15px;
+    font-family: "Prompt", sans-serif;
+    //padding-left: 20px;
+  }
+  input[type="text"] {
+    color: #2c90af;
+    font-size: 15px;
+    font-family: "Prompt", sans-serif;
+    padding-left: 5px;
+  }
+}
+
+.Activity-Page-Filter-Search-Bar {
+  width: 90%;
+  height: 80%;
+  max-width: 545px;
+  color: #2c90af;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+
+.Activity-Page-Card-Search-Img {
+  width: 20px;
+  margin: 5px;
+  filter: invert(48%) sepia(92%) saturate(372%) hue-rotate(148deg)
+    brightness(85%) contrast(87%);
+}
+
+.Activity-Page-Banner-Slider {
   width: 500px;
   position: fixed;
 }
@@ -79,13 +146,15 @@
 }
 
 .Activity-Page-Card-Nav {
-  position: fixed;
-  margin-top: 20px;
-  height: 30px;
-  width: 530px;
-  border-radius: 10px;
-  color: $dark-orange;
-  
+  height: 40px;
+  display: flex;
+  //justify-content: space-around;
+  align-items: center;
+  max-width: 545px;
+  color: #2c90af;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
   //background: #d6d5d5;
 }
 
@@ -99,7 +168,7 @@
 }
 
 .Activity-Page-Card-List {
-  margin-top: 170px;
+  margin-top: 180px;
   display: grid;
   justify-content: center;
   grid-template-columns: auto auto auto auto auto;
@@ -122,7 +191,7 @@
 .Activity-Page-Card-Top-Div {
   display: flex;
   flex-direction: row;
-  
+
   margin-left: 65%;
   align-items: center;
 }
@@ -201,11 +270,17 @@
 .Activity-Page-Card-Icon-Size {
   height: 20px;
   width: 20px;
+  // filter: invert(51%) sepia(2%) saturate(221%) hue-rotate(81deg) brightness(99%) contrast(95%);
 }
 
 .Activity-Page-Card-Name {
   font-family: "Prompt", sans-serif;
   font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .Activity-Page-Card-Date-Time {
@@ -218,7 +293,7 @@
   width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 14px;
-  color: #ED0000;
+  color: #ed0000;
 }
 
 .Activity-Page-Card-Time {
@@ -229,7 +304,13 @@
 
 .Activity-Page-Card-Location {
   font-family: "Prompt", sans-serif;
-  font-size: 10px;
+  font-size: 15px;
+  color: #808080;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .Activity-Page-Card-Members-Close {

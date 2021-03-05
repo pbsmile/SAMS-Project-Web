@@ -16,6 +16,7 @@ const QUERY_USER = {
         name
         studentId
         major
+        type
       }
     }
   `,
@@ -45,7 +46,7 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
   console.log(token);
 
   if (!token) {
-    if (router.pathname === "/post" || router.pathname === "/profile") {
+    if (router.pathname === "/post" || router.pathname === "/profile" || router.pathname === "/attendancceCheck" || router.pathname === "/editActivity" || router.pathname === "/reportView" || router.pathname === "/reportInfo" ) {
       ctx.res.writeHead(302, { Location: "/login" });
       ctx.res.end();
     }
@@ -54,7 +55,7 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
 
   if (token) {
     if (router.pathname === "/login" || router.pathname === "/register") {
-      ctx.res.writeHead(302, { Location: "/main" }); // 302 status = redirect
+      ctx.res.writeHead(302, { Location: "/" }); // 302 status = redirect
       ctx.res.end();
     }
   }

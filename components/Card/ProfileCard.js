@@ -18,6 +18,7 @@ export const QUERY_USERPROFILE = gql`
       studentId
       major
       phoneNumber
+      type
     }
   }
 `;
@@ -28,6 +29,7 @@ const ProfileCard = () => {
     return <p>Ooobs...something went wrong, please try again later.</p>;
   if (loading) return <p>Loading...</p>;
   console.log(data.getOneUser);
+
 
   return (
     <div className="Profile-Card-Div">
