@@ -85,7 +85,7 @@ const navbar = () => {
               <a
                 className={toggle == "main" ? "Nav-Home" : "Nav-Home-Trans"}
                 //onClick={() => handleClick("main")}
-                onClick={() => Router.push("/main")}
+                onClick={() => Router.push("/")}
               >
                 หน้าแรก
               </a>
@@ -132,11 +132,32 @@ const navbar = () => {
                 onClick={() => Router.push("/profile")}
               />
               <div className="Nav-Profile-Flex-Text">
-                <label className="Nav-Profile-Username">{user.studentId}</label>
+                <label className="Nav-Profile-Username" onClick={() => Router.push("/profile")}>{user.studentId}</label>
                 <label className="Nav-Profile-Logout" onClick={signout}>
                   LOGOUT
                 </label>
               </div>
+              {/* <div class="dropdown">
+                <button class="dropbtn">
+                  {user.studentId}
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="#">
+                    <label
+                      className="Nav-Profile-Username"
+                      onClick={() => Router.push("/profile")}
+                    >
+                      {user.studentId}
+                    </label>
+                  </a>
+                  <a href="#">
+                    <label className="Nav-Profile-Logout" onClick={signout}>
+                      LOGOUT
+                    </label>
+                  </a>
+                </div>
+              </div> */}
             </div>
           </>
         )}

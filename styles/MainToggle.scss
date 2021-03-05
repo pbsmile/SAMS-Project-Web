@@ -17,6 +17,7 @@
   border-style: solid;
   border-width: 1px;
   border-color: #dddddd;
+  z-index: 1;
 }
 
 .Main-Toggle-Button-Items {
@@ -110,6 +111,7 @@
   //width: 530px;
   border-radius: 10px;
   color: $dark-orange;
+  z-index: 1;
 
   //background: #d6d5d5;
 }

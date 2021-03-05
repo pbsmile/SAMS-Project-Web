@@ -1,34 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Circle from "../../Image/circle.png";
-import Filter from "../Filter/ActivityFilter";
-import Join from "../../Image/add1.png";
-import Unjoin from "../../Image/add2.png";
-import Fav from "../../Image/heart1.png";
-import Unfav from "../../Image/heart2.png";
-import Day from "../../Image/date.png";
-import Time from "../../Image/clock.png";
-import Location from "../../Image/location.png";
-import Members from "../../Image/members.png";
-import Closed from "../../Image/closed.png";
+import Report from "../../Image/report.png";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
 
 const QUERY_ALLREPORTS = gql`
   query {
-      getAllPostsThatHaveReport{
-          postId
-          postName
-          numberOfReport
-          creatorName
-      }
+    getAllPostsThatHaveReport {
+      postId
+      postName
+      numberOfReport
+      creatorName
+    }
   }
 `;
 
@@ -65,14 +48,17 @@ const ReportViewCard = () => {
     }
   };
   return (
-    <div className="Activity-Page-Card-Div">
-      <div className="Activity-Page-Fixed-Bg">
-        <nav className="Activity-Page-Card-Nav">
-          <p className="Activity-Page-Card-Nav-Popular">กิจกรรมที่ถูกรายงาน</p>
+    <div className="Report-View-Card-Div">
+      <div className="Report-View-Card-Fixed-Bg">
+        <nav className="Report-View-Card-Nav">
+        <img className="Report-View-Card-Nav-Img" src={Report} />
+          <p className="Report-View-Card-Nav-Activity">
+            กิจกรรมที่ถูกรายงาน
+          </p>
         </nav>
       </div>
 
-      <div className="Activity-Page-Card-List">
+      <div className="Report-View-Card-List">
         {data && (
           <>
             {/* {data.getAllPostsByAuthen.posts.map((prod) => (
@@ -81,14 +67,24 @@ const ReportViewCard = () => {
               </div>
             ))} */}
             {data.getAllPostsThatHaveReport.map((prod) => (
-              <div key={prod.postId}>
-                <Link
-                  key={prod.postId}
-                  href="/reportInfo/[activityId]"
-                  as={`/reportInfo/${prod.postId}`}
-                >
-                  <h4>{prod.postId}</h4>
-                </Link>
+              <div
+                className="Report-View-Card-List-Text"
+                key={prod.postId}
+              >
+                <div className="Report-View-Card-List-Text-Title">
+                  กิจกรรม{" "}
+                  <Link
+                    key={prod.postName}
+                    href="/reportInfo/[activityId]"
+                    as={`/reportInfo/${prod.postId}`}
+                  >
+                    {prod.postName}
+                  </Link>
+                </div>
+                <div className="Report-View-Card-List-Text-Number">
+                  {" "}
+                  ถูกรายงานรวม <b>{prod.numberOfReport}</b>  ครั้ง
+                </div>
               </div>
             ))}
           </>
