@@ -16,6 +16,7 @@ const QUERY_USER = {
         name
         studentId
         major
+        type
       }
     }
   `,
@@ -54,7 +55,7 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
 
   if (token) {
     if (router.pathname === "/login" || router.pathname === "/register") {
-      ctx.res.writeHead(302, { Location: "/main" }); // 302 status = redirect
+      ctx.res.writeHead(302, { Location: "/" }); // 302 status = redirect
       ctx.res.end();
     }
   }

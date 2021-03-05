@@ -16,6 +16,7 @@ export const QUERY_USERPROFILE = gql`
       name
       studentId
       major
+      type
     }
   }
 `;
@@ -28,7 +29,14 @@ const navbar = () => {
   const path = usePath();
 
   const { user, signout } = useContext(AuthContext);
-  console.log(user);
+  console.log("User Navbar", user);
+
+  const [isAdmin, setisAdmin] = useState(false);
+  console.log("Admin >>", isAdmin);
+
+  // if (user.type == "admin") {
+  //   setisAdmin(true)
+  // }
 
   // const { data, loading, error } = useQuery(QUERY_USERPROFILE)
   // if (error) return <p>Ooobs...something went wrong, please try again later.</p>
@@ -120,6 +128,23 @@ const navbar = () => {
                 </li>
               </>
             )}
+            {/* {user.type == "admin" &&(
+              <>
+              <li>
+                <a
+                  className={
+                    toggle == "create"
+                      ? "Nav-Activities"
+                      : "Nav-Activities-Trans"
+                  }
+                  //onClick={() => handleClick("activity")}
+                  onClick={() => Router.push("/reportView")}
+                >
+                  การรายงาน
+                </a>
+              </li>
+            </>
+            )} */}
           </ul>
         </div>
         {user && (
@@ -132,7 +157,23 @@ const navbar = () => {
                 onClick={() => Router.push("/profile")}
               />
               <div className="Nav-Profile-Flex-Text">
-                <label className="Nav-Profile-Username" onClick={() => Router.push("/profile")}>{user.studentId}</label>
+                <label
+                  className="Nav-Profile-Username"
+                  onClick={() => Router.push("/profile")}
+                >
+                  {user.studentId}
+                  {user.type == "admin" && <>{user.name}</>}
+                </label>
+                {user.type == "admin" && (
+                  <>
+                    <p
+                      className="Nav-Profile-Report" //onClick={() => handleClick("activity")}
+                      onClick={() => Router.push("/reportView")}
+                    >
+                      การรายงาน
+                    </p>
+                  </>
+                )}
                 <label className="Nav-Profile-Logout" onClick={signout}>
                   LOGOUT
                 </label>
