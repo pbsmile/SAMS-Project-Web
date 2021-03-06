@@ -43,12 +43,16 @@ const AttendanceCheck = () => {
     const route = useRouter();
     console.log(route);
     const postId = route.query.activityId;
-    
+
 
     const [btnGreen, setbtnGreen] = useState({
-        active: 'true',
-        color: 'success',
-        data: ''
+        datac: [
+            // {
+            //     name: '',
+            //     id: '',
+            //     data: ''
+            // }
+        ]
     });
     console.log(btnGreen)
     const [btnRed, setbtnRed] = useState({
@@ -56,7 +60,7 @@ const AttendanceCheck = () => {
         data: ''
     });
 
-    const [active, setActive] = useState(true);
+    // const [active, setActive] = useState(true);
     const [word, setWord] = useState("")
 
     const { data, loading, error } = useQuery(QUERY_ACTIVITY, {
@@ -65,10 +69,37 @@ const AttendanceCheck = () => {
             if (data) {
                 console.log("data1 : " + data.getOnePost.joinUsers[0].name)
                 console.log("data2 : " + data.getOnePost.joinUsers[0])
+                console.log(data.getOnePost.joinUsers.length)
+                for (var i = 0; i < data.getOnePost.joinUsers.length; i++) {
+                    btnGreen.datac.push({
+                        datac: [
+                            {
+                                name: data.getOnePost.joinUsers[i].name,
+                                id: data.getOnePost.joinUsers[i]._id,
+                                data: '',
+                                btnactive: true
+                            },
+                            // {
+                            //     name: data.getOnePost.joinUsers[i].name,
+                            //     id: data.getOnePost.joinUsers[i+1]._id,
+                            //     data: ''
+                            // },
+                        ]
+                    })
+                    }
+                // for (var i=1; i<data.getOnePost.joinUsers.length; i++) {
+                //     btnGreen.datac.push({
+                //         name: data.getOnePost.joinUsers[i].name,
+                //             id: data.getOnePost.joinUsers[i]._id,
+                //             data: ''
+                //     })
+                // }
 
+                console.log('btnG     :   '+btnGreen.datac)
             }
         },
     });
+
 
     // const handleGreenClick = e => {
     //     if (btnGreen.color == 'success') {
@@ -99,33 +130,47 @@ const AttendanceCheck = () => {
     //         })
     //     };
 
-        // const id = parseInt(e.target.getAttribute("data-id"));
-        // console.log('id : ' + id)
-        // console.log('check btn ' + btnGreen.color)
-        // console.log(e.target.name)
-        // if (btnGreen.color == 'success') {
-        //     setbtnGreen({
-        //         color: 'outline-success',
-        //         // data: prod
-        //     })
-        // }
-        // else if (btnGreen.color == 'outline-success') {
-        //     setbtnGreen({
-        //         color: 'success',
-        //         // data: prod
-        //     })
-        // }
+    // const id = parseInt(e.target.getAttribute("data-id"));
+    // console.log('id : ' + id)
+    // console.log('check btn ' + btnGreen.color)
+    // console.log(e.target.name)
+    // if (btnGreen.color == 'success') {
+    //     setbtnGreen({
+    //         color: 'outline-success',
+    //         // data: prod
+    //     })
+    // }
+    // else if (btnGreen.color == 'outline-success') {
+    //     setbtnGreen({
+    //         color: 'success',
+    //         // data: prod
+    //     })
+    // }
     // }
 
-    const [value, setValue] = useState([1,]);
+    const [value, setValue] = useState([1,1]);
+    const [v_id, setVId] = useState();
     const handleChange = (val) => {
+        console.log(v_id)
         setValue(val);
         setWord("เช็คชื่อแล้ว")
-        setActive(!active)
-        console.log('btnGreen' + active)
-        console.log('btnGreen C ' + word)
+        // console.log('btnGreen' + active)
+        // console.log('btnGreen C ' + word)
+        console.log('-----------------------------------')
+        console.log("กด : "+btnGreen.datac[v_id].datac[0].name)
+        // console.log("กด : "+btnGreen.datac[0].datac[0].name)
+
     }
 
+    const handleClick = () => {
+        // const id = parseInt(e.target.getAttribute("data-id"));
+        // console.log(id)
+        // console.log("กด : "+btnGreen.datac[0].datac[0].name)
+        console.log('-----------------------------------')
+        console.log("กด : "+btnGreen.datac[1].datac[0].name)
+        
+
+    }
     // const toggle = e => {
     //     if (btnGreen.active == 'true') {
     //         setbtnGreen({
@@ -149,13 +194,12 @@ const AttendanceCheck = () => {
             for web
             SAMS
             {data.getOnePost.joinUsers.map((prod, id) => (
-
                 <div key={prod.name}>
-                    {prod.name} {prod._id}
+                    {prod.name} {prod._id} {id}
 
                     {/* <Button variant={btnGreen.color} onClick={handleRedClick(prod._id)}>เข้าร่วม</Button>{' '} */}
                     <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
-                        <ToggleButton variant="outline-success" value={id}>เช็คชื่อ</ToggleButton>
+                        <ToggleButton variant="outline-success" value={id} onClick={e => {setVId(id)}}>เช็คชื่อ</ToggleButton>
                     </ToggleButtonGroup>
                     {/* <Button variant={btnGreen.color} key={prod.name} name={prod.name} value={prod.name} onClick={handleRedClick}>Success</Button>{' '} */}
                     {/* {btnGreen.true ? "success" : "outline-seccess"} */}
