@@ -44,16 +44,22 @@ const AttendanceCheck = () => {
     console.log(route);
     const postId = route.query.activityId;
 
+    const [value, setValue] = useState([]);
+    const [v_id, setVId] = useState();
+    const [show, setShow] = useState([]);
+    const [showW, setShowW] = useState([]);
 
-    const [btnGreen, setbtnGreen] = useState({
-        datac: [
-            // {
-            //     name: '',
-            //     id: '',
-            //     data: ''
-            // }
-        ]
-    });
+    const [btnGreen, setbtnGreen] = useState(
+        {
+            datac: [
+                //         // {
+                //         //     name: '',
+                //         //     id: '',
+                //         //     data: ''
+                //         // }
+            ]
+        }
+    );
     console.log(btnGreen)
     const [btnRed, setbtnRed] = useState({
         color: 'danger',
@@ -71,22 +77,24 @@ const AttendanceCheck = () => {
                 console.log("data2 : " + data.getOnePost.joinUsers[0])
                 console.log(data.getOnePost.joinUsers.length)
                 for (var i = 0; i < data.getOnePost.joinUsers.length; i++) {
-                    btnGreen.datac.push({
-                        datac: [
-                            {
-                                name: data.getOnePost.joinUsers[i].name,
-                                id: data.getOnePost.joinUsers[i]._id,
-                                data: '',
-                                btnactive: true
-                            },
-                            // {
-                            //     name: data.getOnePost.joinUsers[i].name,
-                            //     id: data.getOnePost.joinUsers[i+1]._id,
-                            //     data: ''
-                            // },
-                        ]
-                    })
-                    }
+                    btnGreen.datac.push(
+                        // {
+                        // datac: [
+                        {
+                            name: data.getOnePost.joinUsers[i].name,
+                            id: data.getOnePost.joinUsers[i]._id,
+                            btnactive: true
+                        },
+                        // {
+                        //     name: data.getOnePost.joinUsers[i].name,
+                        //     id: data.getOnePost.joinUsers[i+1]._id,
+                        //     data: ''
+                        // },
+                        //     ]
+                        // }
+                    )
+                    show[i] = true
+                }
                 // for (var i=1; i<data.getOnePost.joinUsers.length; i++) {
                 //     btnGreen.datac.push({
                 //         name: data.getOnePost.joinUsers[i].name,
@@ -95,7 +103,8 @@ const AttendanceCheck = () => {
                 //     })
                 // }
 
-                console.log('btnG     :   '+btnGreen.datac)
+                console.log('btnG     :   ' + btnGreen.datac[0].name)
+                console.log(show)
             }
         },
     });
@@ -148,18 +157,29 @@ const AttendanceCheck = () => {
     // }
     // }
 
-    const [value, setValue] = useState([1,1]);
-    const [v_id, setVId] = useState();
     const handleChange = (val) => {
-        console.log(v_id)
+        console.log(val)
         setValue(val);
-        setWord("เช็คชื่อแล้ว")
+        console.log(val)
+        console.log(btnGreen.datac[v_id].btnactive)
+        // setbtnGreen({
+        //     datac: {
+        //         btnactive : !btnactive
+        //     }
+        // })
+        btnGreen.datac[v_id].btnactive = !btnGreen.datac[v_id].btnactive
+        // setbtnGreen.datac[v_id]({btnactive : !btnactive})
+        console.log(btnGreen.datac[v_id].btnactive)
+        show[v_id] = btnGreen.datac[v_id].btnactive
+        if (show[v_id] == true){
+
+        }
+        console.log(show)
         // console.log('btnGreen' + active)
         // console.log('btnGreen C ' + word)
         console.log('-----------------------------------')
-        console.log("กด : "+btnGreen.datac[v_id].datac[0].name)
+        console.log("กด : " + btnGreen.datac[v_id].name)
         // console.log("กด : "+btnGreen.datac[0].datac[0].name)
-
     }
 
     const handleClick = () => {
@@ -167,8 +187,8 @@ const AttendanceCheck = () => {
         // console.log(id)
         // console.log("กด : "+btnGreen.datac[0].datac[0].name)
         console.log('-----------------------------------')
-        console.log("กด : "+btnGreen.datac[1].datac[0].name)
-        
+        // console.log("กด : "+btnGreen.datac[1].datac[0].name)
+
 
     }
     // const toggle = e => {
@@ -199,9 +219,10 @@ const AttendanceCheck = () => {
 
                     {/* <Button variant={btnGreen.color} onClick={handleRedClick(prod._id)}>เข้าร่วม</Button>{' '} */}
                     <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
-                        <ToggleButton variant="outline-success" value={id} onClick={e => {setVId(id)}}>เช็คชื่อ</ToggleButton>
+                        <ToggleButton variant="outline-success" value={id} onClick={e => { setVId(id) }}>{show[id] == false ? "เช็คชื่อแล้ว" : "เช็คชื่อ"}</ToggleButton>
                     </ToggleButtonGroup>
                     {/* <Button variant={btnGreen.color} key={prod.name} name={prod.name} value={prod.name} onClick={handleRedClick}>Success</Button>{' '} */}
+                    {/* {btnGreen.datac[id].btnactive == true ? "success" : "outline-seccess"} */}
                     {/* {btnGreen.true ? "success" : "outline-seccess"} */}
                 </div>
             ))}
