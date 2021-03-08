@@ -13,19 +13,19 @@ import { FlashOnTwoTone } from "@material-ui/icons";
 
 
 
-// const ATTENDANCECHECK = gql`
-//   mutation ATTENDANCECHECK($postId: String!,$checkedUsersId: [String!]){
-//     attendanceCheck(input:{
-//       postId:$postId,
-//       checkedUsersId:$checkedUsersId
-//     })
-//     {
-//       checkedUsers{
-//         name
-//       }
-//     }
-//   }
-// `;
+const ATTENDANCECHECK = gql`
+  mutation ATTENDANCECHECK($postId: String!,$checkedUsersId: [String!]){
+    attendanceCheck(input:{
+      postId:$postId,
+      checkedUsersId:$checkedUsersId
+    })
+    {
+      checkedUsers{
+        name
+      }
+    }
+  }
+`;
 
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
@@ -66,6 +66,10 @@ const AttendanceCheck = () => {
         data: ''
     });
 
+    const [checkInfo, setcheckInfo] = useState({
+        checkedUsersId: []
+    })
+
     // const [active, setActive] = useState(true);
     const [word, setWord] = useState("")
 
@@ -76,25 +80,75 @@ const AttendanceCheck = () => {
                 console.log("data1 : " + data.getOnePost.joinUsers[0].name)
                 console.log("data2 : " + data.getOnePost.joinUsers[0])
                 console.log(data.getOnePost.joinUsers.length)
-                for (var i = 0; i < data.getOnePost.joinUsers.length; i++) {
-                    btnGreen.datac.push(
-                        // {
-                        // datac: [
-                        {
-                            name: data.getOnePost.joinUsers[i].name,
-                            id: data.getOnePost.joinUsers[i]._id,
-                            btnactive: true
-                        },
-                        // {
-                        //     name: data.getOnePost.joinUsers[i].name,
-                        //     id: data.getOnePost.joinUsers[i+1]._id,
-                        //     data: ''
-                        // },
-                        //     ]
+                var len_checked = data.getOnePost.checkedUsers.length
+                console.log('len:'+len_checked)
+                console.log(value)
+                // for (const j in data.getOnePost.checkedUsers){
+                //     console.log('jjj : '+j)
+                // }
+                for (var j = 0; j < len_checked; j++) {
+                    for (var i = 0; i < data.getOnePost.joinUsers.length; i++) {
+                        console.log('เทียบ ' + data.getOnePost.checkedUsers[j]._id + ' กับ ' +data.getOnePost.joinUsers[i]._id)
+                        console.log(j +' '+i)
+                        // if (data.getOnePost.joinUsers[i]._id in data.getOnePost.checkedUsersId._id) {
+                        if (data.getOnePost.joinUsers[i]._id == data.getOnePost.checkedUsers[j]._id) {
+                            btnGreen.datac.push(
+                                // {
+                                // datac: [
+                                {
+                                    name: data.getOnePost.joinUsers[i].name,
+                                    id: data.getOnePost.joinUsers[i]._id,
+                                    btnactive: false
+                                },
+                                // {
+                                //     name: data.getOnePost.joinUsers[i].name,
+                                //     id: data.getOnePost.joinUsers[i+1]._id,
+                                //     data: ''
+                                // },
+                                //     ]
+                                // }
+                            )
+                            console.log('i: ' +i)
+                            console.log('bf : '+value)
+                            show[i] = false
+                            showW.push(i)
+                            // setValue(i)
+                            console.log('af : '+value)
+                            if(j+1<data.getOnePost.joinUsers.length-1){
+                                j+=1
+                            }
+                            
+                            // checkInfo.checkedUsersId.push(data.getOnePost.joinUsers[i]._id)
+                            // console.log('UserInfo Start : ' + checkInfo.checkedUsersId)
+                            // value[i] = 1
+                        }
+                        else if (data.getOnePost.joinUsers[i]._id != data.getOnePost.checkedUsers[j]._id) {
+                            btnGreen.datac.push(
+                                // {
+                                // datac: [
+                                {
+                                    name: data.getOnePost.joinUsers[i].name,
+                                    id: data.getOnePost.joinUsers[i]._id,
+                                    btnactive: true
+                                },
+                                // {
+                                //     name: data.getOnePost.joinUsers[i].name,
+                                //     id: data.getOnePost.joinUsers[i+1]._id,
+                                //     data: ''
+                                // },
+                                //     ]
+                                // }
+                            )
+                            show[i] = true
+                            
+                            // value[i] = 0
+                        }
+
                         // }
-                    )
-                    show[i] = true
-                }
+
+                    }
+                } setValue(showW)
+
                 // for (var i=1; i<data.getOnePost.joinUsers.length; i++) {
                 //     btnGreen.datac.push({
                 //         name: data.getOnePost.joinUsers[i].name,
@@ -105,10 +159,22 @@ const AttendanceCheck = () => {
 
                 console.log('btnG     :   ' + btnGreen.datac[0].name)
                 console.log(show)
+                console.log(value)
             }
         },
     });
 
+    const [AttendanceCheck] = useMutation(ATTENDANCECHECK, {
+        variables: { postId, ...checkInfo },
+        onCompleted: (data) => {
+            setcheckInfo({
+                checkedUsersId: []
+            })
+            // Router.push('/activity/' + postId);
+            console.log("on complete")
+        }
+
+    })
 
     // const handleGreenClick = e => {
     //     if (btnGreen.color == 'success') {
@@ -158,38 +224,74 @@ const AttendanceCheck = () => {
     // }
 
     const handleChange = (val) => {
-        console.log(val)
+        // console.log(val)
+        console.log('bf set val '+ val)
         setValue(val);
+        console.log('val: ' + val)
         console.log(val)
-        console.log(btnGreen.datac[v_id].btnactive)
+        console.log('BFclick : ' + btnGreen.datac[v_id].btnactive)
         // setbtnGreen({
         //     datac: {
         //         btnactive : !btnactive
         //     }
         // })
         btnGreen.datac[v_id].btnactive = !btnGreen.datac[v_id].btnactive
+        // if(btnGreen.datac[v_id].btnactive == true){
+        //     console.log('change to false')
+        //     btnGreen.datac[v_id].btnactive = false
+        // }
+        // else if(btnGreen.datac[v_id].btnactive == false){
+        //     console.log('change to true')
+        //     btnGreen.datac[v_id].btnactive = true
+        // }
+        // btnGreen.datac[v_id].btnactive = !btnGreen.datac[v_id].btnactive
         // setbtnGreen.datac[v_id]({btnactive : !btnactive})
-        console.log(btnGreen.datac[v_id].btnactive)
+        console.log('click : ' + btnGreen.datac[v_id].btnactive)
         show[v_id] = btnGreen.datac[v_id].btnactive
-        if (show[v_id] == true){
-
-        }
         console.log(show)
         // console.log('btnGreen' + active)
         // console.log('btnGreen C ' + word)
         console.log('-----------------------------------')
         console.log("กด : " + btnGreen.datac[v_id].name)
         // console.log("กด : "+btnGreen.datac[0].datac[0].name)
+        // var len_checked = checkInfo.checkedUsersId.length;
+        // checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
+
+        // checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
+
+
+        // for (i in len_checked){
+        //     if(btnGreen.datac[v_id].id != checkInfo.checkedUsersId[i]){
+        //         checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
+        //         len_checked+=1
+        //     }
+        //     else {
+        //         console.log('else')
+        //     }
+        // }
+        console.log("Info : " + checkInfo.checkedUsersId)
+
     }
 
-    const handleClick = () => {
+    const submitBtn = async e => {
+        for (var i = 0; i < btnGreen.datac.length; i++) {
+            if (show[i] == false) {
+                checkInfo.checkedUsersId.push(btnGreen.datac[i].id)
+            }
+            // else if(show[i] == true){
+
+            // }
+        }
         // const id = parseInt(e.target.getAttribute("data-id"));
         // console.log(id)
         // console.log("กด : "+btnGreen.datac[0].datac[0].name)
-        console.log('-----------------------------------')
+        console.log('onsubmit ' + checkInfo.checkedUsersId)
+
+        // if(show[0]==false){
+        //     checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
+        // }
         // console.log("กด : "+btnGreen.datac[1].datac[0].name)
-
-
+        await AttendanceCheck();
     }
     // const toggle = e => {
     //     if (btnGreen.active == 'true') {
@@ -219,13 +321,15 @@ const AttendanceCheck = () => {
 
                     {/* <Button variant={btnGreen.color} onClick={handleRedClick(prod._id)}>เข้าร่วม</Button>{' '} */}
                     <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
-                        <ToggleButton variant="outline-success" value={id} onClick={e => { setVId(id) }}>{show[id] == false ? "เช็คชื่อแล้ว" : "เช็คชื่อ"}</ToggleButton>
+                        <ToggleButton variant="outline-success" value={id} onClick={e => { setVId(id) }}>{show[id] == true ? "เช็คชื่อ" : "เช็คชื่อแล้ว"}</ToggleButton>
                     </ToggleButtonGroup>
+
                     {/* <Button variant={btnGreen.color} key={prod.name} name={prod.name} value={prod.name} onClick={handleRedClick}>Success</Button>{' '} */}
                     {/* {btnGreen.datac[id].btnactive == true ? "success" : "outline-seccess"} */}
                     {/* {btnGreen.true ? "success" : "outline-seccess"} */}
                 </div>
             ))}
+            <Button variant="danger" onClick={submitBtn}>บันทึก</Button>
             {/* {data.getOnePost.joinUsers[0].name} */}
         </div>
     );
