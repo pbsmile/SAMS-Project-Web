@@ -13,19 +13,19 @@ import { FlashOnTwoTone } from "@material-ui/icons";
 
 
 
-// const ATTENDANCECHECK = gql`
-//   mutation ATTENDANCECHECK($postId: String!,$checkedUsersId: [String!]){
-//     attendanceCheck(input:{
-//       postId:$postId,
-//       checkedUsersId:$checkedUsersId
-//     })
-//     {
-//       checkedUsers{
-//         name
-//       }
-//     }
-//   }
-// `;
+const ATTENDANCECHECK = gql`
+  mutation ATTENDANCECHECK($postId: String!,$checkedUsersId: [String!]){
+    attendanceCheck(input:{
+      postId:$postId,
+      checkedUsersId:$checkedUsersId
+    })
+    {
+      checkedUsers{
+        name
+      }
+    }
+  }
+`;
 
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
@@ -66,6 +66,10 @@ const AttendanceCheck = () => {
         data: ''
     });
 
+    // const [checkInfo, setcheckInfo] = useState({
+    //     checkedUsersId: []
+    // })
+
     // const [active, setActive] = useState(true);
     const [word, setWord] = useState("")
 
@@ -76,25 +80,65 @@ const AttendanceCheck = () => {
                 console.log("data1 : " + data.getOnePost.joinUsers[0].name)
                 console.log("data2 : " + data.getOnePost.joinUsers[0])
                 console.log(data.getOnePost.joinUsers.length)
-                for (var i = 0; i < data.getOnePost.joinUsers.length; i++) {
-                    btnGreen.datac.push(
-                        // {
-                        // datac: [
-                        {
-                            name: data.getOnePost.joinUsers[i].name,
-                            id: data.getOnePost.joinUsers[i]._id,
-                            btnactive: true
-                        },
-                        // {
-                        //     name: data.getOnePost.joinUsers[i].name,
-                        //     id: data.getOnePost.joinUsers[i+1]._id,
-                        //     data: ''
-                        // },
-                        //     ]
+                var len_checked = data.getOnePost.checkedUsers.length
+                console.log(len_checked)
+                console.log(value)
+                // for (const j in data.getOnePost.checkedUsers){
+                //     console.log('jjj : '+j)
+                // }
+                for (var j = 0; j < len_checked; j++) {
+                    for (var i = 0; i < data.getOnePost.joinUsers.length; i++) {
+                        // if (data.getOnePost.joinUsers[i]._id in data.getOnePost.checkedUsersId._id) {
+                        if (data.getOnePost.joinUsers[i]._id == data.getOnePost.checkedUsers[j]._id) {
+                            btnGreen.datac.push(
+                                // {
+                                // datac: [
+                                {
+                                    name: data.getOnePost.joinUsers[i].name,
+                                    id: data.getOnePost.joinUsers[i]._id,
+                                    btnactive: true
+                                },
+                                // {
+                                //     name: data.getOnePost.joinUsers[i].name,
+                                //     id: data.getOnePost.joinUsers[i+1]._id,
+                                //     data: ''
+                                // },
+                                //     ]
+                                // }
+                            )
+                            console.log(i)
+                            show[i] = false
+                            setValue(i)
+                            console.log(value)
+                            // value[i] = 1
+                        }
+                        else {
+                            btnGreen.datac.push(
+                                // {
+                                // datac: [
+                                {
+                                    name: data.getOnePost.joinUsers[i].name,
+                                    id: data.getOnePost.joinUsers[i]._id,
+                                    btnactive: false
+                                },
+                                // {
+                                //     name: data.getOnePost.joinUsers[i].name,
+                                //     id: data.getOnePost.joinUsers[i+1]._id,
+                                //     data: ''
+                                // },
+                                //     ]
+                                // }
+                            )
+                            show[i] = true
+                            
+                            // value[i] = 0
+                        }
+
                         // }
-                    )
-                    show[i] = true
+
+                    }
                 }
+
                 // for (var i=1; i<data.getOnePost.joinUsers.length; i++) {
                 //     btnGreen.datac.push({
                 //         name: data.getOnePost.joinUsers[i].name,
@@ -109,6 +153,9 @@ const AttendanceCheck = () => {
         },
     });
 
+    // const [AttendanceCheck] = useMutation(ATTENDANCECHECK, {
+    //     variables: { postId, ...}
+    // })
 
     // const handleGreenClick = e => {
     //     if (btnGreen.color == 'success') {
@@ -158,7 +205,7 @@ const AttendanceCheck = () => {
     // }
 
     const handleChange = (val) => {
-        console.log(val)
+        // console.log(val)
         setValue(val);
         console.log(val)
         console.log(btnGreen.datac[v_id].btnactive)
@@ -171,7 +218,7 @@ const AttendanceCheck = () => {
         // setbtnGreen.datac[v_id]({btnactive : !btnactive})
         console.log(btnGreen.datac[v_id].btnactive)
         show[v_id] = btnGreen.datac[v_id].btnactive
-        if (show[v_id] == true){
+        if (show[v_id] == true) {
 
         }
         console.log(show)
