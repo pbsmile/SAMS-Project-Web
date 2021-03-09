@@ -157,14 +157,48 @@ const navbar = () => {
                 onClick={() => Router.push("/profile")}
               />
               <div className="Nav-Profile-Flex-Text">
-                <label
+                <div class="dropdown">
+                  <button class="dropbtn">
+                    {user.studentId}
+                    {user.type == "admin" && <>{user.name}</>}
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a href="#">
+                      <p
+                        className="Nav-Profile-Username"
+                        onClick={() => Router.push("/profile")}
+                      >
+                        โปรไฟล์
+                      </p>
+                    </a>
+                    {user.type == "admin" && (
+                      <>
+                        <a href="#">
+                          <p
+                            className="Nav-Profile-Report"
+                            onClick={() => Router.push("/reportView")}
+                          >
+                            การรายงาน
+                          </p>
+                        </a>
+                      </>
+                    )}
+                    <a href="#">
+                      <p className="Nav-Profile-Logout" onClick={signout}>
+                        ออกจากระบบ
+                      </p>
+                    </a>
+                  </div>
+                </div>
+                {/* <label
                   className="Nav-Profile-Username"
                   onClick={() => Router.push("/profile")}
                 >
                   {user.studentId}
                   {user.type == "admin" && <>{user.name}</>}
-                </label>
-                {user.type == "admin" && (
+                </label> */}
+                {/* {user.type == "admin" && (
                   <>
                     <p
                       className="Nav-Profile-Report" //onClick={() => handleClick("activity")}
@@ -173,10 +207,10 @@ const navbar = () => {
                       การรายงาน
                     </p>
                   </>
-                )}
-                <label className="Nav-Profile-Logout" onClick={signout}>
+                )} */}
+                {/* <label className="Nav-Profile-Logout" onClick={signout}>
                   LOGOUT
-                </label>
+                </label> */}
               </div>
               {/* <div class="dropdown">
                 <button class="dropbtn">
