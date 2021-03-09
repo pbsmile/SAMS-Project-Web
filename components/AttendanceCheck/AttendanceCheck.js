@@ -119,7 +119,7 @@ const AttendanceCheck = () => {
                                 console.log('i: ' + j)
                                 console.log('bf : ' + value)
 
-                                value.push(i)
+                                value.push(j)
                                 show[j] = false
                                 //setShow[j](false)
                                 // showW[j] = 'เช็คชื่อแล้ว'
