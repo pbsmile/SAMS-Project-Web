@@ -114,7 +114,7 @@ const DELETEPOST = gql`
       name
     }
   }
-`
+`;
 
 const QUERY_ACTIVITY = gql`
   query QUERY_ACTIVITY($postId: String!) {
@@ -289,9 +289,12 @@ const ActivityInfo = () => {
         if (data.getOnePost.canReview == true) {
           setCanReview(true);
         }
-        if (user.type == "admin") {
-          setIsAdmin(true);
+        if (user) {
+          if (user.type == "admin") {
+            setIsAdmin(true);
+          }
         }
+
         //Router.push("/activity");
       }
     },
@@ -399,11 +402,10 @@ const ActivityInfo = () => {
           message: "",
         });
       }
-      setShowModalSendEmail(false)
-      console.log("Send Email Complete")
+      setShowModalSendEmail(false);
+      console.log("Send Email Complete");
     },
-
-  })
+  });
 
   const [deletePost] = useMutation(DELETEPOST, {
     variables: { postId },
@@ -412,10 +414,9 @@ const ActivityInfo = () => {
         console.log(data);
       }
       Router.push("/profile");
-      console.log("Detete Complete")
+      console.log("Detete Complete");
     },
-
-  })
+  });
 
   console.log("postId", postId);
 
@@ -435,7 +436,7 @@ const ActivityInfo = () => {
 
   const handleClickDelete = async () => {
     await deletePost();
-  }
+  };
 
   const handleClickJoin = async () => {
     if (toggleJoin == "unjoin") {
@@ -590,7 +591,7 @@ const ActivityInfo = () => {
               {createUser && (
                 <>
                   {/* style={{ display: isVisible ? "block" : "none" }} */}
-                  <div >
+                  <div>
                     <Link
                       key="editActivity"
                       href="/editActivity/[activityId]"
@@ -599,7 +600,9 @@ const ActivityInfo = () => {
                       <button>แก้ไข</button>
                     </Link>
 
-                    <button onClick={handleShowModalSendEmail}>ส่งข้อมูล</button>
+                    <button onClick={handleShowModalSendEmail}>
+                      ส่งข้อมูล
+                    </button>
 
                     <Link
                       key="attendanceCheck"
@@ -613,10 +616,10 @@ const ActivityInfo = () => {
                   </div>
                 </>
               )}
-               {isAdmin && (
+              {isAdmin && (
                 <>
                   {/* style={{ display: isVisible ? "block" : "none" }} */}
-                  <div >
+                  <div>
                     <button onClick={handleShowModalDelete}>ลบ</button>
                   </div>
                 </>
@@ -658,8 +661,6 @@ const ActivityInfo = () => {
                 {data.getOnePost.description}
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -674,15 +675,35 @@ const ActivityInfo = () => {
             <Modal.Title>กรอกรายละเอียดที่ต้องการแจ้ง</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-              ชื่อกิจกรรม : {data.getOnePost.name}<br></br>
-              หัวข้อเรื่อง :
-              <input type="text" name="subject" className="Post-Input-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.subject} />
-              รายละเอียด :
-              <textarea type="text" name="message" className="Post-Input-Fill-Data Post-Input-Large-Fill-Data" onChange={handleEmailChange} value={sendEmailInfo.message} />
+            ชื่อกิจกรรม : {data.getOnePost.name}
+            <br></br>
+            หัวข้อเรื่อง :
+            <input
+              type="text"
+              name="subject"
+              className="Post-Input-Fill-Data"
+              onChange={handleEmailChange}
+              value={sendEmailInfo.subject}
+            />
+            รายละเอียด :
+            <textarea
+              type="text"
+              name="message"
+              className="Post-Input-Fill-Data Post-Input-Large-Fill-Data"
+              onChange={handleEmailChange}
+              value={sendEmailInfo.message}
+            />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="btn btn-outline-danger" onClick={handleCloseModalSendEmail}>ยกเลิก</Button>
-            <Button variant="btn btn-info" onClick={handleEmailSubmit}>ยืนยัน</Button>
+            <Button
+              variant="btn btn-outline-danger"
+              onClick={handleCloseModalSendEmail}
+            >
+              ยกเลิก
+            </Button>
+            <Button variant="btn btn-info" onClick={handleEmailSubmit}>
+              ยืนยัน
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -696,12 +717,17 @@ const ActivityInfo = () => {
           <Modal.Header closeButton>
             <Modal.Title>คุณต้องการลบโพสต์กิจกรรม</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            {data.getOnePost.name}
-          </Modal.Body>
+          <Modal.Body>{data.getOnePost.name}</Modal.Body>
           <Modal.Footer>
-            <Button variant="btn btn-outline-danger" onClick={handleCloseModalDelete}>ยกเลิก</Button>
-            <Button variant="btn btn-info" onClick={handleClickDelete}>ยืนยัน</Button>
+            <Button
+              variant="btn btn-outline-danger"
+              onClick={handleCloseModalDelete}
+            >
+              ยกเลิก
+            </Button>
+            <Button variant="btn btn-info" onClick={handleClickDelete}>
+              ยืนยัน
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -744,7 +770,9 @@ const ActivityInfo = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title className="Activity-Info-Page-Card-Report-Title">ยืนยันการรีพอร์ต</Modal.Title>
+            <Modal.Title className="Activity-Info-Page-Card-Report-Title">
+              ยืนยันการรีพอร์ต
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body className="Activity-Info-Page-Card-Report-Body">
             <div>ชื่อกิจกรรม : {data.getOnePost.name}</div>

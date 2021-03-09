@@ -4,6 +4,7 @@
   margin-bottom: 10px;
   background: #f77f00;
   height: 80px;
+  z-index: 4;
 }
 
 .Nav-Items {
@@ -14,11 +15,10 @@
 }
 
 .Nav-Logo-Img {
-  margin-top: 20px;
-  width: 40px;
-  height: 40px;
+  //margin-top: 20px;
+  width: 200px;
+  //height: 40px;
 }
-
 
 .Nav-Logo {
   color: #000000;
@@ -104,6 +104,7 @@
 .Nav-Profile-Img {
   width: 40px;
   height: 40px;
+  margin-top: 5px;
 }
 
 .Nav-Profile-Flex-Text {
@@ -142,7 +143,7 @@
   font-size: 16px;
   border: none;
   outline: none;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
@@ -151,11 +152,12 @@
 }
 
 .dropdown-content {
+  //margin-right: 15px;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  //min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
 }
 
@@ -165,12 +167,18 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: left;
+  text-align: center;
   z-index: 4;
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color:  #ddd;
+  color: black;
+  border-radius: 0px;
+  transition: all 0.2s ease-out;
+  height: auto;
+
+  //background-color: #ddd;
   z-index: 4;
 }
 
@@ -180,7 +188,7 @@
 }
 
 .Nav-Profile-Report {
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 0;
   margin-bottom: 0;
 }

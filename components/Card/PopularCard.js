@@ -224,7 +224,7 @@ const PopularCard = () => {
                 </CardActions> */}
                 </Card>
               </div>
-            ))}
+            )).reverse()}
           </>
         )}
       </div>

@@ -224,7 +224,7 @@ const ClosingCard = () => {
                 </CardActions> */}
               </Card>
             </div>
-            ))}
+            )).reverse()}
           </>
         )}
       </div>

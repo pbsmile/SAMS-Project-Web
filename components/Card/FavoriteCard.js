@@ -221,7 +221,7 @@ const FavoriteCard = () => {
                   </CardActions> */}
                 </Card>
               </div>
-            ))}
+            )).reverse()}
           </>
         )}
       </div>

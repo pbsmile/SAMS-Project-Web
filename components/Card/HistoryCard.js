@@ -220,7 +220,7 @@ const HistoryCard = () => {
                   </CardActions> */}
                 </Card>
               </div>
-            ))}
+            )).reverse()}
           </>
         )}
       </div>

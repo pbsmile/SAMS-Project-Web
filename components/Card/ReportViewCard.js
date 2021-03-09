@@ -86,7 +86,7 @@ const ReportViewCard = () => {
                   ถูกรายงานรวม <b>{prod.numberOfReport}</b>  ครั้ง
                 </div>
               </div>
-            ))}
+            )).reverse()}
           </>
         )}
       </div>
