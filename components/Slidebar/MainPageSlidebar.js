@@ -1,25 +1,27 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import { Fade } from "react-slideshow-image";
-import Slideimg1 from "../../Image/Slideimg1.jpg";
+import Slideimg1 from "../../Image/Slideimg3.jpg";
+import Slideimg2 from "../../Image/Slideimg3.jpg";
+import Slideimg3 from "../../Image/Slideimg3.jpg";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const MainPageSlidebar = () => {
   return (
-    <div className="">
+    <div className="Main-Page-Slidebar">
       <Carousel showArrows={true}>
-        <div>
+        <div className="Main-Page-Slidebar-Img">
           <img src={Slideimg1} />
           
         </div>
-        <div>
-          <img src={Slideimg1} />
+        <div className="Main-Page-Slidebar-Img">
+          <img src={Slideimg2} />
           
         </div>
-        <div>
-          <img src={Slideimg1} />
+        <div className="Main-Page-Slidebar-Img">
+          <img src={Slideimg3} />
           
         </div>
       </Carousel>

@@ -77,15 +77,15 @@ const navbar = () => {
           <img
             className="Nav-Logo-Img"
             src={Logo}
-            onClick={() => Router.push("/main")}
+            onClick={() => Router.push("/")}
           />
-          <h1
+          {/* <h1
             className="Nav-Logo"
             href="#"
             onClick={() => Router.push("/main")}
           >
             กิจกรรมนักศึกษา
-          </h1>
+          </h1> */}
         </div>
         <div className="Nav-Elements-Flex">
           <ul className="Nav-Elements">

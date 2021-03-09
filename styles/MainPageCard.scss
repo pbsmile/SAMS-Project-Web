@@ -51,12 +51,39 @@
   border-color: #ffffff;
 }
 
-.Main-Page-Banner-Slider {
-  width: 500px;
-  position: fixed;
+.Main-Page-Slidebar {
+  //object-fit: contain;
+  //object-fit: scale-down;
+  width: 600px;
+  height: 300px;
+  padding-top: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1;
+  //position: fixed;
 }
 
-.thumb {
+.Main-Page-Slidebar-Img {
+  //margin: -100px -0px 0px 0px;
+  z-index: -1;
+
+}
+
+.carousel.carousel-slider .control-arrow .control-arrow:hover {
+  z-index: -1;
+}
+
+.carousel-status {
+  visibility: hidden;
+}
+
+.div.thumb-wrapper.axis-vertical , .carousel .thumbs-wrapper {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.thumb{
   visibility: hidden;
 }
 
@@ -98,7 +125,7 @@
 }
 
 .Main-Page-Card-List {
-  margin-top: 170px;
+  margin-top: 50px;
   display: grid;
   justify-content: center;
   grid-template-columns: auto auto auto auto auto;
