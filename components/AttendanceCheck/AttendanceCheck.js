@@ -88,7 +88,8 @@ const AttendanceCheck = () => {
                 // for (const j in data.getOnePost.checkedUsers){
                 //     console.log('jjj : '+j)
                 // }
-                if (len_checked > 0 && len_join > 0) {
+                console.log(showW)
+                if (len_checked > 0) {
                     for (var i = 0; i < len_checked; i++) {
                         console.log('i' + i)
                         for (var j = 0; j < len_join; j++) {
@@ -154,7 +155,7 @@ const AttendanceCheck = () => {
                                     // }
                                 )
                                 show[j] = true
-                                
+
                                 console.log('sh :' + show[j])
                                 // showW[j] = 'เช็คชื่อ'
 
@@ -166,8 +167,31 @@ const AttendanceCheck = () => {
                         }
                     }
                 }
+                else {
+                    for (let i = 0; i < len_join; i++) {
+                        btnGreen.datac.push(
+                            // {
+                            // datac: [
+                            {
+                                name: data.getOnePost.joinUsers[i].name,
+                                id: data.getOnePost.joinUsers[i]._id,
+                                btnactive: true
+                            },
+                            // {
+                            //     name: data.getOnePost.joinUsers[i].name,
+                            //     id: data.getOnePost.joinUsers[i+1]._id,
+                            //     data: ''
+                            // },
+                            //     ]
+                            // }
+
+                        )
+                        show[i] = true
+
+                    }
+                }
                 //  setValue(showW)
-                setShowW(show)
+
                 // for (var i=1; i<data.getOnePost.joinUsers.length; i++) {
                 //     btnGreen.datac.push({
                 //         name: data.getOnePost.joinUsers[i].name,
@@ -176,8 +200,9 @@ const AttendanceCheck = () => {
                 //     })
                 // }
 
-                console.log('btnG     :   ' + btnGreen.datac[0].name)
-                console.log(show)
+                // console.log('btnG     :   ' + btnGreen.datac[0].name)
+                setShowW(show)
+                // console.log(show)
                 console.log(showW)
 
                 console.log(value)
@@ -293,7 +318,7 @@ const AttendanceCheck = () => {
         // }
         console.log("Info : " + checkInfo.checkedUsersId)
         // for (var i = 0; i <len_checked; i++){
-            
+
         // }
         // if(btnGreen.datac[v_id].btnactive == false){
         //     showW[v_id] = 'เช็คชื่อแล้ว'
@@ -306,9 +331,11 @@ const AttendanceCheck = () => {
 
     const submitBtn = async e => {
         for (var i = 0; i < btnGreen.datac.length; i++) {
-            if (show[i] == false) {
-                checkInfo.checkedUsersId.push(btnGreen.datac[i].id)
+            if (showW[i] == false) {
+                    checkInfo.checkedUsersId.push(btnGreen.datac[i].id)
+                console.log(btnGreen.datac[i].id)
             }
+            // console.log(i)
             // else if(show[i] == true){
 
             // }
@@ -322,6 +349,7 @@ const AttendanceCheck = () => {
         //     checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
         // }
         // console.log("กด : "+btnGreen.datac[1].datac[0].name)
+
         await AttendanceCheck();
     }
     // const toggle = e => {
@@ -348,11 +376,11 @@ const AttendanceCheck = () => {
             SAMS
             {data.getOnePost.joinUsers.map((prod, id) => (
                 <div key={prod.name}>
-                    {prod.name} {show} {prod._id}  {id} 
-                    
+                    {prod.name} {show} {prod._id}  {id}
+
                     {/* <Button variant={btnGreen.color} onClick={handleRedClick(prod._id)}>เข้าร่วม</Button>{' '} */}
                     <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
-                        <ToggleButton variant="outline-success" value={id} onClick={e => { setVId(id) }}>{showW[id] == true ? "เช็คชื่อ" : "เช็คชื่อแล้ว"}</ToggleButton>
+                        <ToggleButton variant="outline-success" value={id} onClick={e => { setVId(id) }}>{showW[id] == false ? "เช็คชื่อแล้ว" : "เช็คชื่อ"}</ToggleButton>
                     </ToggleButtonGroup>
 
                     {/* <Button variant={btnGreen.color} key={prod.name} name={prod.name} value={prod.name} onClick={handleRedClick}>Success</Button>{' '} */}
