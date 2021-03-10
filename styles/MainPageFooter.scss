@@ -1,0 +1,33 @@
+.Main-Page-Footer-Div {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  margin-top: 600px;
+  width: 100%;
+  height: 150px;
+  background-color: $dark-orange;
+  color: white;
+  padding-left: 80px;
+  padding-top: 1px;
+  //text-align: center;
+  border-style: solid none none none;
+  border-color: coral;
+  border-width: 15px;
+  @media screen and (max-width: 1079px) {
+    position: fixed;
+    
+  }
+}
+
+.Main-Page-Footer-Div-Title {
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.Main-Page-Footer-Div-Text {
+  margin-bottom: 10px;
+  color: black;
+}

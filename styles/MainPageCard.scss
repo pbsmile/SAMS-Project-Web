@@ -98,6 +98,10 @@
   // border-style: solid;
   // border-color: rgb(0, 0, 0);
   // border-width: 1px;
+  // @media screen and (max-width: 414px) {
+  //   margin-left: 50vw;
+  //   //margin-right: auto;
+  // }
 }
 
 .Main-Page-Card-Slider {
@@ -131,6 +135,14 @@
   grid-template-columns: auto auto auto auto auto;
   gap: 10px;
   padding: 10px;
+  @media screen and (max-width: 1079px) {
+    grid-template-columns: auto auto auto;
+    margin-bottom: 180px;
+  }
+  @media screen and (max-width: 414px) {
+    grid-template-columns: auto auto;
+    margin-bottom: 180px;
+  }
 }
 
 .Main-Page-Card {

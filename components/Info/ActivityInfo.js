@@ -185,46 +185,46 @@ const ActivityInfo = () => {
   const dateFormat = require("dateformat");
   dateFormat.i18n = {
     dayNames: [
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
-      "วันอาทิตย์",
-      "วันจันทร์",
-      "วันอังคาร",
-      "วันพุธ",
-      "วันพฤหัสบดี",
-      "วันศุกร์",
-      "วันเสาร์",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
+      "อา.",
+      "จ.",
+      "อ.",
+      "พ.",
+      "พฤ.",
+      "ศ.",
+      "ส.",
     ],
     monthNames: [
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
-      "มกราคม",
-      "กุมภาพันธ์",
-      "มีนาคม",
-      "เมษายน",
-      "พฤษภาคม",
-      "มิถุนายน",
-      "กรกฎาคม",
-      "สิงหาคม",
-      "กันยายน",
-      "ตุลาคม",
-      "พฤศจิกายน",
-      "ธันวาคม",
+      "ม.ค.",
+        "ก.พ.",
+        "มี.ค.",
+        "เม.ย.",
+        "พ.ค.",
+        "มิ.ย.",
+        "ก.ค.",
+        "ส.ค.",
+        "ก.ย.",
+        "ต.ค.",
+        "พ.ย.",
+        "ธ.ค.",
+        "ม.ค.",
+        "ก.พ.",
+        "มี.ค.",
+        "เม.ย.",
+        "พ.ค.",
+        "มิ.ย.",
+        "ก.ค.",
+        "ส.ค.",
+        "ก.ย.",
+        "ต.ค.",
+        "พ.ย.",
+        "ธ.ค.",
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
@@ -543,6 +543,14 @@ const ActivityInfo = () => {
                   />
                   {data.getOnePost.status}
                 </label>
+                <label className="Activity-Info-Page-Card-Status">
+                  <img
+                    className="Activity-Info-Page-Card-Icon-Size"
+                    src={Closed}
+                  />
+                  คะแนน
+                  {data.getOnePost.avrRate}/5
+                </label>
               </div>
             </div>
             <div>
@@ -651,13 +659,6 @@ const ActivityInfo = () => {
                 </label>
               </div>
               <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Description-More">
-                {data.getOnePost.description}
-                {data.getOnePost.description}
-                {data.getOnePost.description}
-                {data.getOnePost.description}
-                {data.getOnePost.description}
-                {data.getOnePost.description}
-                {data.getOnePost.description}
                 {data.getOnePost.description}
               </div>
             </div>

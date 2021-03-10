@@ -60,15 +60,19 @@ const ProfileToggle = () => {
             }
             onClick={() => handleClick("myprofile")}
           >
-            <img
-              className={
-                toggle == "myprofile"
-                  ? "Profile-Toggle-Button-Profile-Img"
-                  : "Profile-Toggle-Button-Img-Trans"
-              }
-              src={ProfilePNG}
-            ></img>
-            ข้อมูลส่วนตัว
+            <div className="Profile-Toggle-Button-Items-Flex">
+              <div>
+                <img
+                  className={
+                    toggle == "myprofile"
+                      ? "Profile-Toggle-Button-Profile-Img"
+                      : "Profile-Toggle-Button-Img-Trans"
+                  }
+                  src={ProfilePNG}
+                ></img>
+              </div>
+              <div>ข้อมูลส่วนตัว</div>
+            </div>
           </label>
           <label
             className={
@@ -78,15 +82,19 @@ const ProfileToggle = () => {
             }
             onClick={() => handleClick("history")}
           >
-            <img
-              className={
-                toggle == "history"
-                  ? "Profile-Toggle-Button-History-Img"
-                  : "Profile-Toggle-Button-Img-Trans"
-              }
-              src={HistoryPNG}
-            ></img>
-            ประวัติ
+            <div className="Profile-Toggle-Button-Items-Flex">
+              <div>
+                <img
+                  className={
+                    toggle == "history"
+                      ? "Profile-Toggle-Button-History-Img"
+                      : "Profile-Toggle-Button-Img-Trans"
+                  }
+                  src={HistoryPNG}
+                ></img>
+              </div>
+              <div>ประวัติ</div>
+            </div>
           </label>
           <label
             className={
@@ -96,15 +104,19 @@ const ProfileToggle = () => {
             }
             onClick={() => handleClick("favorite")}
           >
-            <img
-              className={
-                toggle == "favorite"
-                  ? "Profile-Toggle-Button-Favorite-Img"
-                  : "Profile-Toggle-Button-Img-Trans"
-              }
-              src={FavoritePNG}
-            ></img>
-            ชื่นชอบ
+            <div className="Profile-Toggle-Button-Items-Flex">
+              <div>
+                <img
+                  className={
+                    toggle == "favorite"
+                      ? "Profile-Toggle-Button-Favorite-Img"
+                      : "Profile-Toggle-Button-Img-Trans"
+                  }
+                  src={FavoritePNG}
+                ></img>
+              </div>
+              <div>ชื่นชอบ</div>
+            </div>
           </label>
           <label
             className={
@@ -114,15 +126,19 @@ const ProfileToggle = () => {
             }
             onClick={() => handleClick("mypost")}
           >
-            <img
-              className={
-                toggle == "mypost"
-                  ? "Profile-Toggle-Button-Mypost-Img"
-                  : "Profile-Toggle-Button-Img-Trans"
-              }
-              src={MypostPNG}
-            ></img>
-            โพสต์ของฉัน
+            <div className="Profile-Toggle-Button-Items-Flex">
+              <div>
+                <img
+                  className={
+                    toggle == "mypost"
+                      ? "Profile-Toggle-Button-Mypost-Img"
+                      : "Profile-Toggle-Button-Img-Trans"
+                  }
+                  src={MypostPNG}
+                ></img>
+              </div>
+              <div>โพสต์ของฉัน</div>
+            </div>
           </label>
         </ul>
       </nav>

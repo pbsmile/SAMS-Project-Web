@@ -17,7 +17,7 @@ import NearingPNG from "../../Image/main_nearing.png";
 const MainToggle = () => {
   const [toggle, setToggle] = useState("popularpost");
   const [refresh, setRefresh] = useState(false);
-  console.log("maintoggle",toggle)
+  console.log("maintoggle", toggle);
 
   // useEffect(() => {
   //   if (toggle == "mypost") {
@@ -61,15 +61,19 @@ const MainToggle = () => {
             }
             onClick={() => handleClick("popularpost")}
           >
-            <img
-              className={
-                toggle == "popularpost"
-                  ? "Main-Toggle-Button-Popular-Img"
-                  : "Main-Toggle-Button-Img-Trans"
-              }
-              src={PopularPNG}
-            ></img>
-            กิจกรรมยอดนิยม
+            <div className="Profile-Toggle-Button-Items-Flex">
+              <div>
+                <img
+                  className={
+                    toggle == "popularpost"
+                      ? "Main-Toggle-Button-Popular-Img"
+                      : "Main-Toggle-Button-Img-Trans"
+                  }
+                  src={PopularPNG}
+                ></img>
+              </div>
+              <div>กิจกรรมยอดนิยม</div>
+            </div>
           </label>
           <label
             className={
@@ -79,15 +83,19 @@ const MainToggle = () => {
             }
             onClick={() => handleClick("closingpost")}
           >
-            <img
-              className={
-                toggle == "closingpost"
-                  ? "Main-Toggle-Button-Closing-Img"
-                  : "Main-Toggle-Button-Img-Trans"
-              }
-              src={ClosingPNG}
-            ></img>
-            ใกล้ปิดรับสมัคร
+            <div className="Main-Toggle-Button-Items-Flex">
+              <div>
+                <img
+                  className={
+                    toggle == "closingpost"
+                      ? "Main-Toggle-Button-Closing-Img"
+                      : "Main-Toggle-Button-Img-Trans"
+                  }
+                  src={ClosingPNG}
+                ></img>
+              </div>
+              <div>ใกล้ปิดรับสมัคร</div>
+            </div>
           </label>
           <label
             className={
@@ -97,15 +105,19 @@ const MainToggle = () => {
             }
             onClick={() => handleClick("nearingpost")}
           >
-            <img
-              className={
-                toggle == "nearingpost"
-                  ? "Main-Toggle-Button-Nearing-Img"
-                  : "Main-Toggle-Button-Img-Trans"
-              }
-              src={NearingPNG}
-            ></img>
-            จัดขึ้นเร็วๆ นี้
+            <div className="Profile-Toggle-Button-Items-Flex">
+              <div>
+                <img
+                  className={
+                    toggle == "nearingpost"
+                      ? "Main-Toggle-Button-Nearing-Img"
+                      : "Main-Toggle-Button-Img-Trans"
+                  }
+                  src={NearingPNG}
+                ></img>
+              </div>
+              <div>จัดขึ้นเร็วๆ นี้</div>
+            </div>
           </label>
         </ul>
       </nav>
