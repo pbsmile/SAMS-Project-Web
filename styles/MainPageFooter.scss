@@ -13,14 +13,18 @@
   border-style: solid none none none;
   border-color: coral;
   border-width: 15px;
+  @media screen and (max-width: 1079px) {
+    position: fixed;
+    
+  }
 }
 
 .Main-Page-Footer-Div-Title {
-    color: white;
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 10px;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .Main-Page-Footer-Div-Text {
