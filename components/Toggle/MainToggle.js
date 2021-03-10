@@ -83,7 +83,7 @@ const MainToggle = () => {
             }
             onClick={() => handleClick("closingpost")}
           >
-            <div className=".Main-Toggle-Button-Items-Flex">
+            <div className="Main-Toggle-Button-Items-Flex">
               <div>
                 <img
                   className={
