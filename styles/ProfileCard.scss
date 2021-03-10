@@ -11,6 +11,9 @@
   border-radius: 14px;
   justify-content: center;
   //background-color: rgb(184, 184, 184);
+  @media screen and (max-width: 414px) {
+    padding: 10px;
+  }
 }
 
 .Profile-Card-Div-Topic {

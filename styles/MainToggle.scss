@@ -34,6 +34,19 @@
   align-items: center;
 }
 
+.Main-Toggle-Button-Items-Flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 732px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .Main-Toggle-Button-Items label {
   float: left;
   //color: black;
@@ -43,6 +56,12 @@
   margin-right: 30px;
   font-size: 20px;
   font-weight: bold;
+  @media screen and (max-width: 732px) {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 
 .Main-Toggle-Button-Items label:hover {
@@ -83,18 +102,30 @@
 .Main-Toggle-Button-Popular-Img {
   margin-right: 10px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 25px;
+  }
 }
 .Main-Toggle-Button-Closing-Img {
   margin-right: 10px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 25px;
+  }
 }
 .Main-Toggle-Button-Nearing-Img {
   margin-right: 10px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 25px;
+  }
 }
 .Main-Toggle-Button-Img-Trans {
   margin-right: 10px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 25px;
+  }
   filter: grayscale(100%);
 }
 

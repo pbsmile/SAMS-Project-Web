@@ -33,6 +33,19 @@
   align-items: center;
 }
 
+.Profile-Toggle-Button-Items-Flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 732px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .Profile-Toggle-Button-Items label {
   float: left;
   //color: black;
@@ -42,6 +55,12 @@
   margin-right: 30px;
   font-size: 20px;
   font-weight: bold;
+  @media screen and (max-width: 732px) {
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 
 .Profile-Toggle-Button-Items label:hover {
@@ -90,23 +109,38 @@
   //margin-left: 15px;
   margin-right: 5px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 20px;
+  }
 }
 .Profile-Toggle-Button-History-Img {
   margin-right: 5px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 20px;
+  }
 }
 .Profile-Toggle-Button-Favorite-Img {
   margin-right: 5px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 20px;
+  }
 }
 .Profile-Toggle-Button-Mypost-Img {
   margin-right: 5px;
   width: 30px;
+  @media screen and (max-width: 732px) {
+    width: 20px;
+  }
 }
 .Profile-Toggle-Button-Img-Trans {
   margin-right: 5px;
   width: 30px;
   filter: grayscale(100%);
+  @media screen and (max-width: 732px) {
+    width: 20px;
+  }
 }
 
 .Profile-Toggle-List {
