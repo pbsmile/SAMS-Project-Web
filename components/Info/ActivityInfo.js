@@ -202,29 +202,29 @@ const ActivityInfo = () => {
     ],
     monthNames: [
       "ม.ค.",
-        "ก.พ.",
-        "มี.ค.",
-        "เม.ย.",
-        "พ.ค.",
-        "มิ.ย.",
-        "ก.ค.",
-        "ส.ค.",
-        "ก.ย.",
-        "ต.ค.",
-        "พ.ย.",
-        "ธ.ค.",
-        "ม.ค.",
-        "ก.พ.",
-        "มี.ค.",
-        "เม.ย.",
-        "พ.ค.",
-        "มิ.ย.",
-        "ก.ค.",
-        "ส.ค.",
-        "ก.ย.",
-        "ต.ค.",
-        "พ.ย.",
-        "ธ.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
@@ -548,8 +548,24 @@ const ActivityInfo = () => {
                     className="Activity-Info-Page-Card-Icon-Size"
                     src={Closed}
                   />
-                  คะแนน
-                  {data.getOnePost.avrRate}/5
+                  หน่วยงาน
+                  {data.getOnePost.major}
+                </label>
+                <label className="Activity-Info-Page-Card-Status">
+                  <img
+                    className="Activity-Info-Page-Card-Icon-Size"
+                    src={Closed}
+                  />
+                  รีวิวเฉลี่ย
+                  {data.getOnePost.avrRate} คะแนน
+                </label>
+                <label className="Activity-Info-Page-Card-Status">
+                  <img
+                    className="Activity-Info-Page-Card-Icon-Size"
+                    src={Closed}
+                  />
+                  ปิดรับสมัคร
+                  {dateFormat(data.getOnePost.dateCloseApply, "d mmmm yyyy")}
                 </label>
               </div>
             </div>
