@@ -39,7 +39,7 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color:#ffffff;
+  background-color: #ffffff;
   border-color: #ffffff;
 }
 
@@ -47,7 +47,7 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color:#ffffff;
+  background-color: #ffffff;
   border-color: #ffffff;
 }
 
@@ -84,7 +84,7 @@
   width: 530px;
   border-radius: 10px;
   color: $dark-orange;
-  
+
   //background: #d6d5d5;
 }
 
@@ -108,8 +108,12 @@
     grid-template-columns: auto auto auto;
     margin-bottom: 180px;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 744px) {
     grid-template-columns: auto auto;
+    margin-bottom: 180px;
+  }
+  @media screen and (max-width: 414px) {
+    grid-template-columns: auto;
     margin-bottom: 180px;
   }
 }
@@ -129,7 +133,7 @@
 .My-Post-Page-Card-Top-Div {
   display: flex;
   flex-direction: row;
-  
+
   margin-left: 65%;
   align-items: center;
 }
@@ -232,7 +236,7 @@
   width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 14px;
-  color: #ED0000;
+  color: #ed0000;
 }
 
 .My-Post-Page-Card-Time {
