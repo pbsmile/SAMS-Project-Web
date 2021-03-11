@@ -193,9 +193,8 @@ const EditPost = () => {
             }
             // window.location.reload();
             Router.push('/activity/' + postId);
-
-            console.log("on complete")
-            console.log(userInfo)
+            // console.log("on complete")
+            // console.log(userInfo)
         },
     })
 
@@ -205,9 +204,10 @@ const EditPost = () => {
         const base64 = await convertBase64(file)
         console.log(base64)
         setbaseImage(base64)
-        setUserInfo[{
+        setUserInfo({
             photoHeader: base64
-        }]
+        })
+        // console.log('userInfo :'+userInfo)
     }
 
     const convertBase64 = (file) => {
@@ -227,16 +227,16 @@ const EditPost = () => {
     const handleSubmit = async e => {
         console.log(userInfo)
         console.log("handle submit")
-        try {
-            console.log("Doneeeeeeeeeee1")
-            e.preventDefault();
-            console.log("Doneeeeeeeeeee2")
+        // try {
+        //     console.log("Doneeeeeeeeeee1")
+        //     e.preventDefault();
+        //     console.log("Doneeeeeeeeeee2")
             await EditPost();
-            console.log("Doneeeeeeeeeee3")
-            console.log(userInfo)
-        } catch (error) {
-            console.log(error);
-        }
+        //     console.log("Doneeeeeeeeeee3")
+        //     console.log(userInfo)
+        // } catch (error) {
+        //     console.log(error);
+        // }
     };
 
     const cancleSubmit = async e => {
@@ -558,18 +558,18 @@ const EditPost = () => {
                       </div>
                     </div> */}
                 </div>
+                {/* <div className="row"> */}
+                    {/* <div className="Post-Column"> </div> */}
+                    
+                {/* </div> */}
             </form>
-            <div className="Post-Page">
-                <div className="row">
-                    <div className="Post-Column"> </div>
-                    <div className="Post-Column2">
+            <div className="Post-Column2">
                         <div className="Post-Left-Button">
                             <button name="button" className="Post-Unsubmit-Button" onClick={cancleSubmit}>ยกเลิก</button>
                             <button type="submit" name="button" className="Post-Submit-Button" onClick={handleEditShow}>บันทึก</button>
                         </div>
                     </div>
-                </div>
-
+            <div className="Post-Page">
                 {/* <Button variant="primary" >
                     Launch static backdrop modal
                 </Button> */}
@@ -594,7 +594,7 @@ const EditPost = () => {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="btn btn-outline-danger" onClick={handleEditClose}>ยกเลิก</Button>
-                        <Button variant="btn btn-info" onClick={handleSubmit}>ยืนยัน</Button>
+                        <Button variant="btn btn-info" type="submit" onClick={handleSubmit}>ยืนยัน</Button>
                     </Modal.Footer>
                 </Modal>
                 {/* <Modal
