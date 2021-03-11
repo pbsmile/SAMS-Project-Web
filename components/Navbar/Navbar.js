@@ -158,7 +158,7 @@ const navbar = () => {
               />
               <div className="Nav-Profile-Flex-Text">
                 <div class="dropdown">
-                  <button class="dropbtn">
+                  <button class="dropbtn"  onClick={() => Router.push("/profile")}>
                     {user.studentId}
                     {user.type == "admin" && <>{user.name}</>}
                     <i class="fa fa-caret-down"></i>
