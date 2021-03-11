@@ -27,7 +27,7 @@ import {Button,Modal} from 'react-bootstrap';
 const EDITPOST = gql`
 mutation EDITPOST(
     $postId: String!,
-    $photo: String, 
+    $photoHeader: String, 
     $name: String, 
     $dateStart: Date, 
     $dateEnd: Date, 
@@ -42,7 +42,7 @@ mutation EDITPOST(
 {
     editPost(input:{
         postId: $postId,
-        photo: $photo, 
+        photoHeader: $photoHeader, 
         name: $name, 
         dateStart: $dateStart, 
         dateEnd: $dateEnd , 
@@ -66,6 +66,7 @@ const QUERY_ACTIVITY = gql`
     getOnePost(input: { postId: $postId }) {
       name
       _id
+      photoHeader
       status
       dateStart
       dateEnd
@@ -94,7 +95,7 @@ const EditPost = () => {
 
     const dateFormat = require("dateformat");
     const [userInfo, setUserInfo] = useState({
-        photo: "",
+        photoHeader: "",
         name: "",
         dateStart: "",
         dateEnd: "",
@@ -148,7 +149,7 @@ const EditPost = () => {
                 console.log(data.getOnePost)
 
                 setUserInfo({
-                    photo: "",
+                    photoHeader: data.getOnePost.photoHeader,
                     name: data.getOnePost.name,
                     dateStart: dateFormat(data.getOnePost.dateStart, "isoDate"),
                     dateEnd: dateFormat(data.getOnePost.dateEnd, "isoDate"),
@@ -174,7 +175,7 @@ const EditPost = () => {
             if (data2) {
                 console.log(data2);
                 setUserInfo({
-                    photo: "",
+                    photoHeader: "",
                     name: "",
                     dateStart: "",
                     dateEnd: "",
@@ -304,7 +305,7 @@ const EditPost = () => {
                 <hr></hr>
                 <div className="Post-poster-container" >
                     <div className="previewProfilePic center">
-                        <img className="post_image" />
+                        <img className="post_image" src={userInfo.photoHeader}/>
                         <div className="post_choseimage">
                             <input id="profilePic" type="file" />
                         </div>
