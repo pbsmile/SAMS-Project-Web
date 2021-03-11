@@ -147,7 +147,7 @@ const post = () => {
     const [picture, setPicture] = useState(null);
     const [imgData, setImgData] = useState(null);
     const [baseImage, setbaseImage] = useState("");
-    
+
     const onChangePicture = e => {
         if (e.target.files[0]) {
             console.log("picture: ", e.target.files);
@@ -163,24 +163,24 @@ const post = () => {
     };
 
     const uploadImage = async (e) => {
-        console.log(e.target.files[0])
+        console.log('img:'+e.target.files[0].size)
         const file = e.target.files[0]
         const base64 = await convertBase64(file)
-        console.log(base64)
+        // console.log(base64)
         setbaseImage(base64)
         userInfo.photoHeader = base64
     }
 
-    const convertBase64 = (file) =>{
-        return new Promise((resolve, reject)=> {
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
             const fileReader = new FileReader();
             fileReader.readAsDataURL(file)
 
-            fileReader.onload = () =>{
+            fileReader.onload = () => {
                 resolve(fileReader.result)
             };
-            
-            fileReader.onerror = (error) =>{
+
+            fileReader.onerror = (error) => {
                 reject(error);
             };
         })
@@ -214,22 +214,22 @@ const post = () => {
                 <div className="Post-poster-container" >
                     <div className="previewProfilePic center">
                         <img className="post_image" src={baseImage} />
-                        
+
                         {/* <img className="post_image" src={imgData} /> */}
                         {/* <div className="post_choseimage">
                             <input id="profilePic" type="file" onChange={onChangePicture} />
                         </div> */}
                     </div>
-                    <form className="post_choseimage" onChange={(e) => {uploadImage(e)}}>
-                            <input
+                    <form className="post_choseimage" onChange={(e) => { uploadImage(e) }}>
+                        <input
                             type="file"
                             name="photoHeader"
                             id="file"
                             accept=".jpeg, .png, .jpg"
-                            // value={userInfo.photoHeader}
-                            />
-                            <input type="submit"/>
-                        </form>
+                        // value={userInfo.photoHeader}
+                        />
+                        {/* <input type="submit" /> */}
+                    </form>
                 </div>
                 <div className="Post-Input-Container" >
                     <div className="row">
