@@ -21,13 +21,13 @@ import Router from "next/router";
 // import Modal from 'react-modal';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button,Modal} from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 
 const EDITPOST = gql`
 mutation EDITPOST(
     $postId: String!,
-    $photo: String, 
+    $photoHeader: String, 
     $name: String, 
     $dateStart: Date, 
     $dateEnd: Date, 
@@ -42,7 +42,7 @@ mutation EDITPOST(
 {
     editPost(input:{
         postId: $postId,
-        photo: $photo, 
+        photoHeader: $photoHeader, 
         name: $name, 
         dateStart: $dateStart, 
         dateEnd: $dateEnd , 
@@ -66,6 +66,7 @@ const QUERY_ACTIVITY = gql`
     getOnePost(input: { postId: $postId }) {
       name
       _id
+      photoHeader
       status
       dateStart
       dateEnd
@@ -94,7 +95,7 @@ const EditPost = () => {
 
     const dateFormat = require("dateformat");
     const [userInfo, setUserInfo] = useState({
-        photo: "",
+        photoHeader: "",
         name: "",
         dateStart: "",
         dateEnd: "",
@@ -107,6 +108,7 @@ const EditPost = () => {
         description: "",
     });
 
+    const [baseImage, setbaseImage] = useState("");
     // var subtitle;
     // const [modalIsOpen, setIsOpen] = React.useState(false);
     // function openModal() {
@@ -148,7 +150,7 @@ const EditPost = () => {
                 console.log(data.getOnePost)
 
                 setUserInfo({
-                    photo: "",
+                    photoHeader: data.getOnePost.photoHeader,
                     name: data.getOnePost.name,
                     dateStart: dateFormat(data.getOnePost.dateStart, "isoDate"),
                     dateEnd: dateFormat(data.getOnePost.dateEnd, "isoDate"),
@@ -160,6 +162,7 @@ const EditPost = () => {
                     major: data.getOnePost.major,
                     description: data.getOnePost.description,
                 });
+                setbaseImage(data.getOnePost.photoHeader)
 
             }
         },
@@ -174,7 +177,7 @@ const EditPost = () => {
             if (data2) {
                 console.log(data2);
                 setUserInfo({
-                    photo: "",
+                    photoHeader: "",
                     name: "",
                     dateStart: "",
                     dateEnd: "",
@@ -190,27 +193,50 @@ const EditPost = () => {
             }
             // window.location.reload();
             Router.push('/activity/' + postId);
-
-            console.log("on complete")
-            console.log(userInfo)
+            // console.log("on complete")
+            // console.log(userInfo)
         },
     })
 
+    const uploadImage = async (e) => {
+        console.log(e.target.files[0])
+        const file = e.target.files[0]
+        const base64 = await convertBase64(file)
+        console.log(base64)
+        setbaseImage(base64)
+        setUserInfo({
+            photoHeader: base64
+        })
+        // console.log('userInfo :'+userInfo)
+    }
 
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file)
 
+            fileReader.onload = () => {
+                resolve(fileReader.result)
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        })
+    }
     const handleSubmit = async e => {
         console.log(userInfo)
         console.log("handle submit")
-        try {
-            console.log("Doneeeeeeeeeee1")
-            e.preventDefault();
-            console.log("Doneeeeeeeeeee2")
+        // try {
+        //     console.log("Doneeeeeeeeeee1")
+        //     e.preventDefault();
+        //     console.log("Doneeeeeeeeeee2")
             await EditPost();
-            console.log("Doneeeeeeeeeee3")
-            console.log(userInfo)
-        } catch (error) {
-            console.log(error);
-        }
+        //     console.log("Doneeeeeeeeeee3")
+        //     console.log(userInfo)
+        // } catch (error) {
+        //     console.log(error);
+        // }
     };
 
     const cancleSubmit = async e => {
@@ -280,7 +306,7 @@ const EditPost = () => {
 
     // }
     console.log("postId", postId);
-    
+
 
 
     if (error) return <p>Something went wrong, please try again.</p>;
@@ -304,11 +330,22 @@ const EditPost = () => {
                 <hr></hr>
                 <div className="Post-poster-container" >
                     <div className="previewProfilePic center">
-                        <img className="post_image" />
-                        <div className="post_choseimage">
+                        <img className="post_image" src={userInfo.photoHeader} />
+                        {/* <div className="post_choseimage">
                             <input id="profilePic" type="file" />
-                        </div>
+                        </div> */}
                     </div>
+                    <form className="post_choseimage" onChange={(e) => { uploadImage(e) }}>
+                        <input
+                            type="file"
+                            name="photoHeader"
+                            id="file"
+                            accept=".jpeg, .png, .jpg"
+                        // value={userInfo.photoHeader}
+                        />
+                        {/* <input type="submit" /> */}
+                    </form>
+
                 </div>
                 <div className="Post-Input-Container" >
                     <div className="row">
@@ -521,18 +558,18 @@ const EditPost = () => {
                       </div>
                     </div> */}
                 </div>
+                {/* <div className="row"> */}
+                    {/* <div className="Post-Column"> </div> */}
+                    
+                {/* </div> */}
             </form>
-            <div className="Post-Page">
-                <div className="row">
-                    <div className="Post-Column"> </div>
-                    <div className="Post-Column2">
+            <div className="Post-Column2">
                         <div className="Post-Left-Button">
                             <button name="button" className="Post-Unsubmit-Button" onClick={cancleSubmit}>ยกเลิก</button>
                             <button type="submit" name="button" className="Post-Submit-Button" onClick={handleEditShow}>บันทึก</button>
                         </div>
                     </div>
-                </div>
-
+            <div className="Post-Page">
                 {/* <Button variant="primary" >
                     Launch static backdrop modal
                 </Button> */}
@@ -557,7 +594,7 @@ const EditPost = () => {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="btn btn-outline-danger" onClick={handleEditClose}>ยกเลิก</Button>
-                        <Button variant="btn btn-info" onClick={handleSubmit}>ยืนยัน</Button>
+                        <Button variant="btn btn-info" type="submit" onClick={handleSubmit}>ยืนยัน</Button>
                     </Modal.Footer>
                 </Modal>
                 {/* <Modal

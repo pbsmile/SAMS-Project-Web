@@ -9,7 +9,7 @@ import ImageLogo from "../../Image/img.png"
 
 const CREATEPOST = gql`
 mutation CREATEPOST(
-    $photo: String, 
+    $photoHeader: String, 
     $name: String!, 
     $dateStart: Date!, 
     $dateEnd: Date!, 
@@ -23,7 +23,7 @@ mutation CREATEPOST(
     )
 {
     createPost(input:{
-        photo: $photo, 
+        photoHeader: $photoHeader, 
         name: $name, 
         dateStart: $dateStart, 
         dateEnd: $dateEnd , 
@@ -80,7 +80,7 @@ function RadioButton(props) {
 
 const post = () => {
     const [userInfo, setUserInfo] = useState({
-        photo: "",
+        photoHeader: "",
         name: "",
         dateStart: "",
         dateEnd: "",
@@ -100,7 +100,7 @@ const post = () => {
             if (data) {
                 console.log('dataaaaaaaaaaa');
                 setUserInfo({
-                    photo: "",
+                    photoHeader: "",
                     name: "",
                     dateStart: "",
                     dateEnd: "",
@@ -116,6 +116,7 @@ const post = () => {
             }
         },
     });
+
 
     const handleChange = e => {
         console.log("Value", e.target.value)
@@ -145,6 +146,8 @@ const post = () => {
     //image
     const [picture, setPicture] = useState(null);
     const [imgData, setImgData] = useState(null);
+    const [baseImage, setbaseImage] = useState("");
+
     const onChangePicture = e => {
         if (e.target.files[0]) {
             console.log("picture: ", e.target.files);
@@ -153,11 +156,40 @@ const post = () => {
             reader.addEventListener("load", () => {
                 setImgData(reader.result);
             });
-            userInfo.photo = e.target.files[0].name
+            userInfo.photoHeader = e.target.files[0].name
             reader.readAsDataURL(e.target.files[0]);
         }
 
     };
+
+    const uploadImage = async (e) => {
+        console.log('img:'+e.target.files[0].size)
+        const file = e.target.files[0]
+        const base64 = await convertBase64(file)
+        // console.log(base64)
+        setbaseImage(base64)
+        userInfo.photoHeader = base64
+    }
+
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file)
+
+            fileReader.onload = () => {
+                resolve(fileReader.result)
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        })
+    }
+    const picOnchange = e => {
+        const file = e.target.files[0]
+        const storageRef = app.storage().ref()
+        const fileRef = storageRef.child(file.name)
+    }
 
     // Set Drop down and radio
     const [major, setMajor] = useState(null);
@@ -181,11 +213,23 @@ const post = () => {
                 <hr></hr>
                 <div className="Post-poster-container" >
                     <div className="previewProfilePic center">
-                        <img className="post_image" src={imgData} />
-                        <div className="post_choseimage">
+                        <img className="post_image" src={baseImage} />
+
+                        {/* <img className="post_image" src={imgData} /> */}
+                        {/* <div className="post_choseimage">
                             <input id="profilePic" type="file" onChange={onChangePicture} />
-                        </div>
+                        </div> */}
                     </div>
+                    <form className="post_choseimage" onChange={(e) => { uploadImage(e) }}>
+                        <input
+                            type="file"
+                            name="photoHeader"
+                            id="file"
+                            accept=".jpeg, .png, .jpg"
+                        // value={userInfo.photoHeader}
+                        />
+                        {/* <input type="submit" /> */}
+                    </form>
                 </div>
                 <div className="Post-Input-Container" >
                     <div className="row">
