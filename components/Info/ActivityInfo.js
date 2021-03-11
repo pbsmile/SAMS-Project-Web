@@ -18,6 +18,9 @@ import Time from "../../Image/clock.png";
 import Location from "../../Image/info_flag.png";
 import Members from "../../Image/info_user.png";
 import Closed from "../../Image/info_closed.png";
+import Faculty from "../../Image/info_status.png";
+import Rate from "../../Image/info_star.png";
+import CloseDate from "../../Image/info_closedate.png";
 import { AuthContext } from "../../appState/AuthProvider";
 
 import { useQuery } from "@apollo/react-hooks";
@@ -168,6 +171,9 @@ const ActivityInfo = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   console.log("Admin? >>", isAdmin);
 
+  const [Status, setStatus] = useState("");
+  console.log("Status? >>", Status);
+
   const ratingChanged = (newRating) => {
     setReviewRate(newRating);
     console.log(newRating);
@@ -288,6 +294,12 @@ const ActivityInfo = () => {
         }
         if (data.getOnePost.canReview == true) {
           setCanReview(true);
+        }
+        if (data.getOnePost.status == "closed") {
+          setStatus("ปิดรับสมัคร");
+        }
+        if (data.getOnePost.status == "open") {
+          setStatus("เปิดรับสมัคร");
         }
         if (user) {
           if (user.type == "admin") {
@@ -496,13 +508,14 @@ const ActivityInfo = () => {
                       className="Activity-Info-Page-Card-Icon-Size"
                       src={Day}
                     />
-                    {dateFormat(data.getOnePost.dateStart, "d mmmm yyyy")}
+                    {dateFormat(data.getOnePost.dateStart, "d mmmm yyyy")}{" "}
+                    {data.getOnePost.timeStart} น.
                     {/* <Moment format="D MMM YYYY">
                       {data.getOnePost.dateStart}
                     </Moment> */}
-                    <label className="Activity-Info-Page-Card-Time">
+                    {/* <label className="Activity-Info-Page-Card-Time">
                       {data.getOnePost.timeStart} น.
-                    </label>
+                    </label> */}
                   </label>
                   {/* <label className="Activity-Info-Page-Card-Time">
                     <img
@@ -539,14 +552,7 @@ const ActivityInfo = () => {
                 <label className="Activity-Info-Page-Card-Status">
                   <img
                     className="Activity-Info-Page-Card-Icon-Size"
-                    src={Closed}
-                  />
-                  {data.getOnePost.status}
-                </label>
-                <label className="Activity-Info-Page-Card-Status">
-                  <img
-                    className="Activity-Info-Page-Card-Icon-Size"
-                    src={Closed}
+                    src={Faculty}
                   />
                   หน่วยงาน
                   {data.getOnePost.major}
@@ -554,7 +560,7 @@ const ActivityInfo = () => {
                 <label className="Activity-Info-Page-Card-Status">
                   <img
                     className="Activity-Info-Page-Card-Icon-Size"
-                    src={Closed}
+                    src={Rate}
                   />
                   รีวิวเฉลี่ย
                   {data.getOnePost.avrRate} คะแนน
@@ -562,10 +568,17 @@ const ActivityInfo = () => {
                 <label className="Activity-Info-Page-Card-Status">
                   <img
                     className="Activity-Info-Page-Card-Icon-Size"
+                    src={CloseDate}
+                  />
+                  ปิดรับสมัคร{" "}
+                  {dateFormat(data.getOnePost.dateCloseApply, "d mmmm yyyy")}
+                </label>
+                <label className="Activity-Info-Page-Card-Status">
+                  <img
+                    className="Activity-Info-Page-Card-Icon-Size"
                     src={Closed}
                   />
-                  ปิดรับสมัคร
-                  {dateFormat(data.getOnePost.dateCloseApply, "d mmmm yyyy")}
+                  {Status}
                 </label>
               </div>
             </div>
@@ -573,7 +586,7 @@ const ActivityInfo = () => {
               <div className="Activity-Info-Page-Card-Top-Div">
                 {/* <button className="Activity-Info-Page-Card-Join"></button> */}
 
-                {user && !createUser && (
+                {/* {user && !createUser && (
                   <>
                     <div className="Activity-Info-Page-Card-Box">
                       <img
@@ -589,23 +602,43 @@ const ActivityInfo = () => {
                       </label>
                     </div>
                   </>
-                )}
+                )} */}
 
                 {/* <button className="Activity-Info-Page-Card-Favorite"></button> */}
                 {user && !createUser && (
                   <>
                     <div className="Activity-Info-Page-Card-Box">
-                      <img
-                        className="Activity-Info-Page-Card-Join"
-                        src={toggleFav == "unfav" ? Unfav : Fav}
-                        onClick={() => handleClickFav()}
-                      ></img>
-                      <label
-                        className="Activity-Info-Page-Card-Favorite-Text"
-                        onClick={() => handleClickFav()}
-                      >
-                        {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                      </label>
+                      <button>
+                        <img
+                          className="Activity-Info-Page-Card-Join"
+                          src={toggleFav == "unfav" ? Unfav : Fav}
+                          onClick={() => handleClickFav()}
+                        ></img>
+                        <label
+                          className="Activity-Info-Page-Card-Favorite-Text"
+                          onClick={() => handleClickFav()}
+                        >
+                          {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
+                        </label>
+                      </button>
+                    </div>
+                  </>
+                )}
+                {user && !createUser && canReview && (
+                  <>
+                    <div>
+                      <button onClick={() => handleShowModalReview()}>
+                        รีวิว
+                      </button>
+                    </div>
+                  </>
+                )}
+                {user && !createUser && !isAdmin && (
+                  <>
+                    <div>
+                      <button onClick={() => handleShowModalReport()}>
+                        รีพอร์ต
+                      </button>
                     </div>
                   </>
                 )}
@@ -648,24 +681,6 @@ const ActivityInfo = () => {
                   </div>
                 </>
               )}
-              {user && !createUser && canReview && (
-                <>
-                  <div>
-                    <button onClick={() => handleShowModalReview()}>
-                      รีวิว
-                    </button>
-                  </div>
-                </>
-              )}
-              {user && !createUser && !isAdmin && (
-                <>
-                  <div>
-                    <button onClick={() => handleShowModalReport()}>
-                      รีพอร์ต
-                    </button>
-                  </div>
-                </>
-              )}
             </div>
 
             <div className="Activity-Info-Page-Card-Description">
@@ -677,6 +692,27 @@ const ActivityInfo = () => {
               <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Description-More">
                 {data.getOnePost.description}
               </div>
+            </div>
+            <div className="Activity-Info-Page-Card-Top-Div">
+              {user && !createUser && (
+                <>
+                  <div className="Activity-Info-Page-Card-Box">
+                    <button>
+                      <img
+                        className="Activity-Info-Page-Card-Join"
+                        src={toggleJoin == "unjoin" ? Unjoin : Join}
+                        onClick={() => handleShowModalJoin()}
+                      ></img>
+                      <label
+                        className="Activity-Info-Page-Card-Join-Text"
+                        onClick={() => handleShowModalJoin()}
+                      >
+                        {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
+                      </label>
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
