@@ -88,7 +88,7 @@ const navbar = () => {
           </h1> */}
         </div>
         <div className="Nav-Elements-Flex">
-          <ul className="Nav-Elements">
+          <div className="Nav-Elements">
             <li>
               <a
                 className={toggle == "main" ? "Nav-Home" : "Nav-Home-Trans"}
@@ -145,7 +145,7 @@ const navbar = () => {
               </li>
             </>
             )} */}
-          </ul>
+          </div>
         </div>
         {user && (
           <>
