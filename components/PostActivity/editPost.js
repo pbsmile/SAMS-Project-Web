@@ -21,7 +21,7 @@ import Router from "next/router";
 // import Modal from 'react-modal';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button,Modal} from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 
 const EDITPOST = gql`
@@ -108,6 +108,7 @@ const EditPost = () => {
         description: "",
     });
 
+    const [baseImage, setbaseImage] = useState("");
     // var subtitle;
     // const [modalIsOpen, setIsOpen] = React.useState(false);
     // function openModal() {
@@ -161,6 +162,7 @@ const EditPost = () => {
                     major: data.getOnePost.major,
                     description: data.getOnePost.description,
                 });
+                setbaseImage(data.getOnePost.photoHeader)
 
             }
         },
@@ -197,8 +199,31 @@ const EditPost = () => {
         },
     })
 
+    const uploadImage = async (e) => {
+        console.log(e.target.files[0])
+        const file = e.target.files[0]
+        const base64 = await convertBase64(file)
+        console.log(base64)
+        setbaseImage(base64)
+        setUserInfo[{
+            photoHeader: base64
+        }]
+    }
 
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file)
 
+            fileReader.onload = () => {
+                resolve(fileReader.result)
+            };
+
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        })
+    }
     const handleSubmit = async e => {
         console.log(userInfo)
         console.log("handle submit")
@@ -281,7 +306,7 @@ const EditPost = () => {
 
     // }
     console.log("postId", postId);
-    
+
 
 
     if (error) return <p>Something went wrong, please try again.</p>;
@@ -305,11 +330,22 @@ const EditPost = () => {
                 <hr></hr>
                 <div className="Post-poster-container" >
                     <div className="previewProfilePic center">
-                        <img className="post_image" src={userInfo.photoHeader}/>
-                        <div className="post_choseimage">
+                        <img className="post_image" src={userInfo.photoHeader} />
+                        {/* <div className="post_choseimage">
                             <input id="profilePic" type="file" />
-                        </div>
+                        </div> */}
                     </div>
+                    <form className="post_choseimage" onChange={(e) => { uploadImage(e) }}>
+                        <input
+                            type="file"
+                            name="photoHeader"
+                            id="file"
+                            accept=".jpeg, .png, .jpg"
+                        // value={userInfo.photoHeader}
+                        />
+                        {/* <input type="submit" /> */}
+                    </form>
+
                 </div>
                 <div className="Post-Input-Container" >
                     <div className="row">
