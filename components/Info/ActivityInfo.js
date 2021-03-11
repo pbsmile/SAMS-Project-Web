@@ -37,6 +37,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal } from "react-bootstrap";
 
 import ReactStars from "react-rating-stars-component";
+import AttendanceCheck from "../AttendanceCheck/AttendanceCheck"
 
 const REVIEW = gql`
   mutation REVIEW(
@@ -202,29 +203,29 @@ const ActivityInfo = () => {
     ],
     monthNames: [
       "ม.ค.",
-        "ก.พ.",
-        "มี.ค.",
-        "เม.ย.",
-        "พ.ค.",
-        "มิ.ย.",
-        "ก.ค.",
-        "ส.ค.",
-        "ก.ย.",
-        "ต.ค.",
-        "พ.ย.",
-        "ธ.ค.",
-        "ม.ค.",
-        "ก.พ.",
-        "มี.ค.",
-        "เม.ย.",
-        "พ.ค.",
-        "มิ.ย.",
-        "ก.ค.",
-        "ส.ค.",
-        "ก.ย.",
-        "ต.ค.",
-        "พ.ย.",
-        "ธ.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
+      "ม.ค.",
+      "ก.พ.",
+      "มี.ค.",
+      "เม.ย.",
+      "พ.ค.",
+      "มิ.ย.",
+      "ก.ค.",
+      "ส.ค.",
+      "ก.ย.",
+      "ต.ค.",
+      "พ.ย.",
+      "ธ.ค.",
     ],
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
@@ -249,6 +250,10 @@ const ActivityInfo = () => {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const handleCloseModalDelete = () => setShowModalDelete(false);
   const handleShowModalDelete = () => setShowModalDelete(true);
+
+  const [showAttendance, setShowAttendance] = useState(false);
+  const handleCloseAttendance = () => setShowAttendance(false);
+  const handleShowAttendance = () => setShowAttendance(true);
 
   // console.log("data:image/jpeg;base64," + base64encodedimg)
 
@@ -612,14 +617,15 @@ const ActivityInfo = () => {
                       ส่งข้อมูล
                     </button>
 
-                    <Link
+                    {/* <Link
                       key="attendanceCheck"
                       href="/attendanceCheck/[activityId]"
                       as={`/attendanceCheck/${postId}`}
-                    >
-                      <button>เช็คชื่อ</button>
-                    </Link>
-
+                    > */}
+                    <button onClick={handleShowAttendance}>เช็คชื่อ</button>
+                    {/* <button onClick={() => setShowAttendance(!showAttendance)}>เช็คชื่อ</button> */}
+                    {/* </Link> */}
+                    
                     <button onClick={handleShowModalDelete}>ลบ</button>
                   </div>
                 </>
@@ -665,6 +671,11 @@ const ActivityInfo = () => {
           </div>
         </div>
       </div>
+      {/* <div
+        show={showAttendance}
+        onHide={handleCloseAttendance}>
+        <AttendanceCheck />
+      </div> */}
       <div>
         <Modal
           show={showModalSendEmail}
@@ -740,7 +751,7 @@ const ActivityInfo = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>ยืนยันสมัครเข้าร่วมกิจกรรม</Modal.Title>
+            <Modal.Title>เช็คชื่อผู้เข้าร่วมกิจกรรม</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             ชื่อกิจกรรม : {data.getOnePost.name}
@@ -761,6 +772,31 @@ const ActivityInfo = () => {
               ยืนยัน
             </Button>
           </Modal.Footer>
+        </Modal>
+      </div>
+      <div>
+        <Modal
+          show={showAttendance}
+          onHide={handleCloseAttendance}
+          backdrop="static"
+          keyboard={false}
+          size="lg"
+          aria-labelledby="example-modal-sizes-title-lg"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>ยืนยันสมัครเข้าร่วมกิจกรรม</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <AttendanceCheck/>
+          </Modal.Body>
+          {/* <Modal.Footer>
+            <Button
+              variant="btn btn-outline-danger"
+              onClick={handleCloseAttendance}
+            >
+              ปิด
+            </Button> 
+          </Modal.Footer>*/}
         </Modal>
       </div>
       <div>
@@ -847,6 +883,7 @@ const ActivityInfo = () => {
           </Modal.Footer>
         </Modal>
       </div>
+      {/* {showAttendance && <AttendanceCheck/>} */}
     </div>
   );
 };

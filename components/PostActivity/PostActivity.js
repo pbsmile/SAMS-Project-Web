@@ -163,7 +163,7 @@ const post = () => {
     };
 
     const uploadImage = async (e) => {
-        console.log('img:'+e.target.files[0].size)
+        console.log('img:' + e.target.files[0].size)
         const file = e.target.files[0]
         const base64 = await convertBase64(file)
         // console.log(base64)
@@ -205,9 +205,7 @@ const post = () => {
                         <label>
                             <img src={CreateAct} id="Post-Logo"></img>
                         </label>
-                        <label >
-                            สร้างกิจกรรมใหม่
-                </label>
+                        <label >สร้างกิจกรรมใหม่</label>
                     </ul>
                 </nav>
                 <hr></hr>
@@ -263,7 +261,7 @@ const post = () => {
                                         value={userInfo.dateStart}
                                     /> */}
                                 </form>
-                                <h3 className="Post-Calendar-Time">ถึง</h3>
+                                <h2 className="Post-Calendar-Time Post-Input">ถึง</h2>
                                 <form noValidate className="Post-Calendar">
                                     <input type="date" name="dateEnd" className="Post-Input-Fill-Data" InputLabelProps={{ shrink: true, }} data-date-format="MM-DD-YYY" onChange={handleChange} value={userInfo.dateEnd} />
                                     {/* <TextField
@@ -307,7 +305,7 @@ const post = () => {
                                     /> */}
                                 </form>
 
-                                <h3 className="Post-Calendar-Time">ถึง</h3>
+                                <h2 className="Post-Calendar-Time Post-Input">ถึง</h2>
                                 <form className="Post-Calendar-Time">
                                     <input type="time" name="timeEnd" className="Post-Input-Fill-Data" onChange={handleChange} value={userInfo.timeEnd} />
                                     {/* <TextField
@@ -347,15 +345,16 @@ const post = () => {
                             <h2>จำนวนที่เปิดรับ</h2>
                         </div>
                         <div className="Post-Column2 Post-Input">
-                            <div className="Post-Flex-Row Post-margin-top" onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
+                            <div className="Post-Flex-Row Post-margin-top " onChange={(e) => { setRadio(e.target.value) }} onChange={handleChange} value={radio}>
                                 {/* <RadioGroup name="participantsNumber" >
                                     <RadioButton label="ไม่จำกัดจำนวน" value="10000000000" />
                                     <RadioButton value={NumofPerson} /> */}
                                 <input type="number" name="participantsNumber" className="Post-Input-Small-Fill-Data Post-Input-Fill-Data" onChange={handleChange} value={userInfo.participantsNumber} />
                                 {/* onChange={(e) => { setNumofPerson(e.target.value) } */}
                                 {/* </RadioGroup> */}
-                                <h4>คน</h4>
+                               
                             </div>
+                            <h2>คน</h2>
                         </div>
                     </div>
 

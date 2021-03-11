@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'sans-serif';
+    src: url("fonts/prompt-light-webfont.woff") format("woff"), url("fonts/prompt-light-webfont.woff2") format("woff2");
+}
 .Post-Page {
     // background: pink;
     display: flex;
@@ -48,6 +52,7 @@ hr {
     padding: 10px 5px 0px 5px;
     font-size: 25px;
     font-weight: bold;
+    font-family: "Prompt",sans-serif;
 }
 
 .Post-poster-container {
@@ -126,14 +131,20 @@ hr {
 }
 
 .Post-Input h2 {
-    font-size: 25px;
+    font-size: 20px;
     margin-left: 10%;
+    font-family: "Prompt",sans-serif;
 }
+// .Post-Input h4 {
+//     font-size: 20px;
+//     margin-left: 10%;
+//     font-family: "Prompt",sans-serif;
+// }
 
 .Post-Input-Fill-Data {
     font-family: "Prompt", sans-serif;
     font-size: 16px;
-    margin-top: 2%;
+    // margin-top: 2%;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px 5px;
@@ -143,7 +154,8 @@ hr {
 
 .Post-Input-Small-Fill-Data {
     height: 40px;
-    width: 70px;
+    width: 100px;
+    margin-right: 10px;
 }
 
 .Post-margin-top {
@@ -165,6 +177,7 @@ hr {
 // }
 .post_input h2 {
     font-size: 20px;
+    font-family: "Prompt",sans-serif;
 }
 .Post-Column {
     float: left;
@@ -195,6 +208,8 @@ hr {
 
 .Post-Calendar-Time {
     margin-right: 20%;
+    font-size: 20px;
+    font-family: "Prompt",sans-serif;
 }
 
 .Post-Time {
@@ -211,6 +226,7 @@ hr {
     font-size: 20px;
     float: right;
     margin-bottom: 200px;
+    font-family: "Prompt",sans-serif;
 }
 
 .Post-Unsubmit-Button {
@@ -223,6 +239,7 @@ hr {
     font-size: 20px;
     float: right;
     margin-bottom: 200px;
+    font-family: "Prompt",sans-serif;
 }
 
 .Post-Left-Button {
