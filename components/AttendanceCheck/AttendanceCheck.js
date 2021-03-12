@@ -12,7 +12,6 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import { FlashOnTwoTone } from "@material-ui/icons";
 
 
-
 const ATTENDANCECHECK = gql`
   mutation ATTENDANCECHECK($postId: String!,$checkedUsersId: [String!]){
     attendanceCheck(input:{
@@ -219,180 +218,179 @@ const AttendanceCheck = () => {
             // Router.push('/activity/' + postId);
             console.log("on complete")
         }
-
     })
 
-    // const handleGreenClick = e => {
-    //     if (btnGreen.color == 'success') {
-    //         setbtnGreen({
-    //             color: 'outline-success',
-    //             // data: prod
-    //         })
+// const handleGreenClick = e => {
+//     if (btnGreen.color == 'success') {
+//         setbtnGreen({
+//             color: 'outline-success',
+//             // data: prod
+//         })
+//     }
+//     else if (btnGreen.color == 'outline-success') {
+//         setbtnGreen({
+//             color: 'success',
+//             // data: prod
+//         })
+//     }
+// }
+
+
+// const handleRedClick = (name) => {
+//     const id = parseInt(e.target.getAttribute("data-id"));
+//     setbtnGreen({
+//         active: true,
+//         color: 'outline-success'
+//     })
+//     if (btnGreen.active == true) {
+//         setbtnGreen({
+//             active: false,
+//             color: 'success'
+//         })
+//     };
+
+// const id = parseInt(e.target.getAttribute("data-id"));
+// console.log('id : ' + id)
+// console.log('check btn ' + btnGreen.color)
+// console.log(e.target.name)
+// if (btnGreen.color == 'success') {
+//     setbtnGreen({
+//         color: 'outline-success',
+//         // data: prod
+//     })
+// }
+// else if (btnGreen.color == 'outline-success') {
+//     setbtnGreen({
+//         color: 'success',
+//         // data: prod
+//     })
+// }
+// }
+
+const handleChange = (val) => {
+    // console.log(val)
+    console.log('bf set val ' + val)
+    setValue(val);
+    console.log('val: ' + val)
+    console.log(val)
+    console.log('BFclick : ' + btnGreen.datac[v_id].btnactive)
+    // setbtnGreen({
+    //     datac: {
+    //         btnactive : !btnactive
     //     }
-    //     else if (btnGreen.color == 'outline-success') {
-    //         setbtnGreen({
-    //             color: 'success',
-    //             // data: prod
-    //         })
-    //     }
+    // })
+    btnGreen.datac[v_id].btnactive = !btnGreen.datac[v_id].btnactive
+    // if(btnGreen.datac[v_id].btnactive == true){
+    //     console.log('change to false')
+    //     btnGreen.datac[v_id].btnactive = false
     // }
-
-
-    // const handleRedClick = (name) => {
-    //     const id = parseInt(e.target.getAttribute("data-id"));
-    //     setbtnGreen({
-    //         active: true,
-    //         color: 'outline-success'
-    //     })
-    //     if (btnGreen.active == true) {
-    //         setbtnGreen({
-    //             active: false,
-    //             color: 'success'
-    //         })
-    //     };
-
-    // const id = parseInt(e.target.getAttribute("data-id"));
-    // console.log('id : ' + id)
-    // console.log('check btn ' + btnGreen.color)
-    // console.log(e.target.name)
-    // if (btnGreen.color == 'success') {
-    //     setbtnGreen({
-    //         color: 'outline-success',
-    //         // data: prod
-    //     })
+    // else if(btnGreen.datac[v_id].btnactive == false){
+    //     console.log('change to true')
+    //     btnGreen.datac[v_id].btnactive = true
     // }
-    // else if (btnGreen.color == 'outline-success') {
-    //     setbtnGreen({
-    //         color: 'success',
-    //         // data: prod
-    //     })
-    // }
-    // }
+    // btnGreen.datac[v_id].btnactive = !btnGreen.datac[v_id].btnactive
+    // setbtnGreen.datac[v_id]({btnactive : !btnactive})
+    console.log('click : ' + btnGreen.datac[v_id].btnactive)
+    showW[v_id] = btnGreen.datac[v_id].btnactive
+    console.log(showW)
+    // console.log(showW)
+    // console.log('btnGreen' + active)
+    // console.log('btnGreen C ' + word)
+    console.log('-----------------------------------')
+    console.log("กด : " + btnGreen.datac[v_id].name)
+    // console.log("กด : "+btnGreen.datac[0].datac[0].name)
+    // var len_checked = checkInfo.checkedUsersId.length;
+    // checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
 
-    const handleChange = (val) => {
-        // console.log(val)
-        console.log('bf set val ' + val)
-        setValue(val);
-        console.log('val: ' + val)
-        console.log(val)
-        console.log('BFclick : ' + btnGreen.datac[v_id].btnactive)
-        // setbtnGreen({
-        //     datac: {
-        //         btnactive : !btnactive
-        //     }
-        // })
-        btnGreen.datac[v_id].btnactive = !btnGreen.datac[v_id].btnactive
-        // if(btnGreen.datac[v_id].btnactive == true){
-        //     console.log('change to false')
-        //     btnGreen.datac[v_id].btnactive = false
-        // }
-        // else if(btnGreen.datac[v_id].btnactive == false){
-        //     console.log('change to true')
-        //     btnGreen.datac[v_id].btnactive = true
-        // }
-        // btnGreen.datac[v_id].btnactive = !btnGreen.datac[v_id].btnactive
-        // setbtnGreen.datac[v_id]({btnactive : !btnactive})
-        console.log('click : ' + btnGreen.datac[v_id].btnactive)
-        showW[v_id] = btnGreen.datac[v_id].btnactive
-        console.log(showW)
-        // console.log(showW)
-        // console.log('btnGreen' + active)
-        // console.log('btnGreen C ' + word)
-        console.log('-----------------------------------')
-        console.log("กด : " + btnGreen.datac[v_id].name)
-        // console.log("กด : "+btnGreen.datac[0].datac[0].name)
-        // var len_checked = checkInfo.checkedUsersId.length;
-        // checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
-
-        // checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
+    // checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
 
 
-        // for (i in len_checked){
-        //     if(btnGreen.datac[v_id].id != checkInfo.checkedUsersId[i]){
-        //         checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
-        //         len_checked+=1
-        //     }
-        //     else {
-        //         console.log('else')
-        //     }
-        // }
-        console.log("Info : " + checkInfo.checkedUsersId)
-        // for (var i = 0; i <len_checked; i++){
-
-        // }
-        // if(btnGreen.datac[v_id].btnactive == false){
-        //     showW[v_id] = 'เช็คชื่อแล้ว'
-        // }
-        // else{
-        //     showW[v_id] = 'เช็คชื่อ'
-        // }
-
-    }
-
-    const submitBtn = async e => {
-        for (var i = 0; i < btnGreen.datac.length; i++) {
-            if (showW[i] == false) {
-                    checkInfo.checkedUsersId.push(btnGreen.datac[i].id)
-                console.log(btnGreen.datac[i].id)
-            }
-            // console.log(i)
-            // else if(show[i] == true){
-
-            // }
-        }
-        // const id = parseInt(e.target.getAttribute("data-id"));
-        // console.log(id)
-        // console.log("กด : "+btnGreen.datac[0].datac[0].name)
-        console.log('onsubmit ' + checkInfo.checkedUsersId)
-
-        // if(show[0]==false){
-        //     checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
-        // }
-        // console.log("กด : "+btnGreen.datac[1].datac[0].name)
-
-        await AttendanceCheck();
-    }
-    // const toggle = e => {
-    //     if (btnGreen.active == 'true') {
-    //         setbtnGreen({
-    //             color: 'เช็คชื่อแล้ว'
-    //         })
+    // for (i in len_checked){
+    //     if(btnGreen.datac[v_id].id != checkInfo.checkedUsersId[i]){
+    //         checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
+    //         len_checked+=1
     //     }
     //     else {
-    //         setbtnGreen({
-    //             color: 'ยังไม่เช็คชื่อ'
-    //         })
+    //         console.log('else')
     //     }
     // }
-    if (error) return <p>Something went wrong, please try again.</p>;
-    if (loading) return <p>Loading ...</p>;
+    console.log("Info : " + checkInfo.checkedUsersId)
+    // for (var i = 0; i <len_checked; i++){
+
+    // }
+    // if(btnGreen.datac[v_id].btnactive == false){
+    //     showW[v_id] = 'เช็คชื่อแล้ว'
+    // }
+    // else{
+    //     showW[v_id] = 'เช็คชื่อ'
+    // }
+
+}
+
+const submitBtn = async e => {
+    for (var i = 0; i < btnGreen.datac.length; i++) {
+        if (showW[i] == false) {
+            checkInfo.checkedUsersId.push(btnGreen.datac[i].id)
+            console.log(btnGreen.datac[i].id)
+        }
+        // console.log(i)
+        // else if(show[i] == true){
+
+        // }
+    }
+    // const id = parseInt(e.target.getAttribute("data-id"));
+    // console.log(id)
+    // console.log("กด : "+btnGreen.datac[0].datac[0].name)
+    console.log('onsubmit ' + checkInfo.checkedUsersId)
+
+    // if(show[0]==false){
+    //     checkInfo.checkedUsersId.push(btnGreen.datac[v_id].id)
+    // }
+    // console.log("กด : "+btnGreen.datac[1].datac[0].name)
+
+    await AttendanceCheck();
+}
+// const toggle = e => {
+//     if (btnGreen.active == 'true') {
+//         setbtnGreen({
+//             color: 'เช็คชื่อแล้ว'
+//         })
+//     }
+//     else {
+//         setbtnGreen({
+//             color: 'ยังไม่เช็คชื่อ'
+//         })
+//     }
+// }
+if (error) return <p>Something went wrong, please try again.</p>;
+if (loading) return <p>Loading ...</p>;
 
 
 
-    return (
-        <div>
-            Activities Page
-            for web
-            SAMS
-            {data.getOnePost.joinUsers.map((prod, id) => (
-                <div key={prod.name}>
-                    {prod.name} {show} {prod._id}  {id}
+return (
 
-                    {/* <Button variant={btnGreen.color} onClick={handleRedClick(prod._id)}>เข้าร่วม</Button>{' '} */}
-                    <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
-                        <ToggleButton variant="outline-success" value={id} onClick={e => { setVId(id) }}>{showW[id] == false ? "เช็คชื่อแล้ว" : "เช็คชื่อ"}</ToggleButton>
-                    </ToggleButtonGroup>
+    <div className="container">
+        {data.getOnePost.joinUsers.map((prod, id) => (
+            <div key={prod.name} className="row Attend-Div">
+                <div className="col-8 Attend-Name">{id + 1 + '. '}{prod.name}</div>
+                {/* <Button variant={btnGreen.color} onClick={handleRedClick(prod._id)}>เข้าร่วม</Button>{' '} */}
+                <ToggleButtonGroup className="Attend-Btn" type="checkbox" value={value} onChange={handleChange}>
+                    <ToggleButton variant="outline-info" value={id} onClick={e => { setVId(id) }}>{showW[id] == false ? "เช็คชื่อแล้ว" : "เช็คชื่อ"}</ToggleButton>
+                </ToggleButtonGroup>
 
-                    {/* <Button variant={btnGreen.color} key={prod.name} name={prod.name} value={prod.name} onClick={handleRedClick}>Success</Button>{' '} */}
-                    {/* {btnGreen.datac[id].btnactive == true ? "success" : "outline-seccess"} */}
-                    {/* {btnGreen.true ? "success" : "outline-seccess"} */}
-                    {/* {show[id] == true ? "เช็คชื่อ" : "เช็คชื่อแล้ว"} */}
-                </div>
-            ))}
-            <Button variant="danger" onClick={submitBtn}>บันทึก</Button>
-            {/* {data.getOnePost.joinUsers[0].name} */}
+                {/* <Button variant={btnGreen.color} key={prod.name} name={prod.name} value={prod.name} onClick={handleRedClick}>Success</Button>{' '} */}
+                {/* {btnGreen.datac[id].btnactive == true ? "success" : "outline-seccess"} */}
+                {/* {btnGreen.true ? "success" : "outline-seccess"} */}
+                {/* {show[id] == true ? "เช็คชื่อ" : "เช็คชื่อแล้ว"} */}
+            </div>
+        ))}
+        <div className="d-flex flex-row-reverse">
+            <Button className="Attend-Submit" variant="success" onClick={submitBtn}>บันทึก</Button>
         </div>
-    );
+
+        {/* {data.getOnePost.joinUsers[0].name} */}
+    </div>
+);
 };
 
 export default AttendanceCheck;

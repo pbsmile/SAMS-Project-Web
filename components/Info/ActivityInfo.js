@@ -42,7 +42,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal } from "react-bootstrap";
 
 import ReactStars from "react-rating-stars-component";
+<<<<<<< HEAD
 import StarRatings from "react-star-ratings";
+=======
+import AttendanceCheck from "../AttendanceCheck/AttendanceCheck"
+>>>>>>> 3116d2a3d0623d24bdb9f3a9793f677fe6d496b4
 
 const REVIEW = gql`
   mutation REVIEW(
@@ -259,6 +263,10 @@ const ActivityInfo = () => {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const handleCloseModalDelete = () => setShowModalDelete(false);
   const handleShowModalDelete = () => setShowModalDelete(true);
+
+  const [showAttendance, setShowAttendance] = useState(false);
+  const handleCloseAttendance = () => setShowAttendance(false);
+  const handleShowAttendance = () => setShowAttendance(true);
 
   // console.log("data:image/jpeg;base64," + base64encodedimg)
 
@@ -758,6 +766,11 @@ const ActivityInfo = () => {
           </div>
         </div>
       </div>
+      {/* <div
+        show={showAttendance}
+        onHide={handleCloseAttendance}>
+        <AttendanceCheck />
+      </div> */}
       <div>
         <Modal
           show={showModalSendEmail}
@@ -833,7 +846,7 @@ const ActivityInfo = () => {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>ยืนยันสมัครเข้าร่วมกิจกรรม</Modal.Title>
+            <Modal.Title>เช็คชื่อผู้เข้าร่วมกิจกรรม</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             ชื่อกิจกรรม : {data.getOnePost.name}
@@ -854,6 +867,31 @@ const ActivityInfo = () => {
               ยืนยัน
             </Button>
           </Modal.Footer>
+        </Modal>
+      </div>
+      <div>
+        <Modal
+          show={showAttendance}
+          onHide={handleCloseAttendance}
+          backdrop="static"
+          keyboard={false}
+          size="lg"
+          aria-labelledby="example-modal-sizes-title-lg"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>ยืนยันสมัครเข้าร่วมกิจกรรม</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <AttendanceCheck/>
+          </Modal.Body>
+          {/* <Modal.Footer>
+            <Button
+              variant="btn btn-outline-danger"
+              onClick={handleCloseAttendance}
+            >
+              ปิด
+            </Button> 
+          </Modal.Footer>*/}
         </Modal>
       </div>
       <div>
@@ -959,6 +997,7 @@ const ActivityInfo = () => {
           </Modal.Footer>
         </Modal>
       </div>
+      {/* {showAttendance && <AttendanceCheck/>} */}
     </div>
   );
 };
