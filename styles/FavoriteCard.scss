@@ -108,8 +108,12 @@
     grid-template-columns: auto auto auto;
     margin-bottom: 180px;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 744px) {
     grid-template-columns: auto auto;
+    margin-bottom: 180px;
+  }
+  @media screen and (max-width: 414px) {
+    grid-template-columns: auto;
     margin-bottom: 180px;
   }
 }
