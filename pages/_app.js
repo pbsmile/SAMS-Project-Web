@@ -60,7 +60,7 @@ MyApp.getInitialProps = async ({ ctx, router }) => {
     }
   }
 
-  const response = await fetch("http://localhost:4000/", {
+  const response = await fetch("https://sams-project-api.herokuapp.com/graphql/", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
