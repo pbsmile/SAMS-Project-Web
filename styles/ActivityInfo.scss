@@ -201,6 +201,14 @@
   width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 }
 
 .Activity-Info-Page-Card-Time {
