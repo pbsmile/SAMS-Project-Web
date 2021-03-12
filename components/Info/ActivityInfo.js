@@ -30,14 +30,26 @@ import Link from "next/link";
 
 import Moment from "react-moment";
 import "moment-timezone";
+import "bootstrap/dist/css/bootstrap.min.css";
 // import {ฺModal } from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
+// import "jquery/dist/jquery.min.js"
+// import "popper.js/dist/umd/popper.min.js"
+// import "bootstrap/dist/js/bootstrap.min.js"
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Modal } from "react-bootstrap";
+// import 'bootstrap/dist/js/bootstrap.bundle';
+import { Button, Modal, DropdownButton, Dropdown } from "react-bootstrap";
+// import { DropdownMenu, MenuItem } from 'react-bootstrap-dropdown-menu';
 
 import ReactStars from "react-rating-stars-component";
 import AttendanceCheck from "../AttendanceCheck/AttendanceCheck"
+import useScript from 'react-script-hook';
+
+// import { HeadProvider, Title, Link, Meta } from 'react-head';
+
+
+// import "js/jquery-1.11.2.min.js"
+// import "js/bootstrap.min.js"
 
 const REVIEW = gql`
   mutation REVIEW(
@@ -141,6 +153,18 @@ const QUERY_ACTIVITY = gql`
 `;
 
 const ActivityInfo = () => {
+  // useScript({
+  //   src: 'jquery/dist/jquery.min.js',
+  //   onload: () => console.log('Script loaded!'),
+  // })
+  // useScript({
+  //   src: 'popper.js/dist/umd/popper.min.js',
+  //   onload: () => console.log('Script loaded!'),
+  // })
+  // useScript({
+  //   src: 'bootstrap/dist/js/bootstrap.min.js',
+  //   onload: () => console.log('Script loaded!'),
+  // })
   const { user } = useContext(AuthContext);
   console.log("User Act Info", user);
 
@@ -230,6 +254,10 @@ const ActivityInfo = () => {
     timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"],
   };
   // const [isVisible, setIsVisible] = useState(true)
+
+  // import "jquery/dist/jquery.min.js"
+  // import "popper.js/dist/umd/popper.min.js"
+  // import "bootstrap/dist/js/bootstrap.min.js"
 
   const [showModalSendEmail, setShowModalSendEmail] = useState(false);
   const handleCloseModalSendEmail = () => setShowModalSendEmail(false);
@@ -625,7 +653,7 @@ const ActivityInfo = () => {
                     <button onClick={handleShowAttendance}>เช็คชื่อ</button>
                     {/* <button onClick={() => setShowAttendance(!showAttendance)}>เช็คชื่อ</button> */}
                     {/* </Link> */}
-                    
+
                     <button onClick={handleShowModalDelete}>ลบ</button>
                   </div>
                 </>
@@ -668,6 +696,11 @@ const ActivityInfo = () => {
                 {data.getOnePost.description}
               </div>
             </div>
+            <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
       </div>
@@ -787,7 +820,7 @@ const ActivityInfo = () => {
             <Modal.Title>ยืนยันสมัครเข้าร่วมกิจกรรม</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-              <AttendanceCheck/>
+            <AttendanceCheck />
           </Modal.Body>
           {/* <Modal.Footer>
             <Button
