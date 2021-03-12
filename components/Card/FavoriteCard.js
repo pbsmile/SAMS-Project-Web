@@ -88,6 +88,7 @@ const QUERY_MYFAV = gql`
         place
         participantsNumber
         dateCloseApply
+        photoHeader
       }
     }
   }
@@ -148,7 +149,7 @@ const FavoriteCard = () => {
                           href="/activity/[activityId]"
                           as={`/activity/${prod._id}`}
                         >
-                          <img className="My-Fav-Page-Card-Img" src={Chest} />
+                          <img className="My-Fav-Page-Card-Img" src={prod.photoHeader} />
                         </Link>
                         {/* <label className="My-Fav-Page-Card-Status">
                           สถานะกิจกรรม :

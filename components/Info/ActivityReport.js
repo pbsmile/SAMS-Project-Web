@@ -58,7 +58,7 @@ const ActivityReport = () => {
               href="/activity/[activityId]"
               as={`/activity/${postId}`}
             >
-              <button>แก้ไขกิจกรรม</button>
+              <button>ตรวจสอบกิจกรรม</button>
             </Link>
             <div className="Report-Info-Card-Nav-Text"> เหตุผลของการรายงาน</div>
             {data.getAllReportsFromThisPost.reports.map((prod) => (

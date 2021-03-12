@@ -61,12 +61,20 @@
   margin-right: auto;
   z-index: -1;
   //position: fixed;
+  @media screen and (max-width: 744px) {
+    width: 100vw;
+  }
+  @media screen and (max-width: 414px) {
+    width: 100vw;
+  }
+  @media screen and (max-width: 300px) {
+    width: 100vw;
+  }
 }
 
 .Main-Page-Slidebar-Img {
   //margin: -100px -0px 0px 0px;
   z-index: -1;
-
 }
 
 .carousel.carousel-slider .control-arrow .control-arrow:hover {
@@ -77,19 +85,21 @@
   visibility: hidden;
 }
 
-.div.thumb-wrapper.axis-vertical , .carousel .thumbs-wrapper {
+.div.thumb-wrapper.axis-vertical,
+.carousel .thumbs-wrapper {
   visibility: hidden;
   width: 0;
   height: 0;
 }
 
-.thumb{
+.thumb {
   visibility: hidden;
 }
 
 .Main-Page-Card-Div {
   overflow: hidden;
-  //margin-left: 35%;
+  // width: 100vw;
+  // margin-left: 45%;
   //max-width: 550px;
   padding: 10px;
   //margin-top: 200px;
@@ -98,9 +108,9 @@
   // border-style: solid;
   // border-color: rgb(0, 0, 0);
   // border-width: 1px;
-  // @media screen and (max-width: 414px) {
-  //   margin-left: 50vw;
-  //   //margin-right: auto;
+  // @media screen and (max-width: 744px) {
+  //   margin-left: auto;
+  //   margin-right: auto;
   // }
 }
 
@@ -139,9 +149,14 @@
     grid-template-columns: auto auto auto;
     margin-bottom: 180px;
   }
+  @media screen and (max-width: 744px) {
+    grid-template-columns: auto auto;
+    margin-bottom: 180px;
+  }
   @media screen and (max-width: 414px) {
     grid-template-columns: auto auto;
     margin-bottom: 180px;
+    margin-top: 5px;
   }
 }
 
@@ -151,6 +166,10 @@
   // border-style: solid;
   // border-width: 1px;
   // border-color: #111111;
+  @media screen and (max-width: 414px) {
+    max-width: 170px;
+    margin-top: 10px;
+  }
 }
 
 .Main-Page-Card-Media {
@@ -220,8 +239,12 @@
 
 .Main-Page-Card-Img {
   width: 100px;
-  //height: 100px;
+  height: 150px;
   border-radius: 5px;
+  @media screen and (max-width: 500px) {
+    width: 80px;
+  height: 120px;
+  }
 }
 
 .Main-Page-Card-Status {
@@ -241,6 +264,10 @@
   width: 20px;
   // filter: invert(51%) sepia(2%) saturate(221%) hue-rotate(81deg) brightness(99%)
   //   contrast(95%);
+  @media screen and (max-width: 414px) {
+    height: 15px;
+    width: 15px;
+  }
 }
 
 .Main-Page-Card-Name {
@@ -252,6 +279,9 @@
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
 }
 
 .Main-Page-Card-Date-Time {
@@ -261,14 +291,22 @@
 }
 
 .Main-Page-Card-Date {
-  width: 259px;
+  width: 100%;
   font-family: "Prompt", sans-serif;
   font-size: 14px;
   color: #ed0000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 }
 
 .Main-Page-Card-Time {
-  width: 259px;
+  //width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
 }
@@ -282,7 +320,9 @@
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
-  
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 }
 
 .Main-Page-Card-Members-Close {
@@ -292,13 +332,13 @@
 }
 
 .Main-Page-Card-Members {
-  width: 259px;
+  //width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
 }
 
 .Main-Page-Card-Close {
-  width: 259px;
+  //width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
 }

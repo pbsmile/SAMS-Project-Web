@@ -174,6 +174,18 @@
   grid-template-columns: auto auto auto auto auto;
   gap: 10px;
   padding: 10px;
+  @media screen and (max-width: 1079px) {
+    grid-template-columns: auto auto auto;
+    margin-bottom: 180px;
+  }
+  @media screen and (max-width: 744px) {
+    grid-template-columns: auto auto;
+    margin-bottom: 180px;
+  }
+  @media screen and (max-width: 414px) {
+    grid-template-columns: auto;
+    margin-bottom: 180px;
+  }
 }
 
 .Activity-Page-Card {
@@ -251,8 +263,12 @@
 
 .Activity-Page-Card-Img {
   width: 100px;
-  //height: 100px;
+  height: 150px;
   border-radius: 5px;
+  @media screen and (max-width: 500px) {
+    width: 80px;
+  height: 120px;
+  }
 }
 
 .Activity-Page-Card-Status {
@@ -294,6 +310,14 @@
   font-family: "Prompt", sans-serif;
   font-size: 14px;
   color: #ed0000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 }
 
 .Activity-Page-Card-Time {

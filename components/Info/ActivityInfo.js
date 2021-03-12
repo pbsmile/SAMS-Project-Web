@@ -18,6 +18,11 @@ import Time from "../../Image/clock.png";
 import Location from "../../Image/info_flag.png";
 import Members from "../../Image/info_user.png";
 import Closed from "../../Image/info_closed.png";
+import Faculty from "../../Image/info_status.png";
+import Rate from "../../Image/info_star.png";
+import Rate1 from "../../Image/info_star1.png";
+import Rate2 from "../../Image/info_star2.png";
+import CloseDate from "../../Image/info_closedate.png";
 import { AuthContext } from "../../appState/AuthProvider";
 
 import { useQuery } from "@apollo/react-hooks";
@@ -148,6 +153,7 @@ const QUERY_ACTIVITY = gql`
       canReview
       avgRate
       major
+      photoHeader
     }
   }
 `;
@@ -192,6 +198,9 @@ const ActivityInfo = () => {
   console.log("can review >>", canReview);
   const [isAdmin, setIsAdmin] = useState(false);
   console.log("Admin? >>", isAdmin);
+
+  const [Status, setStatus] = useState("");
+  console.log("Status? >>", Status);
 
   const ratingChanged = (newRating) => {
     setReviewRate(newRating);
@@ -321,6 +330,12 @@ const ActivityInfo = () => {
         }
         if (data.getOnePost.canReview == true) {
           setCanReview(true);
+        }
+        if (data.getOnePost.status == "closed") {
+          setStatus("ปิดรับสมัคร");
+        }
+        if (data.getOnePost.status == "open") {
+          setStatus("เปิดรับสมัคร");
         }
         if (user) {
           if (user.type == "admin") {
@@ -512,7 +527,10 @@ const ActivityInfo = () => {
           <div className="Activity-Info-Page-Card-Area">
             <div className="Activity-Info-Page-Card-Flex">
               <div className="Activity-Info-Page-Card-Left">
-                <img className="Activity-Info-Page-Card-Img" src={Chest} />
+                <img
+                  className="Activity-Info-Page-Card-Img"
+                  src={data.getOnePost.photoHeader}
+                />
                 {/* <img className="Activity-Info-Page-Card-Img"  src={"data:image/jpeg;base64," + base64encodedimg} /> */}
                 {/* <label className="Activity-Info-Page-Card-Status">
                   สถานะกิจกรรม :
@@ -520,77 +538,117 @@ const ActivityInfo = () => {
                 <label className="Activity-Info-Page-Card-Status">ปิด</label>*/}
               </div>
               <div className="Activity-Info-Page-Card-Right">
-                <label className="Activity-Info-Page-Card-Name">
-                  {data.getOnePost.name}
-                </label>
-                <div className="Activity-Info-Page-Card-Date-Time">
-                  <label className="Activity-Info-Page-Card-Date">
-                    <img
-                      className="Activity-Info-Page-Card-Icon-Size"
-                      src={Day}
-                    />
-                    {dateFormat(data.getOnePost.dateStart, "d mmmm yyyy")}
-                    {/* <Moment format="D MMM YYYY">
+                <div className="Activity-Info-Page-Card-Top">
+                  <label className="Activity-Info-Page-Card-Name">
+                    {data.getOnePost.name}
+                  </label>
+                  <div className="Activity-Info-Page-Card-Date-Time">
+                    <label className="Activity-Info-Page-Card-Date">
+                      <img
+                        className="Activity-Info-Page-Card-Icon-Size"
+                        src={Day}
+                      />
+                      {dateFormat(data.getOnePost.dateStart, "d mmmm yyyy")}{" "}
+                      {data.getOnePost.timeStart} น.
+                      {/* <Moment format="D MMM YYYY">
                       {data.getOnePost.dateStart}
                     </Moment> */}
-                    <label className="Activity-Info-Page-Card-Time">
+                      {/* <label className="Activity-Info-Page-Card-Time">
                       {data.getOnePost.timeStart} น.
+                    </label> */}
                     </label>
-                  </label>
-                  {/* <label className="Activity-Info-Page-Card-Time">
+                    {/* <label className="Activity-Info-Page-Card-Time">
                     <img
                       className="Activity-Info-Page-Card-Icon-Size"
                       src={Time}
                     />
                     {data.getOnePost.timeStart} น.
                   </label> */}
-                </div>
+                  </div>
 
-                <label className="Activity-Info-Page-Card-Location">
-                  <img
-                    className="Activity-Info-Page-Card-Icon-Size"
-                    src={Location}
-                  />
-                  {data.getOnePost.place}
-                </label>
-                <div className="Activity-Info-Page-Card-Members-Close">
-                  <label className="Activity-Info-Page-Card-Members">
+                  <label className="Activity-Info-Page-Card-Location">
                     <img
                       className="Activity-Info-Page-Card-Icon-Size"
-                      src={Members}
+                      src={Location}
                     />
-                    {data.getOnePost.participantsNumber} คน
+                    {data.getOnePost.place}
                   </label>
-                  {/* <label className="Activity-Info-Page-Card-Close">
+                  <div className="Activity-Info-Page-Card-Members-Close">
+                    <label className="Activity-Info-Page-Card-Members">
+                      <img
+                        className="Activity-Info-Page-Card-Icon-Size"
+                        src={Members}
+                      />
+                      {data.getOnePost.participantsNumber} คน
+                    </label>
+                    {/* <label className="Activity-Info-Page-Card-Close">
                     <img
                       className="Activity-Info-Page-Card-Icon-Size"
                       src={Closed}
                     />
                     {data.getOnePost.dateCloseApply}
                   </label> */}
+                  </div>
+                  <label className="Activity-Info-Page-Card-Status">
+                    <img
+                      className="Activity-Info-Page-Card-Icon-Size"
+                      src={Faculty}
+                    />
+                    หน่วยงาน
+                    {data.getOnePost.major}
+                  </label>
+                  <label className="Activity-Info-Page-Card-Status">
+                    <img
+                      className="Activity-Info-Page-Card-Icon-Size"
+                      src={Rate}
+                    />
+                    รีวิวเฉลี่ย
+                    {data.getOnePost.avrRate} คะแนน
+                  </label>
+                  <label className="Activity-Info-Page-Card-Status">
+                    <img
+                      className="Activity-Info-Page-Card-Icon-Size"
+                      src={CloseDate}
+                    />
+                    ปิดรับสมัคร{" "}
+                    {dateFormat(data.getOnePost.dateCloseApply, "d mmmm yyyy")}
+                  </label>
+                  <label className="Activity-Info-Page-Card-Status">
+                    <img
+                      className="Activity-Info-Page-Card-Icon-Size"
+                      src={Closed}
+                    />
+                    {Status}
+                  </label>
                 </div>
-                <label className="Activity-Info-Page-Card-Status">
-                  <img
-                    className="Activity-Info-Page-Card-Icon-Size"
-                    src={Closed}
-                  />
-                  {data.getOnePost.status}
-                </label>
-                <label className="Activity-Info-Page-Card-Status">
-                  <img
-                    className="Activity-Info-Page-Card-Icon-Size"
-                    src={Closed}
-                  />
-                  คะแนน
-                  {data.getOnePost.avrRate}/5
-                </label>
+                <div className="Activity-Info-Page-Card-Bottom">
+                  {user && !createUser && (
+                    <>
+                      <div className="Activity-Info-Page-Card-Box">
+                        <button className="Activity-Info-Page-Card-Button-Like">
+                          <img
+                            className="Activity-Info-Page-Card-Join"
+                            src={toggleFav == "unfav" ? Unfav : Fav}
+                            onClick={() => handleClickFav()}
+                          ></img>
+                          <label
+                            className="Activity-Info-Page-Card-Favorite-Text"
+                            onClick={() => handleClickFav()}
+                          >
+                            {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
+                          </label>
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
             <div>
               <div className="Activity-Info-Page-Card-Top-Div">
                 {/* <button className="Activity-Info-Page-Card-Join"></button> */}
 
-                {user && !createUser && (
+                {/* {user && !createUser && (
                   <>
                     <div className="Activity-Info-Page-Card-Box">
                       <img
@@ -606,86 +664,77 @@ const ActivityInfo = () => {
                       </label>
                     </div>
                   </>
-                )}
+                )} */}
 
                 {/* <button className="Activity-Info-Page-Card-Favorite"></button> */}
-                {user && !createUser && (
+
+                {user && !createUser && canReview && (
                   <>
-                    <div className="Activity-Info-Page-Card-Box">
-                      <img
-                        className="Activity-Info-Page-Card-Join"
-                        src={toggleFav == "unfav" ? Unfav : Fav}
-                        onClick={() => handleClickFav()}
-                      ></img>
-                      <label
-                        className="Activity-Info-Page-Card-Favorite-Text"
-                        onClick={() => handleClickFav()}
+                    <div>
+                      <button
+                        className="Activity-Info-Page-Card-Button-Review"
+                        onClick={() => handleShowModalReview()}
                       >
-                        {toggleFav == "unfav" ? "ชื่นชอบ" : "เลิกชอบ"}
-                      </label>
+                        ให้คะแนน
+                      </button>
+                    </div>
+                  </>
+                )}
+                {user && !createUser && !isAdmin && (
+                  <>
+                    <div>
+                      <button
+                        className="Activity-Info-Page-Card-Button-Report"
+                        onClick={() => handleShowModalReport()}
+                      >
+                        รีพอร์ต
+                      </button>
                     </div>
                   </>
                 )}
               </div>
             </div>
-            <div className="Activity-Info-Page-Card-Flex Activity-Info-Page-Card-Action">
+            <div className="Activity-Info-Page-Card-Action Three-Btn">
               {createUser && (
                 <>
                   {/* style={{ display: isVisible ? "block" : "none" }} */}
-                  <div>
-                    <Link
-                      key="editActivity"
-                      href="/editActivity/[activityId]"
-                      as={`/editActivity/${data.getOnePost._id}`}
-                    >
-                      <button>แก้ไข</button>
-                    </Link>
-
-                    <button onClick={handleShowModalSendEmail}>
-                      ส่งข้อมูล
-                    </button>
-
-                    {/* <Link
-                      key="attendanceCheck"
-                      href="/attendanceCheck/[activityId]"
-                      as={`/attendanceCheck/${postId}`}
-                    > */}
-                    <button onClick={handleShowAttendance}>เช็คชื่อ</button>
-                    {/* <button onClick={() => setShowAttendance(!showAttendance)}>เช็คชื่อ</button> */}
-                    {/* </Link> */}
-
-                    <button onClick={handleShowModalDelete}>ลบ</button>
-                  </div>
-                </>
-              )}
-              {isAdmin && (
-                <>
-                  {/* style={{ display: isVisible ? "block" : "none" }} */}
-                  <div>
-                    <button onClick={handleShowModalDelete}>ลบ</button>
-                  </div>
-                </>
-              )}
-              {user && !createUser && canReview && (
-                <>
-                  <div>
-                    <button onClick={() => handleShowModalReview()}>
-                      รีวิว
-                    </button>
-                  </div>
-                </>
-              )}
-              {user && !createUser && !isAdmin && (
-                <>
-                  <div>
-                    <button onClick={() => handleShowModalReport()}>
-                      รีพอร์ต
-                    </button>
+                  <div className="Activity-Info-Page-Card-Flex-Three-Btn">
+                    <div>
+                      {" "}
+                      <Link
+                        key="editActivity"
+                        href="/editActivity/[activityId]"
+                        as={`/editActivity/${data.getOnePost._id}`}
+                      >
+                        <button className="Activity-Info-Page-Card-Button-Edit">
+                          แก้ไข
+                        </button>
+                      </Link>
+                    </div>
+                    <div>
+                      <Link
+                        key="attendanceCheck"
+                        href="/attendanceCheck/[activityId]"
+                        as={`/attendanceCheck/${postId}`}
+                      >
+                        <button className="Activity-Info-Page-Card-Button-Check">
+                          เช็คชื่อ
+                        </button>
+                      </Link>
+                    </div>
+                    <div>
+                      {" "}
+                      <button
+                        className="Activity-Info-Page-Card-Button-Mail"
+                        onClick={handleShowModalSendEmail}
+                      >
+                        ส่งข้อมูล
+                      </button>
+                    </div>
                   </div>
                 </>
               )}
             </div>
-
             <div className="Activity-Info-Page-Card-Description">
               <div className="Activity-Info-Page-Card-Flex">
                 <label className="Activity-Info-Page-Card-Description-Name">
@@ -696,11 +745,48 @@ const ActivityInfo = () => {
                 {data.getOnePost.description}
               </div>
             </div>
-            <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </DropdownButton>
+            <div className="Activity-Info-Page-Card-Top-Div">
+              {user && !createUser && (
+                <>
+                  <div className="Activity-Info-Page-Card-Box">
+                    <button
+                      className={
+                        toggleJoin == "unjoin"
+                          ? "Activity-Info-Page-Card-Button-Join"
+                          : "Activity-Info-Page-Card-Button-Unjoin"
+                      }
+                    >
+                      {/* <img
+                        className="Activity-Info-Page-Card-Join"
+                        src={toggleJoin == "unjoin" ? Unjoin : Join}
+                        onClick={() => handleShowModalJoin()}
+                      ></img> */}
+                      <label
+                        className="Activity-Info-Page-Card-Join-Text"
+                        onClick={() => handleShowModalJoin()}
+                      >
+                        {toggleJoin == "unjoin" ? "เข้าร่วม" : "ยกเลิก"}
+                      </label>
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="Activity-Info-Page-Card-Action">
+              {(createUser || isAdmin) && (
+                <>
+                  {/* style={{ display: isVisible ? "block" : "none" }} */}
+                  <div className="Activity-Info-Page-Card-Flex-Three-Btn">
+                    <button
+                      className="Activity-Info-Page-Card-Button-Delete"
+                      onClick={handleShowModalDelete}
+                    >
+                      ลบ
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -845,7 +931,7 @@ const ActivityInfo = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="Activity-Info-Page-Card-Report-Body">
-            <div>ชื่อกิจกรรม : {data.getOnePost.name}</div>
+            <div className="Activity-Info-Page-Card-Report-Name">ชื่อกิจกรรม : {data.getOnePost.name}</div>
             <div>
               ข้อความเพิ่มเติม :
               <textarea
@@ -881,26 +967,45 @@ const ActivityInfo = () => {
               รีวิวกิจกรรม
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body className="Activity-Info-Page-Card-Star-Rating-Body">
-            <div>ชื่อกิจกรรม : {data.getOnePost.name}</div>
-            <div className="Activity-Info-Page-Card-Star-Rating-Star-Div">
-              <ReactStars
-                count={5}
-                onChange={ratingChanged}
-                size={24}
-                activeColor="#E9A605y"
-                className="Activity-Info-Page-Card-Star-Rating-Star"
-              />
-            </div>
 
-            <div className="Activity-Info-Page-Card-Star-Rating-Text-Area">
-              เพิ่มเติม :
-              <textarea
-                type="text"
-                placeholder=""
-                onChange={handleChangeReviewText}
-                className="Activity-Info-Page-Card-Star-Rating-Text"
-              />
+          <Modal.Body className="Activity-Info-Page-Card-Star-Rating-Body">
+            <div className="Two-Row">
+              {" "}
+              <div className="Activity-Info-Page-Card-Star-Rating-Name">
+                ชื่อกิจกรรม : {data.getOnePost.name}
+              </div>
+            </div>
+            <div>
+              <div className="Activity-Info-Page-Card-Star-Rating-Star-Div">
+                <ReactStars
+                  count={5}
+                  onChange={ratingChanged}
+                  size={40}
+                  activeColor="#E9A605"
+                  className="Activity-Info-Page-Card-Star-Rating-Star"
+                />
+                {/* <StarRatings
+                rating={ReviewRate}
+                starRatedColor="blue"
+                changeRating={ratingChanged}
+                numberOfStars={5}
+                name="rating"
+              /> */}
+              </div>
+            </div>
+            <div className="Two-Row">
+              {" "}
+              <div className="Activity-Info-Page-Card-Star-Rating-Text-Area">
+                เพิ่มเติม :{" "}
+              </div>
+              <div className="Activity-Info-Page-Card-Star-Rating-Text-Area">
+                <textarea
+                  type="text"
+                  placeholder=""
+                  onChange={handleChangeReviewText}
+                  className="Activity-Info-Page-Card-Star-Rating-Text"
+                />
+              </div>
             </div>
           </Modal.Body>
           <Modal.Footer>

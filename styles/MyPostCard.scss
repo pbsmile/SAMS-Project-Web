@@ -1,4 +1,4 @@
-.Main-Page-Fixed-Bg {
+.My-Post-Page-Fixed-Bg {
   position: fixed;
   //background-color: rgb(255, 255, 255);
   height: 120px;
@@ -39,7 +39,7 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color:#ffffff;
+  background-color: #ffffff;
   border-color: #ffffff;
 }
 
@@ -47,22 +47,59 @@
   font-family: "Prompt", sans-serif;
   font-size: 15px;
   width: 150px;
-  background-color:#ffffff;
+  background-color: #ffffff;
   border-color: #ffffff;
 }
 
-.Main-Page-Banner-Slider {
-  width: 500px;
-  position: fixed;
+.My-Post-Page-Slidebar {
+  //object-fit: contain;
+  //object-fit: scale-down;
+  width: 600px;
+  height: 300px;
+  padding-top: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1;
+  //position: fixed;
+  @media screen and (max-width: 744px) {
+    width: 100vw;
+  }
+  @media screen and (max-width: 414px) {
+    width: 100vw;
+  }
+  @media screen and (max-width: 300px) {
+    width: 100vw;
+  }
 }
 
-.thumb {
+.My-Post-Page-Slidebar-Img {
+  //margin: -100px -0px 0px 0px;
+  z-index: -1;
+
+}
+
+.carousel.carousel-slider .control-arrow .control-arrow:hover {
+  z-index: -1;
+}
+
+.carousel-status {
+  visibility: hidden;
+}
+
+.div.thumb-wrapper.axis-vertical , .carousel .thumbs-wrapper {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.thumb{
   visibility: hidden;
 }
 
 .My-Post-Page-Card-Div {
   overflow: hidden;
-  //margin-left: 35%;
+  // width: 100vw;
+  // margin-left: 45%;
   //max-width: 550px;
   padding: 10px;
   //margin-top: 200px;
@@ -71,6 +108,10 @@
   // border-style: solid;
   // border-color: rgb(0, 0, 0);
   // border-width: 1px;
+  // @media screen and (max-width: 744px) {
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
 }
 
 .My-Post-Page-Card-Slider {
@@ -84,7 +125,7 @@
   width: 530px;
   border-radius: 10px;
   color: $dark-orange;
-  
+
   //background: #d6d5d5;
 }
 
@@ -98,7 +139,7 @@
 }
 
 .My-Post-Page-Card-List {
-  margin-top: 170px;
+  margin-top: 80px;
   display: grid;
   justify-content: center;
   grid-template-columns: auto auto auto auto auto;
@@ -106,6 +147,10 @@
   padding: 10px;
   @media screen and (max-width: 1079px) {
     grid-template-columns: auto auto auto;
+    margin-bottom: 180px;
+  }
+  @media screen and (max-width: 744px) {
+    grid-template-columns: auto auto;
     margin-bottom: 180px;
   }
   @media screen and (max-width: 414px) {
@@ -120,6 +165,10 @@
   // border-style: solid;
   // border-width: 1px;
   // border-color: #111111;
+  @media screen and (max-width: 414px) {
+    max-width: 170px;
+    margin-top: 10px;
+  }
 }
 
 .My-Post-Page-Card-Media {
@@ -129,7 +178,7 @@
 .My-Post-Page-Card-Top-Div {
   display: flex;
   flex-direction: row;
-  
+
   margin-left: 65%;
   align-items: center;
 }
@@ -189,8 +238,12 @@
 
 .My-Post-Page-Card-Img {
   width: 100px;
-  //height: 100px;
+  height: 150px;
   border-radius: 5px;
+  @media screen and (max-width: 500px) {
+    width: 80px;
+  height: 120px;
+  }
 }
 
 .My-Post-Page-Card-Status {
@@ -208,7 +261,12 @@
 .My-Post-Page-Card-Icon-Size {
   height: 20px;
   width: 20px;
-  // filter: invert(51%) sepia(2%) saturate(221%) hue-rotate(81deg) brightness(99%) contrast(95%);
+  // filter: invert(51%) sepia(2%) saturate(221%) hue-rotate(81deg) brightness(99%)
+  //   contrast(95%);
+  @media screen and (max-width: 414px) {
+    height: 15px;
+    width: 15px;
+  }
 }
 
 .My-Post-Page-Card-Name {
@@ -220,6 +278,9 @@
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
 }
 
 .My-Post-Page-Card-Date-Time {
@@ -229,14 +290,22 @@
 }
 
 .My-Post-Page-Card-Date {
-  width: 259px;
+ width: 100%;
   font-family: "Prompt", sans-serif;
   font-size: 14px;
-  color: #ED0000;
+  color: #ed0000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 }
 
 .My-Post-Page-Card-Time {
-  width: 259px;
+  //width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
 }
@@ -250,6 +319,9 @@
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
 }
 
 .My-Post-Page-Card-Members-Close {
@@ -259,13 +331,13 @@
 }
 
 .My-Post-Page-Card-Members {
-  width: 259px;
+  //width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
 }
 
 .My-Post-Page-Card-Close {
-  width: 259px;
+  //width: 259px;
   font-family: "Prompt", sans-serif;
   font-size: 15px;
 }
