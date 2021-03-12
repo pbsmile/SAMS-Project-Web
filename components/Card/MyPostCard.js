@@ -41,6 +41,7 @@ const QUERY_MYPOST = gql`
         place
         participantsNumber
         dateCloseApply
+        photoHeader
       }
     }
   }
@@ -148,7 +149,7 @@ const MyPostCard = () => {
                           href="/activity/[activityId]"
                           as={`/activity/${prod._id}`}
                         >
-                          <img className="My-Post-Page-Card-Img" src={Chest} />
+                          <img className="My-Post-Page-Card-Img" src={prod.photoHeader} />
                         </Link>
                         {/* <label className="My-Post-Page-Card-Status">
                         สถานะกิจกรรม :

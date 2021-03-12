@@ -45,6 +45,7 @@ const QUERY_POSTAUTH = gql`
         major
         canJoin
         canFav
+        photoHeader
       }
     }
   }
@@ -259,7 +260,7 @@ const ActivityCard = () => {
                           >
                             <img
                               className="Activity-Page-Card-Img"
-                              src={Chest}
+                              src={prod.photoHeader}
                             />
                           </Link>
                           {/* <label className="Activity-Page-Card-Status">
