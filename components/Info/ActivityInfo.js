@@ -40,13 +40,8 @@ import "moment-timezone";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal } from "react-bootstrap";
-
-import ReactStars from "react-rating-stars-component";
-<<<<<<< HEAD
-import StarRatings from "react-star-ratings";
-=======
 import AttendanceCheck from "../AttendanceCheck/AttendanceCheck"
->>>>>>> 3116d2a3d0623d24bdb9f3a9793f677fe6d496b4
+import ReactStars from "react-rating-stars-component"
 
 const REVIEW = gql`
   mutation REVIEW(

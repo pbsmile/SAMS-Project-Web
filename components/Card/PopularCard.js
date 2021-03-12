@@ -40,6 +40,7 @@ const QUERY_POSTAUTH = gql`
         dateCloseApply
         canJoin
         canFav
+        photoHeader
       }
     }
   }
@@ -124,6 +125,7 @@ const PopularCard = () => {
 
   return (
     <div className="Main-Page-Card-Div">
+      
       {/* <div className="Main-Page-Fixed-Bg">
         <nav className="Main-Page-Card-Nav">
           <p className="Main-Page-Card-Nav-Popular">กิจกรรมยอดนิยม</p>
@@ -150,7 +152,7 @@ const PopularCard = () => {
                           href="/activity/[activityId]"
                           as={`/activity/${prod._id}`}
                         >
-                          <img className="Main-Page-Card-Img" src={Chest} />
+                          <img className="Main-Page-Card-Img" src={prod.photoHeader} />
                         </Link>
                         {/* <label className="Main-Page-Card-Status">
                         สถานะกิจกรรม :

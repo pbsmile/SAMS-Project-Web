@@ -39,6 +39,7 @@ const QUERY_POSTAUTH = gql`
         dateCloseApply
         canJoin
         canFav
+        photoHeader
       }
     }
   }
@@ -150,7 +151,7 @@ const NearingCard = () => {
                         href="/activity/[activityId]"
                         as={`/activity/${prod._id}`}
                       >
-                        <img className="Main-Page-Card-Img" src={Chest} />
+                        <img className="Main-Page-Card-Img" src={prod.photoHeader} />
                       </Link>
                       {/* <label className="Main-Page-Card-Status">
                         สถานะกิจกรรม :
