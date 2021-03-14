@@ -1,5 +1,5 @@
 import React from 'react'
-import apolloClient from "../apollo/apolloClient"
+import apolloClient from "../apollo/apolloclient"
 import Navbar from '../components/Navbar/Navbar'
 import Register from '../components/Register/Register'
 

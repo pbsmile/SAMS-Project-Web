@@ -1,5 +1,5 @@
 import React from 'react'
-import apolloClient from "../apollo/apolloClient"
+import apolloClient from "../apollo/apolloclient"
 import NewLogin from '../components/NewLogin/NewLogin'
 
 
