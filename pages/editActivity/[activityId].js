@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import ActivityInfo from '../../components/Info/ActivityInfo'
-import EditActivity from '../../components/PostActivity/EditPost'
+import EditActivity from '../../components/PostActivity/editPost'
 
 const editActivity = () => {
     return (
